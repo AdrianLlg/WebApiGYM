@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GYMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clase">
+          <Key>
+            <PropertyRef Name="claseID" />
+          </Key>
+          <Property Name="claseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="disciplinaID" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clase_persona">
+          <Key>
+            <PropertyRef Name="clase_personaID" />
+          </Key>
+          <Property Name="clase_personaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claseID" Type="int" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="asistencia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clase_recurso">
+          <Key>
+            <PropertyRef Name="clase_recursoID" />
+          </Key>
+          <Property Name="clase_recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claseID" Type="int" Nullable="false" />
+          <Property Name="recursoID" Type="int" Nullable="false" />
+          <Property Name="reservado" Type="int" Nullable="false" />
+          <Property Name="personaID" Type="int" />
+        </EntityType>
+        <EntityType Name="cronograma">
+          <Key>
+            <PropertyRef Name="cronogramaID" />
+          </Key>
+          <Property Name="cronogramaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claseID" Type="int" Nullable="false" />
+          <Property Name="horarioMID" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="salaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="disciplina">
+          <Key>
+            <PropertyRef Name="disciplinaID" />
+          </Key>
+          <Property Name="disciplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="horarioM">
+          <Key>
+            <PropertyRef Name="horarioMID" />
+          </Key>
+          <Property Name="horarioMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="horaInicio" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="horaFin" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="membresia">
+          <Key>
+            <PropertyRef Name="membresiaID" />
+          </Key>
+          <Property Name="membresiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" />
+          <Property Name="precio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="membresia_disciplina">
+          <Key>
+            <PropertyRef Name="membresia_discplinaID" />
+          </Key>
+          <Property Name="membresia_discplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="membresiaID" Type="int" Nullable="false" />
+          <Property Name="disciplinaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="membresia_persona">
+          <Key>
+            <PropertyRef Name="membresia_personaID" />
+          </Key>
+          <Property Name="membresia_personaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="membresiaID" Type="int" Nullable="false" />
+          <Property Name="numReservas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="personaID" />
+          </Key>
+          <Property Name="personaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolePID" Type="int" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="edad" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="sexo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recurso">
+          <Key>
+            <PropertyRef Name="recursoID" />
+          </Key>
+          <Property Name="recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleP">
+          <Key>
+            <PropertyRef Name="rolePID" />
+          </Key>
+          <Property Name="rolePID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sala">
+          <Key>
+            <PropertyRef Name="salaID" />
+          </Key>
+          <Property Name="salaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <Association Name="clase_cronoID_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="cronograma">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clase_persona_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="clase_persona">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clase_persona_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="clase_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="claseID_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="clase_recurso">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="discplina_clase_fk">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
+          <End Role="clase" Type="Self.clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Principal>
+            <Dependent Role="clase">
+              <PropertyRef Name="disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="discplina1_fk">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
+          <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Principal>
+            <Dependent Role="membresia_disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horarioM_cronoID_fk">
+          <End Role="horarioM" Type="Self.horarioM" Multiplicity="1" />
+          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horarioM">
+              <PropertyRef Name="horarioMID" />
+            </Principal>
+            <Dependent Role="cronograma">
+              <PropertyRef Name="horarioMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="membresia1_fk">
+          <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
+          <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia">
+              <PropertyRef Name="membresiaID" />
+            </Principal>
+            <Dependent Role="membresia_disciplina">
+              <PropertyRef Name="membresiaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="membresiaID2_fk">
+          <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
+          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia">
+              <PropertyRef Name="membresiaID" />
+            </Principal>
+            <Dependent Role="membresia_persona">
+              <PropertyRef Name="membresiaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personaID_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="clase_recurso">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personaID2_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="membresia_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recursoID_fk">
+          <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
+          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recurso">
+              <PropertyRef Name="recursoID" />
+            </Principal>
+            <Dependent Role="clase_recurso">
+              <PropertyRef Name="recursoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rolePID_fk">
+          <End Role="roleP" Type="Self.roleP" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleP">
+              <PropertyRef Name="rolePID" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="rolePID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_cronoID_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="cronograma">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_personaID_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GYMDBModelStoreContainer">
+          <EntitySet Name="clase" EntityType="Self.clase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clase_persona" EntityType="Self.clase_persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clase_recurso" EntityType="Self.clase_recurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cronograma" EntityType="Self.cronograma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="disciplina" EntityType="Self.disciplina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="horarioM" EntityType="Self.horarioM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="membresia" EntityType="Self.membresia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="membresia_disciplina" EntityType="Self.membresia_disciplina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="membresia_persona" EntityType="Self.membresia_persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recurso" EntityType="Self.recurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roleP" EntityType="Self.roleP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sala" EntityType="Self.sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="clase_cronoID_fk" Association="Self.clase_cronoID_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="cronograma" EntitySet="cronograma" />
+          </AssociationSet>
+          <AssociationSet Name="clase_persona_fk" Association="Self.clase_persona_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="clase_persona" EntitySet="clase_persona" />
+          </AssociationSet>
+          <AssociationSet Name="clase_persona_Id_fk" Association="Self.clase_persona_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="clase_persona" EntitySet="clase_persona" />
+          </AssociationSet>
+          <AssociationSet Name="claseID_fk" Association="Self.claseID_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="clase_recurso" EntitySet="clase_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="discplina_clase_fk" Association="Self.discplina_clase_fk">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="clase" EntitySet="clase" />
+          </AssociationSet>
+          <AssociationSet Name="discplina1_fk" Association="Self.discplina1_fk">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
+            <End Role="horarioM" EntitySet="horarioM" />
+            <End Role="cronograma" EntitySet="cronograma" />
+          </AssociationSet>
+          <AssociationSet Name="membresia1_fk" Association="Self.membresia1_fk">
+            <End Role="membresia" EntitySet="membresia" />
+            <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="membresiaID2_fk" Association="Self.membresiaID2_fk">
+            <End Role="membresia" EntitySet="membresia" />
+            <End Role="membresia_persona" EntitySet="membresia_persona" />
+          </AssociationSet>
+          <AssociationSet Name="personaID_fk" Association="Self.personaID_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="clase_recurso" EntitySet="clase_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="personaID2_fk" Association="Self.personaID2_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="membresia_persona" EntitySet="membresia_persona" />
+          </AssociationSet>
+          <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
+            <End Role="recurso" EntitySet="recurso" />
+            <End Role="clase_recurso" EntitySet="clase_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="rolePID_fk" Association="Self.rolePID_fk">
+            <End Role="roleP" EntitySet="roleP" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="sala_cronoID_fk" Association="Self.sala_cronoID_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="cronograma" EntitySet="cronograma" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_personaID_fk" Association="Self.usuario_personaID_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GYMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="clase">
+          <Key>
+            <PropertyRef Name="claseID" />
+          </Key>
+          <Property Name="claseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="disciplinaID" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cronograma" Relationship="Self.clase_cronoID_fk" FromRole="clase" ToRole="cronograma" />
+          <NavigationProperty Name="clase_persona" Relationship="Self.clase_persona_fk" FromRole="clase" ToRole="clase_persona" />
+          <NavigationProperty Name="clase_recurso" Relationship="Self.claseID_fk" FromRole="clase" ToRole="clase_recurso" />
+          <NavigationProperty Name="disciplina" Relationship="Self.discplina_clase_fk" FromRole="clase" ToRole="disciplina" />
+        </EntityType>
+        <EntityType Name="clase_persona">
+          <Key>
+            <PropertyRef Name="clase_personaID" />
+          </Key>
+          <Property Name="clase_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claseID" Type="Int32" Nullable="false" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="asistencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clase" Relationship="Self.clase_persona_fk" FromRole="clase_persona" ToRole="clase" />
+          <NavigationProperty Name="persona" Relationship="Self.clase_persona_Id_fk" FromRole="clase_persona" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="clase_recurso">
+          <Key>
+            <PropertyRef Name="clase_recursoID" />
+          </Key>
+          <Property Name="clase_recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claseID" Type="Int32" Nullable="false" />
+          <Property Name="recursoID" Type="Int32" Nullable="false" />
+          <Property Name="reservado" Type="Int32" Nullable="false" />
+          <Property Name="personaID" Type="Int32" />
+          <NavigationProperty Name="clase" Relationship="Self.claseID_fk" FromRole="clase_recurso" ToRole="clase" />
+          <NavigationProperty Name="persona" Relationship="Self.personaID_fk" FromRole="clase_recurso" ToRole="persona" />
+          <NavigationProperty Name="recurso" Relationship="Self.recursoID_fk" FromRole="clase_recurso" ToRole="recurso" />
+        </EntityType>
+        <EntityType Name="cronograma">
+          <Key>
+            <PropertyRef Name="cronogramaID" />
+          </Key>
+          <Property Name="cronogramaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claseID" Type="Int32" Nullable="false" />
+          <Property Name="horarioMID" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="salaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clase" Relationship="Self.clase_cronoID_fk" FromRole="cronograma" ToRole="clase" />
+          <NavigationProperty Name="horarioM" Relationship="Self.horarioM_cronoID_fk" FromRole="cronograma" ToRole="horarioM" />
+          <NavigationProperty Name="sala" Relationship="Self.sala_cronoID_fk" FromRole="cronograma" ToRole="sala" />
+        </EntityType>
+        <EntityType Name="disciplina">
+          <Key>
+            <PropertyRef Name="disciplinaID" />
+          </Key>
+          <Property Name="disciplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="clase" Relationship="Self.discplina_clase_fk" FromRole="disciplina" ToRole="clase" />
+          <NavigationProperty Name="membresia_disciplina" Relationship="Self.discplina1_fk" FromRole="disciplina" ToRole="membresia_disciplina" />
+        </EntityType>
+        <EntityType Name="horarioM">
+          <Key>
+            <PropertyRef Name="horarioMID" />
+          </Key>
+          <Property Name="horarioMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="horaInicio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="horaFin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cronograma" Relationship="Self.horarioM_cronoID_fk" FromRole="horarioM" ToRole="cronograma" />
+        </EntityType>
+        <EntityType Name="membresia">
+          <Key>
+            <PropertyRef Name="membresiaID" />
+          </Key>
+          <Property Name="membresiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia1_fk" FromRole="membresia" ToRole="membresia_disciplina" />
+          <NavigationProperty Name="membresia_persona" Relationship="Self.membresiaID2_fk" FromRole="membresia" ToRole="membresia_persona" />
+        </EntityType>
+        <EntityType Name="membresia_disciplina">
+          <Key>
+            <PropertyRef Name="membresia_discplinaID" />
+          </Key>
+          <Property Name="membresia_discplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="membresiaID" Type="Int32" Nullable="false" />
+          <Property Name="disciplinaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="disciplina" Relationship="Self.discplina1_fk" FromRole="membresia_disciplina" ToRole="disciplina" />
+          <NavigationProperty Name="membresia" Relationship="Self.membresia1_fk" FromRole="membresia_disciplina" ToRole="membresia" />
+        </EntityType>
+        <EntityType Name="membresia_persona">
+          <Key>
+            <PropertyRef Name="membresia_personaID" />
+          </Key>
+          <Property Name="membresia_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="membresiaID" Type="Int32" Nullable="false" />
+          <Property Name="numReservas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="membresia" Relationship="Self.membresiaID2_fk" FromRole="membresia_persona" ToRole="membresia" />
+          <NavigationProperty Name="persona" Relationship="Self.personaID2_fk" FromRole="membresia_persona" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="personaID" />
+          </Key>
+          <Property Name="personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolePID" Type="Int32" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="identificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="edad" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="clase_persona" Relationship="Self.clase_persona_Id_fk" FromRole="persona" ToRole="clase_persona" />
+          <NavigationProperty Name="clase_recurso" Relationship="Self.personaID_fk" FromRole="persona" ToRole="clase_recurso" />
+          <NavigationProperty Name="membresia_persona" Relationship="Self.personaID2_fk" FromRole="persona" ToRole="membresia_persona" />
+          <NavigationProperty Name="roleP" Relationship="Self.rolePID_fk" FromRole="persona" ToRole="roleP" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_personaID_fk" FromRole="persona" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="recurso">
+          <Key>
+            <PropertyRef Name="recursoID" />
+          </Key>
+          <Property Name="recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="clase_recurso" Relationship="Self.recursoID_fk" FromRole="recurso" ToRole="clase_recurso" />
+        </EntityType>
+        <EntityType Name="roleP">
+          <Key>
+            <PropertyRef Name="rolePID" />
+          </Key>
+          <Property Name="rolePID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.rolePID_fk" FromRole="roleP" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="sala">
+          <Key>
+            <PropertyRef Name="salaID" />
+          </Key>
+          <Property Name="salaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cronograma" Relationship="Self.sala_cronoID_fk" FromRole="sala" ToRole="cronograma" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.usuario_personaID_fk" FromRole="usuario" ToRole="persona" />
+        </EntityType>
+        <Association Name="clase_cronoID_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="cronograma">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clase_persona_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="clase_persona">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="claseID_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="clase_recurso">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="discplina_clase_fk">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
+          <End Role="clase" Type="Self.clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Principal>
+            <Dependent Role="clase">
+              <PropertyRef Name="disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clase_persona_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="clase_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personaID_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="clase_recurso">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recursoID_fk">
+          <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
+          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recurso">
+              <PropertyRef Name="recursoID" />
+            </Principal>
+            <Dependent Role="clase_recurso">
+              <PropertyRef Name="recursoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horarioM_cronoID_fk">
+          <End Role="horarioM" Type="Self.horarioM" Multiplicity="1" />
+          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horarioM">
+              <PropertyRef Name="horarioMID" />
+            </Principal>
+            <Dependent Role="cronograma">
+              <PropertyRef Name="horarioMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_cronoID_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="cronograma">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="discplina1_fk">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
+          <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Principal>
+            <Dependent Role="membresia_disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="membresia1_fk">
+          <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
+          <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia">
+              <PropertyRef Name="membresiaID" />
+            </Principal>
+            <Dependent Role="membresia_disciplina">
+              <PropertyRef Name="membresiaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="membresiaID2_fk">
+          <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
+          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia">
+              <PropertyRef Name="membresiaID" />
+            </Principal>
+            <Dependent Role="membresia_persona">
+              <PropertyRef Name="membresiaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personaID2_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="membresia_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rolePID_fk">
+          <End Role="roleP" Type="Self.roleP" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleP">
+              <PropertyRef Name="rolePID" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="rolePID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_personaID_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GYMDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clase" EntityType="Self.clase" />
+          <EntitySet Name="clase_persona" EntityType="Self.clase_persona" />
+          <EntitySet Name="clase_recurso" EntityType="Self.clase_recurso" />
+          <EntitySet Name="cronograma" EntityType="Self.cronograma" />
+          <EntitySet Name="disciplina" EntityType="Self.disciplina" />
+          <EntitySet Name="horarioM" EntityType="Self.horarioM" />
+          <EntitySet Name="membresia" EntityType="Self.membresia" />
+          <EntitySet Name="membresia_disciplina" EntityType="Self.membresia_disciplina" />
+          <EntitySet Name="membresia_persona" EntityType="Self.membresia_persona" />
+          <EntitySet Name="persona" EntityType="Self.persona" />
+          <EntitySet Name="recurso" EntityType="Self.recurso" />
+          <EntitySet Name="roleP" EntityType="Self.roleP" />
+          <EntitySet Name="sala" EntityType="Self.sala" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="clase_cronoID_fk" Association="Self.clase_cronoID_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="cronograma" EntitySet="cronograma" />
+          </AssociationSet>
+          <AssociationSet Name="clase_persona_fk" Association="Self.clase_persona_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="clase_persona" EntitySet="clase_persona" />
+          </AssociationSet>
+          <AssociationSet Name="claseID_fk" Association="Self.claseID_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="clase_recurso" EntitySet="clase_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="discplina_clase_fk" Association="Self.discplina_clase_fk">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="clase" EntitySet="clase" />
+          </AssociationSet>
+          <AssociationSet Name="clase_persona_Id_fk" Association="Self.clase_persona_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="clase_persona" EntitySet="clase_persona" />
+          </AssociationSet>
+          <AssociationSet Name="personaID_fk" Association="Self.personaID_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="clase_recurso" EntitySet="clase_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
+            <End Role="recurso" EntitySet="recurso" />
+            <End Role="clase_recurso" EntitySet="clase_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
+            <End Role="horarioM" EntitySet="horarioM" />
+            <End Role="cronograma" EntitySet="cronograma" />
+          </AssociationSet>
+          <AssociationSet Name="sala_cronoID_fk" Association="Self.sala_cronoID_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="cronograma" EntitySet="cronograma" />
+          </AssociationSet>
+          <AssociationSet Name="discplina1_fk" Association="Self.discplina1_fk">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="membresia1_fk" Association="Self.membresia1_fk">
+            <End Role="membresia" EntitySet="membresia" />
+            <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="membresiaID2_fk" Association="Self.membresiaID2_fk">
+            <End Role="membresia" EntitySet="membresia" />
+            <End Role="membresia_persona" EntitySet="membresia_persona" />
+          </AssociationSet>
+          <AssociationSet Name="personaID2_fk" Association="Self.personaID2_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="membresia_persona" EntitySet="membresia_persona" />
+          </AssociationSet>
+          <AssociationSet Name="rolePID_fk" Association="Self.rolePID_fk">
+            <End Role="roleP" EntitySet="roleP" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_personaID_fk" Association="Self.usuario_personaID_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GYMDBModelStoreContainer" CdmEntityContainer="GYMDBEntities">
+          <EntitySetMapping Name="clase">
+            <EntityTypeMapping TypeName="GYMDBModel.clase">
+              <MappingFragment StoreEntitySet="clase">
+                <ScalarProperty Name="claseID" ColumnName="claseID" />
+                <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clase_persona">
+            <EntityTypeMapping TypeName="GYMDBModel.clase_persona">
+              <MappingFragment StoreEntitySet="clase_persona">
+                <ScalarProperty Name="clase_personaID" ColumnName="clase_personaID" />
+                <ScalarProperty Name="claseID" ColumnName="claseID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="asistencia" ColumnName="asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clase_recurso">
+            <EntityTypeMapping TypeName="GYMDBModel.clase_recurso">
+              <MappingFragment StoreEntitySet="clase_recurso">
+                <ScalarProperty Name="clase_recursoID" ColumnName="clase_recursoID" />
+                <ScalarProperty Name="claseID" ColumnName="claseID" />
+                <ScalarProperty Name="recursoID" ColumnName="recursoID" />
+                <ScalarProperty Name="reservado" ColumnName="reservado" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cronograma">
+            <EntityTypeMapping TypeName="GYMDBModel.cronograma">
+              <MappingFragment StoreEntitySet="cronograma">
+                <ScalarProperty Name="cronogramaID" ColumnName="cronogramaID" />
+                <ScalarProperty Name="claseID" ColumnName="claseID" />
+                <ScalarProperty Name="horarioMID" ColumnName="horarioMID" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="salaID" ColumnName="salaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="disciplina">
+            <EntityTypeMapping TypeName="GYMDBModel.disciplina">
+              <MappingFragment StoreEntitySet="disciplina">
+                <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horarioM">
+            <EntityTypeMapping TypeName="GYMDBModel.horarioM">
+              <MappingFragment StoreEntitySet="horarioM">
+                <ScalarProperty Name="horarioMID" ColumnName="horarioMID" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="horaFin" ColumnName="horaFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="membresia">
+            <EntityTypeMapping TypeName="GYMDBModel.membresia">
+              <MappingFragment StoreEntitySet="membresia">
+                <ScalarProperty Name="membresiaID" ColumnName="membresiaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="membresia_disciplina">
+            <EntityTypeMapping TypeName="GYMDBModel.membresia_disciplina">
+              <MappingFragment StoreEntitySet="membresia_disciplina">
+                <ScalarProperty Name="membresia_discplinaID" ColumnName="membresia_discplinaID" />
+                <ScalarProperty Name="membresiaID" ColumnName="membresiaID" />
+                <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="membresia_persona">
+            <EntityTypeMapping TypeName="GYMDBModel.membresia_persona">
+              <MappingFragment StoreEntitySet="membresia_persona">
+                <ScalarProperty Name="membresia_personaID" ColumnName="membresia_personaID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="membresiaID" ColumnName="membresiaID" />
+                <ScalarProperty Name="numReservas" ColumnName="numReservas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="persona">
+            <EntityTypeMapping TypeName="GYMDBModel.persona">
+              <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="rolePID" ColumnName="rolePID" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recurso">
+            <EntityTypeMapping TypeName="GYMDBModel.recurso">
+              <MappingFragment StoreEntitySet="recurso">
+                <ScalarProperty Name="recursoID" ColumnName="recursoID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleP">
+            <EntityTypeMapping TypeName="GYMDBModel.roleP">
+              <MappingFragment StoreEntitySet="roleP">
+                <ScalarProperty Name="rolePID" ColumnName="rolePID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sala">
+            <EntityTypeMapping TypeName="GYMDBModel.sala">
+              <MappingFragment StoreEntitySet="sala">
+                <ScalarProperty Name="salaID" ColumnName="salaID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="GYMDBModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

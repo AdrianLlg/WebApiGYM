@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="be3e99c1b60746d3b949984818c7649b" Name="Diagram1">
+        <EntityTypeShape EntityType="GYMDBModel.clase" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.clase_persona" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.clase_recurso" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.cronograma" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.disciplina" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.horarioM" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_disciplina" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_persona" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.persona" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.recurso" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.roleP" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.sala" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.usuario" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <AssociationConnector Association="GYMDBModel.clase_cronoID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.clase_persona_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.claseID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.discplina_clase_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.clase_persona_Id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.personaID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.recursoID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.horarioM_cronoID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.sala_cronoID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.discplina1_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.membresia1_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.membresiaID2_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.personaID2_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.rolePID_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="GYMDBModel.usuario_personaID_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
