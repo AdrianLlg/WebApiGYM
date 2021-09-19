@@ -1,36 +1,37 @@
 ﻿using System;
 using System.Linq;
-using WebAPIBusiness.Entities.Login;
+using WebAPIBusiness.Entities.RegistroPersona;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
 {
     public class LoginBO
     {
-        public bool insertUser(string rol, string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento)
+        public bool insertUser(string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento, string password)
         {
             bool entity = false;
-            LoginEntity p = new LoginEntity();
 
-            //p = consultarItem("Bachata");
-            entity = insertDBUser(rol, nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento);
-
+            entity = insertDBUser(nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento, password);
+            
             return entity;
         }
 
-        private bool insertDBUser(string rol, string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento)
+        private bool insertDBUser(string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento, string password)
         {
             DateTime fecha = Convert.ToDateTime(fechanacimiento);
             DateTime hoy = DateTime.Now;
 
             persona item = new persona();
+            persona recoverPerson = new persona();
+            usuario newUser;
+
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
                     item = new persona()
                     {
-                        rolePID = int.Parse(rol),
+                        rolePID = 3,
                         nombres = nombre,
                         apellidos = apellido,
                         identificacion = identificacion,
@@ -42,11 +43,23 @@ namespace WebAPIBusiness.BusinessCore
                         fechaCreacion = hoy
                     };
 
-                    dbContext.persona.Add(item);
-                    dbContext.SaveChanges();
+                    dbContext.persona.Add(item);                   
 
-                    return true;
+                    recoverPerson = dbContext.persona.Where(x => x.identificacion == identificacion).FirstOrDefault();
+
+                    newUser = new usuario()
+                    {
+                       personaID = recoverPerson.personaID,
+                       persona = recoverPerson,
+                       email = recoverPerson.email,
+                       password = password
+                    };
+
+                    dbContext.usuario.Add(newUser);
+                    dbContext.SaveChanges();
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -54,32 +67,32 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private LoginEntity consultarItem(string tipo)
-        {
-            LoginEntity item = new LoginEntity();
-            try
-            {
-                using (var dbContext = new GYMDBEntities())
-                {
-                    var entity = dbContext.disciplina.Where(x => x.nombre == tipo).FirstOrDefault();
+        //private LoginEntity consultarItem(string tipo)
+        //{
+        //    LoginEntity item = new LoginEntity();
+        //    try
+        //    {
+        //        using (var dbContext = new GYMDBEntities())
+        //        {
+        //            var entity = dbContext.disciplina.Where(x => x.nombre == tipo).FirstOrDefault();
 
-                    if (entity != null )
-                    {
-                        item = new LoginEntity()
-                        {
-                            DisciplinaID = entity.disciplinaID,
-                            Nombre = entity.nombre,
-                            Descripcion = entity.descripcion
-                        };
-                    }
+        //            if (entity != null )
+        //            {
+        //                item = new LoginEntity()
+        //                {
+        //                    DisciplinaID = entity.disciplinaID,
+        //                    Nombre = entity.nombre,
+        //                    Descripcion = entity.descripcion
+        //                };
+        //            }
 
-                    return item;
-                }
-            }
-            catch (Exception ex)
-            {
-                return item;
-            }
-        }
+        //            return item;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return item;
+        //    }
+        //}
     }
 }

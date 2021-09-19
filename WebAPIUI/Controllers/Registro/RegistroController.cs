@@ -11,7 +11,7 @@ using WebAPIUI.Models.Login;
 
 namespace WebAPIUI.Controllers
 {
-    public class LoginController : BaseAPIController
+    public class RegistroController : BaseAPIController
     {
         private void ValidatePostRequest(RegisterPersonDataRequest dataRequest)
         {
@@ -34,7 +34,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar una nueva persona en la tabla
         /// </summary>
-        private bool InsertarNuevaPersona(string rol, string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento)
+        private bool InsertarNuevaPersona(string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento, string password)
         {
             LoginBO bo = new LoginBO();
             List<string> messages = new List<string>();
@@ -42,7 +42,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertUser(rol, nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento);
+                response = bo.insertUser( nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento, password);
             }
             catch (ValidationAndMessageException ConsultaRepositorioImagenesException)
             {
@@ -75,7 +75,7 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                bool resp = InsertarNuevaPersona(dataRequest.rolePID, dataRequest.nombres, dataRequest.apellidos, dataRequest.identificacion, dataRequest.email, dataRequest.telefono, dataRequest.edad, dataRequest.sexo, dataRequest.fechaNacimiento);
+                bool resp = InsertarNuevaPersona(dataRequest.nombres, dataRequest.apellidos, dataRequest.identificacion, dataRequest.email, dataRequest.telefono, dataRequest.edad, dataRequest.sexo, dataRequest.fechaNacimiento, dataRequest.password);
 
                 if (resp)
                 {

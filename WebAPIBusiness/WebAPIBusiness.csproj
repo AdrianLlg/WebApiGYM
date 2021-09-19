@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="BusinessCore\LoginBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
-    <Compile Include="Entities\Login\LoginEntity.cs" />
+    <Compile Include="Entities\RegistroPersona\RegistroPersonaEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

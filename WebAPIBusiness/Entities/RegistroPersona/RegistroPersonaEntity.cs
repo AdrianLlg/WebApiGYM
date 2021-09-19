@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAPIBusiness.Entities.Login
+namespace WebAPIBusiness.Entities.RegistroPersona
 {
-    public class LoginEntity
+    public class RegistroPersonaEntity
     {
         public int DisciplinaID { get; set; }
         public string Nombre { get; set; }
