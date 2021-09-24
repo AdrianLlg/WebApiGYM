@@ -67,32 +67,6 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        //private LoginEntity consultarItem(string tipo)
-        //{
-        //    LoginEntity item = new LoginEntity();
-        //    try
-        //    {
-        //        using (var dbContext = new GYMDBEntities())
-        //        {
-        //            var entity = dbContext.disciplina.Where(x => x.nombre == tipo).FirstOrDefault();
-
-        //            if (entity != null )
-        //            {
-        //                item = new LoginEntity()
-        //                {
-        //                    DisciplinaID = entity.disciplinaID,
-        //                    Nombre = entity.nombre,
-        //                    Descripcion = entity.descripcion
-        //                };
-        //            }
-
-        //            return item;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return item;
-        //    }
-        //}
+ 
     }
 }

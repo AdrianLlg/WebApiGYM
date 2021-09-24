@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Script Creacion" xml:space="preserve">
+    <value>--CREATE DATABASE GYMDB
+USE GYMDB
+GO
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_persona_disciplina') DROP TABLE membresia_persona_disciplina;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase_persona') DROP TABLE clase_persona;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cronograma') DROP TABLE cronograma;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_disciplina') DROP TABLE membresia_disciplina;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_persona') DROP TABLE membresia_persona;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia') DROP TABLE membresia;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase_recurso') DROP TABLE clase_recurso;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase') DROP TABLE clase;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'recurso') DROP TABLE recurso;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'sala') DROP TABLE sala;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'disciplina') DROP TABLE disciplina;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'horarioM') DROP TABLE horarioM;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'usuario') DROP TABLE usuario;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'persona') DROP TABLE persona;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'roleP') DROP TABLE roleP;
+
+
+
+
+
+CREATE TABLE roleP(
+rolePID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(20) NOT NULL,
+descripcion VARCHAR(300) NOT NULL
+CONSTRAINT roleP_pk PRIMARY KEY (rolePID)
+)
+
+
+CREATE TABLE persona(
+personaID INTEGER IDENTITY (1,1) NOT NULL,
+rolePID INT NOT NULL,
+nombres VARCHAR(80) NOT NULL,
+apellidos VARCHAR(80) NOT NULL,
+identificacion VARCHAR(30) NOT NULL,
+email VARCHAR(80) NOT NULL,
+telefono VARCHAR(10) NOT NULL,
+edad VARCHAR(2) NOT NULL,
+sexo VARCHAR(1) NOT NULL,
+fechaNacimiento DATE NOT NULL,
+fechaCreacion DATE NOT NULL,
+CONSTRAINT persona_pk PRIMARY KEY (personaID),
+CONSTRAINT rolePID_fk FOREIGN KEY (rolePID) REFERENCES roleP(rolePID)
+)
+
+CREATE TABLE usuario(
+usuarioID INTEGER IDENTITY (1,1) NOT NULL,
+personaID INT NOT NULL,
+email VARCHAR(20) NOT NULL,
+password VARCHAR(300) NOT NULL
+CONSTRAINT usuario_pk PRIMARY KEY (usuarioID)
+CONSTRAINT usuario_personaID_fk FOREIGN KEY (personaID) REFERENCES persona(personaID)
+)
+
+
+CREATE TABLE horarioM(
+horarioMID INTEGER IDENTITY (1,1) NOT NULL,
+horaInicio VARCHAR(10) NOT NULL,
+horaFin VARCHAR(10) NOT NULL
+CONSTRAINT horarioM_pk PRIMARY KEY (horarioMID)
+)
+
+
+CREATE TABLE disciplina (
+disciplinaID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL,
+numClases INT NOT NULL
+CONSTRAINT disciplina_pk PRIMARY KEY (disciplinaID)
+)
+
+
+CREATE TABLE sala (
+salaID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL,
+CONSTRAINT sala_pk PRIMARY KEY (salaID)
+)
+
+
+CREATE TABLE recurso (
+recursoID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL
+CONSTRAINT recurso_pk PRIMARY KEY (recursoID)
+)
+
+CREATE TABLE clase (
+claseID INTEGER IDENTITY (1,1) NOT NULL,
+disciplinaID INT NOT NULL,
+nombre VARCHAR(30)NOT NULL,
+descripcion VARCHAR(300) NOT NULL
+CONSTRAINT clase_pk PRIMARY KEY (claseID)
+CONSTRAINT discplina_clase_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina(disciplinaID)
+)
+
+
+CREATE TABLE clase_recurso (
+clase_recursoID INTEGER IDENTITY (1,1) NOT NULL,
+claseID INT NOT NULL,
+recursoID INT NOT NULL,
+reservado INT NOT NULL,
+personaID INT NOT NULL
+CONSTRAINT claserecurso_pk PRIMARY KEY (clase_recursoID)
+CONSTRAINT claseID_fk FOREIGN KEY (claseID) REFERENCES clase (claseID),
+CONSTRAINT recursoID_fk FOREIGN KEY (recursoID) REFERENCES recurso(recursoID),
+CONSTRAINT personaID_fk FOREIGN KEY (personaID) REFERENCES persona(personaID)
+)
+
+
+CREATE TABLE cronograma (
+cronogramaID INTEGER IDENTITY (1,1) NOT NULL,
+claseID INT NOT NULL,
+horarioMID INT NOT NULL,
+fecha DATE NOT NULL,
+salaID INT NOT NULL
+CONSTRAINT cronograma_pk PRIMARY KEY (cronogramaID)
+CONSTRAINT clase_cronoID_fk FOREIGN KEY (claseID) REFERENCES clase (claseID),
+CONSTRAINT horarioM_cronoID_fk FOREIGN KEY (horarioMID) REFERENCES horarioM (horarioMID),
+CONSTRAINT sala_cronoID_fk FOREIGN KEY (salaID) REFERENCES sala (salaID)
+
+)
+
+
+
+CREATE TABLE clase_persona(
+clase_personaID INTEGER IDENTITY (1,1) NOT NULL,
+claseID INT NOT NULL,
+personaID INT NOT NULL,
+asistencia INT NOT NULL,
+CONSTRAINT clase_persona_pk PRIMARY KEY (clase_personaID),
+CONSTRAINT clase_persona_fk FOREIGN KEY (claseID) REFERENCES clase (claseID),
+CONSTRAINT clase_persona_Id_fk FOREIGN KEY (personaID) REFERENCES persona (personaID),
+)
+
+CREATE TABLE membresia(
+membresiaID INTEGER IDENTITY(1,1) NOT NULL,
+nombre VARCHAR(50),
+descripcion VARCHAR(300),
+precio INT NOT NULL,
+CONSTRAINT membresiaID_pk PRIMARY KEY (membresiaID)
+)
+
+CREATE TABLE membresia_disciplina(
+membresia_discplinaID INTEGER IDENTITY (1,1) NOT NULL,
+membresiaID INT NOT NULL,
+disciplinaID INT NOT NULL,
+CONSTRAINT membresia_discplinaID_pk PRIMARY KEY (membresia_discplinaID),
+CONSTRAINT membresia1_fk FOREIGN KEY (membresiaID) REFERENCES membresia (membresiaID),
+CONSTRAINT discplina1_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina (disciplinaID),
+)
+
+CREATE TABLE membresia_persona(
+membresia_personaID INTEGER IDENTITY(1,1) NOT NULL,
+personaID INT NOT NULL,
+membresiaID INT NOT NULL,
+fechaCreacion DATE NOT NULL
+CONSTRAINT membresia_personaID_pk PRIMARY KEY (membresia_personaID),
+CONSTRAINT personaID2_fk FOREIGN KEY (personaID) REFERENCES persona (personaID),
+CONSTRAINT membresiaID2_fk FOREIGN KEY (membresiaID) REFERENCES membresia (membresiaID),
+)
+
+CREATE TABLE membresia_persona_disciplina(
+membresia_persona_disciplinaID INTEGER IDENTITY(1,1) NOT NULL,
+membresia_personaID INT NOT NULL,
+personaID INT NOT NULL,
+disciplinaID INT NOT NULL,
+numClasesDisponible INT NOT NULL
+CONSTRAINT membresia_persona_disciplinaID_pk PRIMARY KEY (membresia_persona_disciplinaID),
+CONSTRAINT membresia_personaID_membresia_persona_disciplina_fk FOREIGN KEY (membresia_personaID) REFERENCES membresia_persona (membresia_personaID),
+CONSTRAINT personaID_membresia_persona_disciplina_fk FOREIGN KEY (personaID) REFERENCES persona (personaID),
+CONSTRAINT disciplinaID_membresia_persona_disciplina_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina (disciplinaID),
+)
+
+
+
+-- INSERT ROLEP--
+
+INSERT INTO roleP([nombre],[descripcion]) VALUES('Admin','sed libero. Proin sed turpis nec mauris blandit mattis. Cras');
+INSERT INTO roleP([nombre],[descripcion]) VALUES('Profesor','Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus');
+INSERT INTO roleP([nombre],[descripcion]) VALUES('Cliente','dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris,');
+
+
+
+SELECT*FROM roleP;
+
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Kane, Nathan','Hunt, Wooten','16940421 4596','mi.lorem@faucibusorci.edu','7943280514',22,'H','2022-02-05','2020-09-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','India, Mona','Richmond, Britt','16460918 5907','eget.tincidunt.dui@auctor.com','4862324092',39,'M','2021-03-13','2022-06-01 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Quamar, Isaac','Villarreal, Henry','16740622 3763','sociis@luctusetultrices.ca','2908152905',30,'M','2022-07-22','2020-11-04 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Irma, Walker','Douglas, Maldonado','16731219 3621','ornare.In@velitduisemper.co.uk','2871182624',48,'M','2022-06-20','2021-01-09 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Cruz, Azalia','Ferrell, Parsons','16520627 1131','Vestibulum@dictum.co.uk','7312089458',41,'M','2021-06-11','2020-12-30 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Doris, Nelle','Castro, Mckinney','16530426 4954','Maecenas.libero@duisemperet.edu','3317930961',32,'M','2021-06-19','2021-09-21 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Winter, Hunter','Clements, Webster','16300330 0161','augue.eu@inceptos.ca','6868906337',19,'M','2022-06-16','2021-11-08 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Sebastian, Brenna','Hunt, Brooks','16200328 8251','fringilla.mi.lacinia@variuseteuismod.net','1751303785',24,'H','2021-02-24','2020-11-14 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Imelda, Cruz','Patterson, Acevedo','16570914 2821','habitant.morbi.tristique@lacusMauris.com','0005225294',36,'M','2022-07-13','2021-09-06 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Sybil, Duncan','Jackson, Stone','16120616 9656','vitae@convalliserat.com','6470618579',38,'M','2020-08-31','2022-01-28 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Derek, Rhoda','Ortiz, Waller','16650128 4092','Suspendisse@egestaslacinia.org','0903774482',24,'H','2021-11-18','2022-03-22 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Zachary, Nicholas','Gibson, Marks','16631226 3053','auctor.velit@est.org','5101922938',30,'H','2021-09-27','2022-01-03 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Celeste, Tatyana','Huber, Savage','16741018 8903','tincidunt@Mauris.ca','6953518263',31,'M','2020-11-21','2021-10-11 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Driscoll, Destiny','Craig, Cline','16720811 9714','Ut@felisNulla.co.uk','9753712928',22,'M','2022-07-29','2021-02-04 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Freya, Lareina','Bradshaw, Campos','16420802 2758','dui.nec.tempus@In.org','4410472272',38,'H','2021-03-09','2021-08-22 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Cassidy, Halee','Clay, Robinson','16490510 4412','metus.In.lorem@tempus.com','7631526917',42,'M','2020-09-26','2022-01-30 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Brenda, Kiona','Avila, Huffman','16160923 9452','fames@aodiosemper.co.uk','1494713441',46,'M','2022-02-15','2022-01-31 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Hedy, Wang','Hooper, Carrillo','16691009 0056','fermentum.risus.at@vulputateullamcorpermagna.org','5802383843',20,'H','2020-11-12','2021-04-05 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Lucy, Buffy','Rodriguez, Wooten','16151107 4120','erat@lacusNulla.com','7941549860',31,'M','2021-12-15','2021-09-12 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Hillary, Meghan','Larson, Wilcox','16791229 7145','imperdiet@rhoncusNullam.net','5512017064',42,'M','2020-10-26','2022-07-01 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Odessa, Gay','Morton, Collins','16590507 0818','Integer.aliquam@inceptoshymenaeosMauris.edu','7709600596',49,'H','2022-01-13','2022-07-05 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Gareth, MacKenzie','Burton, Mckee','16450516 9856','nulla@Proin.ca','8109192535',50,'M','2020-10-11','2020-11-14 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Yasir, Jasper','Crawford, Stewart','16570511 2018','auctor.Mauris.vel@gravida.com','1535908548',34,'H','2021-11-27','2022-07-05 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Mufutau, Jocelyn','Ashley, Garrett','16240605 8632','Vivamus@lacusAliquamrutrum.co.uk','4293416267',18,'H','2020-08-30','2021-01-05 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Carl, Britanney','Chaney, Tillman','16351115 6501','Duis.risus.odio@magna.org','0566462968',21,'M','2021-07-25','2022-07-10 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Bethany, Holmes','Baker, Sparks','16350401 3461','Donec.dignissim.magna@nectempusmauris.co.uk','1013129853',20,'M','2021-12-02','2022-03-15 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Tamekah, Rajah','Kline, Avery','16521228 2692','mauris.eu.elit@erosnectellus.net','6217585096',48,'M','2022-01-17','2022-05-11 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Harrison, Leroy','England, Shaw','16401109 3244','aliquam@malesuada.co.uk','7713287182',40,'M','2022-01-26','2021-06-12 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Emery, Tobias','Salinas, York','16821118 2160','dolor.quam@eu.edu','8451077506',24,'H','2021-01-12','2021-08-23 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Maggy, Lareina','Becker, Bishop','16960125 2704','nec.enim.Nunc@feugiatmetus.co.uk','3502142020',49,'M','2021-06-16','2022-06-12 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Lucius, Candice','Freeman, Frye','16600130 3467','Maecenas.malesuada.fringilla@loremDonecelementum.edu','1359797764',34,'M','2021-07-25','2021-12-31 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Blaze, Lenore','Mckay, Foley','16050216 0740','tempor.diam.dictum@Aeneangravidanunc.co.uk','5256369441',49,'H','2022-01-14','2021-09-13 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Elvis, Karen','Morrison, Salas','16120530 0211','mauris@necimperdiet.edu','7141654781',40,'M','2021-06-07','2021-03-01 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Addison, Blaine','Hebert, Koch','16481026 9565','eu.metus@ut.ca','6044784156',34,'M','2020-12-19','2022-04-27 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Dorothy, Chloe','Hobbs, Cox','16771227 5697','ultricies.sem.magna@ipsumPhasellusvitae.edu','4811872915',47,'M','2022-01-21','2021-11-24 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Knox, Dexter','Alvarado, Schmidt','16560825 3075','tellus@faucibus.edu','5571664931',37,'H','2022-04-29','2021-01-25 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Quon, Raymond','Phillips, Parks','16001123 1479','hendrerit.neque.In@nullaDonecnon.org','3552595039',46,'M','2021-09-06','2020-09-05 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Hu, Riley','Turner, Roach','16821204 9988','non@Suspendissetristiqueneque.ca','8810735446',33,'H','2020-11-08','2022-08-18 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Kadeem, Zenaida','Browning, Hardy','16951022 1899','Etiam.bibendum.fermentum@Donec.org','9810790160',22,'M','2021-07-01','2021-07-17 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Montana, Zahir','Romero, Riley','16511003 8659','lectus.justo@vellectus.co.uk','7128577672',32,'M','2021-01-20','2021-11-11 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Carter, Zephr','Dotson, Snow','16590211 4304','quis.lectus.Nullam@euodio.com','5609031825',31,'H','2021-06-29','2021-01-09 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Jolene, Gray','Robles, Rogers','16830823 2571','nostra@ligula.com','0658674670',43,'M','2022-02-07','2021-10-19 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Jacob, Mufutau','Haley, Watson','16940217 5823','erat.eget.ipsum@id.org','1059665967',45,'M','2021-05-12','2021-05-20 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Hashim, Rama','Parsons, Macias','16781124 6623','tincidunt.Donec.vitae@et.net','9145939201',50,'H','2022-02-18','2020-12-30 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Stewart, Samuel','Hess, Hayes','16720818 3710','Aliquam@Nullainterdum.co.uk','1500086251',44,'H','2021-03-01','2022-02-03 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Cathleen, Yen','Oneal, Zimmerman','16580705 6451','congue.turpis@Aliquamultricesiaculis.com','5303228296',22,'H','2021-06-04','2020-12-27 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Griffith, Jermaine','Leblanc, Calhoun','16210429 3630','cursus@lectusNullam.com','1649076020',35,'H','2021-05-02','2022-01-28 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Jason, Abel','Booker, Taylor','16330927 0902','mi.felis@arcuVestibulum.co.uk','1533208472',36,'H','2021-05-05','2021-03-31 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Fulton, Wing','Combs, Gonzales','16530403 4662','tristique.pharetra.Quisque@lobortisrisusIn.net','7963535376',38,'H','2021-07-18','2021-06-16 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Coby, Marah','Guthrie, Hurley','16770314 3433','Sed.neque@pharetranibh.edu','5182868847',32,'H','2021-04-02','2021-10-25 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Chancellor, Olympia','Summers, Huffman','16010927 9885','ante.dictum.cursus@gravidanon.ca','6777303920',30,'H','2021-10-31','2022-07-01 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Ali, Catherine','Mcbride, Bartlett','16970918 1433','libero.Donec@consequatpurusMaecenas.com','9780154475',27,'H','2021-01-07','2021-08-22 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Amos, Armand','Barnett, Mills','16770324 3837','sodales.at@vehiculaetrutrum.net','3687265323',33,'H','2022-07-08','2022-05-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Noah, Macey','Sellers, Cash','16290509 6406','est.Mauris@metus.com','7351939738',45,'M','2021-02-19','2021-04-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Kasper, Emmanuel','Myers, Baldwin','16080424 3004','neque@blanditat.edu','8900433946',37,'H','2021-04-11','2021-09-30 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Stacey, Callum','Clements, Quinn','16140421 8305','orci.lobortis.augue@diamnunc.net','8664172986',26,'H','2021-10-08','2022-03-19 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Jesse, Armando','Patel, Sawyer','16700817 7243','metus.Aliquam@Craseutellus.net','2064791254',23,'M','2021-04-06','2022-01-30 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Eliana, Meredith','Carter, Norris','16720312 2598','ipsum@Cumsociisnatoque.edu','5040323949',28,'M','2021-03-26','2021-05-31 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Tucker, Noah','Fry, Trujillo','16520222 2690','sapien@eutellus.org','4998056381',49,'H','2022-05-22','2022-05-31 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Piper, Keaton','Hull, Patel','16881104 8415','ante.Vivamus.non@consequatpurusMaecenas.ca','5920486880',43,'M','2021-02-04','2021-05-06 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Plato, Hoyt','Cochran, Aguirre','16880306 0816','Vivamus.nibh.dolor@facilisisegetipsum.edu','2532961273',46,'H','2022-06-18','2021-04-12 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Macy, Bruno','Stanton, Herman','16661120 7686','netus@sodaleseliterat.edu','4637219962',39,'M','2022-05-17','2022-01-06 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Adrian, Allegra','Blevins, Bush','16230412 7919','molestie@ultriciesdignissimlacus.com','4561604489',29,'H','2020-10-06','2022-06-24 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Armando, Keiko','Delacruz, Foster','16640812 8913','odio.Phasellus@convallisligulaDonec.net','5423641337',23,'H','2021-12-03','2022-07-27 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Tatiana, Jamal','Flores, Hale','16170821 0180','imperdiet.ornare.In@dolor.co.uk','2195521447',43,'M','2021-03-08','2022-03-24 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Abdul, Jared','Leon, Harding','16161215 6370','Nulla.eu@duiinsodales.co.uk','3112662116',36,'M','2022-04-03','2021-03-22 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Elaine, Camden','Gallegos, Dyer','16800523 6917','et.arcu@Vivamussitamet.org','1304039105',31,'H','2022-04-10','2022-02-06 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Alana, Fay','Norman, Dyer','16600120 9284','velit@faucibusorciluctus.net','9693528771',20,'H','2022-04-03','2021-07-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Abbot, Marny','Miranda, Bailey','16940426 3114','dolor.quam@ac.ca','4370190669',36,'M','2022-02-23','2021-10-26 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Kenneth, Solomon','Merritt, Valenzuela','16980322 3081','Cras@gravidanunc.edu','3097830515',33,'H','2022-01-02','2020-09-30 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Casey, Quentin','Goff, Frost','16641009 2750','dictum.eleifend@Crasvulputatevelit.ca','2775206494',44,'M','2021-10-20','2021-07-24 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Kendall, Fredericka','Lawrence, Combs','16150320 5708','eu.sem@Morbiquis.ca','7362415642',48,'H','2022-04-03','2021-04-11 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Mary, Joshua','Parsons, Blake','16880201 7452','Ut.sagittis@placeratCras.com','0805715305',46,'H','2022-03-06','2021-06-18 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Yasir, Wade','Sandoval, Collier','16551223 2041','dolor@Fuscealiquamenim.ca','3246508977',29,'H','2021-09-22','2022-04-25 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Alexandra, Jarrod','Callahan, Rosa','16540907 0058','mauris.aliquam@enim.net','6312534152',21,'M','2022-03-29','2022-04-15 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Allegra, Aquila','Jones, Cantu','16520202 1209','magnis.dis.parturient@Praesenteu.net','1047793543',20,'M','2021-11-05','2022-08-05 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Eagan, Alan','Ellis, Guy','16830205 6984','Quisque@mollis.edu','6077120667',21,'M','2022-04-28','2021-06-17 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Daphne, Mari','Schroeder, Hewitt','16320929 3855','neque.Morbi@liberonecligula.edu','2991603225',22,'H','2021-11-18','2022-06-29 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Leonard, Bert','Ewing, Lindsey','16610810 0659','ante.iaculis@porttitoreros.co.uk','2149641784',34,'M','2022-04-25','2021-05-31 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Ella, Caryn','Harvey, Mann','16090302 7605','felis.Donec.tempor@velitegetlaoreet.edu','3844845915',49,'H','2022-02-17','2020-12-29 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Anika, Ethan','Levine, Beasley','16941227 9664','est.arcu.ac@nonarcu.co.uk','5480135586',23,'H','2021-02-28','2022-03-28 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Molly, Jamal','Buchanan, Moon','16720901 7404','urna.Nunc.quis@incursuset.net','5309795274',27,'H','2020-10-04','2021-02-20 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Sheila, Lila','Rose, Sandoval','16690922 6281','Donec.porttitor@eget.edu','2989720291',48,'M','2021-03-01','2021-04-09 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Chiquita, Aurora','Wong, Duke','16090812 2021','eu.enim.Etiam@arcuiaculis.net','4975515279',41,'M','2022-06-25','2022-04-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Elvis, Kadeem','Durham, Kennedy','16960824 2542','neque.Nullam@posuerecubilia.ca','2801458490',32,'M','2021-06-02','2022-01-15 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Alice, Macey','Boyle, Roth','16011209 7555','bibendum@pulvinararcu.ca','6274145264',35,'H','2020-11-11','2022-01-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Amity, Lisandra','Ashley, Cox','16450709 0472','vitae@Suspendissetristique.co.uk','2612354684',29,'M','2021-02-10','2022-05-18 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Zenaida, Derek','Whitehead, Schwartz','16690116 7160','urna.justo.faucibus@tincidunt.edu','8655142034',43,'H','2021-04-04','2021-02-12 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Rhea, Flynn','Armstrong, Villarreal','16301228 5163','lectus.quis.massa@pedemalesuada.org','2809800189',42,'H','2021-02-28','2022-04-13 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Christian, Davis','Steele, Carter','16860723 0789','Praesent@arcuVestibulum.co.uk','4084203748',32,'H','2022-05-09','2022-06-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Raphael, Ulric','Melton, Goodwin','16181022 5480','Aliquam.auctor.velit@dignissim.com','8081717368',25,'M','2022-04-26','2022-04-11 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('2','Frances, Tanek','Kirk, Conway','16710810 9237','placerat.orci@lectusquismassa.edu','8239651719',36,'H','2021-01-14','2022-08-02 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Jordan, Patience','Rivas, May','16940607 1895','ornare.Fusce@Quisqueac.ca','1313406350',36,'M','2021-12-21','2021-09-18 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Ann, Adrienne','Fuentes, Rosales','16160921 9777','Sed.congue.elit@Morbi.com','1452775844',31,'H','2021-04-05','2021-10-21 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Owen, Jessamine','Garner, Faulkner','16601014 3490','magna.Duis@nonarcuVivamus.edu','9628447103',31,'H','2021-06-13','2022-01-06 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Quincy, Tasha','Maddox, Austin','16510528 3922','sed@faucibusorciluctus.com','0741317712',40,'H','2022-02-10','2021-10-11 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('1','Irma, Cruz','Vang, Wise','16241003 7119','sed.est.Nunc@In.edu','6956676038',40,'H','2021-01-29','2022-08-03 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Hayden, Darius','Chan, Oliver','16931004 7437','nunc@imperdietdictummagna.edu','6410593392',19,'M','2021-04-16','2020-09-27 ');
+INSERT INTO persona([rolePID],[nombres],[apellidos],[identificacion],[email],[telefono],[edad],[sexo],[fechaNacimiento],[fechaCreacion]) VALUES('3','Rafael, Urielle','Burnett, Alston','16390119 7677','arcu@fermentumfermentumarcu.edu','1801853256',48,'H','2021-09-16','2021-10-10 ');
+
+select*from persona;
+
+--INSERT  HORARIOM--
+INSERT INTO horarioM([horaInicio],[horaFin]) VALUES('08:00','09:00');
+INSERT INTO horarioM([horaInicio],[horaFin]) VALUES('09:15','10:15');
+
+select*from horarioM
+
+--INSERT DISCILPINA--
+INSERT INTO disciplina([nombre],[descripcion],[numClases]) VALUES('Pole','turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy ut,',2);
+INSERT INTO disciplina([nombre],[descripcion],[numClases]) VALUES('Bachata','at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac',3);
+INSERT INTO disciplina([nombre],[descripcion],[numClases]) VALUES('Baile','mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean',4);
+
+select*from disciplina
+
+--INSERT SALA--
+INSERT INTO sala([nombre],[descripcion]) VALUES('SALA-1','a neque. Nullam ut nisi a odio semper cursus. Integer')
+INSERT INTO sala([nombre],[descripcion]) VALUES('SALA-2','a neque. Nullam ut nisi a odio semper cursus. Integer')
+INSERT INTO sala([nombre],[descripcion]) VALUES('SALA-3','a neque. Nullam ut nisi a odio semper cursus. Integer')
+INSERT INTO sala([nombre],[descripcion]) VALUES('SALA-4','a neque. Nullam ut nisi a odio semper cursus. Integer')
+
+select *from sala 
+
+--INSERT RECURSO--
+INSERT INTO recurso([nombre],[descripcion]) VALUES('steps','a neque. Nullam ut nisi a odio semper cursus. Integer')
+INSERT INTO recurso([nombre],[descripcion]) VALUES('pole','a neque. Nullam ut nisi a odio semper cursus. Integer')
+
+SELECT*FROM recurso
+
+--INSERT CLASE--
+INSERT INTO clase([disciplinaID],[nombre],[descripcion]) VALUES(3,'Baile 1','placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna');
+INSERT INTO clase([disciplinaID],[nombre],[descripcion]) VALUES(1,'Pole 2','id nunc interdum feugiat. Sed nec metus facilisis lorem tristique');
+INSERT INTO clase([disciplinaID],[nombre],[descripcion]) VALUES(2,'Bachata 1','eu arcu. Morbi sit amet massa. Quisque porttitor eros nec');
+
+select*from clase
+
+--INSERT CLASE_RECURSO--
+INSERT INTO clase_recurso([claseID],[recursoID],[reservado],[personaID]) VALUES(1,1,1,54);
+INSERT INTO clase_recurso([claseID],[recursoID],[reservado],[personaID]) VALUES(2,1,1,87);
+INSERT INTO clase_recurso([claseID],[recursoID],[reservado],[personaID]) VALUES(2,1,1,88);
+
+SELECT*FROM clase_recurso
+
+--INSERT CRONOGRAMA--
+INSERT INTO cronograma([claseID],[horarioMID],[fecha],[salaID]) VALUES(1,1,'2021-08-12',1);
+INSERT INTO cronograma([claseID],[horarioMID],[fecha],[salaID]) VALUES(2,2,'2021-08-12',2);
+
+select*from cronograma
+
+--INSERT CLASE_PERSONA--
+INSERT INTO clase_persona([claseID],[personaID],[asistencia]) VALUES(1,13,1);
+INSERT INTO clase_persona([claseID],[personaID],[asistencia]) VALUES(3,45,1);
+INSERT INTO clase_persona([claseID],[personaID],[asistencia]) VALUES(2,2,0);
+INSERT INTO clase_persona([claseID],[personaID],[asistencia]) VALUES(2,43,0);
+
+SELECT*FROM clase_persona
+
+--INSERT MEMBRESIA--
+
+INSERT INTO membresia([nombre],[descripcion],[precio]) VALUES('Premium','Integer id magna et ipsum cursus vestibulum. Mauris magna',40)
+INSERT INTO membresia([nombre],[descripcion],[precio]) VALUES('Standard','Integer id magna et ipsum cursus vestibulum. Mauris magna',30)
+INSERT INTO membresia([nombre],[descripcion],[precio]) VALUES('Simple','Integer id magna et ipsum cursus vestibulum. Mauris magna',10)
+SELECT*FROM membresia
+
+--INSERT MEMBRESIA_DISCIPLINA--
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(1,1);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(2,1);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(2,3);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(1,2);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(1,3);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(3,3);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(1,2);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(2,2);
+INSERT INTO  membresia_disciplina([membresiaID],[disciplinaID]) VALUES(2,3);
+SELECT*FROM disciplina
+
+--INSERT MEMBRESIA_PERSONA--
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(15,3,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(61,2,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(92,1,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(28,2,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(70,1,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(63,3,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(71,3,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(79,3,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(10,3,'2021-08-12');
+INSERT INTO  membresia_persona([personaID],[membresiaID],[fechaCreacion]) VALUES(8,1,'2021-08-12');
+
+SELECT*FROM membresia_persona</value>
+  </data>
+</root>
