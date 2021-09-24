@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 
-namespace WebAPIUI.Controllers.Login.Models
+namespace WebAPIUI.Controllers.Registro.Models
 {
     public class RegisterPersonDataResponse
     {

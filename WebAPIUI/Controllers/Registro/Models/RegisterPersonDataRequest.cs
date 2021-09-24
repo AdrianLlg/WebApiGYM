@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPIUI.Controllers.Login.Models
+namespace WebAPIUI.Controllers.Registro.Models
 {
     public class RegisterPersonDataRequest
     {

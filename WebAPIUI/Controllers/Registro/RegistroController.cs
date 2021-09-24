@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
-using WebAPIUI.Controllers.Login.Models;
+using WebAPIUI.Controllers.Registro.Models;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.Models.Login;
 
@@ -21,7 +21,7 @@ namespace WebAPIUI.Controllers
             if (dataRequest == null)
             {
                 messages.Add("No se han especificado datos de ingreso.");
-                ThrowHandledException(RegisterPersonResponseType.InvalidParameters, messages);
+                ThrowHandledExceptionRegistro(RegisterPersonResponseType.InvalidParameters, messages);
             }
 
             //if (string.IsNullOrEmpty(dataRequest.nombres))
@@ -36,7 +36,7 @@ namespace WebAPIUI.Controllers
         /// </summary>
         private bool InsertarNuevaPersona(string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento, string password)
         {
-            LoginBO bo = new LoginBO();
+            RegistroBO bo = new RegistroBO();
             List<string> messages = new List<string>();
             bool response = false;
 
@@ -47,12 +47,12 @@ namespace WebAPIUI.Controllers
             catch (ValidationAndMessageException ConsultaRepositorioImagenesException)
             {
                 messages.Add(ConsultaRepositorioImagenesException.Message);
-                ThrowHandledException(RegisterPersonResponseType.Error, messages);
+                ThrowHandledExceptionRegistro(RegisterPersonResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledException(RegisterPersonResponseType.Error, ex);
+                ThrowUnHandledExceptionRegistro(RegisterPersonResponseType.Error, ex);
             }
 
             return response;
@@ -93,12 +93,12 @@ namespace WebAPIUI.Controllers
             }
             catch (RegisterPersonException RegisterPersonException)
             {
-                SetResponseAsException(RegisterPersonException.Type, response, RegisterPersonException.Message);
+                SetResponseAsExceptionRegistro(RegisterPersonException.Type, response, RegisterPersonException.Message);
             }
             catch (Exception ex)
             {
                 string message = "Se ha produccido un error al invocar RegistrarPersona.";
-                SetResponseAsException(RegisterPersonResponseType.Error, response, message);
+                SetResponseAsExceptionRegistro(RegisterPersonResponseType.Error, response, message);
             }
 
             return response;

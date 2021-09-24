@@ -1,98 +1,55 @@
 ﻿using System;
 using System.Linq;
-using WebAPIBusiness.Entities.RegistroPersona;
+using WebAPIBusiness.Entities.Login;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
 {
     public class LoginBO
     {
-        public bool insertUser(string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento, string password)
+        public UsuarioEntity searchUser(string email, string password)
         {
-            bool entity = false;
+            var usuario = new UsuarioEntity();
 
-            entity = insertDBUser(nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento, password);
-            
-            return entity;
+            usuario = searchDBUser(email, password);
+
+            return usuario;
         }
 
-        private bool insertDBUser(string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento, string password)
+        private UsuarioEntity searchDBUser(string email, string password)
         {
-            DateTime fecha = Convert.ToDateTime(fechanacimiento);
-            DateTime hoy = DateTime.Now;
-
-            persona item = new persona();
+            UsuarioEntity usuarioDB = new UsuarioEntity();
             persona recoverPerson = new persona();
-            usuario newUser;
+            usuario user;
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    item = new persona()
-                    {
-                        rolePID = 3,
-                        nombres = nombre,
-                        apellidos = apellido,
-                        identificacion = identificacion,
-                        email = email,
-                        telefono = telefono,
-                        edad = edad,
-                        sexo = sexo,
-                        fechaNacimiento = fecha,
-                        fechaCreacion = hoy
-                    };
-
-                    dbContext.persona.Add(item);                   
-
-                    recoverPerson = dbContext.persona.Where(x => x.identificacion == identificacion).FirstOrDefault();
-
-                    newUser = new usuario()
-                    {
-                       personaID = recoverPerson.personaID,
-                       persona = recoverPerson,
-                       email = recoverPerson.email,
-                       password = password
-                    };
-
-                    dbContext.usuario.Add(newUser);
-                    dbContext.SaveChanges();
+                    user = dbContext.usuario.Where(x => x.email == email && x.password == password).FirstOrDefault();
+                    recoverPerson = dbContext.persona.Where(x => x.personaID == user.personaID).FirstOrDefault();
                 }
 
-                return true;
+                if(user == null)
+                {
+                    return null;
+                }else
+                {
+                    usuarioDB = new UsuarioEntity()
+                    {
+                        personaID = user.personaID,
+                        role = recoverPerson.rolePID
+                    };
+                }
+
+                return usuarioDB;
             }
             catch (Exception ex)
             {
-                return false;
+                return usuarioDB;
             }
         }
 
-        //private LoginEntity consultarItem(string tipo)
-        //{
-        //    LoginEntity item = new LoginEntity();
-        //    try
-        //    {
-        //        using (var dbContext = new GYMDBEntities())
-        //        {
-        //            var entity = dbContext.disciplina.Where(x => x.nombre == tipo).FirstOrDefault();
-
-        //            if (entity != null )
-        //            {
-        //                item = new LoginEntity()
-        //                {
-        //                    DisciplinaID = entity.disciplinaID,
-        //                    Nombre = entity.nombre,
-        //                    Descripcion = entity.descripcion
-        //                };
-        //            }
-
-        //            return item;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return item;
-        //    }
-        //}
+        
     }
 }
