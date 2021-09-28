@@ -7,9 +7,11 @@ using System.Web.Mvc;
 using WebAPIUI.Controllers.Registro.Models;
 using WebAPIUI.Controllers.Login.Models;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
+using WebAPIUI.Controllers.HorasDisciplina.Models;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.CustomExceptions.Login;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
+using WebAPIUI.CustomExceptions.HorasDisciplina;
 
 
 namespace WebAPIUI.Controllers
@@ -89,6 +91,29 @@ namespace WebAPIUI.Controllers
             response.Content = null;
         }
 
+
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionHorasDisciplina(HorasDisciplinaResponseType type, IList<string> messages)
+        {
+            var newException = new HorasDisciplinaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionHorasDisciplina(HorasDisciplinaResponseType type, Exception ex)
+        {
+            throw new HorasDisciplinaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionHorasDisciplina(HorasDisciplinaResponseType code, HorasDisciplinaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
+        }
 
 
 

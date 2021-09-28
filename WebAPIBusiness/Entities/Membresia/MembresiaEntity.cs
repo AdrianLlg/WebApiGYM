@@ -8,8 +8,13 @@ namespace WebAPIBusiness.Entities.Membresia
 {
     public class MembresiaEntity
     {
-        public string nombre { get; set; }
-        public int numReservas { get; set; }
+        public int disciplinaID { get; set; }
+        public string nombreDisciplina { get; set; }
+        public decimal precio { get; set; }
+        public int numClasesDisponible { get; set; }
+        public DateTime fechaPago { get; set; }
+        public DateTime fechaLimite { get; set; }
+        public string nombreMembresia { get; set; }
 
     }
 }

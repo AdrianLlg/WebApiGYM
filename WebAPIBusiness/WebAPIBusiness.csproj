@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\HorasDisciplinaBO.cs" />
     <Compile Include="BusinessCore\MembresiaBO.cs" />
     <Compile Include="BusinessCore\LoginBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
+    <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

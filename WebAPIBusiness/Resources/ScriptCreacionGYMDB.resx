@@ -124,13 +124,13 @@ GO
 
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_persona_disciplina') DROP TABLE membresia_persona_disciplina;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase_persona') DROP TABLE clase_persona;
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cronograma') DROP TABLE cronograma;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_disciplina') DROP TABLE membresia_disciplina;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_persona') DROP TABLE membresia_persona;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia') DROP TABLE membresia;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase_recurso') DROP TABLE clase_recurso;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase') DROP TABLE clase;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'recurso') DROP TABLE recurso;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cronograma') DROP TABLE cronograma;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'sala') DROP TABLE sala;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'disciplina') DROP TABLE disciplina;
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'horarioM') DROP TABLE horarioM;
@@ -166,6 +166,7 @@ CONSTRAINT persona_pk PRIMARY KEY (personaID),
 CONSTRAINT rolePID_fk FOREIGN KEY (rolePID) REFERENCES roleP(rolePID)
 )
 
+
 CREATE TABLE usuario(
 usuarioID INTEGER IDENTITY (1,1) NOT NULL,
 personaID INT NOT NULL,
@@ -200,6 +201,17 @@ descripcion VARCHAR(300) NOT NULL,
 CONSTRAINT sala_pk PRIMARY KEY (salaID)
 )
 
+CREATE TABLE cronograma (
+cronogramaID INTEGER IDENTITY (1,1) NOT NULL,
+horarioMID INT NOT NULL,
+fecha DATE NOT NULL,
+salaID INT NOT NULL
+CONSTRAINT cronograma_pk PRIMARY KEY (cronogramaID)
+CONSTRAINT horarioM_cronoID_fk FOREIGN KEY (horarioMID) REFERENCES horarioM (horarioMID),
+CONSTRAINT sala_cronoID_fk FOREIGN KEY (salaID) REFERENCES sala (salaID)
+
+)
+
 
 CREATE TABLE recurso (
 recursoID INTEGER IDENTITY (1,1) NOT NULL,
@@ -210,10 +222,12 @@ CONSTRAINT recurso_pk PRIMARY KEY (recursoID)
 
 CREATE TABLE clase (
 claseID INTEGER IDENTITY (1,1) NOT NULL,
+cronogramaID INT NOT NULL,
 disciplinaID INT NOT NULL,
 nombre VARCHAR(30)NOT NULL,
 descripcion VARCHAR(300) NOT NULL
-CONSTRAINT clase_pk PRIMARY KEY (claseID)
+CONSTRAINT clase_pk PRIMARY KEY (claseID),
+CONSTRAINT cronogramaID_clase_fk FOREIGN KEY (cronogramaID) REFERENCES cronograma (cronogramaID),
 CONSTRAINT discplina_clase_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina(disciplinaID)
 )
 
@@ -228,20 +242,6 @@ CONSTRAINT claserecurso_pk PRIMARY KEY (clase_recursoID)
 CONSTRAINT claseID_fk FOREIGN KEY (claseID) REFERENCES clase (claseID),
 CONSTRAINT recursoID_fk FOREIGN KEY (recursoID) REFERENCES recurso(recursoID),
 CONSTRAINT personaID_fk FOREIGN KEY (personaID) REFERENCES persona(personaID)
-)
-
-
-CREATE TABLE cronograma (
-cronogramaID INTEGER IDENTITY (1,1) NOT NULL,
-claseID INT NOT NULL,
-horarioMID INT NOT NULL,
-fecha DATE NOT NULL,
-salaID INT NOT NULL
-CONSTRAINT cronograma_pk PRIMARY KEY (cronogramaID)
-CONSTRAINT clase_cronoID_fk FOREIGN KEY (claseID) REFERENCES clase (claseID),
-CONSTRAINT horarioM_cronoID_fk FOREIGN KEY (horarioMID) REFERENCES horarioM (horarioMID),
-CONSTRAINT sala_cronoID_fk FOREIGN KEY (salaID) REFERENCES sala (salaID)
-
 )
 
 
@@ -451,8 +451,8 @@ INSERT INTO clase_recurso([claseID],[recursoID],[reservado],[personaID]) VALUES(
 SELECT*FROM clase_recurso
 
 --INSERT CRONOGRAMA--
-INSERT INTO cronograma([claseID],[horarioMID],[fecha],[salaID]) VALUES(1,1,'2021-08-12',1);
-INSERT INTO cronograma([claseID],[horarioMID],[fecha],[salaID]) VALUES(2,2,'2021-08-12',2);
+INSERT INTO cronograma([horarioMID],[fecha],[salaID]) VALUES(1,1,'2021-08-12',1);
+INSERT INTO cronograma([horarioMID],[fecha],[salaID]) VALUES(2,2,'2021-08-12',2);
 
 select*from cronograma
 

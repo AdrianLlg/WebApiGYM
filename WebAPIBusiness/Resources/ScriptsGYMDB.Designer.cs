@@ -61,12 +61,30 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
+        ///INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
+        ///INNER JOIN horarioM HM ON HM.horarioMID = CR.horarioMID
+        ///WHERE CL.disciplinaID = &apos;&apos;.
+        /// </summary>
+        internal static string getHorasDisciplina {
+            get {
+                return ResourceManager.GetString("getHorasDisciplina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a SELECT 
-        ///M.nombre,
-        ///MP.numReservas
-        ///FROM membresia M
-        ///INNER JOIN membresia_persona MP ON MP.membresiaID = M.membresiaID
-        ///WHERE MP.personaID = {0}.
+        ///D.disciplinaID,
+        ///D.nombre as nombreDisciplina,
+        ///M.precio,
+        ///MPD.numClasesDisponible,
+        ///--MPD.fechaPago,
+        ///--MPD.fechaLimite,
+        ///M.nombre as nombreMembresia
+        ///FROM membresia_persona_disciplina MPD
+        ///INNER JOIN membresia M ON M.membresiaID = MPD.membresiaID 
+        ///INNER JOIN disciplina D ON D.disciplinaID = MPD.disciplinaID
+        ///WHERE MPD.personaID = {0}.
         /// </summary>
         internal static string getMembresiasUsuario {
             get {

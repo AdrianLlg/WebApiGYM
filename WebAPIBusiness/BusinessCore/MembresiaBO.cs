@@ -21,8 +21,6 @@ namespace WebAPIBusiness.BusinessCore
         {
             int ID = Convert.ToInt16(personaID);
             List<MembresiaEntity> membresias = new List<MembresiaEntity>();
-            List<membresia_persona> membresiaPersona = new List<membresia_persona>();
-
             try
             {
                 using (var dbContext = new GYMDBEntities())

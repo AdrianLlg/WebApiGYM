@@ -67,8 +67,8 @@ namespace WebAPIBusiness.Resources {
         ///
         ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_persona_disciplina&apos;) DROP TABLE membresia_persona_disciplina;
         ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;clase_persona&apos;) DROP TABLE clase_persona;
-        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;cronograma&apos;) DROP TABLE cronograma;
-        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_disciplina&apos;) DROP TABLE [resto de la cadena truncado]&quot;;.
+        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_disciplina&apos;) DROP TABLE membresia_disciplina;
+        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_per [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string Script_Creacion {
             get {

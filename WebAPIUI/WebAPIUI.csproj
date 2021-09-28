@@ -164,6 +164,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasDisciplina\HorasDisciplinaController.cs" />
+    <Compile Include="Controllers\HorasDisciplina\Models\HorasDisciplinaRequest.cs" />
+    <Compile Include="Controllers\HorasDisciplina\Models\HorasDisciplinaResponse.cs" />
     <Compile Include="Controllers\MembresiasUsuario\MembresiasUsuarioController.cs" />
     <Compile Include="Controllers\MembresiasUsuario\Models\MembresiasUsuarioDataRequest.cs" />
     <Compile Include="Controllers\MembresiasUsuario\Models\MembresiasUsuarioDataResponse.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\HorasDisciplina\HorasDisciplinaException.cs" />
     <Compile Include="CustomExceptions\MembresiasUsuario\MembresiasUsuarioException.cs" />
     <Compile Include="CustomExceptions\Login\LoginException.cs" />
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
