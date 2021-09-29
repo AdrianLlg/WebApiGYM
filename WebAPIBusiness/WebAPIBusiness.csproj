@@ -57,10 +57,10 @@
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ScriptCreacionGYMDB.Designer.cs">
+    <Compile Include="Resources\ScripCreacionGYMDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ScriptCreacionGYMDB.resx</DependentUpon>
+      <DependentUpon>ScripCreacionGYMDB.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ScriptsGYMDB.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -79,9 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ScriptCreacionGYMDB.resx">
+    <EmbeddedResource Include="Resources\ScripCreacionGYMDB.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ScriptCreacionGYMDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>ScripCreacionGYMDB.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ScriptsGYMDB.resx">
       <Generator>ResXFileCodeGenerator</Generator>
