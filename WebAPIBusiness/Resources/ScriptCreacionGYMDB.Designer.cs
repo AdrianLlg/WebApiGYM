@@ -61,18 +61,4294 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a --CREATE DATABASE GYMDB
-        ///USE GYMDB
+        ///   Busca una cadena traducida similar a USE [master]
         ///GO
-        ///
-        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_persona_disciplina&apos;) DROP TABLE membresia_persona_disciplina;
-        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;clase_persona&apos;) DROP TABLE clase_persona;
-        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_disciplina&apos;) DROP TABLE membresia_disciplina;
-        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_per [resto de la cadena truncado]&quot;;.
+        ////****** Object:  Database [GYMDB]    Script Date: 28/09/2021 23:28:08 ******/
+        ///CREATE DATABASE [GYMDB]
+        /// CONTAINMENT = NONE
+        /// ON  PRIMARY 
+        ///( NAME = N&apos;GYMDB&apos;, FILENAME = N&apos;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB.mdf&apos; , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+        /// LOG ON 
+        ///( NAME = N&apos;GYMDB_log&apos;, FILENAME = N&apos;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB_log.ldf&apos; , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH  [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string Script_Creacion {
             get {
                 return ResourceManager.GetString("Script Creacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a USE [master].
+        /// </summary>
+        internal static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String10 {
+            get {
+                return ResourceManager.GetString("String10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String100 {
+            get {
+                return ResourceManager.GetString("String100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String101 {
+            get {
+                return ResourceManager.GetString("String101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String102 {
+            get {
+                return ResourceManager.GetString("String102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[clase_persona](.
+        /// </summary>
+        internal static string String103 {
+            get {
+                return ResourceManager.GetString("String103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [clase_personaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String104 {
+            get {
+                return ResourceManager.GetString("String104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [claseID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String105 {
+            get {
+                return ResourceManager.GetString("String105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [personaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String106 {
+            get {
+                return ResourceManager.GetString("String106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [asistencia] [int] NOT NULL,.
+        /// </summary>
+        internal static string String107 {
+            get {
+                return ResourceManager.GetString("String107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [clase_persona_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String108 {
+            get {
+                return ResourceManager.GetString("String108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String109 {
+            get {
+                return ResourceManager.GetString("String109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET COMPATIBILITY_LEVEL = 150.
+        /// </summary>
+        internal static string String11 {
+            get {
+                return ResourceManager.GetString("String11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [clase_personaID] ASC.
+        /// </summary>
+        internal static string String110 {
+            get {
+                return ResourceManager.GetString("String110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String111 {
+            get {
+                return ResourceManager.GetString("String111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String112 {
+            get {
+                return ResourceManager.GetString("String112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String113 {
+            get {
+                return ResourceManager.GetString("String113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[clase_recurso]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String114 {
+            get {
+                return ResourceManager.GetString("String114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String115 {
+            get {
+                return ResourceManager.GetString("String115", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String116 {
+            get {
+                return ResourceManager.GetString("String116", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String117 {
+            get {
+                return ResourceManager.GetString("String117", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String118 {
+            get {
+                return ResourceManager.GetString("String118", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[clase_recurso](.
+        /// </summary>
+        internal static string String119 {
+            get {
+                return ResourceManager.GetString("String119", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String12 {
+            get {
+                return ResourceManager.GetString("String12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [clase_recursoID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String120 {
+            get {
+                return ResourceManager.GetString("String120", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [claseID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String121 {
+            get {
+                return ResourceManager.GetString("String121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [recursoID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String122 {
+            get {
+                return ResourceManager.GetString("String122", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [reservado] [int] NOT NULL,.
+        /// </summary>
+        internal static string String123 {
+            get {
+                return ResourceManager.GetString("String123", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [personaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String124 {
+            get {
+                return ResourceManager.GetString("String124", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [claserecurso_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String125 {
+            get {
+                return ResourceManager.GetString("String125", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String126 {
+            get {
+                return ResourceManager.GetString("String126", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [clase_recursoID] ASC.
+        /// </summary>
+        internal static string String127 {
+            get {
+                return ResourceManager.GetString("String127", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String128 {
+            get {
+                return ResourceManager.GetString("String128", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String129 {
+            get {
+                return ResourceManager.GetString("String129", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a IF (1 = FULLTEXTSERVICEPROPERTY(&apos;IsFullTextInstalled&apos;)).
+        /// </summary>
+        internal static string String13 {
+            get {
+                return ResourceManager.GetString("String13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String130 {
+            get {
+                return ResourceManager.GetString("String130", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[cronograma]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String131 {
+            get {
+                return ResourceManager.GetString("String131", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String132 {
+            get {
+                return ResourceManager.GetString("String132", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String133 {
+            get {
+                return ResourceManager.GetString("String133", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String134 {
+            get {
+                return ResourceManager.GetString("String134", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String135 {
+            get {
+                return ResourceManager.GetString("String135", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[cronograma](.
+        /// </summary>
+        internal static string String136 {
+            get {
+                return ResourceManager.GetString("String136", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [cronogramaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String137 {
+            get {
+                return ResourceManager.GetString("String137", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [claseID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String138 {
+            get {
+                return ResourceManager.GetString("String138", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [horarioMID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String139 {
+            get {
+                return ResourceManager.GetString("String139", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a begin.
+        /// </summary>
+        internal static string String14 {
+            get {
+                return ResourceManager.GetString("String14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [fecha] [date] NOT NULL,.
+        /// </summary>
+        internal static string String140 {
+            get {
+                return ResourceManager.GetString("String140", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [salaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String141 {
+            get {
+                return ResourceManager.GetString("String141", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [cronograma_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String142 {
+            get {
+                return ResourceManager.GetString("String142", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String143 {
+            get {
+                return ResourceManager.GetString("String143", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [cronogramaID] ASC.
+        /// </summary>
+        internal static string String144 {
+            get {
+                return ResourceManager.GetString("String144", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String145 {
+            get {
+                return ResourceManager.GetString("String145", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String146 {
+            get {
+                return ResourceManager.GetString("String146", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String147 {
+            get {
+                return ResourceManager.GetString("String147", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[disciplina]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String148 {
+            get {
+                return ResourceManager.GetString("String148", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String149 {
+            get {
+                return ResourceManager.GetString("String149", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a EXEC [GYMDB].[dbo].[sp_fulltext_database] @action = &apos;enable&apos;.
+        /// </summary>
+        internal static string String15 {
+            get {
+                return ResourceManager.GetString("String15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String150 {
+            get {
+                return ResourceManager.GetString("String150", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String151 {
+            get {
+                return ResourceManager.GetString("String151", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String152 {
+            get {
+                return ResourceManager.GetString("String152", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[disciplina](.
+        /// </summary>
+        internal static string String153 {
+            get {
+                return ResourceManager.GetString("String153", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [disciplinaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String154 {
+            get {
+                return ResourceManager.GetString("String154", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombre] [varchar](30) NOT NULL,.
+        /// </summary>
+        internal static string String155 {
+            get {
+                return ResourceManager.GetString("String155", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [descripcion] [varchar](300) NOT NULL,.
+        /// </summary>
+        internal static string String156 {
+            get {
+                return ResourceManager.GetString("String156", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [numClases] [int] NOT NULL,.
+        /// </summary>
+        internal static string String157 {
+            get {
+                return ResourceManager.GetString("String157", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [disciplina_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String158 {
+            get {
+                return ResourceManager.GetString("String158", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String159 {
+            get {
+                return ResourceManager.GetString("String159", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a end.
+        /// </summary>
+        internal static string String16 {
+            get {
+                return ResourceManager.GetString("String16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [disciplinaID] ASC.
+        /// </summary>
+        internal static string String160 {
+            get {
+                return ResourceManager.GetString("String160", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String161 {
+            get {
+                return ResourceManager.GetString("String161", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String162 {
+            get {
+                return ResourceManager.GetString("String162", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String163 {
+            get {
+                return ResourceManager.GetString("String163", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[horarioM]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String164 {
+            get {
+                return ResourceManager.GetString("String164", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String165 {
+            get {
+                return ResourceManager.GetString("String165", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String166 {
+            get {
+                return ResourceManager.GetString("String166", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String167 {
+            get {
+                return ResourceManager.GetString("String167", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String168 {
+            get {
+                return ResourceManager.GetString("String168", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[horarioM](.
+        /// </summary>
+        internal static string String169 {
+            get {
+                return ResourceManager.GetString("String169", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String17 {
+            get {
+                return ResourceManager.GetString("String17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [horarioMID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String170 {
+            get {
+                return ResourceManager.GetString("String170", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [horaInicio] [varchar](10) NOT NULL,.
+        /// </summary>
+        internal static string String171 {
+            get {
+                return ResourceManager.GetString("String171", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [horaFin] [varchar](10) NOT NULL,.
+        /// </summary>
+        internal static string String172 {
+            get {
+                return ResourceManager.GetString("String172", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [horarioM_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String173 {
+            get {
+                return ResourceManager.GetString("String173", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String174 {
+            get {
+                return ResourceManager.GetString("String174", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [horarioMID] ASC.
+        /// </summary>
+        internal static string String175 {
+            get {
+                return ResourceManager.GetString("String175", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String176 {
+            get {
+                return ResourceManager.GetString("String176", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String177 {
+            get {
+                return ResourceManager.GetString("String177", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String178 {
+            get {
+                return ResourceManager.GetString("String178", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[membresia]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String179 {
+            get {
+                return ResourceManager.GetString("String179", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET ANSI_NULL_DEFAULT OFF.
+        /// </summary>
+        internal static string String18 {
+            get {
+                return ResourceManager.GetString("String18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String180 {
+            get {
+                return ResourceManager.GetString("String180", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String181 {
+            get {
+                return ResourceManager.GetString("String181", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String182 {
+            get {
+                return ResourceManager.GetString("String182", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String183 {
+            get {
+                return ResourceManager.GetString("String183", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[membresia](.
+        /// </summary>
+        internal static string String184 {
+            get {
+                return ResourceManager.GetString("String184", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresiaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String185 {
+            get {
+                return ResourceManager.GetString("String185", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombre] [varchar](50) NULL,.
+        /// </summary>
+        internal static string String186 {
+            get {
+                return ResourceManager.GetString("String186", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [descripcion] [varchar](300) NULL,.
+        /// </summary>
+        internal static string String187 {
+            get {
+                return ResourceManager.GetString("String187", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [precio] [decimal] NOT NULL,.
+        /// </summary>
+        internal static string String188 {
+            get {
+                return ResourceManager.GetString("String188", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [membresiaID_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String189 {
+            get {
+                return ResourceManager.GetString("String189", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String19 {
+            get {
+                return ResourceManager.GetString("String19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String190 {
+            get {
+                return ResourceManager.GetString("String190", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresiaID] ASC.
+        /// </summary>
+        internal static string String191 {
+            get {
+                return ResourceManager.GetString("String191", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String192 {
+            get {
+                return ResourceManager.GetString("String192", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String193 {
+            get {
+                return ResourceManager.GetString("String193", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String194 {
+            get {
+                return ResourceManager.GetString("String194", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[membresia_disciplina]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String195 {
+            get {
+                return ResourceManager.GetString("String195", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String196 {
+            get {
+                return ResourceManager.GetString("String196", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String197 {
+            get {
+                return ResourceManager.GetString("String197", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String198 {
+            get {
+                return ResourceManager.GetString("String198", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String199 {
+            get {
+                return ResourceManager.GetString("String199", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Database [GYMDB]    Script Date: 28/09/2021 23:28:08 ******/.
+        /// </summary>
+        internal static string String2 {
+            get {
+                return ResourceManager.GetString("String2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET ANSI_NULLS OFF.
+        /// </summary>
+        internal static string String20 {
+            get {
+                return ResourceManager.GetString("String20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[membresia_disciplina](.
+        /// </summary>
+        internal static string String200 {
+            get {
+                return ResourceManager.GetString("String200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresia_discplinaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String201 {
+            get {
+                return ResourceManager.GetString("String201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresiaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String202 {
+            get {
+                return ResourceManager.GetString("String202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [disciplinaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String203 {
+            get {
+                return ResourceManager.GetString("String203", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [membresia_discplinaID_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String204 {
+            get {
+                return ResourceManager.GetString("String204", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String205 {
+            get {
+                return ResourceManager.GetString("String205", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresia_discplinaID] ASC.
+        /// </summary>
+        internal static string String206 {
+            get {
+                return ResourceManager.GetString("String206", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String207 {
+            get {
+                return ResourceManager.GetString("String207", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String208 {
+            get {
+                return ResourceManager.GetString("String208", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String209 {
+            get {
+                return ResourceManager.GetString("String209", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String21 {
+            get {
+                return ResourceManager.GetString("String21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[membresia_persona_disciplina]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String210 {
+            get {
+                return ResourceManager.GetString("String210", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String211 {
+            get {
+                return ResourceManager.GetString("String211", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String212 {
+            get {
+                return ResourceManager.GetString("String212", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String213 {
+            get {
+                return ResourceManager.GetString("String213", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String214 {
+            get {
+                return ResourceManager.GetString("String214", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[membresia_persona_disciplina](.
+        /// </summary>
+        internal static string String215 {
+            get {
+                return ResourceManager.GetString("String215", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresia_persona_disciplinaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String216 {
+            get {
+                return ResourceManager.GetString("String216", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresiaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String217 {
+            get {
+                return ResourceManager.GetString("String217", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [personaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String218 {
+            get {
+                return ResourceManager.GetString("String218", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [disciplinaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String219 {
+            get {
+                return ResourceManager.GetString("String219", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET ANSI_PADDING OFF.
+        /// </summary>
+        internal static string String22 {
+            get {
+                return ResourceManager.GetString("String22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [fechaPago] [date] NOT NULL,.
+        /// </summary>
+        internal static string String220 {
+            get {
+                return ResourceManager.GetString("String220", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [fechaLimite] [date] NOT NULL,.
+        /// </summary>
+        internal static string String221 {
+            get {
+                return ResourceManager.GetString("String221", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [numClasesDisponibles] [int] NOT NULL,.
+        /// </summary>
+        internal static string String222 {
+            get {
+                return ResourceManager.GetString("String222", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [membresia_persona_disciplinaID_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String223 {
+            get {
+                return ResourceManager.GetString("String223", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String224 {
+            get {
+                return ResourceManager.GetString("String224", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [membresia_persona_disciplinaID] ASC.
+        /// </summary>
+        internal static string String225 {
+            get {
+                return ResourceManager.GetString("String225", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String226 {
+            get {
+                return ResourceManager.GetString("String226", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String227 {
+            get {
+                return ResourceManager.GetString("String227", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String228 {
+            get {
+                return ResourceManager.GetString("String228", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[persona]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String229 {
+            get {
+                return ResourceManager.GetString("String229", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String23 {
+            get {
+                return ResourceManager.GetString("String23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String230 {
+            get {
+                return ResourceManager.GetString("String230", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String231 {
+            get {
+                return ResourceManager.GetString("String231", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String232 {
+            get {
+                return ResourceManager.GetString("String232", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String233 {
+            get {
+                return ResourceManager.GetString("String233", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[persona](.
+        /// </summary>
+        internal static string String234 {
+            get {
+                return ResourceManager.GetString("String234", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [personaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String235 {
+            get {
+                return ResourceManager.GetString("String235", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [rolePID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String236 {
+            get {
+                return ResourceManager.GetString("String236", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombres] [varchar](80) NOT NULL,.
+        /// </summary>
+        internal static string String237 {
+            get {
+                return ResourceManager.GetString("String237", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [apellidos] [varchar](80) NOT NULL,.
+        /// </summary>
+        internal static string String238 {
+            get {
+                return ResourceManager.GetString("String238", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [identificacion] [varchar](30) NOT NULL,.
+        /// </summary>
+        internal static string String239 {
+            get {
+                return ResourceManager.GetString("String239", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET ANSI_WARNINGS OFF.
+        /// </summary>
+        internal static string String24 {
+            get {
+                return ResourceManager.GetString("String24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [email] [varchar](80) NOT NULL,.
+        /// </summary>
+        internal static string String240 {
+            get {
+                return ResourceManager.GetString("String240", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [telefono] [varchar](10) NOT NULL,.
+        /// </summary>
+        internal static string String241 {
+            get {
+                return ResourceManager.GetString("String241", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [edad] [varchar](2) NOT NULL,.
+        /// </summary>
+        internal static string String242 {
+            get {
+                return ResourceManager.GetString("String242", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [sexo] [varchar](1) NOT NULL,.
+        /// </summary>
+        internal static string String243 {
+            get {
+                return ResourceManager.GetString("String243", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [fechaNacimiento] [date] NOT NULL,.
+        /// </summary>
+        internal static string String244 {
+            get {
+                return ResourceManager.GetString("String244", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [fechaCreacion] [date] NOT NULL,.
+        /// </summary>
+        internal static string String245 {
+            get {
+                return ResourceManager.GetString("String245", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [persona_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String246 {
+            get {
+                return ResourceManager.GetString("String246", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String247 {
+            get {
+                return ResourceManager.GetString("String247", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [personaID] ASC.
+        /// </summary>
+        internal static string String248 {
+            get {
+                return ResourceManager.GetString("String248", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String249 {
+            get {
+                return ResourceManager.GetString("String249", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String25 {
+            get {
+                return ResourceManager.GetString("String25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String250 {
+            get {
+                return ResourceManager.GetString("String250", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String251 {
+            get {
+                return ResourceManager.GetString("String251", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[recurso]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String252 {
+            get {
+                return ResourceManager.GetString("String252", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String253 {
+            get {
+                return ResourceManager.GetString("String253", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String254 {
+            get {
+                return ResourceManager.GetString("String254", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String255 {
+            get {
+                return ResourceManager.GetString("String255", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String256 {
+            get {
+                return ResourceManager.GetString("String256", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[recurso](.
+        /// </summary>
+        internal static string String257 {
+            get {
+                return ResourceManager.GetString("String257", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [recursoID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String258 {
+            get {
+                return ResourceManager.GetString("String258", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombre] [varchar](30) NOT NULL,.
+        /// </summary>
+        internal static string String259 {
+            get {
+                return ResourceManager.GetString("String259", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET ARITHABORT OFF.
+        /// </summary>
+        internal static string String26 {
+            get {
+                return ResourceManager.GetString("String26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [descripcion] [varchar](300) NOT NULL,.
+        /// </summary>
+        internal static string String260 {
+            get {
+                return ResourceManager.GetString("String260", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [recurso_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String261 {
+            get {
+                return ResourceManager.GetString("String261", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String262 {
+            get {
+                return ResourceManager.GetString("String262", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [recursoID] ASC.
+        /// </summary>
+        internal static string String263 {
+            get {
+                return ResourceManager.GetString("String263", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String264 {
+            get {
+                return ResourceManager.GetString("String264", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String265 {
+            get {
+                return ResourceManager.GetString("String265", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String266 {
+            get {
+                return ResourceManager.GetString("String266", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[roleP]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String267 {
+            get {
+                return ResourceManager.GetString("String267", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String268 {
+            get {
+                return ResourceManager.GetString("String268", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String269 {
+            get {
+                return ResourceManager.GetString("String269", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String27 {
+            get {
+                return ResourceManager.GetString("String27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String270 {
+            get {
+                return ResourceManager.GetString("String270", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String271 {
+            get {
+                return ResourceManager.GetString("String271", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[roleP](.
+        /// </summary>
+        internal static string String272 {
+            get {
+                return ResourceManager.GetString("String272", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [rolePID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String273 {
+            get {
+                return ResourceManager.GetString("String273", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombre] [varchar](20) NOT NULL,.
+        /// </summary>
+        internal static string String274 {
+            get {
+                return ResourceManager.GetString("String274", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [descripcion] [varchar](300) NOT NULL,.
+        /// </summary>
+        internal static string String275 {
+            get {
+                return ResourceManager.GetString("String275", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [roleP_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String276 {
+            get {
+                return ResourceManager.GetString("String276", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String277 {
+            get {
+                return ResourceManager.GetString("String277", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [rolePID] ASC.
+        /// </summary>
+        internal static string String278 {
+            get {
+                return ResourceManager.GetString("String278", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String279 {
+            get {
+                return ResourceManager.GetString("String279", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET AUTO_CLOSE OFF.
+        /// </summary>
+        internal static string String28 {
+            get {
+                return ResourceManager.GetString("String28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String280 {
+            get {
+                return ResourceManager.GetString("String280", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String281 {
+            get {
+                return ResourceManager.GetString("String281", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[sala]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String282 {
+            get {
+                return ResourceManager.GetString("String282", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String283 {
+            get {
+                return ResourceManager.GetString("String283", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String284 {
+            get {
+                return ResourceManager.GetString("String284", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String285 {
+            get {
+                return ResourceManager.GetString("String285", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String286 {
+            get {
+                return ResourceManager.GetString("String286", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[sala](.
+        /// </summary>
+        internal static string String287 {
+            get {
+                return ResourceManager.GetString("String287", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [salaID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String288 {
+            get {
+                return ResourceManager.GetString("String288", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombre] [varchar](30) NOT NULL,.
+        /// </summary>
+        internal static string String289 {
+            get {
+                return ResourceManager.GetString("String289", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String29 {
+            get {
+                return ResourceManager.GetString("String29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [descripcion] [varchar](300) NOT NULL,.
+        /// </summary>
+        internal static string String290 {
+            get {
+                return ResourceManager.GetString("String290", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [sala_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String291 {
+            get {
+                return ResourceManager.GetString("String291", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String292 {
+            get {
+                return ResourceManager.GetString("String292", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [salaID] ASC.
+        /// </summary>
+        internal static string String293 {
+            get {
+                return ResourceManager.GetString("String293", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String294 {
+            get {
+                return ResourceManager.GetString("String294", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String295 {
+            get {
+                return ResourceManager.GetString("String295", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String296 {
+            get {
+                return ResourceManager.GetString("String296", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[usuario]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String297 {
+            get {
+                return ResourceManager.GetString("String297", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String298 {
+            get {
+                return ResourceManager.GetString("String298", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String299 {
+            get {
+                return ResourceManager.GetString("String299", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE DATABASE [GYMDB].
+        /// </summary>
+        internal static string String3 {
+            get {
+                return ResourceManager.GetString("String3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET AUTO_SHRINK OFF.
+        /// </summary>
+        internal static string String30 {
+            get {
+                return ResourceManager.GetString("String30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String300 {
+            get {
+                return ResourceManager.GetString("String300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String301 {
+            get {
+                return ResourceManager.GetString("String301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[usuario](.
+        /// </summary>
+        internal static string String302 {
+            get {
+                return ResourceManager.GetString("String302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [usuarioID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String303 {
+            get {
+                return ResourceManager.GetString("String303", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [personaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String304 {
+            get {
+                return ResourceManager.GetString("String304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [email] [varchar](20) NOT NULL,.
+        /// </summary>
+        internal static string String305 {
+            get {
+                return ResourceManager.GetString("String305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [password] [varchar](300) NOT NULL,.
+        /// </summary>
+        internal static string String306 {
+            get {
+                return ResourceManager.GetString("String306", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [usuario_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String307 {
+            get {
+                return ResourceManager.GetString("String307", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String308 {
+            get {
+                return ResourceManager.GetString("String308", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [usuarioID] ASC.
+        /// </summary>
+        internal static string String309 {
+            get {
+                return ResourceManager.GetString("String309", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String31 {
+            get {
+                return ResourceManager.GetString("String31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String310 {
+            get {
+                return ResourceManager.GetString("String310", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String311 {
+            get {
+                return ResourceManager.GetString("String311", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String312 {
+            get {
+                return ResourceManager.GetString("String312", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[clase] ON.
+        /// </summary>
+        internal static string String313 {
+            get {
+                return ResourceManager.GetString("String313", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[clase] ([claseID], [disciplinaID], [nombre], [descripcion]) VALUES (1, 1, N&apos;Pole&apos;, N&apos;Clase Pole&apos;).
+        /// </summary>
+        internal static string String314 {
+            get {
+                return ResourceManager.GetString("String314", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[clase] ([claseID], [disciplinaID], [nombre], [descripcion]) VALUES (2, 2, N&apos;Bachata&apos;, N&apos;Clase Bachata&apos;).
+        /// </summary>
+        internal static string String315 {
+            get {
+                return ResourceManager.GetString("String315", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[clase] ([claseID], [disciplinaID], [nombre], [descripcion]) VALUES (3, 3, N&apos;Baile&apos;, N&apos;Clase Baile&apos;).
+        /// </summary>
+        internal static string String316 {
+            get {
+                return ResourceManager.GetString("String316", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[clase] OFF.
+        /// </summary>
+        internal static string String317 {
+            get {
+                return ResourceManager.GetString("String317", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String318 {
+            get {
+                return ResourceManager.GetString("String318", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[cronograma] ON.
+        /// </summary>
+        internal static string String319 {
+            get {
+                return ResourceManager.GetString("String319", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET AUTO_UPDATE_STATISTICS ON.
+        /// </summary>
+        internal static string String32 {
+            get {
+                return ResourceManager.GetString("String32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (1, 1, 1, CAST(N&apos;2021-09-11&apos; AS Date), 1).
+        /// </summary>
+        internal static string String320 {
+            get {
+                return ResourceManager.GetString("String320", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (2, 2, 2, CAST(N&apos;2021-09-12&apos; AS Date), 2).
+        /// </summary>
+        internal static string String321 {
+            get {
+                return ResourceManager.GetString("String321", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (3, 2, 3, CAST(N&apos;2021-09-13&apos; AS Date), 2).
+        /// </summary>
+        internal static string String322 {
+            get {
+                return ResourceManager.GetString("String322", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (4, 3, 4, CAST(N&apos;2021-09-14&apos; AS Date), 2).
+        /// </summary>
+        internal static string String323 {
+            get {
+                return ResourceManager.GetString("String323", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (5, 3, 5, CAST(N&apos;2021-09-15&apos; AS Date), 2).
+        /// </summary>
+        internal static string String324 {
+            get {
+                return ResourceManager.GetString("String324", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (6, 2, 6, CAST(N&apos;2021-09-16&apos; AS Date), 2).
+        /// </summary>
+        internal static string String325 {
+            get {
+                return ResourceManager.GetString("String325", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[cronograma] OFF.
+        /// </summary>
+        internal static string String326 {
+            get {
+                return ResourceManager.GetString("String326", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String327 {
+            get {
+                return ResourceManager.GetString("String327", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[disciplina] ON.
+        /// </summary>
+        internal static string String328 {
+            get {
+                return ResourceManager.GetString("String328", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[disciplina] ([disciplinaID], [nombre], [descripcion], [numClases]) VALUES (1, N&apos;Pole&apos;, N&apos;Descripcion Pole&apos;, 10).
+        /// </summary>
+        internal static string String329 {
+            get {
+                return ResourceManager.GetString("String329", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String33 {
+            get {
+                return ResourceManager.GetString("String33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[disciplina] ([disciplinaID], [nombre], [descripcion], [numClases]) VALUES (2, N&apos;Bachata&apos;, N&apos;Descripcion Bachata&apos;, 10).
+        /// </summary>
+        internal static string String330 {
+            get {
+                return ResourceManager.GetString("String330", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[disciplina] ([disciplinaID], [nombre], [descripcion], [numClases]) VALUES (3, N&apos;Baile&apos;, N&apos;Descripcion Baile&apos;, 10).
+        /// </summary>
+        internal static string String331 {
+            get {
+                return ResourceManager.GetString("String331", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[disciplina] OFF.
+        /// </summary>
+        internal static string String332 {
+            get {
+                return ResourceManager.GetString("String332", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String333 {
+            get {
+                return ResourceManager.GetString("String333", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[horarioM] ON.
+        /// </summary>
+        internal static string String334 {
+            get {
+                return ResourceManager.GetString("String334", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (1, N&apos;0800&apos;, N&apos;0900&apos;).
+        /// </summary>
+        internal static string String335 {
+            get {
+                return ResourceManager.GetString("String335", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (2, N&apos;0900&apos;, N&apos;1000&apos;).
+        /// </summary>
+        internal static string String336 {
+            get {
+                return ResourceManager.GetString("String336", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (3, N&apos;1000&apos;, N&apos;1100&apos;).
+        /// </summary>
+        internal static string String337 {
+            get {
+                return ResourceManager.GetString("String337", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (4, N&apos;1100&apos;, N&apos;1200&apos;).
+        /// </summary>
+        internal static string String338 {
+            get {
+                return ResourceManager.GetString("String338", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (5, N&apos;1300&apos;, N&apos;1400&apos;).
+        /// </summary>
+        internal static string String339 {
+            get {
+                return ResourceManager.GetString("String339", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET CURSOR_CLOSE_ON_COMMIT OFF.
+        /// </summary>
+        internal static string String34 {
+            get {
+                return ResourceManager.GetString("String34", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (6, N&apos;1400&apos;, N&apos;1500&apos;).
+        /// </summary>
+        internal static string String340 {
+            get {
+                return ResourceManager.GetString("String340", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[horarioM] OFF.
+        /// </summary>
+        internal static string String341 {
+            get {
+                return ResourceManager.GetString("String341", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String342 {
+            get {
+                return ResourceManager.GetString("String342", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[membresia] ON.
+        /// </summary>
+        internal static string String343 {
+            get {
+                return ResourceManager.GetString("String343", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia] ([membresiaID], [nombre], [descripcion], [precio]) VALUES (1, N&apos;Premium&apos;, N&apos;Descripcion membresia Premium&apos;, 40).
+        /// </summary>
+        internal static string String344 {
+            get {
+                return ResourceManager.GetString("String344", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia] ([membresiaID], [nombre], [descripcion], [precio]) VALUES (2, N&apos;Standard&apos;, N&apos;Descripcion membresia Standard&apos;, 30).
+        /// </summary>
+        internal static string String345 {
+            get {
+                return ResourceManager.GetString("String345", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia] ([membresiaID], [nombre], [descripcion], [precio]) VALUES (3, N&apos;Simple&apos;, N&apos;Descripcion membresia Simple&apos;, 10).
+        /// </summary>
+        internal static string String346 {
+            get {
+                return ResourceManager.GetString("String346", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[membresia] OFF.
+        /// </summary>
+        internal static string String347 {
+            get {
+                return ResourceManager.GetString("String347", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String348 {
+            get {
+                return ResourceManager.GetString("String348", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[membresia_disciplina] ON.
+        /// </summary>
+        internal static string String349 {
+            get {
+                return ResourceManager.GetString("String349", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String35 {
+            get {
+                return ResourceManager.GetString("String35", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID]) VALUES (1, 3, 1).
+        /// </summary>
+        internal static string String350 {
+            get {
+                return ResourceManager.GetString("String350", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID]) VALUES (2, 3, 2).
+        /// </summary>
+        internal static string String351 {
+            get {
+                return ResourceManager.GetString("String351", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID]) VALUES (3, 3, 3).
+        /// </summary>
+        internal static string String352 {
+            get {
+                return ResourceManager.GetString("String352", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[membresia_disciplina] OFF.
+        /// </summary>
+        internal static string String353 {
+            get {
+                return ResourceManager.GetString("String353", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String354 {
+            get {
+                return ResourceManager.GetString("String354", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] ON.
+        /// </summary>
+        internal static string String355 {
+            get {
+                return ResourceManager.GetString("String355", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (1, 3, 1, 1, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String356 {
+            get {
+                return ResourceManager.GetString("String356", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (2, 3, 2, 1, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String357 {
+            get {
+                return ResourceManager.GetString("String357", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (3, 3, 3, 1, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String358 {
+            get {
+                return ResourceManager.GetString("String358", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (4, 3, 1, 2, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String359 {
+            get {
+                return ResourceManager.GetString("String359", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET CURSOR_DEFAULT  GLOBAL.
+        /// </summary>
+        internal static string String36 {
+            get {
+                return ResourceManager.GetString("String36", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (5, 3, 2, 2, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String360 {
+            get {
+                return ResourceManager.GetString("String360", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (6, 3, 3, 2, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String361 {
+            get {
+                return ResourceManager.GetString("String361", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (7, 3, 1, 3, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String362 {
+            get {
+                return ResourceManager.GetString("String362", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (8, 3, 2, 3, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String363 {
+            get {
+                return ResourceManager.GetString("String363", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (9, 3, 3, 3, CAST(N&apos;2021-08-12&apos; AS Date), CAST(N&apos;2021-08-12&apos; AS Date), 10).
+        /// </summary>
+        internal static string String364 {
+            get {
+                return ResourceManager.GetString("String364", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] OFF.
+        /// </summary>
+        internal static string String365 {
+            get {
+                return ResourceManager.GetString("String365", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String366 {
+            get {
+                return ResourceManager.GetString("String366", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[persona] ON.
+        /// </summary>
+        internal static string String367 {
+            get {
+                return ResourceManager.GetString("String367", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[persona] ([personaID], [rolePID], [nombres], [apellidos], [identificacion], [email], [telefono], [edad], [sexo], [fechaNacimiento], [fechaCreacion]) VALUES (1, 3, N&apos;Francisco Nathan&apos;, N&apos;Hunt Wooten&apos;, N&apos;16940421 4596&apos;, N&apos;mi.lorem@faucibusorci.edu&apos;, N&apos;7943280514&apos;, N&apos;22&apos;, N&apos;H&apos;, CAST(N&apos;2022-02-05&apos; AS Date), CAST(N&apos;2020-09-02&apos; AS Date)).
+        /// </summary>
+        internal static string String368 {
+            get {
+                return ResourceManager.GetString("String368", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[persona] ([personaID], [rolePID], [nombres], [apellidos], [identificacion], [email], [telefono], [edad], [sexo], [fechaNacimiento], [fechaCreacion]) VALUES (2, 3, N&apos;Martin Mona&apos;, N&apos;Richmond Britt&apos;, N&apos;16460918 5907&apos;, N&apos;eget.tincidunt.dui@auctor.com&apos;, N&apos;4862324092&apos;, N&apos;39&apos;, N&apos;M&apos;, CAST(N&apos;2021-03-13&apos; AS Date), CAST(N&apos;2022-06-01&apos; AS Date)).
+        /// </summary>
+        internal static string String369 {
+            get {
+                return ResourceManager.GetString("String369", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String37 {
+            get {
+                return ResourceManager.GetString("String37", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[persona] ([personaID], [rolePID], [nombres], [apellidos], [identificacion], [email], [telefono], [edad], [sexo], [fechaNacimiento], [fechaCreacion]) VALUES (3, 3, N&apos;Adrian Isaac&apos;, N&apos;Villarreal Henry&apos;, N&apos;16740622 3763&apos;, N&apos;sociis@luctusetultrices.ca&apos;, N&apos;2908152905&apos;, N&apos;30&apos;, N&apos;M&apos;, CAST(N&apos;2022-07-22&apos; AS Date), CAST(N&apos;2020-11-04&apos; AS Date)).
+        /// </summary>
+        internal static string String370 {
+            get {
+                return ResourceManager.GetString("String370", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[persona] OFF.
+        /// </summary>
+        internal static string String371 {
+            get {
+                return ResourceManager.GetString("String371", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String372 {
+            get {
+                return ResourceManager.GetString("String372", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[recurso] ON.
+        /// </summary>
+        internal static string String373 {
+            get {
+                return ResourceManager.GetString("String373", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[recurso] ([recursoID], [nombre], [descripcion]) VALUES (1, N&apos;Recurso 1&apos;, N&apos;Descripcion Recurso 1&apos;).
+        /// </summary>
+        internal static string String374 {
+            get {
+                return ResourceManager.GetString("String374", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[recurso] ([recursoID], [nombre], [descripcion]) VALUES (2, N&apos;Recurso 2&apos;, N&apos;Descripcion Recurso 2&apos;).
+        /// </summary>
+        internal static string String375 {
+            get {
+                return ResourceManager.GetString("String375", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[recurso] OFF.
+        /// </summary>
+        internal static string String376 {
+            get {
+                return ResourceManager.GetString("String376", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String377 {
+            get {
+                return ResourceManager.GetString("String377", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[roleP] ON.
+        /// </summary>
+        internal static string String378 {
+            get {
+                return ResourceManager.GetString("String378", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[roleP] ([rolePID], [nombre], [descripcion]) VALUES (1, N&apos;Admin&apos;, N&apos;Persona encargada de la actualizaci&apos;).
+        /// </summary>
+        internal static string String379 {
+            get {
+                return ResourceManager.GetString("String379", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET CONCAT_NULL_YIELDS_NULL OFF.
+        /// </summary>
+        internal static string String38 {
+            get {
+                return ResourceManager.GetString("String38", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[roleP] ([rolePID], [nombre], [descripcion]) VALUES (2, N&apos;Profesor&apos;, N&apos;Persona que imparte las clases&apos;).
+        /// </summary>
+        internal static string String380 {
+            get {
+                return ResourceManager.GetString("String380", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[roleP] ([rolePID], [nombre], [descripcion]) VALUES (3, N&apos;Cliente&apos;, N&apos;Persona que asiste a las clases&apos;).
+        /// </summary>
+        internal static string String381 {
+            get {
+                return ResourceManager.GetString("String381", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[roleP] OFF.
+        /// </summary>
+        internal static string String382 {
+            get {
+                return ResourceManager.GetString("String382", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String383 {
+            get {
+                return ResourceManager.GetString("String383", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[sala] ON.
+        /// </summary>
+        internal static string String384 {
+            get {
+                return ResourceManager.GetString("String384", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (1, N&apos;SALA-1&apos;, N&apos;Descripcion SALA-1&apos;).
+        /// </summary>
+        internal static string String385 {
+            get {
+                return ResourceManager.GetString("String385", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (2, N&apos;SALA-2&apos;, N&apos;Descripcion SALA-2&apos;).
+        /// </summary>
+        internal static string String386 {
+            get {
+                return ResourceManager.GetString("String386", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (3, N&apos;SALA-3&apos;, N&apos;Descripcion SALA-3&apos;).
+        /// </summary>
+        internal static string String387 {
+            get {
+                return ResourceManager.GetString("String387", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (4, N&apos;SALA-4&apos;, N&apos;Descripcion SALA-4&apos;).
+        /// </summary>
+        internal static string String388 {
+            get {
+                return ResourceManager.GetString("String388", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET IDENTITY_INSERT [dbo].[sala] OFF.
+        /// </summary>
+        internal static string String389 {
+            get {
+                return ResourceManager.GetString("String389", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String39 {
+            get {
+                return ResourceManager.GetString("String39", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String390 {
+            get {
+                return ResourceManager.GetString("String390", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase]  WITH CHECK ADD  CONSTRAINT [discplina_clase_fk] FOREIGN KEY([disciplinaID]).
+        /// </summary>
+        internal static string String391 {
+            get {
+                return ResourceManager.GetString("String391", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[disciplina] ([disciplinaID]).
+        /// </summary>
+        internal static string String392 {
+            get {
+                return ResourceManager.GetString("String392", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String393 {
+            get {
+                return ResourceManager.GetString("String393", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase] CHECK CONSTRAINT [discplina_clase_fk].
+        /// </summary>
+        internal static string String394 {
+            get {
+                return ResourceManager.GetString("String394", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String395 {
+            get {
+                return ResourceManager.GetString("String395", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_persona]  WITH CHECK ADD  CONSTRAINT [clase_persona_fk] FOREIGN KEY([claseID]).
+        /// </summary>
+        internal static string String396 {
+            get {
+                return ResourceManager.GetString("String396", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[clase] ([claseID]).
+        /// </summary>
+        internal static string String397 {
+            get {
+                return ResourceManager.GetString("String397", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String398 {
+            get {
+                return ResourceManager.GetString("String398", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_persona] CHECK CONSTRAINT [clase_persona_fk].
+        /// </summary>
+        internal static string String399 {
+            get {
+                return ResourceManager.GetString("String399", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONTAINMENT = NONE.
+        /// </summary>
+        internal static string String4 {
+            get {
+                return ResourceManager.GetString("String4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET NUMERIC_ROUNDABORT OFF.
+        /// </summary>
+        internal static string String40 {
+            get {
+                return ResourceManager.GetString("String40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String400 {
+            get {
+                return ResourceManager.GetString("String400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_persona]  WITH CHECK ADD  CONSTRAINT [clase_persona_Id_fk] FOREIGN KEY([personaID]).
+        /// </summary>
+        internal static string String401 {
+            get {
+                return ResourceManager.GetString("String401", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[persona] ([personaID]).
+        /// </summary>
+        internal static string String402 {
+            get {
+                return ResourceManager.GetString("String402", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String403 {
+            get {
+                return ResourceManager.GetString("String403", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_persona] CHECK CONSTRAINT [clase_persona_Id_fk].
+        /// </summary>
+        internal static string String404 {
+            get {
+                return ResourceManager.GetString("String404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String405 {
+            get {
+                return ResourceManager.GetString("String405", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_recurso]  WITH CHECK ADD  CONSTRAINT [claseID_fk] FOREIGN KEY([claseID]).
+        /// </summary>
+        internal static string String406 {
+            get {
+                return ResourceManager.GetString("String406", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[clase] ([claseID]).
+        /// </summary>
+        internal static string String407 {
+            get {
+                return ResourceManager.GetString("String407", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String408 {
+            get {
+                return ResourceManager.GetString("String408", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_recurso] CHECK CONSTRAINT [claseID_fk].
+        /// </summary>
+        internal static string String409 {
+            get {
+                return ResourceManager.GetString("String409", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String41 {
+            get {
+                return ResourceManager.GetString("String41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String410 {
+            get {
+                return ResourceManager.GetString("String410", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_recurso]  WITH CHECK ADD  CONSTRAINT [personaID_fk] FOREIGN KEY([personaID]).
+        /// </summary>
+        internal static string String411 {
+            get {
+                return ResourceManager.GetString("String411", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[persona] ([personaID]).
+        /// </summary>
+        internal static string String412 {
+            get {
+                return ResourceManager.GetString("String412", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String413 {
+            get {
+                return ResourceManager.GetString("String413", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_recurso] CHECK CONSTRAINT [personaID_fk].
+        /// </summary>
+        internal static string String414 {
+            get {
+                return ResourceManager.GetString("String414", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String415 {
+            get {
+                return ResourceManager.GetString("String415", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_recurso]  WITH CHECK ADD  CONSTRAINT [recursoID_fk] FOREIGN KEY([recursoID]).
+        /// </summary>
+        internal static string String416 {
+            get {
+                return ResourceManager.GetString("String416", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[recurso] ([recursoID]).
+        /// </summary>
+        internal static string String417 {
+            get {
+                return ResourceManager.GetString("String417", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String418 {
+            get {
+                return ResourceManager.GetString("String418", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[clase_recurso] CHECK CONSTRAINT [recursoID_fk].
+        /// </summary>
+        internal static string String419 {
+            get {
+                return ResourceManager.GetString("String419", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET QUOTED_IDENTIFIER OFF.
+        /// </summary>
+        internal static string String42 {
+            get {
+                return ResourceManager.GetString("String42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String420 {
+            get {
+                return ResourceManager.GetString("String420", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[cronograma]  WITH CHECK ADD  CONSTRAINT [clase_cronoID_fk] FOREIGN KEY([claseID]).
+        /// </summary>
+        internal static string String421 {
+            get {
+                return ResourceManager.GetString("String421", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[clase] ([claseID]).
+        /// </summary>
+        internal static string String422 {
+            get {
+                return ResourceManager.GetString("String422", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String423 {
+            get {
+                return ResourceManager.GetString("String423", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [clase_cronoID_fk].
+        /// </summary>
+        internal static string String424 {
+            get {
+                return ResourceManager.GetString("String424", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String425 {
+            get {
+                return ResourceManager.GetString("String425", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[cronograma]  WITH CHECK ADD  CONSTRAINT [horarioM_cronoID_fk] FOREIGN KEY([horarioMID]).
+        /// </summary>
+        internal static string String426 {
+            get {
+                return ResourceManager.GetString("String426", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[horarioM] ([horarioMID]).
+        /// </summary>
+        internal static string String427 {
+            get {
+                return ResourceManager.GetString("String427", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String428 {
+            get {
+                return ResourceManager.GetString("String428", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [horarioM_cronoID_fk].
+        /// </summary>
+        internal static string String429 {
+            get {
+                return ResourceManager.GetString("String429", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String43 {
+            get {
+                return ResourceManager.GetString("String43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String430 {
+            get {
+                return ResourceManager.GetString("String430", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[cronograma]  WITH CHECK ADD  CONSTRAINT [sala_cronoID_fk] FOREIGN KEY([salaID]).
+        /// </summary>
+        internal static string String431 {
+            get {
+                return ResourceManager.GetString("String431", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[sala] ([salaID]).
+        /// </summary>
+        internal static string String432 {
+            get {
+                return ResourceManager.GetString("String432", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String433 {
+            get {
+                return ResourceManager.GetString("String433", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [sala_cronoID_fk].
+        /// </summary>
+        internal static string String434 {
+            get {
+                return ResourceManager.GetString("String434", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String435 {
+            get {
+                return ResourceManager.GetString("String435", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [discplina1_fk] FOREIGN KEY([disciplinaID]).
+        /// </summary>
+        internal static string String436 {
+            get {
+                return ResourceManager.GetString("String436", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[disciplina] ([disciplinaID]).
+        /// </summary>
+        internal static string String437 {
+            get {
+                return ResourceManager.GetString("String437", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String438 {
+            get {
+                return ResourceManager.GetString("String438", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_disciplina] CHECK CONSTRAINT [discplina1_fk].
+        /// </summary>
+        internal static string String439 {
+            get {
+                return ResourceManager.GetString("String439", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET RECURSIVE_TRIGGERS OFF.
+        /// </summary>
+        internal static string String44 {
+            get {
+                return ResourceManager.GetString("String44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String440 {
+            get {
+                return ResourceManager.GetString("String440", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [membresia1_fk] FOREIGN KEY([membresiaID]).
+        /// </summary>
+        internal static string String441 {
+            get {
+                return ResourceManager.GetString("String441", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[membresia] ([membresiaID]).
+        /// </summary>
+        internal static string String442 {
+            get {
+                return ResourceManager.GetString("String442", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String443 {
+            get {
+                return ResourceManager.GetString("String443", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_disciplina] CHECK CONSTRAINT [membresia1_fk].
+        /// </summary>
+        internal static string String444 {
+            get {
+                return ResourceManager.GetString("String444", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String445 {
+            get {
+                return ResourceManager.GetString("String445", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_persona_disciplina]  WITH CHECK ADD  CONSTRAINT [disciplinaID_membresia_persona_disciplina_fk] FOREIGN KEY([disciplinaID]).
+        /// </summary>
+        internal static string String446 {
+            get {
+                return ResourceManager.GetString("String446", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[disciplina] ([disciplinaID]).
+        /// </summary>
+        internal static string String447 {
+            get {
+                return ResourceManager.GetString("String447", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String448 {
+            get {
+                return ResourceManager.GetString("String448", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_persona_disciplina] CHECK CONSTRAINT [disciplinaID_membresia_persona_disciplina_fk].
+        /// </summary>
+        internal static string String449 {
+            get {
+                return ResourceManager.GetString("String449", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String45 {
+            get {
+                return ResourceManager.GetString("String45", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String450 {
+            get {
+                return ResourceManager.GetString("String450", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_persona_disciplina]  WITH CHECK ADD  CONSTRAINT [membresia_membresia_persona_disciplina_fk] FOREIGN KEY([membresiaID]).
+        /// </summary>
+        internal static string String451 {
+            get {
+                return ResourceManager.GetString("String451", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[membresia] ([membresiaID]).
+        /// </summary>
+        internal static string String452 {
+            get {
+                return ResourceManager.GetString("String452", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String453 {
+            get {
+                return ResourceManager.GetString("String453", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_persona_disciplina] CHECK CONSTRAINT [membresia_membresia_persona_disciplina_fk].
+        /// </summary>
+        internal static string String454 {
+            get {
+                return ResourceManager.GetString("String454", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String455 {
+            get {
+                return ResourceManager.GetString("String455", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_persona_disciplina]  WITH CHECK ADD  CONSTRAINT [personaID_membresia_persona_disciplina_fk] FOREIGN KEY([personaID]).
+        /// </summary>
+        internal static string String456 {
+            get {
+                return ResourceManager.GetString("String456", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[persona] ([personaID]).
+        /// </summary>
+        internal static string String457 {
+            get {
+                return ResourceManager.GetString("String457", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String458 {
+            get {
+                return ResourceManager.GetString("String458", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[membresia_persona_disciplina] CHECK CONSTRAINT [personaID_membresia_persona_disciplina_fk].
+        /// </summary>
+        internal static string String459 {
+            get {
+                return ResourceManager.GetString("String459", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET  ENABLE_BROKER.
+        /// </summary>
+        internal static string String46 {
+            get {
+                return ResourceManager.GetString("String46", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String460 {
+            get {
+                return ResourceManager.GetString("String460", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[persona]  WITH CHECK ADD  CONSTRAINT [rolePID_fk] FOREIGN KEY([rolePID]).
+        /// </summary>
+        internal static string String461 {
+            get {
+                return ResourceManager.GetString("String461", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[roleP] ([rolePID]).
+        /// </summary>
+        internal static string String462 {
+            get {
+                return ResourceManager.GetString("String462", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String463 {
+            get {
+                return ResourceManager.GetString("String463", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[persona] CHECK CONSTRAINT [rolePID_fk].
+        /// </summary>
+        internal static string String464 {
+            get {
+                return ResourceManager.GetString("String464", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String465 {
+            get {
+                return ResourceManager.GetString("String465", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[usuario]  WITH CHECK ADD  CONSTRAINT [usuario_personaID_fk] FOREIGN KEY([personaID]).
+        /// </summary>
+        internal static string String466 {
+            get {
+                return ResourceManager.GetString("String466", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REFERENCES [dbo].[persona] ([personaID]).
+        /// </summary>
+        internal static string String467 {
+            get {
+                return ResourceManager.GetString("String467", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String468 {
+            get {
+                return ResourceManager.GetString("String468", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER TABLE [dbo].[usuario] CHECK CONSTRAINT [usuario_personaID_fk].
+        /// </summary>
+        internal static string String469 {
+            get {
+                return ResourceManager.GetString("String469", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String47 {
+            get {
+                return ResourceManager.GetString("String47", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String470 {
+            get {
+                return ResourceManager.GetString("String470", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a USE [master].
+        /// </summary>
+        internal static string String471 {
+            get {
+                return ResourceManager.GetString("String471", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String472 {
+            get {
+                return ResourceManager.GetString("String472", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET  READ_WRITE.
+        /// </summary>
+        internal static string String473 {
+            get {
+                return ResourceManager.GetString("String473", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String474 {
+            get {
+                return ResourceManager.GetString("String474", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF.
+        /// </summary>
+        internal static string String48 {
+            get {
+                return ResourceManager.GetString("String48", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String49 {
+            get {
+                return ResourceManager.GetString("String49", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ON  PRIMARY.
+        /// </summary>
+        internal static string String5 {
+            get {
+                return ResourceManager.GetString("String5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET DATE_CORRELATION_OPTIMIZATION OFF.
+        /// </summary>
+        internal static string String50 {
+            get {
+                return ResourceManager.GetString("String50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String51 {
+            get {
+                return ResourceManager.GetString("String51", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET TRUSTWORTHY OFF.
+        /// </summary>
+        internal static string String52 {
+            get {
+                return ResourceManager.GetString("String52", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String53 {
+            get {
+                return ResourceManager.GetString("String53", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET ALLOW_SNAPSHOT_ISOLATION OFF.
+        /// </summary>
+        internal static string String54 {
+            get {
+                return ResourceManager.GetString("String54", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String55 {
+            get {
+                return ResourceManager.GetString("String55", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET PARAMETERIZATION SIMPLE.
+        /// </summary>
+        internal static string String56 {
+            get {
+                return ResourceManager.GetString("String56", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String57 {
+            get {
+                return ResourceManager.GetString("String57", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET READ_COMMITTED_SNAPSHOT OFF.
+        /// </summary>
+        internal static string String58 {
+            get {
+                return ResourceManager.GetString("String58", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String59 {
+            get {
+                return ResourceManager.GetString("String59", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ( NAME = N&apos;GYMDB&apos;, FILENAME = N&apos;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB.mdf&apos; , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB ).
+        /// </summary>
+        internal static string String6 {
+            get {
+                return ResourceManager.GetString("String6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET HONOR_BROKER_PRIORITY OFF.
+        /// </summary>
+        internal static string String60 {
+            get {
+                return ResourceManager.GetString("String60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String61 {
+            get {
+                return ResourceManager.GetString("String61", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET RECOVERY FULL.
+        /// </summary>
+        internal static string String62 {
+            get {
+                return ResourceManager.GetString("String62", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String63 {
+            get {
+                return ResourceManager.GetString("String63", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET  MULTI_USER.
+        /// </summary>
+        internal static string String64 {
+            get {
+                return ResourceManager.GetString("String64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String65 {
+            get {
+                return ResourceManager.GetString("String65", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET PAGE_VERIFY CHECKSUM.
+        /// </summary>
+        internal static string String66 {
+            get {
+                return ResourceManager.GetString("String66", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String67 {
+            get {
+                return ResourceManager.GetString("String67", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET DB_CHAINING OFF.
+        /// </summary>
+        internal static string String68 {
+            get {
+                return ResourceManager.GetString("String68", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String69 {
+            get {
+                return ResourceManager.GetString("String69", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a LOG ON.
+        /// </summary>
+        internal static string String7 {
+            get {
+                return ResourceManager.GetString("String7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ).
+        /// </summary>
+        internal static string String70 {
+            get {
+                return ResourceManager.GetString("String70", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String71 {
+            get {
+                return ResourceManager.GetString("String71", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET TARGET_RECOVERY_TIME = 60 SECONDS.
+        /// </summary>
+        internal static string String72 {
+            get {
+                return ResourceManager.GetString("String72", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String73 {
+            get {
+                return ResourceManager.GetString("String73", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET DELAYED_DURABILITY = DISABLED.
+        /// </summary>
+        internal static string String74 {
+            get {
+                return ResourceManager.GetString("String74", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String75 {
+            get {
+                return ResourceManager.GetString("String75", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a EXEC sys.sp_db_vardecimal_storage_format N&apos;GYMDB&apos;, N&apos;ON&apos;.
+        /// </summary>
+        internal static string String76 {
+            get {
+                return ResourceManager.GetString("String76", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String77 {
+            get {
+                return ResourceManager.GetString("String77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ALTER DATABASE [GYMDB] SET QUERY_STORE = OFF.
+        /// </summary>
+        internal static string String78 {
+            get {
+                return ResourceManager.GetString("String78", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String79 {
+            get {
+                return ResourceManager.GetString("String79", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ( NAME = N&apos;GYMDB_log&apos;, FILENAME = N&apos;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB_log.ldf&apos; , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB ).
+        /// </summary>
+        internal static string String8 {
+            get {
+                return ResourceManager.GetString("String8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a USE [GYMDB].
+        /// </summary>
+        internal static string String80 {
+            get {
+                return ResourceManager.GetString("String80", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String81 {
+            get {
+                return ResourceManager.GetString("String81", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[clase]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String82 {
+            get {
+                return ResourceManager.GetString("String82", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String83 {
+            get {
+                return ResourceManager.GetString("String83", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String84 {
+            get {
+                return ResourceManager.GetString("String84", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET QUOTED_IDENTIFIER ON.
+        /// </summary>
+        internal static string String85 {
+            get {
+                return ResourceManager.GetString("String85", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String86 {
+            get {
+                return ResourceManager.GetString("String86", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CREATE TABLE [dbo].[clase](.
+        /// </summary>
+        internal static string String87 {
+            get {
+                return ResourceManager.GetString("String87", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [claseID] [int] IDENTITY(1,1) NOT NULL,.
+        /// </summary>
+        internal static string String88 {
+            get {
+                return ResourceManager.GetString("String88", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [disciplinaID] [int] NOT NULL,.
+        /// </summary>
+        internal static string String89 {
+            get {
+                return ResourceManager.GetString("String89", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a WITH CATALOG_COLLATION = DATABASE_DEFAULT.
+        /// </summary>
+        internal static string String9 {
+            get {
+                return ResourceManager.GetString("String9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [nombre] [varchar](30) NOT NULL,.
+        /// </summary>
+        internal static string String90 {
+            get {
+                return ResourceManager.GetString("String90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [descripcion] [varchar](300) NOT NULL,.
+        /// </summary>
+        internal static string String91 {
+            get {
+                return ResourceManager.GetString("String91", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CONSTRAINT [clase_pk] PRIMARY KEY CLUSTERED.
+        /// </summary>
+        internal static string String92 {
+            get {
+                return ResourceManager.GetString("String92", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a (.
+        /// </summary>
+        internal static string String93 {
+            get {
+                return ResourceManager.GetString("String93", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [claseID] ASC.
+        /// </summary>
+        internal static string String94 {
+            get {
+                return ResourceManager.GetString("String94", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY].
+        /// </summary>
+        internal static string String95 {
+            get {
+                return ResourceManager.GetString("String95", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ) ON [PRIMARY].
+        /// </summary>
+        internal static string String96 {
+            get {
+                return ResourceManager.GetString("String96", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a GO.
+        /// </summary>
+        internal static string String97 {
+            get {
+                return ResourceManager.GetString("String97", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[clase_persona]    Script Date: 28/09/2021 23:28:09 ******/.
+        /// </summary>
+        internal static string String98 {
+            get {
+                return ResourceManager.GetString("String98", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SET ANSI_NULLS ON.
+        /// </summary>
+        internal static string String99 {
+            get {
+                return ResourceManager.GetString("String99", resourceCulture);
             }
         }
     }

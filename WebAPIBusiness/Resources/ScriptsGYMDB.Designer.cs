@@ -77,7 +77,7 @@ namespace WebAPIBusiness.Resources {
         ///D.disciplinaID,
         ///D.nombre as nombreDisciplina,
         ///M.precio,
-        ///MPD.numClasesDisponible,
+        ///MPD.numClasesDisponibles,
         ///--MPD.fechaPago,
         ///--MPD.fechaLimite,
         ///M.nombre as nombreMembresia
