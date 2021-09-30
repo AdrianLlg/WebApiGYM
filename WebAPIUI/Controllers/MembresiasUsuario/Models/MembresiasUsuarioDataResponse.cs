@@ -4,6 +4,7 @@ using WebAPIBusiness.Entities.Membresia;
 using System.Linq;
 using System.Web;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
+using WebAPIUI.Models;
 
 namespace WebAPIUI.Controllers.MembresiasUsuario.Models
 {
@@ -22,7 +23,7 @@ namespace WebAPIUI.Controllers.MembresiasUsuario.Models
         /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<MembresiaEntity> Content { get; set; }
+        public List<MembresiasModel> Content { get; set; }
 
     }
 }

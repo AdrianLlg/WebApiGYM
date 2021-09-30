@@ -8,6 +8,8 @@ using WebAPIBusiness.CustomExceptions;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIBusiness.Entities.Membresia;
+using WebAPIUI.Models;
+using WebAPIUI.Helpers;
 
 namespace WebAPIUI.Controllers
 {
@@ -64,6 +66,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
+                List<MembresiasModel> resp = new List<MembresiasModel>();
                 List<string> messages = new List<string>();
                 string message = string.Empty;
 
@@ -71,12 +74,19 @@ namespace WebAPIUI.Controllers
 
                 List<MembresiaEntity> membresias = membresiaUser(dataRequest.personaID);
 
-
-
-                response.ResponseCode = MembresiasUsuarioResponseType.Ok;
-                response.ResponseMessage = "Método ejecutado con éxito.";
-                response.Content = membresias;
-
+                if (membresias.Count > 0)
+                {
+                    resp = EntitesHelper.EntityToModel(membresias);
+                    response.ResponseCode = MembresiasUsuarioResponseType.Ok;
+                    response.ResponseMessage = "Método ejecutado con éxito.";
+                    response.Content = resp;
+                }
+                else
+                {
+                    response.ResponseCode = MembresiasUsuarioResponseType.Ok;
+                    response.ResponseMessage = "No existen registros.";
+                    response.Content = null;
+                }
 
             }
             catch (MembresiasUsuarioException MembresiasUsuarioException)

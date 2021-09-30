@@ -183,7 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EntitesHelper.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
+    <Compile Include="Models\MembresiasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
