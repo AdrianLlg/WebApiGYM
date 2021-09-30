@@ -61,6 +61,31 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a --CONSULTA CLASES DE DISCIPLINA EN UNA FECHA 
+        ///SELECT 
+        ///CR.fecha,
+        ///HM.horaInicio,
+        ///HM.horaFin,
+        ///CL.nombre,
+        ///CL.descripcion
+        ///FROM cronograma CR
+        ///INNER JOIN horarioM HM ON CR.horarioMID = HM.horarioMID
+        ///INNER JOIN clase CL ON CR.claseID = CL.claseID
+        ///INNER JOIN sala S ON CR.salaID = S.salaID
+        ///INNER JOIN clase_persona CLP ON CR.claseID = CLP.claseID
+        ///WHERE CL.disciplinaID in (
+        ///SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = &apos;1&apos; AND status = &apos;A&apos;
+        ///)
+        ///AND CR.fecha = &apos;2021-09-11&apos;
+        ///AND CLP. [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string getClasesDisicplinaFecha {
+            get {
+                return ResourceManager.GetString("getClasesDisicplinaFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
         ///INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
         ///INNER JOIN horarioM HM ON HM.horarioMID = CR.horarioMID

@@ -225,6 +225,7 @@ CREATE TABLE [dbo].[clase_persona](
 	[clase_personaID] [int] IDENTITY(1,1) NOT NULL,
 	[claseID] [int] NOT NULL,
 	[personaID] [int] NOT NULL,
+	[rolePID] [int] NOT NULL,
 	[asistencia] [int] NOT NULL,
  CONSTRAINT [clase_persona_pk] PRIMARY KEY CLUSTERED 
 (
@@ -341,6 +342,7 @@ CREATE TABLE [dbo].[membresia_persona_disciplina](
 	[fechaPago] [date] NOT NULL,
 	[fechaLimite] [date] NOT NULL,
 	[numClasesDisponibles] [int] NOT NULL,
+	[status] [varchar] NOT NULL
  CONSTRAINT [membresia_persona_disciplinaID_pk] PRIMARY KEY CLUSTERED 
 (
 	[membresia_persona_disciplinaID] ASC
@@ -481,15 +483,15 @@ SET IDENTITY_INSERT [dbo].[membresia_disciplina] OFF
 GO
 SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] ON 
 
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (1, 3, 1, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (2, 3, 2, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (3, 3, 3, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (4, 3, 1, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (5, 3, 2, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (6, 3, 3, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (7, 3, 1, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (8, 3, 2, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles]) VALUES (9, 3, 3, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10)
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (1, 3, 1, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (2, 3, 2, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (3, 3, 3, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (4, 3, 1, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (5, 3, 2, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (6, 3, 3, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (7, 3, 1, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (8, 3, 2, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [membresiaID], [personaID], [disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (9, 3, 3, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
 SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] OFF
 GO
 SET IDENTITY_INSERT [dbo].[persona] ON 
