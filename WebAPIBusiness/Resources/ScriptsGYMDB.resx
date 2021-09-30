@@ -117,6 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="getClasesDisicplinaFecha" xml:space="preserve">
+    <value>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA 
+SELECT 
+CR.fecha,
+HM.horaInicio,
+HM.horaFin,
+CL.nombre,
+CL.descripcion
+FROM cronograma CR
+INNER JOIN horarioM HM ON CR.horarioMID = HM.horarioMID
+INNER JOIN clase CL ON CR.claseID = CL.claseID
+INNER JOIN sala S ON CR.salaID = S.salaID
+INNER JOIN clase_persona CLP ON CR.claseID = CLP.claseID
+WHERE CL.disciplinaID in (
+SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = '1' AND status = 'A'
+)
+AND CR.fecha = '2021-09-11'
+AND CLP.rolePID = 2</value>
+  </data>
   <data name="getHorasDisciplina" xml:space="preserve">
     <value>SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
 INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
