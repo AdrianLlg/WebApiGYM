@@ -51,12 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\EventoPersonaBO.cs" />
+    <Compile Include="BusinessCore\EventosBO.cs" />
+    <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
     <Compile Include="BusinessCore\HorasDisciplinaBO.cs" />
+    <Compile Include="BusinessCore\EventoRecursoBO.cs" />
+    <Compile Include="BusinessCore\HorasDisciplinaFechaBO.cs" />
     <Compile Include="BusinessCore\MembresiaBO.cs" />
     <Compile Include="BusinessCore\LoginBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
+    <Compile Include="Entities\EventoPersona\EventoPersonaEntity.cs" />
+    <Compile Include="Entities\Eventos\EventosEntity.cs" />
+    <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEntity.cs" />
+    <Compile Include="Entities\EventoRecurso\EventoRecursoEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
+    <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

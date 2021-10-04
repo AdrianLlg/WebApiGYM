@@ -61,23 +61,22 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a --CONSULTA CLASES DE DISCIPLINA EN UNA FECHA 
+        ///   Looks up a localized string similar to 
         ///SELECT 
+        ///CL.nombre AS Clase,
+        ///P.nombres AS Instructor,
+        ///CL.descripcion AS Descripcion,
         ///CR.fecha,
         ///HM.horaInicio,
-        ///HM.horaFin,
-        ///CL.nombre,
-        ///CL.descripcion
+        ///HM.horaFin
         ///FROM cronograma CR
         ///INNER JOIN horarioM HM ON CR.horarioMID = HM.horarioMID
         ///INNER JOIN clase CL ON CR.claseID = CL.claseID
         ///INNER JOIN sala S ON CR.salaID = S.salaID
         ///INNER JOIN clase_persona CLP ON CR.claseID = CLP.claseID
+        ///INNER JOIN persona P ON  CLP.personaID=P.personaID
         ///WHERE CL.disciplinaID in (
-        ///SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = &apos;1&apos; AND status = &apos;A&apos;
-        ///)
-        ///AND CR.fecha = &apos;2021-09-11&apos;
-        ///AND CLP. [resto de la cadena truncado]&quot;;.
+        ///SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = &apos;1&apos; A [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string getClasesDisicplinaFecha {
             get {
@@ -86,7 +85,43 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
+        ///   Looks up a localized string similar to --.
+        /// </summary>
+        internal static string getEventoPersona {
+            get {
+                return ResourceManager.GetString("getEventoPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -- .
+        /// </summary>
+        internal static string getEventoRecurso {
+            get {
+                return ResourceManager.GetString("getEventoRecurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --.
+        /// </summary>
+        internal static string getEventoRecursosEspecial {
+            get {
+                return ResourceManager.GetString("getEventoRecursosEspecial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --.
+        /// </summary>
+        internal static string getEventos {
+            get {
+                return ResourceManager.GetString("getEventos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
         ///INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
         ///INNER JOIN horarioM HM ON HM.horarioMID = CR.horarioMID
         ///WHERE CL.disciplinaID = &apos;&apos;.
@@ -94,6 +129,27 @@ namespace WebAPIBusiness.Resources {
         internal static string getHorasDisciplina {
             get {
                 return ResourceManager.GetString("getHorasDisciplina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --CONSULTA CLASES DE DISCIPLINA EN UNA FECHA 
+        ///SELECT 
+        ///CR.cronogramaID AS CronoID,
+        ///CL.nombre AS Clase,
+        ///P.nombres AS Nombre,
+        ///CL.descripcion AS Descripcion,
+        ///CR.fecha,
+        ///HM.horaInicio,
+        ///HM.horaFin,
+        ///(SELECT COUNT(*) FROM clase_persona INNER JOIN persona P1 ON  clase_persona.personaID=P1.personaID  WHERE p1.rolePID=3)AS Asistentes,
+        ///(SELECT COUNT(*) FROM clase_persona INNER JOIN persona P2 ON  clase_persona.personaID=P2.personaID  WHERE p2.personaID={0})AS REG
+        ///FROM cronograma CR
+        ///INNER JOIN horarioM HM ON  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getHorasFechaDisciplina {
+            get {
+                return ResourceManager.GetString("getHorasFechaDisciplina", resourceCulture);
             }
         }
         
