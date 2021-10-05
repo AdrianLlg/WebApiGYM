@@ -8,10 +8,12 @@ using WebAPIUI.Controllers.Registro.Models;
 using WebAPIUI.Controllers.Login.Models;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
 using WebAPIUI.Controllers.HorasDisciplina.Models;
+using WebAPIUI.Controllers.EventoClasePersona.Models;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.CustomExceptions.Login;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIUI.CustomExceptions.HorasDisciplina;
+using WebAPIUI.CustomExceptions.EventoClasePersona;
 
 
 namespace WebAPIUI.Controllers
@@ -115,11 +117,34 @@ namespace WebAPIUI.Controllers
             response.Content = null;
         }
 
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionEventoClasePersona(EventoClasePersonaResponseType type, IList<string> messages)
+        {
+            var newException = new EventoClasePersonaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventoClasePersona(EventoClasePersonaResponseType type, Exception ex)
+        {
+            throw new EventoClasePersonaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventoClasePersona(EventoClasePersonaResponseType code, EventoClasePersonaResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null; 
+        }
+
 
 
     }
 
 
 
- 
+
 }

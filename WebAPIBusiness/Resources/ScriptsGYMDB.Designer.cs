@@ -85,38 +85,22 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to --.
+        ///   Looks up a localized string similar to SELECT
+        ///EV.eventoID AS EventoID,
+        ///CL.nombre AS Clase,
+        ///nombres+SPACE(2)+apellidos AS NombreInstructor,
+        ///CL.descripcion AS Descripcion,
+        ///EV.fecha,
+        ///HM.horaInicio,
+        ///HM.horaFin,
+        ///(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P1 ON evento_persona.personaID=P1.personaID WHERE p1.rolePID=3)AS Asistentes,
+        ///EV.aforoMax AS AforoMaximoClase,
+        ///EV.aforoMin AS AforoMinimoClase,
+        ///(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P2 ON evento_persona.personaID=P2.personaID WHERE p2.personaID={0})AS ClaseAg [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string getEventoPersona {
+        internal static string getEventoClasePersona {
             get {
-                return ResourceManager.GetString("getEventoPersona", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to -- .
-        /// </summary>
-        internal static string getEventoRecurso {
-            get {
-                return ResourceManager.GetString("getEventoRecurso", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to --.
-        /// </summary>
-        internal static string getEventoRecursosEspecial {
-            get {
-                return ResourceManager.GetString("getEventoRecursosEspecial", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to --.
-        /// </summary>
-        internal static string getEventos {
-            get {
-                return ResourceManager.GetString("getEventos", resourceCulture);
+                return ResourceManager.GetString("getEventoClasePersona", resourceCulture);
             }
         }
         

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIUI.Models;
+using WebAPIUI.Models.Membresias;
 
 namespace WebAPIUI.Controllers.MembresiasUsuario.Models
 {

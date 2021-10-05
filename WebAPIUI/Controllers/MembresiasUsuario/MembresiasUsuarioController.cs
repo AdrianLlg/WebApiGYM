@@ -10,6 +10,7 @@ using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIBusiness.Entities.Membresia;
 using WebAPIUI.Models;
 using WebAPIUI.Helpers;
+using WebAPIUI.Models.Membresias;
 
 namespace WebAPIUI.Controllers
 {
@@ -76,7 +77,7 @@ namespace WebAPIUI.Controllers
 
                 if (membresias.Count > 0)
                 {
-                    resp = EntitesHelper.EntityToModel(membresias);
+                    resp = EntitesHelper.MembresiaEntityToModel(membresias);
                     response.ResponseCode = MembresiasUsuarioResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";
                     response.Content = resp;
