@@ -88,6 +88,7 @@ namespace WebAPIBusiness.Resources {
         ///   Looks up a localized string similar to SELECT
         ///EV.eventoID AS EventoID,
         ///CL.nombre AS Clase,
+        ///S.nombre AS Sala,
         ///nombres+SPACE(2)+apellidos AS NombreInstructor,
         ///CL.descripcion AS Descripcion,
         ///EV.fecha,
@@ -96,11 +97,26 @@ namespace WebAPIBusiness.Resources {
         ///(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P1 ON evento_persona.personaID=P1.personaID WHERE p1.rolePID=3)AS Asistentes,
         ///EV.aforoMax AS AforoMaximoClase,
         ///EV.aforoMin AS AforoMinimoClase,
-        ///(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P2 ON evento_persona.personaID=P2.personaID WHERE p2.personaID={0})AS ClaseAg [rest of string was truncated]&quot;;.
+        ///(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P2 ON evento_persona.personaID=P2.personaID WHERE p2.perso [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string getEventoClasePersona {
             get {
                 return ResourceManager.GetString("getEventoClasePersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///RE.nombre,
+        ///RE.descripcion,
+        ///CASE WHEN personaID = {0} /*Parametro*/ THEN &apos;RESERVADO&apos; WHEN personaID = &apos;&apos; THEN &apos;DISPONIBLE&apos; ELSE &apos;OCUPADO&apos; END AS reservado
+        ///FROM evento_recursoEspecial ERE
+        ///INNER JOIN recursoEspecial RE ON ERE.recursoEspecialID = RE.recursoEspecialID
+        ///WHERE ERE.eventoID = {1}/*Parametro*/.
+        /// </summary>
+        internal static string getEventoRecursoEspecial {
+            get {
+                return ResourceManager.GetString("getEventoRecursoEspecial", resourceCulture);
             }
         }
         

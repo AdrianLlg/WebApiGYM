@@ -161,6 +161,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
+    <Compile Include="Controllers\EventoRecursoEspecial\EventoRecursoEspecialController.cs" />
+    <Compile Include="Controllers\EventoRecursoEspecial\Models\EventoRecursoEspecialRequest.cs" />
+    <Compile Include="Controllers\EventoRecursoEspecial\Models\EventoRecursoEspecialResponse.cs" />
     <Compile Include="Controllers\EventoClasePersona\EventoClasePersonaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorasDisciplina\HorasDisciplinaController.cs" />
@@ -177,6 +180,7 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\EventoRecursoEspecial\EventoRecursoEspecialException.cs" />
     <Compile Include="CustomExceptions\HorasDisciplina\HorasDisciplinaException.cs" />
     <Compile Include="CustomExceptions\MembresiasUsuario\MembresiasUsuarioException.cs" />
     <Compile Include="CustomExceptions\Login\LoginException.cs" />
@@ -186,6 +190,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
+    <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />

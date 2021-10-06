@@ -143,6 +143,7 @@ AND CLP.rolePID = 2</value>
     <value>SELECT
 EV.eventoID AS EventoID,
 CL.nombre AS Clase,
+S.nombre AS Sala,
 nombres+SPACE(2)+apellidos AS NombreInstructor,
 CL.descripcion AS Descripcion,
 EV.fecha,
@@ -151,7 +152,7 @@ HM.horaFin,
 (SELECT COUNT(*) FROM evento_persona INNER JOIN persona P1 ON evento_persona.personaID=P1.personaID WHERE p1.rolePID=3)AS Asistentes,
 EV.aforoMax AS AforoMaximoClase,
 EV.aforoMin AS AforoMinimoClase,
-(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P2 ON evento_persona.personaID=P2.personaID WHERE p2.personaID={0})AS ClaseAgendada,
+(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P2 ON evento_persona.personaID=P2.personaID WHERE p2.personaID={0}/*Parametro*/)AS ClaseAgendada,
 (SELECT COUNT(*) FROM evento_recursoEspecial ERE WHERE ERE.eventoID = EV.eventoID ) as recursosEspeciales
 FROM evento EV
 INNER JOIN horarioM HM ON EV.horarioMID = HM.horarioMID
@@ -160,11 +161,20 @@ INNER JOIN sala S ON EV.salaID = S.salaID
 INNER JOIN evento_persona EP ON EV.eventoID = EP.eventoID
 INNER JOIN persona P ON EP.personaID = P.personaID
 WHERE CL.disciplinaID in (
-SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = {0} AND statusMembresia = 'A'
+SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID={0}/*Parametro*/ AND statusMembresia = 'A'
 )
-AND EV.fecha = '{1}'
+AND EV.fecha = '{1}'/*Parametro*/
 AND p.rolePID= 2</value>
     <comment>--CONSULTA EVENTOS POR FECHA Y DISPLINAS DISPONIBLES  DE LA PERSONA</comment>
+  </data>
+  <data name="getEventoRecursoEspecial" xml:space="preserve">
+    <value>SELECT
+RE.nombre,
+RE.descripcion,
+CASE WHEN personaID = {0} /*Parametro*/ THEN 'RESERVADO' WHEN personaID = '' THEN 'DISPONIBLE' ELSE 'OCUPADO' END AS reservado
+FROM evento_recursoEspecial ERE
+INNER JOIN recursoEspecial RE ON ERE.recursoEspecialID = RE.recursoEspecialID
+WHERE ERE.eventoID = {1}/*Parametro*/</value>
   </data>
   <data name="getHorasDisciplina" xml:space="preserve">
     <value>SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL

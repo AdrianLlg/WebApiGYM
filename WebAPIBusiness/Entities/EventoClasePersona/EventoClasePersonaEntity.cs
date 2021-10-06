@@ -10,6 +10,7 @@ namespace WebAPIBusiness.Entities.EventoClasePersona
     {
         public int EventoID { get; set; }
         public string Clase { get; set; }
+        public string Sala { get; set; }
         public string NombreInstructor { get; set; }
         public string Descripcion { get; set; }
         public DateTime fecha { get; set; }

@@ -8,6 +8,8 @@ using System.Globalization;
 using WebAPIUI.Models.Membresias;
 using WebAPIUI.Models.EventoClasePersona;
 using WebAPIBusiness.Entities.EventoClasePersona;
+using WebAPIUI.Models.EventoRecursoEspecial;
+using WebAPIBusiness.Entities.EvetoRecursoEspecial;
 
 namespace WebAPIUI.Helpers
 {
@@ -47,6 +49,7 @@ namespace WebAPIUI.Helpers
                 {
                     EventoID = entity.EventoID,
                     Clase = entity.Clase,
+                    Sala = entity.Sala,
                     NombreInstructor = entity.NombreInstructor,
                     Descripcion = entity.Descripcion,
                     fecha = entity.fecha.ToString("yyyy-MM-dd"),
@@ -56,7 +59,7 @@ namespace WebAPIUI.Helpers
                     AforoMaximoClase = entity.AforoMaximoClase,
                     AforoMinimoClase = entity.AforoMinimoClase,
                     ClaseAgendada = entity.ClaseAgendada,
-                    recursosEspeciales=entity.recursosEspeciales
+                    recursosEspeciales = entity.recursosEspeciales
                 };
 
 
@@ -64,5 +67,31 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
+
+        public static List<EventoRecursoEspecialModel> EventoRecursoEspecialEntityToModel(List<EventoRecursoEspecialEntity> entities)
+        {
+
+            List<EventoRecursoEspecialModel> response = new List<EventoRecursoEspecialModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new EventoRecursoEspecialModel
+                {
+                    Nombre = entity.Nombre,
+                    Descripcion = entity.Descripcion,
+                    Reservado = entity.Reservado
+                };
+
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+
+
+
+
+
     }
 }

@@ -14,7 +14,8 @@ using WebAPIUI.CustomExceptions.Login;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIUI.CustomExceptions.HorasDisciplina;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
-
+using WebAPIUI.CustomExceptions.EventoRecursoEspecial;
+using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -138,6 +139,30 @@ namespace WebAPIUI.Controllers
             response.ResponseCode = code;
             response.ResponseMessage = message;
             response.Content = null; 
+        }
+
+
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionEventoRecursoEspecial(EventoRecursoEspecialResponseType type, IList<string> messages)
+        {
+            var newException = new EventoRecursoEspecialException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventoRecursoEspecial(EventoRecursoEspecialResponseType type, Exception ex)
+        {
+            throw new EventoRecursoEspecialException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventoRecursoEspecial(EventoRecursoEspecialResponseType code, EventoRecursoEspecialResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
         }
 
 

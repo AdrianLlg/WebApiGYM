@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
     <Compile Include="BusinessCore\EventoClasePersonaBO.cs" />
     <Compile Include="BusinessCore\HorasDisciplinaBO.cs" />
     <Compile Include="BusinessCore\HorasDisciplinaFechaBO.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="BusinessCore\LoginBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
+    <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />

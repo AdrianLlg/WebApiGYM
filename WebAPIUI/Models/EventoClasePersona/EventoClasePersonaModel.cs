@@ -9,6 +9,7 @@ namespace WebAPIUI.Models.EventoClasePersona
     {
         public int EventoID { get; set; }
         public string Clase { get; set; }
+        public string Sala { get; set; }
         public string NombreInstructor { get; set; }
         public string Descripcion { get; set; }
         public string fecha { get; set; }
