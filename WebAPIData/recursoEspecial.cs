@@ -12,26 +12,19 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class disciplina
+    public partial class recursoEspecial
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public disciplina()
+        public recursoEspecial()
         {
-            this.clase = new HashSet<clase>();
-            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
-            this.membresia_disciplina = new HashSet<membresia_disciplina>();
+            this.evento_recursoEspecial = new HashSet<evento_recursoEspecial>();
         }
     
-        public int disciplinaID { get; set; }
+        public int recursoEspecialID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public int numClases { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<clase> clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_disciplina> membresia_disciplina { get; set; }
+        public virtual ICollection<evento_recursoEspecial> evento_recursoEspecial { get; set; }
     }
 }

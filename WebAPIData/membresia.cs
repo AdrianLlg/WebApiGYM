@@ -18,7 +18,7 @@ namespace WebAPIData
         public membresia()
         {
             this.membresia_disciplina = new HashSet<membresia_disciplina>();
-            this.membresia_persona = new HashSet<membresia_persona>();
+            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
         }
     
         public int membresiaID { get; set; }
@@ -29,6 +29,6 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<membresia_disciplina> membresia_disciplina { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona> membresia_persona { get; set; }
+        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
     }
 }

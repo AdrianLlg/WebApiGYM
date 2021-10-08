@@ -12,35 +12,32 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class persona
+    public partial class evento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public persona()
+        public evento()
         {
             this.evento_persona = new HashSet<evento_persona>();
-            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
-            this.usuario = new HashSet<usuario>();
+            this.evento_recurso = new HashSet<evento_recurso>();
+            this.evento_recursoEspecial = new HashSet<evento_recursoEspecial>();
         }
     
-        public int personaID { get; set; }
-        public int rolePID { get; set; }
-        public string nombres { get; set; }
-        public string apellidos { get; set; }
-        public string identificacion { get; set; }
-        public string email { get; set; }
-        public string telefono { get; set; }
-        public string edad { get; set; }
-        public string sexo { get; set; }
-        public System.DateTime fechaNacimiento { get; set; }
-        public System.DateTime fechaCreacion { get; set; }
-        public string estado { get; set; }
+        public int eventoID { get; set; }
+        public int claseID { get; set; }
+        public int horarioMID { get; set; }
+        public System.DateTime fecha { get; set; }
+        public int salaID { get; set; }
+        public int aforoMax { get; set; }
+        public int aforoMin { get; set; }
     
+        public virtual clase clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_persona> evento_persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
-        public virtual roleP roleP { get; set; }
+        public virtual ICollection<evento_recurso> evento_recurso { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public virtual ICollection<evento_recursoEspecial> evento_recursoEspecial { get; set; }
+        public virtual horarioM horarioM { get; set; }
+        public virtual sala sala { get; set; }
     }
 }

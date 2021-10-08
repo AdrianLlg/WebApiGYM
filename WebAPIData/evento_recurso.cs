@@ -12,16 +12,14 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class cronograma
+    public partial class evento_recurso
     {
-        public int cronogramaID { get; set; }
-        public int claseID { get; set; }
-        public int horarioMID { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int salaID { get; set; }
+        public int evento_recursoID { get; set; }
+        public int eventoID { get; set; }
+        public int recursoID { get; set; }
+        public int cantidadRecurso { get; set; }
     
-        public virtual clase clase { get; set; }
-        public virtual horarioM horarioM { get; set; }
-        public virtual sala sala { get; set; }
+        public virtual evento evento { get; set; }
+        public virtual recurso recurso { get; set; }
     }
 }

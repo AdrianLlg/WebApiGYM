@@ -14,35 +14,6 @@
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
-        <EntityType Name="clase_persona">
-          <Key>
-            <PropertyRef Name="clase_personaID" />
-          </Key>
-          <Property Name="clase_personaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="claseID" Type="int" Nullable="false" />
-          <Property Name="personaID" Type="int" Nullable="false" />
-          <Property Name="asistencia" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="clase_recurso">
-          <Key>
-            <PropertyRef Name="clase_recursoID" />
-          </Key>
-          <Property Name="clase_recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="claseID" Type="int" Nullable="false" />
-          <Property Name="recursoID" Type="int" Nullable="false" />
-          <Property Name="reservado" Type="int" Nullable="false" />
-          <Property Name="personaID" Type="int" />
-        </EntityType>
-        <EntityType Name="cronograma">
-          <Key>
-            <PropertyRef Name="cronogramaID" />
-          </Key>
-          <Property Name="cronogramaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="claseID" Type="int" Nullable="false" />
-          <Property Name="horarioMID" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
-          <Property Name="salaID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="disciplina">
           <Key>
             <PropertyRef Name="disciplinaID" />
@@ -50,6 +21,46 @@
           <Property Name="disciplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="numClases" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evento">
+          <Key>
+            <PropertyRef Name="eventoID" />
+          </Key>
+          <Property Name="eventoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claseID" Type="int" Nullable="false" />
+          <Property Name="horarioMID" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="salaID" Type="int" Nullable="false" />
+          <Property Name="aforoMax" Type="int" Nullable="false" />
+          <Property Name="aforoMin" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evento_persona">
+          <Key>
+            <PropertyRef Name="evento_personaID" />
+          </Key>
+          <Property Name="evento_personaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventoID" Type="int" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="asistencia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evento_recurso">
+          <Key>
+            <PropertyRef Name="evento_recursoID" />
+          </Key>
+          <Property Name="evento_recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventoID" Type="int" Nullable="false" />
+          <Property Name="recursoID" Type="int" Nullable="false" />
+          <Property Name="cantidadRecurso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evento_recursoEspecial">
+          <Key>
+            <PropertyRef Name="evento_recursoEspecialID" />
+          </Key>
+          <Property Name="evento_recursoEspecialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventoID" Type="int" Nullable="false" />
+          <Property Name="recursoEspecialID" Type="int" Nullable="false" />
+          <Property Name="personaID" Type="int" />
         </EntityType>
         <EntityType Name="horarioM">
           <Key>
@@ -76,14 +87,18 @@
           <Property Name="membresiaID" Type="int" Nullable="false" />
           <Property Name="disciplinaID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="membresia_persona">
+        <EntityType Name="membresia_persona_disciplina">
           <Key>
-            <PropertyRef Name="membresia_personaID" />
+            <PropertyRef Name="membresia_persona_disciplinaID" />
           </Key>
-          <Property Name="membresia_personaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="membresia_persona_disciplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="membresiaID" Type="int" Nullable="false" />
-          <Property Name="numReservas" Type="int" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="disciplinaID" Type="int" Nullable="false" />
+          <Property Name="fechaPago" Type="date" Nullable="false" />
+          <Property Name="fechaLimite" Type="date" Nullable="false" />
+          <Property Name="numClasesDisponibles" Type="int" Nullable="false" />
+          <Property Name="statusMembresia" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -100,12 +115,22 @@
           <Property Name="sexo" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="fechaNacimiento" Type="date" Nullable="false" />
           <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="recurso">
           <Key>
             <PropertyRef Name="recursoID" />
           </Key>
           <Property Name="recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="cantidadRecurso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recursoEspecial">
+          <Key>
+            <PropertyRef Name="recursoEspecialID" />
+          </Key>
+          <Property Name="recursoEspecialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
@@ -134,55 +159,7 @@
           <Property Name="email" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
-        <Association Name="clase_cronoID_fk">
-          <End Role="clase" Type="Self.clase" Multiplicity="1" />
-          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="claseID" />
-            </Principal>
-            <Dependent Role="cronograma">
-              <PropertyRef Name="claseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="clase_persona_fk">
-          <End Role="clase" Type="Self.clase" Multiplicity="1" />
-          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="claseID" />
-            </Principal>
-            <Dependent Role="clase_persona">
-              <PropertyRef Name="claseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="clase_persona_Id_fk">
-          <End Role="persona" Type="Self.persona" Multiplicity="1" />
-          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="persona">
-              <PropertyRef Name="personaID" />
-            </Principal>
-            <Dependent Role="clase_persona">
-              <PropertyRef Name="personaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="claseID_fk">
-          <End Role="clase" Type="Self.clase" Multiplicity="1" />
-          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="claseID" />
-            </Principal>
-            <Dependent Role="clase_recurso">
-              <PropertyRef Name="claseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="discplina_clase_fk">
+        <Association Name="disciplina_clase_fk">
           <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,6 +167,18 @@
               <PropertyRef Name="disciplinaID" />
             </Principal>
             <Dependent Role="clase">
+              <PropertyRef Name="disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="disciplinaIdMPD_fk">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="disciplinaID" />
+            </Principal>
+            <Dependent Role="membresia_persona_disciplina">
               <PropertyRef Name="disciplinaID" />
             </Dependent>
           </ReferentialConstraint>
@@ -206,14 +195,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="evento_cronoID_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evento_persona_fk">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="eventoID" />
+            </Principal>
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="eventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evento_persona_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="eventoID_fk">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="eventoID" />
+            </Principal>
+            <Dependent Role="evento_recurso">
+              <PropertyRef Name="eventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="eventoID_fk2">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="eventoID" />
+            </Principal>
+            <Dependent Role="evento_recursoEspecial">
+              <PropertyRef Name="eventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="horarioM_cronoID_fk">
           <End Role="horarioM" Type="Self.horarioM" Multiplicity="1" />
-          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="horarioM">
               <PropertyRef Name="horarioMID" />
             </Principal>
-            <Dependent Role="cronograma">
+            <Dependent Role="evento">
               <PropertyRef Name="horarioMID" />
             </Dependent>
           </ReferentialConstraint>
@@ -230,50 +279,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="membresiaID2_fk">
+        <Association Name="membresiaIdMPD_fk">
           <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
-          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="membresia">
               <PropertyRef Name="membresiaID" />
             </Principal>
-            <Dependent Role="membresia_persona">
+            <Dependent Role="membresia_persona_disciplina">
               <PropertyRef Name="membresiaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="personaID_fk">
-          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
-          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+        <Association Name="PersonaIdMPD_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="persona">
               <PropertyRef Name="personaID" />
             </Principal>
-            <Dependent Role="clase_recurso">
+            <Dependent Role="membresia_persona_disciplina">
               <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="personaID2_fk">
-          <End Role="persona" Type="Self.persona" Multiplicity="1" />
-          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+        <Association Name="recursEspecialoID_fk">
+          <End Role="recursoEspecial" Type="Self.recursoEspecial" Multiplicity="1" />
+          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="persona">
-              <PropertyRef Name="personaID" />
+            <Principal Role="recursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
             </Principal>
-            <Dependent Role="membresia_persona">
-              <PropertyRef Name="personaID" />
+            <Dependent Role="evento_recursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="recursoID_fk">
           <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
-          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="recurso">
               <PropertyRef Name="recursoID" />
             </Principal>
-            <Dependent Role="clase_recurso">
+            <Dependent Role="evento_recurso">
               <PropertyRef Name="recursoID" />
             </Dependent>
           </ReferentialConstraint>
@@ -292,12 +341,12 @@
         </Association>
         <Association Name="sala_cronoID_fk">
           <End Role="sala" Type="Self.sala" Multiplicity="1" />
-          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="sala">
               <PropertyRef Name="salaID" />
             </Principal>
-            <Dependent Role="cronograma">
+            <Dependent Role="evento">
               <PropertyRef Name="salaID" />
             </Dependent>
           </ReferentialConstraint>
@@ -316,66 +365,76 @@
         </Association>
         <EntityContainer Name="GYMDBModelStoreContainer">
           <EntitySet Name="clase" EntityType="Self.clase" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="clase_persona" EntityType="Self.clase_persona" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="clase_recurso" EntityType="Self.clase_recurso" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="cronograma" EntityType="Self.cronograma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="disciplina" EntityType="Self.disciplina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evento" EntityType="Self.evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evento_persona" EntityType="Self.evento_persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evento_recurso" EntityType="Self.evento_recurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evento_recursoEspecial" EntityType="Self.evento_recursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="horarioM" EntityType="Self.horarioM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="membresia" EntityType="Self.membresia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="membresia_disciplina" EntityType="Self.membresia_disciplina" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="membresia_persona" EntityType="Self.membresia_persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="membresia_persona_disciplina" EntityType="Self.membresia_persona_disciplina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="recurso" EntityType="Self.recurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roleP" EntityType="Self.roleP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sala" EntityType="Self.sala" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="clase_cronoID_fk" Association="Self.clase_cronoID_fk">
-            <End Role="clase" EntitySet="clase" />
-            <End Role="cronograma" EntitySet="cronograma" />
-          </AssociationSet>
-          <AssociationSet Name="clase_persona_fk" Association="Self.clase_persona_fk">
-            <End Role="clase" EntitySet="clase" />
-            <End Role="clase_persona" EntitySet="clase_persona" />
-          </AssociationSet>
-          <AssociationSet Name="clase_persona_Id_fk" Association="Self.clase_persona_Id_fk">
-            <End Role="persona" EntitySet="persona" />
-            <End Role="clase_persona" EntitySet="clase_persona" />
-          </AssociationSet>
-          <AssociationSet Name="claseID_fk" Association="Self.claseID_fk">
-            <End Role="clase" EntitySet="clase" />
-            <End Role="clase_recurso" EntitySet="clase_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="discplina_clase_fk" Association="Self.discplina_clase_fk">
+          <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="clase" EntitySet="clase" />
+          </AssociationSet>
+          <AssociationSet Name="disciplinaIdMPD_fk" Association="Self.disciplinaIdMPD_fk">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
           <AssociationSet Name="discplina1_fk" Association="Self.discplina1_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>
+          <AssociationSet Name="evento_cronoID_fk" Association="Self.evento_cronoID_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="evento_persona_fk" Association="Self.evento_persona_fk">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
+          </AssociationSet>
+          <AssociationSet Name="evento_persona_Id_fk" Association="Self.evento_persona_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
+          </AssociationSet>
+          <AssociationSet Name="eventoID_fk" Association="Self.eventoID_fk">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="evento_recurso" EntitySet="evento_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="eventoID_fk2" Association="Self.eventoID_fk2">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
+          </AssociationSet>
           <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
             <End Role="horarioM" EntitySet="horarioM" />
-            <End Role="cronograma" EntitySet="cronograma" />
+            <End Role="evento" EntitySet="evento" />
           </AssociationSet>
           <AssociationSet Name="membresia1_fk" Association="Self.membresia1_fk">
             <End Role="membresia" EntitySet="membresia" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>
-          <AssociationSet Name="membresiaID2_fk" Association="Self.membresiaID2_fk">
+          <AssociationSet Name="membresiaIdMPD_fk" Association="Self.membresiaIdMPD_fk">
             <End Role="membresia" EntitySet="membresia" />
-            <End Role="membresia_persona" EntitySet="membresia_persona" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
-          <AssociationSet Name="personaID_fk" Association="Self.personaID_fk">
+          <AssociationSet Name="PersonaIdMPD_fk" Association="Self.PersonaIdMPD_fk">
             <End Role="persona" EntitySet="persona" />
-            <End Role="clase_recurso" EntitySet="clase_recurso" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
-          <AssociationSet Name="personaID2_fk" Association="Self.personaID2_fk">
-            <End Role="persona" EntitySet="persona" />
-            <End Role="membresia_persona" EntitySet="membresia_persona" />
+          <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
+            <End Role="recursoEspecial" EntitySet="recursoEspecial" />
+            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
           </AssociationSet>
           <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
             <End Role="recurso" EntitySet="recurso" />
-            <End Role="clase_recurso" EntitySet="clase_recurso" />
+            <End Role="evento_recurso" EntitySet="evento_recurso" />
           </AssociationSet>
           <AssociationSet Name="rolePID_fk" Association="Self.rolePID_fk">
             <End Role="roleP" EntitySet="roleP" />
@@ -383,7 +442,7 @@
           </AssociationSet>
           <AssociationSet Name="sala_cronoID_fk" Association="Self.sala_cronoID_fk">
             <End Role="sala" EntitySet="sala" />
-            <End Role="cronograma" EntitySet="cronograma" />
+            <End Role="evento" EntitySet="evento" />
           </AssociationSet>
           <AssociationSet Name="usuario_personaID_fk" Association="Self.usuario_personaID_fk">
             <End Role="persona" EntitySet="persona" />
@@ -403,47 +462,8 @@
           <Property Name="disciplinaID" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="cronograma" Relationship="Self.clase_cronoID_fk" FromRole="clase" ToRole="cronograma" />
-          <NavigationProperty Name="clase_persona" Relationship="Self.clase_persona_fk" FromRole="clase" ToRole="clase_persona" />
-          <NavigationProperty Name="clase_recurso" Relationship="Self.claseID_fk" FromRole="clase" ToRole="clase_recurso" />
-          <NavigationProperty Name="disciplina" Relationship="Self.discplina_clase_fk" FromRole="clase" ToRole="disciplina" />
-        </EntityType>
-        <EntityType Name="clase_persona">
-          <Key>
-            <PropertyRef Name="clase_personaID" />
-          </Key>
-          <Property Name="clase_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="claseID" Type="Int32" Nullable="false" />
-          <Property Name="personaID" Type="Int32" Nullable="false" />
-          <Property Name="asistencia" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="clase" Relationship="Self.clase_persona_fk" FromRole="clase_persona" ToRole="clase" />
-          <NavigationProperty Name="persona" Relationship="Self.clase_persona_Id_fk" FromRole="clase_persona" ToRole="persona" />
-        </EntityType>
-        <EntityType Name="clase_recurso">
-          <Key>
-            <PropertyRef Name="clase_recursoID" />
-          </Key>
-          <Property Name="clase_recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="claseID" Type="Int32" Nullable="false" />
-          <Property Name="recursoID" Type="Int32" Nullable="false" />
-          <Property Name="reservado" Type="Int32" Nullable="false" />
-          <Property Name="personaID" Type="Int32" />
-          <NavigationProperty Name="clase" Relationship="Self.claseID_fk" FromRole="clase_recurso" ToRole="clase" />
-          <NavigationProperty Name="persona" Relationship="Self.personaID_fk" FromRole="clase_recurso" ToRole="persona" />
-          <NavigationProperty Name="recurso" Relationship="Self.recursoID_fk" FromRole="clase_recurso" ToRole="recurso" />
-        </EntityType>
-        <EntityType Name="cronograma">
-          <Key>
-            <PropertyRef Name="cronogramaID" />
-          </Key>
-          <Property Name="cronogramaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="claseID" Type="Int32" Nullable="false" />
-          <Property Name="horarioMID" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="salaID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="clase" Relationship="Self.clase_cronoID_fk" FromRole="cronograma" ToRole="clase" />
-          <NavigationProperty Name="horarioM" Relationship="Self.horarioM_cronoID_fk" FromRole="cronograma" ToRole="horarioM" />
-          <NavigationProperty Name="sala" Relationship="Self.sala_cronoID_fk" FromRole="cronograma" ToRole="sala" />
+          <NavigationProperty Name="disciplina" Relationship="Self.disciplina_clase_fk" FromRole="clase" ToRole="disciplina" />
+          <NavigationProperty Name="evento" Relationship="Self.evento_cronoID_fk" FromRole="clase" ToRole="evento" />
         </EntityType>
         <EntityType Name="disciplina">
           <Key>
@@ -452,8 +472,61 @@
           <Property Name="disciplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="clase" Relationship="Self.discplina_clase_fk" FromRole="disciplina" ToRole="clase" />
+          <Property Name="numClases" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clase" Relationship="Self.disciplina_clase_fk" FromRole="disciplina" ToRole="clase" />
+          <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.disciplinaIdMPD_fk" FromRole="disciplina" ToRole="membresia_persona_disciplina" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.discplina1_fk" FromRole="disciplina" ToRole="membresia_disciplina" />
+        </EntityType>
+        <EntityType Name="evento">
+          <Key>
+            <PropertyRef Name="eventoID" />
+          </Key>
+          <Property Name="eventoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claseID" Type="Int32" Nullable="false" />
+          <Property Name="horarioMID" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="salaID" Type="Int32" Nullable="false" />
+          <Property Name="aforoMax" Type="Int32" Nullable="false" />
+          <Property Name="aforoMin" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clase" Relationship="Self.evento_cronoID_fk" FromRole="evento" ToRole="clase" />
+          <NavigationProperty Name="evento_persona" Relationship="Self.evento_persona_fk" FromRole="evento" ToRole="evento_persona" />
+          <NavigationProperty Name="evento_recurso" Relationship="Self.eventoID_fk" FromRole="evento" ToRole="evento_recurso" />
+          <NavigationProperty Name="evento_recursoEspecial" Relationship="Self.eventoID_fk2" FromRole="evento" ToRole="evento_recursoEspecial" />
+          <NavigationProperty Name="horarioM" Relationship="Self.horarioM_cronoID_fk" FromRole="evento" ToRole="horarioM" />
+          <NavigationProperty Name="sala" Relationship="Self.sala_cronoID_fk" FromRole="evento" ToRole="sala" />
+        </EntityType>
+        <EntityType Name="evento_persona">
+          <Key>
+            <PropertyRef Name="evento_personaID" />
+          </Key>
+          <Property Name="evento_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventoID" Type="Int32" Nullable="false" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="asistencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="evento" Relationship="Self.evento_persona_fk" FromRole="evento_persona" ToRole="evento" />
+          <NavigationProperty Name="persona" Relationship="Self.evento_persona_Id_fk" FromRole="evento_persona" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="evento_recurso">
+          <Key>
+            <PropertyRef Name="evento_recursoID" />
+          </Key>
+          <Property Name="evento_recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventoID" Type="Int32" Nullable="false" />
+          <Property Name="recursoID" Type="Int32" Nullable="false" />
+          <Property Name="cantidadRecurso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="evento" Relationship="Self.eventoID_fk" FromRole="evento_recurso" ToRole="evento" />
+          <NavigationProperty Name="recurso" Relationship="Self.recursoID_fk" FromRole="evento_recurso" ToRole="recurso" />
+        </EntityType>
+        <EntityType Name="evento_recursoEspecial">
+          <Key>
+            <PropertyRef Name="evento_recursoEspecialID" />
+          </Key>
+          <Property Name="evento_recursoEspecialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventoID" Type="Int32" Nullable="false" />
+          <Property Name="recursoEspecialID" Type="Int32" Nullable="false" />
+          <Property Name="personaID" Type="Int32" />
+          <NavigationProperty Name="evento" Relationship="Self.eventoID_fk2" FromRole="evento_recursoEspecial" ToRole="evento" />
+          <NavigationProperty Name="recursoEspecial" Relationship="Self.recursEspecialoID_fk" FromRole="evento_recursoEspecial" ToRole="recursoEspecial" />
         </EntityType>
         <EntityType Name="horarioM">
           <Key>
@@ -462,7 +535,7 @@
           <Property Name="horarioMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="horaInicio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="horaFin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="cronograma" Relationship="Self.horarioM_cronoID_fk" FromRole="horarioM" ToRole="cronograma" />
+          <NavigationProperty Name="evento" Relationship="Self.horarioM_cronoID_fk" FromRole="horarioM" ToRole="evento" />
         </EntityType>
         <EntityType Name="membresia">
           <Key>
@@ -473,7 +546,7 @@
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Int32" Nullable="false" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia1_fk" FromRole="membresia" ToRole="membresia_disciplina" />
-          <NavigationProperty Name="membresia_persona" Relationship="Self.membresiaID2_fk" FromRole="membresia" ToRole="membresia_persona" />
+          <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.membresiaIdMPD_fk" FromRole="membresia" ToRole="membresia_persona_disciplina" />
         </EntityType>
         <EntityType Name="membresia_disciplina">
           <Key>
@@ -485,16 +558,21 @@
           <NavigationProperty Name="disciplina" Relationship="Self.discplina1_fk" FromRole="membresia_disciplina" ToRole="disciplina" />
           <NavigationProperty Name="membresia" Relationship="Self.membresia1_fk" FromRole="membresia_disciplina" ToRole="membresia" />
         </EntityType>
-        <EntityType Name="membresia_persona">
+        <EntityType Name="membresia_persona_disciplina">
           <Key>
-            <PropertyRef Name="membresia_personaID" />
+            <PropertyRef Name="membresia_persona_disciplinaID" />
           </Key>
-          <Property Name="membresia_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="membresia_persona_disciplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="membresiaID" Type="Int32" Nullable="false" />
-          <Property Name="numReservas" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="membresia" Relationship="Self.membresiaID2_fk" FromRole="membresia_persona" ToRole="membresia" />
-          <NavigationProperty Name="persona" Relationship="Self.personaID2_fk" FromRole="membresia_persona" ToRole="persona" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="disciplinaID" Type="Int32" Nullable="false" />
+          <Property Name="fechaPago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="numClasesDisponibles" Type="Int32" Nullable="false" />
+          <Property Name="statusMembresia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="disciplina" Relationship="Self.disciplinaIdMPD_fk" FromRole="membresia_persona_disciplina" ToRole="disciplina" />
+          <NavigationProperty Name="membresia" Relationship="Self.membresiaIdMPD_fk" FromRole="membresia_persona_disciplina" ToRole="membresia" />
+          <NavigationProperty Name="persona" Relationship="Self.PersonaIdMPD_fk" FromRole="membresia_persona_disciplina" ToRole="persona" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -511,9 +589,9 @@
           <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="clase_persona" Relationship="Self.clase_persona_Id_fk" FromRole="persona" ToRole="clase_persona" />
-          <NavigationProperty Name="clase_recurso" Relationship="Self.personaID_fk" FromRole="persona" ToRole="clase_recurso" />
-          <NavigationProperty Name="membresia_persona" Relationship="Self.personaID2_fk" FromRole="persona" ToRole="membresia_persona" />
+          <Property Name="estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="evento_persona" Relationship="Self.evento_persona_Id_fk" FromRole="persona" ToRole="evento_persona" />
+          <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.PersonaIdMPD_fk" FromRole="persona" ToRole="membresia_persona_disciplina" />
           <NavigationProperty Name="roleP" Relationship="Self.rolePID_fk" FromRole="persona" ToRole="roleP" />
           <NavigationProperty Name="usuario" Relationship="Self.usuario_personaID_fk" FromRole="persona" ToRole="usuario" />
         </EntityType>
@@ -524,7 +602,17 @@
           <Property Name="recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="clase_recurso" Relationship="Self.recursoID_fk" FromRole="recurso" ToRole="clase_recurso" />
+          <Property Name="cantidadRecurso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="evento_recurso" Relationship="Self.recursoID_fk" FromRole="recurso" ToRole="evento_recurso" />
+        </EntityType>
+        <EntityType Name="recursoEspecial">
+          <Key>
+            <PropertyRef Name="recursoEspecialID" />
+          </Key>
+          <Property Name="recursoEspecialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="evento_recursoEspecial" Relationship="Self.recursEspecialoID_fk" FromRole="recursoEspecial" ToRole="evento_recursoEspecial" />
         </EntityType>
         <EntityType Name="roleP">
           <Key>
@@ -542,7 +630,7 @@
           <Property Name="salaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="cronograma" Relationship="Self.sala_cronoID_fk" FromRole="sala" ToRole="cronograma" />
+          <NavigationProperty Name="evento" Relationship="Self.sala_cronoID_fk" FromRole="sala" ToRole="evento" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -554,43 +642,7 @@
           <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="persona" Relationship="Self.usuario_personaID_fk" FromRole="usuario" ToRole="persona" />
         </EntityType>
-        <Association Name="clase_cronoID_fk">
-          <End Role="clase" Type="Self.clase" Multiplicity="1" />
-          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="claseID" />
-            </Principal>
-            <Dependent Role="cronograma">
-              <PropertyRef Name="claseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="clase_persona_fk">
-          <End Role="clase" Type="Self.clase" Multiplicity="1" />
-          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="claseID" />
-            </Principal>
-            <Dependent Role="clase_persona">
-              <PropertyRef Name="claseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="claseID_fk">
-          <End Role="clase" Type="Self.clase" Multiplicity="1" />
-          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clase">
-              <PropertyRef Name="claseID" />
-            </Principal>
-            <Dependent Role="clase_recurso">
-              <PropertyRef Name="claseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="discplina_clase_fk">
+        <Association Name="disciplina_clase_fk">
           <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
           <End Role="clase" Type="Self.clase" Multiplicity="*" />
           <ReferentialConstraint>
@@ -602,63 +654,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="clase_persona_Id_fk">
-          <End Role="persona" Type="Self.persona" Multiplicity="1" />
-          <End Role="clase_persona" Type="Self.clase_persona" Multiplicity="*" />
+        <Association Name="evento_cronoID_fk">
+          <End Role="clase" Type="Self.clase" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="persona">
-              <PropertyRef Name="personaID" />
+            <Principal Role="clase">
+              <PropertyRef Name="claseID" />
             </Principal>
-            <Dependent Role="clase_persona">
-              <PropertyRef Name="personaID" />
+            <Dependent Role="evento">
+              <PropertyRef Name="claseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="personaID_fk">
-          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
-          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
+        <Association Name="disciplinaIdMPD_fk">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="persona">
-              <PropertyRef Name="personaID" />
+            <Principal Role="disciplina">
+              <PropertyRef Name="disciplinaID" />
             </Principal>
-            <Dependent Role="clase_recurso">
-              <PropertyRef Name="personaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="recursoID_fk">
-          <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
-          <End Role="clase_recurso" Type="Self.clase_recurso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="recurso">
-              <PropertyRef Name="recursoID" />
-            </Principal>
-            <Dependent Role="clase_recurso">
-              <PropertyRef Name="recursoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="horarioM_cronoID_fk">
-          <End Role="horarioM" Type="Self.horarioM" Multiplicity="1" />
-          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="horarioM">
-              <PropertyRef Name="horarioMID" />
-            </Principal>
-            <Dependent Role="cronograma">
-              <PropertyRef Name="horarioMID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="sala_cronoID_fk">
-          <End Role="sala" Type="Self.sala" Multiplicity="1" />
-          <End Role="cronograma" Type="Self.cronograma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sala">
-              <PropertyRef Name="salaID" />
-            </Principal>
-            <Dependent Role="cronograma">
-              <PropertyRef Name="salaID" />
+            <Dependent Role="membresia_persona_disciplina">
+              <PropertyRef Name="disciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -674,6 +690,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="evento_persona_fk">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="eventoID" />
+            </Principal>
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="eventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="eventoID_fk">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="eventoID" />
+            </Principal>
+            <Dependent Role="evento_recurso">
+              <PropertyRef Name="eventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="eventoID_fk2">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="eventoID" />
+            </Principal>
+            <Dependent Role="evento_recursoEspecial">
+              <PropertyRef Name="eventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horarioM_cronoID_fk">
+          <End Role="horarioM" Type="Self.horarioM" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horarioM">
+              <PropertyRef Name="horarioMID" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="horarioMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_cronoID_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evento_persona_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recursoID_fk">
+          <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
+          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recurso">
+              <PropertyRef Name="recursoID" />
+            </Principal>
+            <Dependent Role="evento_recurso">
+              <PropertyRef Name="recursoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recursEspecialoID_fk">
+          <End Role="recursoEspecial" Type="Self.recursoEspecial" Multiplicity="1" />
+          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
+            </Principal>
+            <Dependent Role="evento_recursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="membresia1_fk">
           <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
           <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
@@ -686,26 +798,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="membresiaID2_fk">
+        <Association Name="membresiaIdMPD_fk">
           <End Role="membresia" Type="Self.membresia" Multiplicity="1" />
-          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="membresia">
               <PropertyRef Name="membresiaID" />
             </Principal>
-            <Dependent Role="membresia_persona">
+            <Dependent Role="membresia_persona_disciplina">
               <PropertyRef Name="membresiaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="personaID2_fk">
+        <Association Name="PersonaIdMPD_fk">
           <End Role="persona" Type="Self.persona" Multiplicity="1" />
-          <End Role="membresia_persona" Type="Self.membresia_persona" Multiplicity="*" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="persona">
               <PropertyRef Name="personaID" />
             </Principal>
-            <Dependent Role="membresia_persona">
+            <Dependent Role="membresia_persona_disciplina">
               <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
@@ -736,70 +848,80 @@
         </Association>
         <EntityContainer Name="GYMDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="clase" EntityType="Self.clase" />
-          <EntitySet Name="clase_persona" EntityType="Self.clase_persona" />
-          <EntitySet Name="clase_recurso" EntityType="Self.clase_recurso" />
-          <EntitySet Name="cronograma" EntityType="Self.cronograma" />
           <EntitySet Name="disciplina" EntityType="Self.disciplina" />
+          <EntitySet Name="evento" EntityType="Self.evento" />
+          <EntitySet Name="evento_persona" EntityType="Self.evento_persona" />
+          <EntitySet Name="evento_recurso" EntityType="Self.evento_recurso" />
+          <EntitySet Name="evento_recursoEspecial" EntityType="Self.evento_recursoEspecial" />
           <EntitySet Name="horarioM" EntityType="Self.horarioM" />
           <EntitySet Name="membresia" EntityType="Self.membresia" />
           <EntitySet Name="membresia_disciplina" EntityType="Self.membresia_disciplina" />
-          <EntitySet Name="membresia_persona" EntityType="Self.membresia_persona" />
+          <EntitySet Name="membresia_persona_disciplina" EntityType="Self.membresia_persona_disciplina" />
           <EntitySet Name="persona" EntityType="Self.persona" />
           <EntitySet Name="recurso" EntityType="Self.recurso" />
+          <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" />
           <EntitySet Name="roleP" EntityType="Self.roleP" />
           <EntitySet Name="sala" EntityType="Self.sala" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
-          <AssociationSet Name="clase_cronoID_fk" Association="Self.clase_cronoID_fk">
-            <End Role="clase" EntitySet="clase" />
-            <End Role="cronograma" EntitySet="cronograma" />
-          </AssociationSet>
-          <AssociationSet Name="clase_persona_fk" Association="Self.clase_persona_fk">
-            <End Role="clase" EntitySet="clase" />
-            <End Role="clase_persona" EntitySet="clase_persona" />
-          </AssociationSet>
-          <AssociationSet Name="claseID_fk" Association="Self.claseID_fk">
-            <End Role="clase" EntitySet="clase" />
-            <End Role="clase_recurso" EntitySet="clase_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="discplina_clase_fk" Association="Self.discplina_clase_fk">
+          <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="clase" EntitySet="clase" />
           </AssociationSet>
-          <AssociationSet Name="clase_persona_Id_fk" Association="Self.clase_persona_Id_fk">
-            <End Role="persona" EntitySet="persona" />
-            <End Role="clase_persona" EntitySet="clase_persona" />
+          <AssociationSet Name="evento_cronoID_fk" Association="Self.evento_cronoID_fk">
+            <End Role="clase" EntitySet="clase" />
+            <End Role="evento" EntitySet="evento" />
           </AssociationSet>
-          <AssociationSet Name="personaID_fk" Association="Self.personaID_fk">
-            <End Role="persona" EntitySet="persona" />
-            <End Role="clase_recurso" EntitySet="clase_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
-            <End Role="recurso" EntitySet="recurso" />
-            <End Role="clase_recurso" EntitySet="clase_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
-            <End Role="horarioM" EntitySet="horarioM" />
-            <End Role="cronograma" EntitySet="cronograma" />
-          </AssociationSet>
-          <AssociationSet Name="sala_cronoID_fk" Association="Self.sala_cronoID_fk">
-            <End Role="sala" EntitySet="sala" />
-            <End Role="cronograma" EntitySet="cronograma" />
+          <AssociationSet Name="disciplinaIdMPD_fk" Association="Self.disciplinaIdMPD_fk">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
           <AssociationSet Name="discplina1_fk" Association="Self.discplina1_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>
+          <AssociationSet Name="evento_persona_fk" Association="Self.evento_persona_fk">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
+          </AssociationSet>
+          <AssociationSet Name="eventoID_fk" Association="Self.eventoID_fk">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="evento_recurso" EntitySet="evento_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="eventoID_fk2" Association="Self.eventoID_fk2">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
+          </AssociationSet>
+          <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
+            <End Role="horarioM" EntitySet="horarioM" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="sala_cronoID_fk" Association="Self.sala_cronoID_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="evento_persona_Id_fk" Association="Self.evento_persona_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
+          </AssociationSet>
+          <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
+            <End Role="recurso" EntitySet="recurso" />
+            <End Role="evento_recurso" EntitySet="evento_recurso" />
+          </AssociationSet>
+          <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
+            <End Role="recursoEspecial" EntitySet="recursoEspecial" />
+            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
+          </AssociationSet>
           <AssociationSet Name="membresia1_fk" Association="Self.membresia1_fk">
             <End Role="membresia" EntitySet="membresia" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>
-          <AssociationSet Name="membresiaID2_fk" Association="Self.membresiaID2_fk">
+          <AssociationSet Name="membresiaIdMPD_fk" Association="Self.membresiaIdMPD_fk">
             <End Role="membresia" EntitySet="membresia" />
-            <End Role="membresia_persona" EntitySet="membresia_persona" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
-          <AssociationSet Name="personaID2_fk" Association="Self.personaID2_fk">
+          <AssociationSet Name="PersonaIdMPD_fk" Association="Self.PersonaIdMPD_fk">
             <End Role="persona" EntitySet="persona" />
-            <End Role="membresia_persona" EntitySet="membresia_persona" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
           <AssociationSet Name="rolePID_fk" Association="Self.rolePID_fk">
             <End Role="roleP" EntitySet="roleP" />
@@ -826,44 +948,56 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="clase_persona">
-            <EntityTypeMapping TypeName="GYMDBModel.clase_persona">
-              <MappingFragment StoreEntitySet="clase_persona">
-                <ScalarProperty Name="clase_personaID" ColumnName="clase_personaID" />
-                <ScalarProperty Name="claseID" ColumnName="claseID" />
-                <ScalarProperty Name="personaID" ColumnName="personaID" />
-                <ScalarProperty Name="asistencia" ColumnName="asistencia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clase_recurso">
-            <EntityTypeMapping TypeName="GYMDBModel.clase_recurso">
-              <MappingFragment StoreEntitySet="clase_recurso">
-                <ScalarProperty Name="clase_recursoID" ColumnName="clase_recursoID" />
-                <ScalarProperty Name="claseID" ColumnName="claseID" />
-                <ScalarProperty Name="recursoID" ColumnName="recursoID" />
-                <ScalarProperty Name="reservado" ColumnName="reservado" />
-                <ScalarProperty Name="personaID" ColumnName="personaID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="cronograma">
-            <EntityTypeMapping TypeName="GYMDBModel.cronograma">
-              <MappingFragment StoreEntitySet="cronograma">
-                <ScalarProperty Name="cronogramaID" ColumnName="cronogramaID" />
-                <ScalarProperty Name="claseID" ColumnName="claseID" />
-                <ScalarProperty Name="horarioMID" ColumnName="horarioMID" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="salaID" ColumnName="salaID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="disciplina">
             <EntityTypeMapping TypeName="GYMDBModel.disciplina">
               <MappingFragment StoreEntitySet="disciplina">
                 <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="numClases" ColumnName="numClases" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evento">
+            <EntityTypeMapping TypeName="GYMDBModel.evento">
+              <MappingFragment StoreEntitySet="evento">
+                <ScalarProperty Name="eventoID" ColumnName="eventoID" />
+                <ScalarProperty Name="claseID" ColumnName="claseID" />
+                <ScalarProperty Name="horarioMID" ColumnName="horarioMID" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="salaID" ColumnName="salaID" />
+                <ScalarProperty Name="aforoMax" ColumnName="aforoMax" />
+                <ScalarProperty Name="aforoMin" ColumnName="aforoMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evento_persona">
+            <EntityTypeMapping TypeName="GYMDBModel.evento_persona">
+              <MappingFragment StoreEntitySet="evento_persona">
+                <ScalarProperty Name="evento_personaID" ColumnName="evento_personaID" />
+                <ScalarProperty Name="eventoID" ColumnName="eventoID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="asistencia" ColumnName="asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evento_recurso">
+            <EntityTypeMapping TypeName="GYMDBModel.evento_recurso">
+              <MappingFragment StoreEntitySet="evento_recurso">
+                <ScalarProperty Name="evento_recursoID" ColumnName="evento_recursoID" />
+                <ScalarProperty Name="eventoID" ColumnName="eventoID" />
+                <ScalarProperty Name="recursoID" ColumnName="recursoID" />
+                <ScalarProperty Name="cantidadRecurso" ColumnName="cantidadRecurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evento_recursoEspecial">
+            <EntityTypeMapping TypeName="GYMDBModel.evento_recursoEspecial">
+              <MappingFragment StoreEntitySet="evento_recursoEspecial">
+                <ScalarProperty Name="evento_recursoEspecialID" ColumnName="evento_recursoEspecialID" />
+                <ScalarProperty Name="eventoID" ColumnName="eventoID" />
+                <ScalarProperty Name="recursoEspecialID" ColumnName="recursoEspecialID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -895,13 +1029,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="membresia_persona">
-            <EntityTypeMapping TypeName="GYMDBModel.membresia_persona">
-              <MappingFragment StoreEntitySet="membresia_persona">
-                <ScalarProperty Name="membresia_personaID" ColumnName="membresia_personaID" />
-                <ScalarProperty Name="personaID" ColumnName="personaID" />
+          <EntitySetMapping Name="membresia_persona_disciplina">
+            <EntityTypeMapping TypeName="GYMDBModel.membresia_persona_disciplina">
+              <MappingFragment StoreEntitySet="membresia_persona_disciplina">
+                <ScalarProperty Name="membresia_persona_disciplinaID" ColumnName="membresia_persona_disciplinaID" />
                 <ScalarProperty Name="membresiaID" ColumnName="membresiaID" />
-                <ScalarProperty Name="numReservas" ColumnName="numReservas" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
+                <ScalarProperty Name="numClasesDisponibles" ColumnName="numClasesDisponibles" />
+                <ScalarProperty Name="statusMembresia" ColumnName="statusMembresia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -919,6 +1057,7 @@
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -926,6 +1065,16 @@
             <EntityTypeMapping TypeName="GYMDBModel.recurso">
               <MappingFragment StoreEntitySet="recurso">
                 <ScalarProperty Name="recursoID" ColumnName="recursoID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidadRecurso" ColumnName="cantidadRecurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recursoEspecial">
+            <EntityTypeMapping TypeName="GYMDBModel.recursoEspecial">
+              <MappingFragment StoreEntitySet="recursoEspecial">
+                <ScalarProperty Name="recursoEspecialID" ColumnName="recursoEspecialID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>

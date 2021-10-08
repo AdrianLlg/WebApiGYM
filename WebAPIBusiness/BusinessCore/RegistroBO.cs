@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using WebAPIBusiness.Entities.RegistroAdmin;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
@@ -66,7 +67,5 @@ namespace WebAPIBusiness.BusinessCore
                 return false;
             }
         }
-
- 
     }
 }

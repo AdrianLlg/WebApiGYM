@@ -177,6 +177,9 @@
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Controllers\EventoClasePersona\Models\EventoClasePersonaRequest.cs" />
     <Compile Include="Controllers\EventoClasePersona\Models\EventoClasePersonaResponse.cs" />
+    <Compile Include="Controllers\CRUDRegistroAdmin\Models\CRUDRegistroAdminDataRequest.cs" />
+    <Compile Include="Controllers\CRUDRegistroAdmin\Models\RegistroAdminDataResponse.cs" />
+    <Compile Include="Controllers\CRUDRegistroAdmin\CRUDRegistroAdminController.cs" />
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
@@ -186,6 +189,7 @@
     <Compile Include="CustomExceptions\Login\LoginException.cs" />
     <Compile Include="CustomExceptions\EventoClasePersona\EventoClasePersonaException.cs" />
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
+    <Compile Include="CustomExceptions\RegistroAdmin\RegistroAdminException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

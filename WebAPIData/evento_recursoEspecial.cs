@@ -12,14 +12,14 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class membresia_persona
+    public partial class evento_recursoEspecial
     {
-        public int membresia_personaID { get; set; }
-        public int personaID { get; set; }
-        public int membresiaID { get; set; }
-        public int numReservas { get; set; }
+        public int evento_recursoEspecialID { get; set; }
+        public int eventoID { get; set; }
+        public int recursoEspecialID { get; set; }
+        public Nullable<int> personaID { get; set; }
     
-        public virtual membresia membresia { get; set; }
-        public virtual persona persona { get; set; }
+        public virtual evento evento { get; set; }
+        public virtual recursoEspecial recursoEspecial { get; set; }
     }
 }

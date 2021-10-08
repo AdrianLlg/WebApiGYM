@@ -56,17 +56,19 @@
     <Compile Include="clase.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="clase_persona.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="clase_recurso.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Class1.cs" />
-    <Compile Include="cronograma.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="disciplina.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento_persona.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento_recurso.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="evento_recursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="GYMDB.Context.cs">
@@ -93,7 +95,7 @@
     <Compile Include="membresia_disciplina.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="membresia_persona.cs">
+    <Compile Include="membresia_persona_disciplina.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="persona.cs">
@@ -101,6 +103,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="recurso.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="roleP.cs">
@@ -114,32 +119,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="GYMDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GYMDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="GYMDB.edmx.diagram">
       <DependentUpon>GYMDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="GYMDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GYMDB.Context.cs</LastGenOutput>
       <DependentUpon>GYMDB.edmx</DependentUpon>
+      <LastGenOutput>GYMDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="GYMDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GYMDB.edmx</DependentUpon>
       <LastGenOutput>GYMDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

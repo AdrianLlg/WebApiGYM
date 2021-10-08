@@ -16,6 +16,8 @@ using WebAPIUI.CustomExceptions.HorasDisciplina;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
 using WebAPIUI.CustomExceptions.EventoRecursoEspecial;
 using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
+using WebAPIUI.CustomExceptions.RegistroAdmin;
+using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -166,6 +168,24 @@ namespace WebAPIUI.Controllers
         }
 
 
+        internal static void ThrowHandledExceptionRegistro(RegistroAdminResponseType type, IList<string> messages)
+        {
+            var newException = new RegistroAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRegistro(RegistroAdminResponseType type, Exception ex)
+        {
+            throw new RegistroAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRegistro(RegistroAdminResponseType code, RegistroAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+        }
 
     }
 
