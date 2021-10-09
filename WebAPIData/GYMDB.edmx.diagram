@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="GYMDBModel.recursoEspecial" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.roleP" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.sala" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.usuario" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
         <AssociationConnector Association="GYMDBModel.disciplina_clase_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.evento_cronoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.disciplinaIdMPD_fk" ManuallyRouted="false" />
@@ -37,7 +36,8 @@
         <AssociationConnector Association="GYMDBModel.membresiaIdMPD_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.PersonaIdMPD_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.rolePID_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.usuario_personaID_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GYMDBModel.usuario" Width="1.5" PointX="7.5" PointY="18.875" />
+        <AssociationConnector Association="GYMDBModel.usuario_personaID_fk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
