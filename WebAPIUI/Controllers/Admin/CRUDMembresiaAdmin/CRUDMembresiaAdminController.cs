@@ -7,7 +7,7 @@ using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.MembresiaAdmin;
 using WebAPIBusiness.Entities.RegistroAdmin;
-using WebAPIUI.Controllers.CRUDMembresiasAdmin.Models;
+using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.CustomExceptions.RegisterPerson;

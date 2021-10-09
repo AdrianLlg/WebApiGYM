@@ -19,7 +19,7 @@ using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
-using WebAPIUI.Controllers.CRUDMembresiasAdmin.Models;
+using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {

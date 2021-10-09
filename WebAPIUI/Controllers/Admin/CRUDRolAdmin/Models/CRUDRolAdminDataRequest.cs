@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPIUI.Controllers.CRUDMembresiasAdmin.Models
+namespace WebAPIUI.Controllers.CRUDRolAdmin.Models
 {
-    public class CRUDMembresiaAdminDataRequest
+    public class CRUDRolAdminDataRequest
     {
         public int flujoID { get; set; }
         public int membresiaID { get; set; }
