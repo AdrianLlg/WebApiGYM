@@ -235,6 +235,10 @@ namespace WebAPIBusiness.BusinessCore
                             pers.estado = estado;
                         }
                     }
+                    else
+                    {
+                        return false;
+                    }
                     dbContext.SaveChanges();
                     return true;
                 }               

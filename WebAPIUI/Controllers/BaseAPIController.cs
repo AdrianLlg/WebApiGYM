@@ -18,6 +18,8 @@ using WebAPIUI.CustomExceptions.EventoRecursoEspecial;
 using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
+using WebAPIUI.CustomExceptions.MembresiasAdmin;
+using WebAPIUI.Controllers.CRUDMembresiasAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -168,18 +170,39 @@ namespace WebAPIUI.Controllers
         }
 
 
-        internal static void ThrowHandledExceptionRegistro(RegistroAdminResponseType type, IList<string> messages)
+        internal static void ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType type, IList<string> messages)
         {
             var newException = new RegistroAdminException(type, messages);
             throw newException;
         }
 
-        internal static void ThrowUnHandledExceptionRegistro(RegistroAdminResponseType type, Exception ex)
+        internal static void ThrowUnHandledExceptionRegistroAdmin(RegistroAdminResponseType type, Exception ex)
         {
             throw new RegistroAdminException(type, ex.Message);
         }
 
-        internal void SetResponseAsExceptionRegistro(RegistroAdminResponseType code, RegistroAdminDataResponse response, string message)
+        internal void SetResponseAsExceptionRegistroAdmin(RegistroAdminResponseType code, RegistroAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+
+        internal static void ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType type, IList<string> messages)
+        {
+            var newException = new MembresiaAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType type, Exception ex)
+        {
+            throw new MembresiaAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionMembresiaAdmin(MembresiaAdminResponseType code, MembresiaAdminDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;
@@ -190,8 +213,4 @@ namespace WebAPIUI.Controllers
         }
 
     }
-
-
-
-
 }

@@ -5,19 +5,26 @@ using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
+using WebAPIBusiness.Entities.MembresiaAdmin;
 using WebAPIBusiness.Entities.RegistroAdmin;
+using WebAPIUI.Controllers.CRUDMembresiasAdmin.Models;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
+using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.Login;
+using WebAPIUI.Models.MembresiasAdmin;
 using WebAPIUI.Models.RegistroAdmin;
 
 namespace WebAPIUI.Controllers
 {
-    public class CRUDRegistroAdminController : BaseAPIController
+    /// <summary>
+    /// API que permite el manejo de Crear, Modificar y Consultar información de membresias.
+    /// </summary>
+    public class CRUDMembresiaAdminController : BaseAPIController
     {
-        private void ValidatePostRequest(CRUDRegistroAdminDataRequest dataRequest)
+        private void ValidatePostRequest(CRUDMembresiaAdminDataRequest dataRequest)
         {
             List<string> messages = new List<string>();
             string message = string.Empty;
@@ -25,7 +32,7 @@ namespace WebAPIUI.Controllers
             if (dataRequest == null)
             {
                 messages.Add("No se han especificado datos de ingreso.");
-                ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType.InvalidParameters, messages);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.InvalidParameters, messages);
             }
 
             //if (string.IsNullOrEmpty(dataRequest.nombres))
@@ -36,27 +43,27 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Insertar una nueva persona en la tabla
+        /// Insertar una nueva membresia en la tabla
         /// </summary>
-        private bool InsertarNuevaPersona(string rolePID, string nombres, string apellidos, string identificacion, string email,  string telefono, string sexo, string fechaNacimiento)
+        private bool InsertarNuevaMembresia(string nombre, string descripcion, string precio)
         {
-            RegistroAdminBO bo = new RegistroAdminBO();
+            MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
             bool response = false;
 
             try
             {
-                response = bo.insertUser(rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimiento);
+                response = bo.insertMembership(nombre, descripcion, precio);
             }
-            catch (ValidationAndMessageException RegistroAdminException)
+            catch (ValidationAndMessageException MembresiaAdminException)
             {
-                messages.Add(RegistroAdminException.Message);
-                ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, messages);
+                messages.Add(MembresiaAdminException.Message);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, ex);
             }
 
             return response;
@@ -66,25 +73,25 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Consulta las personas de la base 
         /// </summary>
-        private List<UsuariosRegistradosEntity> ConsultarPersonas()
+        private List<MembresiaAdminEntity> ConsultarMembresias()
         {
-            RegistroAdminBO bo = new RegistroAdminBO();
+            MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
-            List<UsuariosRegistradosEntity> response = new List<UsuariosRegistradosEntity>();
+            List<MembresiaAdminEntity> response = new List<MembresiaAdminEntity>();
 
             try
             {
-                response = bo.getUserPersons();
+                response = bo.getMembershipsInfo();
             }
             catch (ValidationAndMessageException RegistroAdminException)
             {
                 messages.Add(RegistroAdminException.Message);
-                ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, messages);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, ex);
             }
 
             return response;
@@ -93,52 +100,52 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar persona
         /// </summary>
-        private bool ModificarPersona(int personaID, string rolePID, string nombres, string apellidos, string identificacion, string email, string telefono, string sexo, string fechaNacimiento, string edad, string estado)
+        private bool ModificarMembresia(int membresiaID, string nombre, string descripcion, string precio)
         {
-            RegistroAdminBO bo = new RegistroAdminBO();
+            MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
             bool response = false;
 
             try
             {
-                response = bo.modifyUser(personaID, rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimiento, edad, estado);
+                response = bo.modifyMembership(membresiaID, nombre, descripcion, precio);
             }
-            catch (ValidationAndMessageException RegistroAdminException)
+            catch (ValidationAndMessageException MembresiaAdminException)
             {
-                messages.Add(RegistroAdminException.Message);
-                ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, messages);
+                messages.Add(MembresiaAdminException.Message);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, ex);
             }
 
             return response;
         }
 
         /// <summary>
-        /// Consultar persona
+        /// Consultar membresia
         /// </summary>
-        private UsuariosRegistradosEntity DetallePersona(int personaID)
+        private MembresiaAdminEntity DetallePersona(int membresiaID)
         {
-            RegistroAdminBO bo = new RegistroAdminBO();
+            MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
-            UsuariosRegistradosEntity response = new UsuariosRegistradosEntity();
+            MembresiaAdminEntity response = new MembresiaAdminEntity();
 
             try
             {
-                response = bo.consultarPersona(personaID);
+                response = bo.consultarMembresia(membresiaID);
             }
-            catch (ValidationAndMessageException RegistroAdminException)
+            catch (ValidationAndMessageException MembresiaAdminException)
             {
-                messages.Add(RegistroAdminException.Message);
-                ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, messages);
+                messages.Add(MembresiaAdminException.Message);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRegistroAdmin(RegistroAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, ex);
             }
 
             return response;
@@ -150,9 +157,9 @@ namespace WebAPIUI.Controllers
         /// <param name="dataRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        public RegistroAdminDataResponse Post(CRUDRegistroAdminDataRequest dataRequest)
+        public MembresiaAdminDataResponse Post(CRUDMembresiaAdminDataRequest dataRequest)
         {
-            RegistroAdminDataResponse response = new RegistroAdminDataResponse();
+            MembresiaAdminDataResponse response = new MembresiaAdminDataResponse();
 
             try
             {
@@ -161,22 +168,22 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                //Mostrar Listado de usuarios
+                //Mostrar Listado de membresias
                 if (dataRequest.flujoID == 0)
                 {
-                    List<RegistroAdminModel> model = new List<RegistroAdminModel>();
-                    List<UsuariosRegistradosEntity> items = ConsultarPersonas();
+                    List<MembresiaAdminModel> model = new List<MembresiaAdminModel>();
+                    List<MembresiaAdminEntity> items = ConsultarMembresias();
 
                     if (items.Count > 0)
                     {
-                        model = EntitesHelper.UsuariosRegistradosEntityToModel(items);
-                        response.ResponseCode = RegistroAdminResponseType.Ok;
+                        model = EntitesHelper.MembresiasEntityToModel(items);
+                        response.ResponseCode = MembresiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentIndex = model;
                     }
                     else
                     {
-                        response.ResponseCode = RegistroAdminResponseType.InvalidParameters;
+                        response.ResponseCode = MembresiaAdminResponseType.InvalidParameters;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentIndex = null;
                     }
@@ -184,17 +191,17 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaPersona(dataRequest.rolePID, dataRequest.nombres, dataRequest.apellidos, dataRequest.identificacion, dataRequest.email, dataRequest.telefono, dataRequest.sexo, dataRequest.fechaNacimiento);
+                    bool resp = InsertarNuevaMembresia(dataRequest.nombre, dataRequest.descripcion, dataRequest.precio);
 
                     if (resp)
                     {
-                        response.ResponseCode = RegistroAdminResponseType.Ok;
+                        response.ResponseCode = MembresiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentCreate = true;
                     }
                     else
                     {
-                        response.ResponseCode = RegistroAdminResponseType.Error;
+                        response.ResponseCode = MembresiaAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentCreate = false;
                     }
@@ -202,17 +209,17 @@ namespace WebAPIUI.Controllers
                 //Modificar (se incluye modificacion para inhabilitar a la persona)
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarPersona(dataRequest.personaID, dataRequest.rolePID, dataRequest.nombres, dataRequest.apellidos, dataRequest.identificacion, dataRequest.email, dataRequest.telefono, dataRequest.sexo, dataRequest.fechaNacimiento, dataRequest.edad, dataRequest.estado);
+                    bool resp = ModificarMembresia(dataRequest.membresiaID, dataRequest.nombre, dataRequest.descripcion, dataRequest.precio);
 
                     if (resp)
                     {
-                        response.ResponseCode = RegistroAdminResponseType.Ok;
+                        response.ResponseCode = MembresiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentModify = true;
                     }
                     else
                     {
-                        response.ResponseCode = RegistroAdminResponseType.Error;
+                        response.ResponseCode = MembresiaAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentModify = false;
                     }
@@ -220,21 +227,21 @@ namespace WebAPIUI.Controllers
                 //Detalle de persona
                 else if (dataRequest.flujoID == 3)
                 {
-                    UsuariosRegistradosEntity resp = new UsuariosRegistradosEntity();
-                    RegistroAdminModel model = new RegistroAdminModel();
+                    MembresiaAdminEntity resp = new MembresiaAdminEntity();
+                    MembresiaAdminModel model = new MembresiaAdminModel();
 
-                    resp = DetallePersona(dataRequest.personaID);
+                    resp = DetallePersona(dataRequest.membresiaID);
 
-                    if (resp.personaID > 0)
+                    if (resp.membresiaID > 0)
                     {
-                        model = EntitesHelper.UsuarioRegistradoEntityToModel(resp);
-                        response.ResponseCode = RegistroAdminResponseType.Ok;
+                        model = EntitesHelper.MembresiaInfoEntityToModel(resp);
+                        response.ResponseCode = MembresiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;
                     }
                     else
                     {
-                        response.ResponseCode = RegistroAdminResponseType.Error;
+                        response.ResponseCode = MembresiaAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentDetail = null;
                     }
@@ -242,14 +249,14 @@ namespace WebAPIUI.Controllers
                 }
 
             }
-            catch (RegistroAdminException RegistroAdminException)
+            catch (MembresiaAdminException MembresiaAdminException)
             {
-                SetResponseAsExceptionRegistroAdmin(RegistroAdminException.Type, response, RegistroAdminException.Message);
+                SetResponseAsExceptionMembresiaAdmin(MembresiaAdminException.Type, response, MembresiaAdminException.Message);
             }
             catch (Exception ex)
             {
                 string message = "Se ha produccido un error al invocar RegistrarPersona.";
-                SetResponseAsExceptionRegistroAdmin(RegistroAdminResponseType.Error, response, message);
+                SetResponseAsExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, response, message);
             }
 
             return response;

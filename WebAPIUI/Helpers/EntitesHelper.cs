@@ -12,6 +12,8 @@ using WebAPIUI.Models.EventoRecursoEspecial;
 using WebAPIBusiness.Entities.EvetoRecursoEspecial;
 using WebAPIUI.Models.RegistroAdmin;
 using WebAPIBusiness.Entities.RegistroAdmin;
+using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIBusiness.Entities.MembresiaAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -141,5 +143,40 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+
+        public static List<MembresiaAdminModel> MembresiasEntityToModel(List<MembresiaAdminEntity> entities)
+        {
+
+            List<MembresiaAdminModel> response = new List<MembresiaAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new MembresiaAdminModel
+                {
+                    MembresiaID = entity.membresiaID,
+                    Nombre = entity.nombre,
+                    Descripcion = entity.descripcion,
+                    Precio = entity.precio
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static MembresiaAdminModel MembresiaInfoEntityToModel(MembresiaAdminEntity entity)
+        {
+
+            MembresiaAdminModel response = new MembresiaAdminModel
+            {
+                MembresiaID = entity.membresiaID,
+                Nombre = entity.nombre,
+                Descripcion = entity.descripcion,
+                Precio = entity.precio
+            };
+
+            return response;
+        }
     }
+    
 }
