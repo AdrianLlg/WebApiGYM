@@ -198,6 +198,7 @@
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
+    <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

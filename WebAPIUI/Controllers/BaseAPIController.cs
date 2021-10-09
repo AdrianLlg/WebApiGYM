@@ -185,6 +185,8 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.ContentIndex = null;
             response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
         }
 
     }

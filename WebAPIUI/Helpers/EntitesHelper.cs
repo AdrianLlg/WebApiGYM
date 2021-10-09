@@ -10,6 +10,8 @@ using WebAPIUI.Models.EventoClasePersona;
 using WebAPIBusiness.Entities.EventoClasePersona;
 using WebAPIUI.Models.EventoRecursoEspecial;
 using WebAPIBusiness.Entities.EvetoRecursoEspecial;
+using WebAPIUI.Models.RegistroAdmin;
+using WebAPIBusiness.Entities.RegistroAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -88,10 +90,56 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
+        public static List<RegistroAdminModel> UsuariosRegistradosEntityToModel(List<UsuariosRegistradosEntity> entities)
+        {
 
+            List<RegistroAdminModel> response = new List<RegistroAdminModel>();
 
+            foreach (var entity in entities)
+            {
+                var item = new RegistroAdminModel
+                {
+                    personaID = entity.personaID,
+                    rolePID = entity.rolePID,
+                    nombres = entity.nombres,
+                    apellidos = entity.apellidos,
+                    edad = entity.edad,
+                    email = entity.email,
+                    estado = entity.estado,
+                    identificacion = entity.identificacion,
+                    sexo = entity.sexo,
+                    telefono = entity.telefono,
+                    fechaNacimiento = entity.fechaNacimiento.ToString("dd/MM/yyyy"),
+                    fechaCreacion = entity.fechaCreacion.ToString("dd/MM/yyyy"),
 
+                };
 
+                response.Add(item);
+            }
+            return response;
+        }
 
+        public static RegistroAdminModel UsuarioRegistradoEntityToModel(UsuariosRegistradosEntity entity)
+        {
+
+            RegistroAdminModel response = new RegistroAdminModel
+            {
+                personaID = entity.personaID,
+                rolePID = entity.rolePID,
+                nombres = entity.nombres,
+                apellidos = entity.apellidos,
+                edad = entity.edad,
+                email = entity.email,
+                estado = entity.estado,
+                identificacion = entity.identificacion,
+                sexo = entity.sexo,
+                telefono = entity.telefono,
+                fechaNacimiento = entity.fechaNacimiento.ToString("dd/MM/yyyy"),
+                fechaCreacion = entity.fechaCreacion.ToString("dd/MM/yyyy"),
+
+            };
+
+            return response;
+        }
     }
 }

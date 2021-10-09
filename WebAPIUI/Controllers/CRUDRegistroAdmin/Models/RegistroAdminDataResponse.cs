@@ -5,6 +5,7 @@ using System.Web;
 using WebAPIBusiness.Entities.RegistroAdmin;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
+using WebAPIUI.Models.RegistroAdmin;
 
 namespace WebAPIUI.Controllers.CRUDRegistroAdmin.Models
 {
@@ -23,10 +24,12 @@ namespace WebAPIUI.Controllers.CRUDRegistroAdmin.Models
         /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<UsuariosRegistradosEntity> ContentIndex { get; set; }
+        public List<RegistroAdminModel> ContentIndex { get; set; }
 
         public bool ContentCreate { get; set; }
 
+        public bool ContentModify { get; set; }
 
+        public RegistroAdminModel ContentDetail { get; set; }
     }
 }

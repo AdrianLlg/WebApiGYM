@@ -86,8 +86,7 @@ namespace WebAPIBusiness.BusinessCore
         {
             
             DateTime hoy = DateTime.Now;
-            int roleID = int.Parse(rolePID);
-
+            int rol = int.Parse(rolePID);
             persona item = new persona();
             persona recoverPerson = new persona();
             usuario newUser;
@@ -98,7 +97,7 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     item = new persona()
                     {
-                        rolePID = roleID,
+                        rolePID = rol,
                         nombres = nombres,
                         apellidos = apellidos,
                         identificacion = identificacion,
@@ -147,6 +146,152 @@ namespace WebAPIBusiness.BusinessCore
             }
 
             return edad;
+        }
+
+        public bool modifyUser(int personaID, string rolePID, string nombres, string apellidos, string identificacion, string email, string telefono, string sexo, string fechaNacimiento, string edad, string estado)
+        {
+            bool entity = false;
+
+            try
+            {
+                string validation = personaID.ToString();
+
+                if (string.IsNullOrEmpty(validation))
+                {
+                    throw new Exception("El ID de la persona no se ha especificado.");
+                }
+
+                entity = UpdateRecord(personaID, rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimiento, edad, estado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al modificar el usuario.");
+            }
+
+            return entity;
+        }
+
+        private bool UpdateRecord(int personaID, string rolePID, string nombres, string apellidos, string identificacion, string email, string telefono, string sexo, string fechaNacimiento, string edad, string estado)
+        {
+            bool resp = false;
+            persona pers = new persona();
+            DateTime fechaNacimient = new DateTime();
+
+            try
+            {
+                fechaNacimient = Convert.ToDateTime(fechaNacimiento);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al transformar una de las entidades en el formato requerido.");
+            }
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    pers = dbContext.persona.Where(x => x.personaID == personaID).FirstOrDefault();
+
+                    if (pers != null)
+                    {
+                        if (!string.IsNullOrEmpty(rolePID))
+                        {
+                            pers.rolePID = int.Parse(rolePID);
+                        }
+                        if (!string.IsNullOrEmpty(nombres))
+                        {
+                            pers.nombres = nombres;
+                        }
+                        if (!string.IsNullOrEmpty(apellidos))
+                        {
+                            pers.apellidos = apellidos;
+                        }
+                        if (!string.IsNullOrEmpty(identificacion))
+                        {
+                            pers.identificacion = identificacion;
+                        }
+                        if (!string.IsNullOrEmpty(email))
+                        {
+                            pers.email = email;
+                        }
+                        if (!string.IsNullOrEmpty(telefono))
+                        {
+                            pers.telefono = telefono;
+                        }
+                        if (!string.IsNullOrEmpty(sexo))
+                        {
+                            pers.sexo = sexo;
+                        }
+                        if (!string.IsNullOrEmpty(fechaNacimiento))
+                        {
+                            pers.fechaNacimiento = fechaNacimient;
+                        }
+                        if (!string.IsNullOrEmpty(edad))
+                        {
+                            pers.edad = edad;
+                        }
+                        if (!string.IsNullOrEmpty(estado))
+                        {
+                            pers.estado = estado;
+                        }
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }               
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public UsuariosRegistradosEntity consultarPersona(int personaID)
+        {
+            UsuariosRegistradosEntity resp = new UsuariosRegistradosEntity();
+
+            resp = getPersonInfo(personaID);
+
+            return resp;
+        }
+
+
+        private UsuariosRegistradosEntity getPersonInfo(int personaID)
+        {
+            persona pers = new persona();
+            UsuariosRegistradosEntity resp = new UsuariosRegistradosEntity();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    pers = dbContext.persona.Where(x => x.personaID == personaID).FirstOrDefault();
+                }
+
+                if (pers != null)
+                {
+                    resp = new UsuariosRegistradosEntity()
+                    {
+                        personaID = pers.personaID,
+                        rolePID = pers.rolePID,
+                        identificacion = pers.identificacion,
+                        nombres = pers.nombres,
+                        apellidos = pers.apellidos,
+                        email = pers.email,
+                        edad = pers.edad,
+                        sexo = pers.sexo,
+                        telefono = pers.telefono,
+                        estado = pers.estado,
+                        fechaNacimiento = pers.fechaNacimiento,
+                        fechaCreacion = pers.fechaCreacion
+                    };
+                }
+
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                return resp;
+            }
         }
     }
 }
