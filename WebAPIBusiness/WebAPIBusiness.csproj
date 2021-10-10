@@ -60,6 +60,7 @@
     <Compile Include="BusinessCore\LoginBO.cs" />
     <Compile Include="BusinessCore\RegistroAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
+    <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
     <Compile Include="Entities\RegistroAdmin\UsuariosRegistradosEntity.cs" />
+    <Compile Include="Entities\RolAdmin\RolAdminEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ScripCreacionGYMDB.Designer.cs">
       <AutoGen>True</AutoGen>

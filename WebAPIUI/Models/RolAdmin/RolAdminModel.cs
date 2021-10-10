@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPIUI.Controllers.CRUDRolAdmin.Models
+namespace WebAPIUI.Models.RolAdmin
 {
-    public class CRUDRolAdminDataRequest
+    public class RolAdminModel
     {
-        public int flujoID { get; set; }
-        public int rolID { get; set; }
+        public int rolePID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
+
     }
 }

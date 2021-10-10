@@ -14,6 +14,8 @@ using WebAPIUI.Models.RegistroAdmin;
 using WebAPIBusiness.Entities.RegistroAdmin;
 using WebAPIUI.Models.MembresiasAdmin;
 using WebAPIBusiness.Entities.MembresiaAdmin;
+using WebAPIUI.Models.RolAdmin;
+using WebAPIBusiness.Entities.RolAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -177,6 +179,38 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+
+        public static List<RolAdminModel> RolesEntityToModel(List<RolAdminEntity> entities)
+        {
+
+            List<RolAdminModel> response = new List<RolAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new RolAdminModel
+                {
+                   rolePID = entity.rolePID,
+                   nombre = entity.nombre,
+                   descripcion = entity.descripcion
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static RolAdminModel RolInfoEntityToModel(RolAdminEntity entity)
+        {
+
+            RolAdminModel response = new RolAdminModel
+            {
+                rolePID = entity.rolePID,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion
+            };
+
+            return response;
+        }
     }
-    
+
 }

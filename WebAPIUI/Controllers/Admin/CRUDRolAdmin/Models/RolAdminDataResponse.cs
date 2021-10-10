@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
+using WebAPIUI.CustomExceptions.RolAdmin;
 using WebAPIUI.Models.MembresiasAdmin;
 using WebAPIUI.Models.RegistroAdmin;
+using WebAPIUI.Models.RolAdmin;
 
-namespace WebAPIUI.Controllers.CRUDMembresiasAdmin.Models
+namespace WebAPIUI.Controllers.CRUDRolAdmin.Models
 {
-    public class MembresiaAdminDataResponse
+    public class RolAdminDataResponse
     {
         /// <summary>
         /// Código de respuesta
         /// </summary>
-        public MembresiaAdminResponseType ResponseCode { get; set; }
+        public RolAdminResponseType ResponseCode { get; set; }
 
         /// <summary>
         /// Mensaje de respuesta
@@ -23,12 +25,12 @@ namespace WebAPIUI.Controllers.CRUDMembresiasAdmin.Models
         /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<MembresiaAdminModel> ContentIndex { get; set; }
+        public List<RolAdminModel> ContentIndex { get; set; }
 
         public bool ContentCreate { get; set; }
 
         public bool ContentModify { get; set; }
 
-        public MembresiaAdminModel ContentDetail { get; set; }
+        public RolAdminModel ContentDetail { get; set; }
     }
 }

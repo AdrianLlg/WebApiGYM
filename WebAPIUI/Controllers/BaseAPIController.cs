@@ -20,6 +20,8 @@ using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
+using WebAPIUI.CustomExceptions.RolAdmin;
+using WebAPIUI.Controllers.CRUDRolAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -203,6 +205,27 @@ namespace WebAPIUI.Controllers
         }
 
         internal void SetResponseAsExceptionMembresiaAdmin(MembresiaAdminResponseType code, MembresiaAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+
+        internal static void ThrowHandledExceptionRolAdmin(RolAdminResponseType type, IList<string> messages)
+        {
+            var newException = new RolAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRolAdmin(RolAdminResponseType type, Exception ex)
+        {
+            throw new RolAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRolAdmin(RolAdminResponseType code, RolAdminDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;
