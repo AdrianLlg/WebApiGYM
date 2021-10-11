@@ -16,6 +16,10 @@ using WebAPIUI.Models.MembresiasAdmin;
 using WebAPIBusiness.Entities.MembresiaAdmin;
 using WebAPIUI.Models.RolAdmin;
 using WebAPIBusiness.Entities.RolAdmin;
+using WebAPIUI.Models.DisciplinaAdmin;
+using WebAPIBusiness.Entities.DisciplinaAdmin;
+using WebAPIUI.Models.RecursoAdmin;
+using WebAPIBusiness.Entities.RecursoAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -207,6 +211,74 @@ namespace WebAPIUI.Helpers
                 rolePID = entity.rolePID,
                 nombre = entity.nombre,
                 descripcion = entity.descripcion
+            };
+
+            return response;
+        }
+
+        public static List<DisciplinaAdminModel> DisciplinasEntityToModel(List<DisciplinaAdminEntity> entities)
+        {
+
+            List<DisciplinaAdminModel> response = new List<DisciplinaAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new DisciplinaAdminModel
+                {
+                    DisciplinaID = entity.disciplinaID,
+                    Nombre = entity.nombre,
+                    Descripcion = entity.descripcion,
+                    NumeroDeClases = entity.numClases.ToString()
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static DisciplinaAdminModel DisciplinaInfoEntityToModel(DisciplinaAdminEntity entity)
+        {
+
+            DisciplinaAdminModel response = new DisciplinaAdminModel
+            {
+                DisciplinaID = entity.disciplinaID,
+                Nombre = entity.nombre,
+                Descripcion = entity.descripcion,
+                NumeroDeClases = entity.numClases.ToString()
+            };
+
+            return response;
+        }
+
+        public static List<RecursoAdminModel> RecursosEntityToModel(List<RecursoAdminEntity> entities)
+        {
+
+            List<RecursoAdminModel> response = new List<RecursoAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new RecursoAdminModel
+                {
+                    RecursoID = entity.recursoID,
+                    Nombre = entity.nombre,
+                    Descripcion = entity.descripcion,
+                    CantidadDeRecurso = entity.cantidadRecurso.ToString()
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static RecursoAdminModel RecursoInfoEntityToModel(RecursoAdminEntity entity)
+        {
+
+            RecursoAdminModel response = new RecursoAdminModel
+            {
+                RecursoID = entity.recursoID,
+                Nombre = entity.nombre,
+                Descripcion = entity.descripcion,
+                CantidadDeRecurso = entity.cantidadRecurso.ToString()
             };
 
             return response;

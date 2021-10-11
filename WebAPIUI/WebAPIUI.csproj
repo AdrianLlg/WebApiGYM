@@ -160,6 +160,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoAdmin\CRUDRecursoAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoAdmin\Models\CRUDRecursoAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoAdmin\Models\RecursoAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\CRUDDisciplinaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\CRUDDisciplinaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\DisciplinaAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\CRUDRolAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\CRUDRolAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\RolAdminDataResponse.cs" />
@@ -189,12 +195,14 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\DisciplinaAdmin\DisciplinaAdminException.cs" />
     <Compile Include="CustomExceptions\EventoRecursoEspecial\EventoRecursoEspecialException.cs" />
     <Compile Include="CustomExceptions\HorasDisciplina\HorasDisciplinaException.cs" />
     <Compile Include="CustomExceptions\MembresiasAdmin\MembresiaAdminException.cs" />
     <Compile Include="CustomExceptions\MembresiasUsuario\MembresiasUsuarioException.cs" />
     <Compile Include="CustomExceptions\Login\LoginException.cs" />
     <Compile Include="CustomExceptions\EventoClasePersona\EventoClasePersonaException.cs" />
+    <Compile Include="CustomExceptions\RecursoAdmin\RecursoAdminException.cs" />
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
     <Compile Include="CustomExceptions\RegistroAdmin\RegistroAdminException.cs" />
     <Compile Include="CustomExceptions\RolAdmin\RolAdminException.cs" />
@@ -202,11 +210,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
+    <Compile Include="Models\DisciplinaAdmin\DisciplinaAdminModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
+    <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
     <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />
     <Compile Include="Models\RolAdmin\RolAdminModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
