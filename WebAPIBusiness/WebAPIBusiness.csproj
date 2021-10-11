@@ -58,6 +58,7 @@
     <Compile Include="BusinessCore\MembresiaAdminBO.cs" />
     <Compile Include="BusinessCore\MembresiaBO.cs" />
     <Compile Include="BusinessCore\LoginBO.cs" />
+    <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
+    <Compile Include="Entities\SalasAdmin\SalasAdminEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />

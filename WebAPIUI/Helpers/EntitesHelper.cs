@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WebAPIBusiness.Entities.Membresia;
-
-using System.Globalization;
-using WebAPIUI.Models.Membresias;
-using WebAPIUI.Models.EventoClasePersona;
+﻿using System.Collections.Generic;
 using WebAPIBusiness.Entities.EventoClasePersona;
-using WebAPIUI.Models.EventoRecursoEspecial;
 using WebAPIBusiness.Entities.EvetoRecursoEspecial;
-using WebAPIUI.Models.RegistroAdmin;
-using WebAPIBusiness.Entities.RegistroAdmin;
-using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIBusiness.Entities.Membresia;
 using WebAPIBusiness.Entities.MembresiaAdmin;
-using WebAPIUI.Models.RolAdmin;
+using WebAPIBusiness.Entities.RegistroAdmin;
 using WebAPIBusiness.Entities.RolAdmin;
+using WebAPIBusiness.Entities.SalasAdmin;
+using WebAPIUI.Models.EventoClasePersona;
+using WebAPIUI.Models.EventoRecursoEspecial;
+using WebAPIUI.Models.Membresias;
+using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIUI.Models.RegistroAdmin;
+using WebAPIUI.Models.RolAdmin;
+using WebAPIUI.Models.SalasAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -211,6 +208,46 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+
+
+        public static List<SalaAdminModel> SalasEntityToModel(List<SalasAdminEntity> entities)
+        {
+
+            List<SalaAdminModel> response = new List<SalaAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new SalaAdminModel
+                {
+                    salaID = entity.salaID,
+                    nombre = entity.nombre, 
+                    descripcion = entity.descripcion
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static SalaAdminModel SalaInfoEntityToModel(SalasAdminEntity entity)
+        {
+
+            SalaAdminModel response = new SalaAdminModel
+            {
+                salaID = entity.salaID,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion
+            };
+
+            return response;
+        }
+
+
+
+
+
+
+
     }
 
 }
