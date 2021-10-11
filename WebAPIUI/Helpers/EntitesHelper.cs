@@ -1,18 +1,25 @@
-﻿using System.Collections.Generic;
-using WebAPIBusiness.Entities.EventoClasePersona;
-using WebAPIBusiness.Entities.EvetoRecursoEspecial;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using WebAPIBusiness.Entities.Membresia;
-using WebAPIBusiness.Entities.MembresiaAdmin;
-using WebAPIBusiness.Entities.RegistroAdmin;
-using WebAPIBusiness.Entities.RolAdmin;
-using WebAPIBusiness.Entities.SalasAdmin;
-using WebAPIUI.Models.EventoClasePersona;
-using WebAPIUI.Models.EventoRecursoEspecial;
+
+using System.Globalization;
 using WebAPIUI.Models.Membresias;
-using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIUI.Models.EventoClasePersona;
+using WebAPIBusiness.Entities.EventoClasePersona;
+using WebAPIUI.Models.EventoRecursoEspecial;
+using WebAPIBusiness.Entities.EvetoRecursoEspecial;
 using WebAPIUI.Models.RegistroAdmin;
+using WebAPIBusiness.Entities.RegistroAdmin;
+using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIBusiness.Entities.MembresiaAdmin;
 using WebAPIUI.Models.RolAdmin;
-using WebAPIUI.Models.SalasAdmin;
+using WebAPIBusiness.Entities.RolAdmin;
+using WebAPIUI.Models.DisciplinaAdmin;
+using WebAPIBusiness.Entities.DisciplinaAdmin;
+using WebAPIUI.Models.RecursoAdmin;
+using WebAPIBusiness.Entities.RecursoAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -209,19 +216,19 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
-
-        public static List<SalaAdminModel> SalasEntityToModel(List<SalasAdminEntity> entities)
+        public static List<DisciplinaAdminModel> DisciplinasEntityToModel(List<DisciplinaAdminEntity> entities)
         {
 
-            List<SalaAdminModel> response = new List<SalaAdminModel>();
+            List<DisciplinaAdminModel> response = new List<DisciplinaAdminModel>();
 
             foreach (var entity in entities)
             {
-                var item = new SalaAdminModel
+                var item = new DisciplinaAdminModel
                 {
-                    salaID = entity.salaID,
-                    nombre = entity.nombre, 
-                    descripcion = entity.descripcion
+                    DisciplinaID = entity.disciplinaID,
+                    Nombre = entity.nombre,
+                    Descripcion = entity.descripcion,
+                    NumeroDeClases = entity.numClases.ToString()
                 };
 
                 response.Add(item);
@@ -229,25 +236,53 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
-        public static SalaAdminModel SalaInfoEntityToModel(SalasAdminEntity entity)
+        public static DisciplinaAdminModel DisciplinaInfoEntityToModel(DisciplinaAdminEntity entity)
         {
 
-            SalaAdminModel response = new SalaAdminModel
+            DisciplinaAdminModel response = new DisciplinaAdminModel
             {
-                salaID = entity.salaID,
-                nombre = entity.nombre,
-                descripcion = entity.descripcion
+                DisciplinaID = entity.disciplinaID,
+                Nombre = entity.nombre,
+                Descripcion = entity.descripcion,
+                NumeroDeClases = entity.numClases.ToString()
             };
 
             return response;
         }
 
+        public static List<RecursoAdminModel> RecursosEntityToModel(List<RecursoAdminEntity> entities)
+        {
 
+            List<RecursoAdminModel> response = new List<RecursoAdminModel>();
 
+            foreach (var entity in entities)
+            {
+                var item = new RecursoAdminModel
+                {
+                    RecursoID = entity.recursoID,
+                    Nombre = entity.nombre,
+                    Descripcion = entity.descripcion,
+                    CantidadDeRecurso = entity.cantidadRecurso.ToString()
+                };
 
+                response.Add(item);
+            }
+            return response;
+        }
 
+        public static RecursoAdminModel RecursoInfoEntityToModel(RecursoAdminEntity entity)
+        {
 
+            RecursoAdminModel response = new RecursoAdminModel
+            {
+                RecursoID = entity.recursoID,
+                Nombre = entity.nombre,
+                Descripcion = entity.descripcion,
+                CantidadDeRecurso = entity.cantidadRecurso.ToString()
+            };
 
+            return response;
+        }
     }
 
 }

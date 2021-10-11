@@ -5,20 +5,20 @@ using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
-using WebAPIBusiness.Entities.RolAdmin;
-using WebAPIUI.Controllers.CRUDRolAdmin.Models;
-using WebAPIUI.CustomExceptions.RolAdmin;
+using WebAPIBusiness.Entities.RecursoAdmin;
+using WebAPIUI.Controllers.CRUDRecursoAdmin.Models;
+using WebAPIUI.CustomExceptions.RecursoAdmin;
 using WebAPIUI.Helpers;
-using WebAPIUI.Models.RolAdmin;
+using WebAPIUI.Models.RecursoAdmin;
 
 namespace WebAPIUI.Controllers
 {
     /// <summary>
-    /// API que permite el manejo de Crear, Modificar y Consultar información de roles.
+    /// API que permite el manejo de Crear, Modificar y Consultar información de recursos.
     /// </summary>
-    public class CRUDRolAdminController : BaseAPIController
+    public class CRUDRecursoAdminController : BaseAPIController
     {
-        private void ValidatePostRequest(CRUDRolAdminDataRequest dataRequest)
+        private void ValidatePostRequest(CRUDRecursoAdminDataRequest dataRequest)
         {
             List<string> messages = new List<string>();
             string message = string.Empty;
@@ -26,7 +26,7 @@ namespace WebAPIUI.Controllers
             if (dataRequest == null)
             {
                 messages.Add("No se han especificado datos de ingreso.");
-                ThrowHandledExceptionRolAdmin(RolAdminResponseType.InvalidParameters, messages);
+                ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType.InvalidParameters, messages);
             }
 
             //if (string.IsNullOrEmpty(dataRequest.nombres))
@@ -37,27 +37,27 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Insertar un nuevo rol en la BD
+        /// Insertar un nuevo recurso en la BD
         /// </summary>
-        private bool InsertarNuevoRol(string nombre, string descripcion)
+        private bool InsertarNuevoRecurso(string nombre, string descripcion, string cantidadRecurso)
         {
-            RolAdminBO bo = new RolAdminBO();
+            RecursoAdminBO bo = new RecursoAdminBO();
             List<string> messages = new List<string>();
             bool response = false;
 
             try
             {
-                response = bo.insertRol(nombre, descripcion);
+                response = bo.insertRecurso(nombre, descripcion, cantidadRecurso);
             }
-            catch (ValidationAndMessageException RolAdminException)
+            catch (ValidationAndMessageException RecursoAdminException)
             {
-                messages.Add(RolAdminException.Message);
-                ThrowHandledExceptionRolAdmin(RolAdminResponseType.Error, messages);
+                messages.Add(RecursoAdminException.Message);
+                ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRolAdmin(RolAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, ex);
             }
 
             return response;
@@ -65,95 +65,95 @@ namespace WebAPIUI.Controllers
 
 
         /// <summary>
-        /// Consulta los roles de la base 
+        /// Consulta los recursos de la base 
         /// </summary>
-        private List<RolAdminEntity> ConsultarRoles()
+        private List<RecursoAdminEntity> ConsultarRecursos()
         {
-            RolAdminBO bo = new RolAdminBO();
+            RecursoAdminBO bo = new RecursoAdminBO();
             List<string> messages = new List<string>();
-            List<RolAdminEntity> response = new List<RolAdminEntity>();
+            List<RecursoAdminEntity> response = new List<RecursoAdminEntity>();
 
             try
             {
-                response = bo.getRoles();
+                response = bo.getRecursos();
             }
-            catch (ValidationAndMessageException RolAdminException)
+            catch (ValidationAndMessageException RecursoAdminException)
             {
-                messages.Add(RolAdminException.Message);
-                ThrowHandledExceptionRolAdmin(RolAdminResponseType.Error, messages);
+                messages.Add(RecursoAdminException.Message);
+                ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRolAdmin(RolAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, ex);
             }
 
             return response;
         }
 
         /// <summary>
-        /// Modificar rol
+        /// Modificar recurso
         /// </summary>
-        private bool ModificarRol(int rolID, string nombre, string descripcion)
+        private bool ModificarRecurso(int recursoID, string nombre, string descripcion, string cantidadRecurso)
         {
-            RolAdminBO bo = new RolAdminBO();
+            RecursoAdminBO bo = new RecursoAdminBO();
             List<string> messages = new List<string>();
             bool response = false;
 
             try
             {
-                response = bo.modifyRol(rolID, nombre, descripcion);
+                response = bo.modifyRecurso(recursoID, nombre, descripcion, cantidadRecurso);
             }
-            catch (ValidationAndMessageException RolAdminException)
+            catch (ValidationAndMessageException RecursoAdminException)
             {
-                messages.Add(RolAdminException.Message);
-                ThrowHandledExceptionRolAdmin(RolAdminResponseType.Error, messages);
+                messages.Add(RecursoAdminException.Message);
+                ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRolAdmin(RolAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, ex);
             }
 
             return response;
         }
 
         /// <summary>
-        /// Consultar rol
+        /// Consultar recurso
         /// </summary>
-        private RolAdminEntity DetalleRol(int rolID)
+        private RecursoAdminEntity DetalleRecurso(int recursoID)
         {
-            RolAdminBO bo = new RolAdminBO();
+            RecursoAdminBO bo = new RecursoAdminBO();
             List<string> messages = new List<string>();
-            RolAdminEntity response = new RolAdminEntity();
+            RecursoAdminEntity response = new RecursoAdminEntity();
 
             try
             {
-                response = bo.consultarRol(rolID);
+                response = bo.consultarRecurso(recursoID);
             }
-            catch (ValidationAndMessageException RolAdminException)
+            catch (ValidationAndMessageException RecursoAdminException)
             {
-                messages.Add(RolAdminException.Message);
-                ThrowHandledExceptionRolAdmin(RolAdminResponseType.Error, messages);
+                messages.Add(RecursoAdminException.Message);
+                ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionRolAdmin(RolAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, ex);
             }
 
             return response;
         }
 
         /// <summary>
-        /// CRUD de Roles para Admin
+        /// CRUD de recursos para Admin
         /// </summary>
         /// <param name="dataRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        public RolAdminDataResponse Post(CRUDRolAdminDataRequest dataRequest)
+        public RecursoAdminDataResponse Post(CRUDRecursoAdminDataRequest dataRequest)
         {
-            RolAdminDataResponse response = new RolAdminDataResponse();
+            RecursoAdminDataResponse response = new RecursoAdminDataResponse();
 
             try
             {
@@ -165,19 +165,19 @@ namespace WebAPIUI.Controllers
                 //Mostrar Listado de membresias
                 if (dataRequest.flujoID == 0)
                 {
-                    List<RolAdminModel> model = new List<RolAdminModel>();
-                    List<RolAdminEntity> items = ConsultarRoles();
+                    List<RecursoAdminModel> model = new List<RecursoAdminModel>();
+                    List<RecursoAdminEntity> items = ConsultarRecursos();
 
                     if (items.Count > 0)
                     {
-                        model = EntitesHelper.RolesEntityToModel(items);
-                        response.ResponseCode = RolAdminResponseType.Ok;
+                        model = EntitesHelper.RecursosEntityToModel(items);
+                        response.ResponseCode = RecursoAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentIndex = model;
                     }
                     else
                     {
-                        response.ResponseCode = RolAdminResponseType.InvalidParameters;
+                        response.ResponseCode = RecursoAdminResponseType.InvalidParameters;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentIndex = null;
                     }
@@ -185,17 +185,17 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevoRol(dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = InsertarNuevoRecurso(dataRequest.nombre, dataRequest.descripcion, dataRequest.cantidadRecurso);
 
                     if (resp)
                     {
-                        response.ResponseCode = RolAdminResponseType.Ok;
+                        response.ResponseCode = RecursoAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentCreate = true;
                     }
                     else
                     {
-                        response.ResponseCode = RolAdminResponseType.Error;
+                        response.ResponseCode = RecursoAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentCreate = false;
                     }
@@ -203,17 +203,17 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarRol(dataRequest.rolID, dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = ModificarRecurso(dataRequest.recursoID, dataRequest.nombre, dataRequest.descripcion, dataRequest.cantidadRecurso);
 
                     if (resp)
                     {
-                        response.ResponseCode = RolAdminResponseType.Ok;
+                        response.ResponseCode = RecursoAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentModify = true;
                     }
                     else
                     {
-                        response.ResponseCode = RolAdminResponseType.Error;
+                        response.ResponseCode = RecursoAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentModify = false;
                     }
@@ -221,21 +221,21 @@ namespace WebAPIUI.Controllers
                 //Detalle de persona
                 else if (dataRequest.flujoID == 3)
                 {
-                    RolAdminEntity resp = new RolAdminEntity();
-                    RolAdminModel model = new RolAdminModel();
+                    RecursoAdminEntity resp = new RecursoAdminEntity();
+                    RecursoAdminModel model = new RecursoAdminModel();
 
-                    resp = DetalleRol(dataRequest.rolID);
+                    resp = DetalleRecurso(dataRequest.recursoID);
 
-                    if (resp.rolePID > 0)
+                    if (resp.recursoID > 0)
                     {
-                        model = EntitesHelper.RolInfoEntityToModel(resp);
-                        response.ResponseCode = RolAdminResponseType.Ok;
+                        model = EntitesHelper.RecursoInfoEntityToModel(resp);
+                        response.ResponseCode = RecursoAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;
                     }
                     else
                     {
-                        response.ResponseCode = RolAdminResponseType.Error;
+                        response.ResponseCode = RecursoAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentDetail = null;
                     }
@@ -243,14 +243,14 @@ namespace WebAPIUI.Controllers
                 }
 
             }
-            catch (RolAdminException RolAdminException)
+            catch (RecursoAdminException RecursoAdminException)
             {
-                SetResponseAsExceptionRolAdmin(RolAdminException.Type, response, RolAdminException.Message);
+                SetResponseAsExceptionRecursoAdmin(RecursoAdminException.Type, response, RecursoAdminException.Message);
             }
             catch (Exception ex)
             {
-                string message = "Se ha produccido un error al invocar CRUDRolAdmin.";
-                SetResponseAsExceptionRolAdmin(RolAdminResponseType.Error, response, message);
+                string message = "Se ha produccido un error al invocar CRUDRecursoAdmin.";
+                SetResponseAsExceptionRecursoAdmin(RecursoAdminResponseType.Error, response, message);
             }
 
             return response;
