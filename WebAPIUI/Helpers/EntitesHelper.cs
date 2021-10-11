@@ -20,11 +20,14 @@ using WebAPIUI.Models.DisciplinaAdmin;
 using WebAPIBusiness.Entities.DisciplinaAdmin;
 using WebAPIUI.Models.RecursoAdmin;
 using WebAPIBusiness.Entities.RecursoAdmin;
+using WebAPIUI.Models.SalaAdmin;
+using WebAPIBusiness.Entities.SalaAdmin;
 
 namespace WebAPIUI.Helpers
 {
     public static class EntitesHelper
     {
+        #region MembresiasHelper
         public static List<MembresiasModel> MembresiaEntityToModel(List<MembresiaEntity> entities)
         {
 
@@ -47,7 +50,9 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
+        #endregion
 
+        #region EventoClasePersonaHelper
         public static List<EventoClasePersonaModel> EventoClasePersonaEntityToModel(List<EventoClasePersonaEntity> entities)
         {
 
@@ -77,7 +82,9 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
+        #endregion
 
+        #region EventoRecursoEspecialHelper
         public static List<EventoRecursoEspecialModel> EventoRecursoEspecialEntityToModel(List<EventoRecursoEspecialEntity> entities)
         {
 
@@ -97,7 +104,9 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
+        #endregion
 
+        #region RegistroAdminHelper
         public static List<RegistroAdminModel> UsuariosRegistradosEntityToModel(List<UsuariosRegistradosEntity> entities)
         {
 
@@ -126,7 +135,9 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
+        #endregion
 
+        #region UsuarioRegistradoEntityHelper
         public static RegistroAdminModel UsuarioRegistradoEntityToModel(UsuariosRegistradosEntity entity)
         {
 
@@ -149,7 +160,9 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+        #endregion
 
+        #region MembresiaAdminHelper
         public static List<MembresiaAdminModel> MembresiasEntityToModel(List<MembresiaAdminEntity> entities)
         {
 
@@ -169,6 +182,7 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
+       
 
         public static MembresiaAdminModel MembresiaInfoEntityToModel(MembresiaAdminEntity entity)
         {
@@ -183,7 +197,9 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+        #endregion
 
+        #region RolAdminHelper
         public static List<RolAdminModel> RolesEntityToModel(List<RolAdminEntity> entities)
         {
 
@@ -215,7 +231,42 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+        #endregion
 
+        #region SalasAdminHelper
+        public static List<SalaAdminModel> SalasEntityToModel(List<SalaAdminEntity> entities)
+        {
+
+            List<SalaAdminModel> response = new List<SalaAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new SalaAdminModel
+                {
+                    salaID = entity.salaID,
+                    nombre = entity.nombre,
+                    descripcion = entity.descripcion
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+
+        public static SalaAdminModel SalaInfoEntityToModel(SalaAdminEntity entity)
+        {
+
+            SalaAdminModel response = new SalaAdminModel
+            {
+                salaID = entity.salaID,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion
+            };
+
+            return response;
+        }
+        #endregion
         public static List<DisciplinaAdminModel> DisciplinasEntityToModel(List<DisciplinaAdminEntity> entities)
         {
 

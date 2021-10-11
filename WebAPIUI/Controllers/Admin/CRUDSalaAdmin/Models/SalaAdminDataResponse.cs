@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
-using WebAPIUI.CustomExceptions.SalasAdmin;
-using WebAPIUI.Models.SalasAdmin;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using WebAPIUI.CustomExceptions.MembresiasAdmin;
+using WebAPIUI.CustomExceptions.SalaAdmin;
+using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIUI.Models.RegistroAdmin;
+using WebAPIUI.Models.SalaAdmin;
 
-namespace WebAPIUI.Controllers.CRUDSalaAdmin.Models
+namespace WebAPIUI.Controllers.CRUDRSalaAdmin.Models
 {
-    public class CRUDSalaAdminDataResponse
-        
+    public class SalaAdminDataResponse
     {
         /// <summary>
         /// Código de respuesta

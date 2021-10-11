@@ -1,47 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebAPIBusiness.Entities.SalasAdmin;
-
+using System.Text;
+using System.Threading.Tasks;
+using WebAPIBusiness.Entities.SalaAdmin;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
 {
     public class SalaAdminBO
     {
-        public List<SalasAdminEntity> getSalas()
+        public List<SalaAdminEntity> getSalas()
         {
-            List<SalasAdminEntity> entities = new List<SalasAdminEntity>();
+            List<SalaAdminEntity> entities = new List<SalaAdminEntity>();
 
-            entities = getSalasDB();
+            entities = getSalaDB();
 
             return entities;
         }
 
-        private List<SalasAdminEntity> getSalasDB()
+        private List<SalaAdminEntity> getSalaDB()
         {
-            List<SalasAdminEntity> entities = new List<SalasAdminEntity>();
-            List<sala> salas = new List<sala>();
+            List<SalaAdminEntity> entities = new List<SalaAdminEntity>();
+            List<sala> Salas = new List<sala>();
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    salas = dbContext.sala.ToList();
+                    Salas = dbContext.sala.ToList();
                 }
 
-                if (salas.Count > 0)
+                if (Salas.Count > 0)
                 {
-                    foreach (var sala in salas)
+                    foreach (var Sala in Salas)
                     {
-                        SalasAdminEntity SalasAdminEntity = new SalasAdminEntity()
+                        SalaAdminEntity SalasEntity = new SalaAdminEntity()
                         {
-                            salaID = sala.salaID,
-                            nombre = sala.nombre,
-                            descripcion = sala.descripcion
-
+                            salaID = Sala.salaID,
+                            nombre = Sala.nombre,
+                            descripcion = Sala.descripcion                           
                         };
 
-                        entities.Add(SalasAdminEntity);
+                        entities.Add(SalasEntity);
                     }
                 }
 
@@ -59,23 +59,19 @@ namespace WebAPIBusiness.BusinessCore
 
             try
             {
-
                 entity = insertDBSala(nombre, descripcion);
             }
             catch (Exception ex)
             {
-
+                throw new Exception("Ocurrió un error al insertar el usuario/calcular la edad del usuario.");
             }
 
             return entity;
         }
 
         private bool insertDBSala(string nombre, string descripcion)
-        {
-
+        {           
             sala item = new sala();
-            sala recoverSala = new sala();
-            sala newSala;
 
             try
             {
@@ -83,13 +79,12 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     item = new sala()
                     {
-                        nombre = nombre,
-                        descripcion = descripcion
+                       nombre = nombre,
+                       descripcion = descripcion
                     };
 
                     dbContext.sala.Add(item);
                     dbContext.SaveChanges();
-
                 }
 
                 return true;
@@ -100,62 +95,57 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-
-
-        public bool modifySala(int salaID, string nombre, string descripcion)
+        public bool modifySala(int SalaID, string nombre, string descripcion)
         {
             bool entity = false;
 
             try
             {
-                string validation = salaID.ToString();
+                string validation = SalaID.ToString();
 
                 if (string.IsNullOrEmpty(validation))
                 {
-                    throw new Exception("El ID de la sala no se ha especificado.");
+                    throw new Exception("El ID de la persona no se ha especificado.");
                 }
 
-                entity = UpdateRecord(salaID, nombre, descripcion);
+                entity = UpdateRecord(SalaID, nombre, descripcion);
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al modificar el sala.");
+                throw new Exception("Ocurrió un error al modificar el usuario.");
             }
 
             return entity;
         }
 
-        private bool UpdateRecord(int salaID, string nombre, string descripcion)
+        private bool UpdateRecord(int SalaID, string nombre, string descripcion)
         {
             bool resp = false;
-            sala sls = new sala();
-
+            sala Sala = new sala();
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    sls = dbContext.sala.Where(x => x.salaID == salaID).FirstOrDefault();
+                    Sala = dbContext.sala.Where(x => x.salaID == SalaID).FirstOrDefault();
 
-                    if (sls != null)
+                    if (Sala != null)
                     {
-
                         if (!string.IsNullOrEmpty(nombre))
                         {
-                            sls.nombre = nombre;
+                            Sala.nombre = nombre;
                         }
                         if (!string.IsNullOrEmpty(descripcion))
                         {
-                            sls.descripcion = descripcion;
-                        }
-
+                            Sala.descripcion = descripcion;
+                        }                       
                     }
                     else
                     {
                         return false;
                     }
                     dbContext.SaveChanges();
-                    return true;
+                    return true; 
                 }
             }
             catch (Exception ex)
@@ -164,36 +154,35 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public SalasAdminEntity consultarSala(int salaID)
+        public SalaAdminEntity consultarSala(int SalaID)
         {
-            SalasAdminEntity resp = new SalasAdminEntity();
+            SalaAdminEntity resp = new SalaAdminEntity();
 
-            resp = getsalaInfo(salaID);
+            resp = getSalaInfo(SalaID);
 
             return resp;
         }
 
 
-        private SalasAdminEntity getsalaInfo(int salaID)
+        private SalaAdminEntity getSalaInfo(int SalaID)
         {
-            sala sls = new sala();
-            SalasAdminEntity resp = new SalasAdminEntity();
+            sala Sala = new sala();
+            SalaAdminEntity resp = new SalaAdminEntity();
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    sls = dbContext.sala.Where(x => x.salaID == salaID).FirstOrDefault();
+                    Sala = dbContext.sala.Where(x => x.salaID == SalaID).FirstOrDefault();
                 }
 
-                if (sls != null)
+                if (Sala != null)
                 {
-                    resp = new SalasAdminEntity()
+                    resp = new SalaAdminEntity()
                     {
-                        salaID = sls.salaID,
-                        nombre = sls.nombre,
-                        descripcion = sls.descripcion
-
+                       salaID = Sala.salaID,
+                       nombre = Sala.nombre,
+                       descripcion = Sala.descripcion
                     };
                 }
 

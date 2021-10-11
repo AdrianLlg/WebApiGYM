@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
+using WebAPIBusiness.Entities.SalaAdmin;
+using WebAPIUI.Controllers;
+using WebAPIUI.Controllers.CRUDRSalaAdmin.Models;
 using WebAPIUI.Controllers.CRUDSalaAdmin.Models;
-using WebAPIUI.CustomExceptions.SalasAdmin;
+using WebAPIUI.CustomExceptions.SalaAdmin;
 using WebAPIUI.Helpers;
-using WebAPIUI.Models.SalasAdmin;
+using WebAPIUI.Models.SalaAdmin;
 
-namespace WebAPIUI.Controllers
+namespace WebAPIUI.ContSalalers
 {
-    public class CRUDSalaAdminController : BaseAPIController
+    /// <summary>
+    /// API que permite el manejo de Crear, Modificar y Consultar información de Salas.
+    /// </summary>
+    public class CRUDRSalaAdminController : BaseAPIController
     {
         private void ValidatePostRequest(CRUDSalaAdminDataRequest dataRequest)
         {
@@ -31,9 +39,9 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Insertar una nueva persona en la tabla
+        /// Insertar un nuevo Sala en la BD
         /// </summary>
-        private bool InsertarNuevaSala( string nombre, string descripcion)
+        private bool InsertarNuevaSala(string nombre, string descripcion)
         {
             SalaAdminBO bo = new SalaAdminBO();
             List<string> messages = new List<string>();
@@ -59,13 +67,13 @@ namespace WebAPIUI.Controllers
 
 
         /// <summary>
-        /// Consulta las personas de la base 
+        /// Consulta los Salas de la base 
         /// </summary>
-        private List<SalaAdminModel> ConsultarPersonas()
+        private List<SalaAdminEntity> ConsultarSalas()
         {
             SalaAdminBO bo = new SalaAdminBO();
             List<string> messages = new List<string>();
-            List<SalaAdminModel> response = new List<SalaAdminModel>();
+            List<SalaAdminEntity> response = new List<SalaAdminEntity>();
 
             try
             {
@@ -86,9 +94,9 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Modificar persona
+        /// Modificar Sala
         /// </summary>
-        private bool ModificarSala(int salaID, string nombre, string descripcion)
+        private bool ModificarSala(int SalaID, string nombre, string descripcion)
         {
             SalaAdminBO bo = new SalaAdminBO();
             List<string> messages = new List<string>();
@@ -96,7 +104,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifySala(salaID, nombre, descripcion);
+                response = bo.modifySala(SalaID, nombre, descripcion);
             }
             catch (ValidationAndMessageException SalaAdminException)
             {
@@ -113,17 +121,17 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Consultar persona
+        /// Consultar Sala
         /// </summary>
-        private SalaAdminModel DetalleSala(int salaID)
+        private SalaAdminEntity DetalleSala(int SalaID)
         {
             SalaAdminBO bo = new SalaAdminBO();
             List<string> messages = new List<string>();
-            SalaAdminModel response = new SalaAdminModel();
+            SalaAdminEntity response = new SalaAdminEntity();
 
             try
             {
-                response = bo.consultarSala(salaID);
+                response = bo.consultarSala(SalaID);
             }
             catch (ValidationAndMessageException SalaAdminException)
             {
@@ -140,14 +148,14 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// CRUD para el Admin para Sala Personas
+        /// CRUD de Salas para Admin
         /// </summary>
         /// <param name="dataRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        public CRUDSalaAdminDataResponse Post(CRUDSalaAdminDataRequest dataRequest)
+        public SalaAdminDataResponse Post(CRUDSalaAdminDataRequest dataRequest)
         {
-            CRUDSalaAdminDataResponse response = new CRUDSalaAdminDataResponse();
+            SalaAdminDataResponse response = new SalaAdminDataResponse();
 
             try
             {
@@ -156,11 +164,11 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                //Mostrar Listado de usuarios
+                //Mostrar Listado de membresias
                 if (dataRequest.flujoID == 0)
                 {
                     List<SalaAdminModel> model = new List<SalaAdminModel>();
-                    List<SalaAdminModel> items = ConsultarPersonas();
+                    List<SalaAdminEntity> items = ConsultarSalas();
 
                     if (items.Count > 0)
                     {
@@ -194,7 +202,7 @@ namespace WebAPIUI.Controllers
                         response.ContentCreate = false;
                     }
                 }
-                //Modificar (se incluye modificacion para inhabilitar a la persona)
+                //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
                     bool resp = ModificarSala(dataRequest.salaID, dataRequest.nombre, dataRequest.descripcion);
@@ -215,14 +223,14 @@ namespace WebAPIUI.Controllers
                 //Detalle de persona
                 else if (dataRequest.flujoID == 3)
                 {
-                    SalaAdminModel resp = new SalaAdminModel();
+                    SalaAdminEntity resp = new SalaAdminEntity();
                     SalaAdminModel model = new SalaAdminModel();
 
                     resp = DetalleSala(dataRequest.salaID);
 
                     if (resp.salaID > 0)
                     {
-                        model = EntitesHelper.SalasEntityToModel(resp);
+                        model = EntitesHelper.SalaInfoEntityToModel(resp);
                         response.ResponseCode = SalaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;
@@ -243,7 +251,7 @@ namespace WebAPIUI.Controllers
             }
             catch (Exception ex)
             {
-                string message = "Se ha produccido un error al invocar RegistrarPersona.";
+                string message = "Se ha produccido un error al invocar CRUDSalaAdmin.";
                 SetResponseAsExceptionSalaAdmin(SalaAdminResponseType.Error, response, message);
             }
 

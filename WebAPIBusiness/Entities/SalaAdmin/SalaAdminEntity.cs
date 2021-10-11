@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebAPIUI.Controllers.CRUDSalaAdmin.Models
+namespace WebAPIBusiness.Entities.SalaAdmin
 {
-    public class CRUDSalaAdminDataRequest
+    public class SalaAdminEntity
     {
-        public int flujoID { get; set; }
         public int salaID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
     }
-} 
+
+}
