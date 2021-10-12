@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.RegistroAdmin;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
 {
     public class RegistroAdminBO
-    {
+    { 
         public List<UsuariosRegistradosEntity> getUserPersons()
         {
             List<UsuariosRegistradosEntity> entities = new List<UsuariosRegistradosEntity>();
@@ -72,11 +73,20 @@ namespace WebAPIBusiness.BusinessCore
 
                 int edad = calculateAge(fechaNacimient);
 
-                entity = insertDBUser(rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimient, edad);
+                UsuariosRegistradosEntity person = validationPerson(identificacion);
+
+                if (person.personaID > 0)
+                {
+                    entity = insertDBUser(rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimient, edad);
+                }
+                else
+                {
+                    throw new ValidationAndMessageException("La persona ya existe en la BD.");
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al insertar el usuario/calcular la edad del usuario.");
+                throw new ValidationAndMessageException(ex.Message);
             }           
 
             return entity;
@@ -269,6 +279,45 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     pers = dbContext.persona.Where(x => x.personaID == personaID).FirstOrDefault();
+                }
+
+                if (pers != null)
+                {
+                    resp = new UsuariosRegistradosEntity()
+                    {
+                        personaID = pers.personaID,
+                        rolePID = pers.rolePID,
+                        identificacion = pers.identificacion,
+                        nombres = pers.nombres,
+                        apellidos = pers.apellidos,
+                        email = pers.email,
+                        edad = pers.edad,
+                        sexo = pers.sexo,
+                        telefono = pers.telefono,
+                        estado = pers.estado,
+                        fechaNacimiento = pers.fechaNacimiento,
+                        fechaCreacion = pers.fechaCreacion
+                    };
+                }
+
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                return resp;
+            }
+        }
+
+        private UsuariosRegistradosEntity validationPerson(string cedula)
+        {
+            persona pers = new persona();
+            UsuariosRegistradosEntity resp = new UsuariosRegistradosEntity();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    pers = dbContext.persona.Where(x => x.identificacion == cedula).FirstOrDefault();
                 }
 
                 if (pers != null)
