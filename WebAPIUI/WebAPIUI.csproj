@@ -166,6 +166,9 @@
     <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\CRUDDisciplinaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\CRUDDisciplinaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\DisciplinaAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaAdmin\CRUDSalaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\CRUDSalaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\SalaAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\CRUDRolAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\CRUDRolAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\RolAdminDataResponse.cs" />
@@ -205,6 +208,7 @@
     <Compile Include="CustomExceptions\RecursoAdmin\RecursoAdminException.cs" />
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
     <Compile Include="CustomExceptions\RegistroAdmin\RegistroAdminException.cs" />
+    <Compile Include="CustomExceptions\SalaAdmin\SalaAdminException.cs" />
     <Compile Include="CustomExceptions\RolAdmin\RolAdminException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +222,7 @@
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
     <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
     <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />
+    <Compile Include="Models\SalaAdmin\SalaAdminModel.cs" />
     <Compile Include="Models\RolAdmin\RolAdminModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
