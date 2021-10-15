@@ -18,7 +18,7 @@ namespace WebAPIUI.ContHorariolers
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Horarios.
     /// </summary>
-    public class CRUDRHorarioAdminController : BaseAPIController
+    public class CRUDHorarioAdminController : BaseAPIController
     {
         private void ValidatePostRequest(CRUDHorarioAdminDataRequest dataRequest)
         {

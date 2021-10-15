@@ -63,12 +63,14 @@
     <Compile Include="BusinessCore\RegistroAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="BusinessCore\HorarioAdminBO.cs" />
+    <Compile Include="BusinessCore\HorarioMAdminBO.cs" />
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />
     <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
+    <Compile Include="Entities\HorarioMAdmin\HorarioMAdminEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />

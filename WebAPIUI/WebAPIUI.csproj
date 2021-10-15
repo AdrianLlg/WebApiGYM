@@ -169,6 +169,9 @@
     <Compile Include="Controllers\Admin\CRUDHorarioAdmin\CRUDHorarioAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDHorarioAdmin\Models\CRUDHorarioAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDHorarioAdmin\Models\HorarioAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioMAdmin\CRUDHorarioMAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioMAdmin\Models\CRUDHorarioMAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioMAdmin\Models\HorarioMAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\CRUDSalaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\CRUDSalaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\SalaAdminDataResponse.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="CustomExceptions\RecursoAdmin\RecursoAdminException.cs" />
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
     <Compile Include="CustomExceptions\RegistroAdmin\RegistroAdminException.cs" />
+    <Compile Include="CustomExceptions\HorarioMAdmin\HorarioMAdminException.cs" />
     <Compile Include="CustomExceptions\SalaAdmin\SalaAdminException.cs" />
     <Compile Include="CustomExceptions\RolAdmin\RolAdminException.cs" />
     <Compile Include="Global.asax.cs">
@@ -221,6 +225,7 @@
     <Compile Include="Models\DisciplinaAdmin\DisciplinaAdminModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
+    <Compile Include="Models\HorarioMAdmin\HorarioMAdminModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
