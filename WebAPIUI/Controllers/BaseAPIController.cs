@@ -13,6 +13,7 @@ using WebAPIUI.Controllers.HorasDisciplina.Models;
 using WebAPIUI.Controllers.Login.Models;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
 using WebAPIUI.Controllers.Registro.Models;
+using WebAPIUI.Controllers.CRUDRHorarioAdmin.Models;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
 using WebAPIUI.CustomExceptions.EventoRecursoEspecial;
@@ -25,6 +26,8 @@ using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.CustomExceptions.RolAdmin;
 using WebAPIUI.CustomExceptions.SalaAdmin;
+using WebAPIUI.CustomExceptions.HorarioAdmin;
+
 
 namespace WebAPIUI.Controllers
 {
@@ -293,6 +296,28 @@ namespace WebAPIUI.Controllers
         }
 
         internal void SetResponseAsExceptionRecursoAdmin(RecursoAdminResponseType code, RecursoAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+
+
+        internal static void ThrowHandledExceptionHorarioAdmin(HorarioAdminResponseType type, IList<string> messages)
+        {
+            var newException = new HorarioAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionHorarioAdmin(HorarioAdminResponseType type, Exception ex)
+        {
+            throw new HorarioAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionHorarioAdmin(HorarioAdminResponseType code,  HorarioAdminDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;

@@ -62,6 +62,7 @@
     <Compile Include="BusinessCore\RecursoAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
+    <Compile Include="BusinessCore\HorarioAdminBO.cs" />
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
     <Compile Include="Entities\RecursoAdmin\RecursoAdminEntity.cs" />
     <Compile Include="Entities\RegistroAdmin\UsuariosRegistradosEntity.cs" />
+    <Compile Include="Entities\HorarioAdmin\HorarioAdminEntity.cs" />
     <Compile Include="Entities\SalaAdmin\SalaAdminEntity.cs" />
     <Compile Include="Entities\RolAdmin\RolAdminEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

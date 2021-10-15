@@ -22,6 +22,8 @@ using WebAPIUI.Models.RecursoAdmin;
 using WebAPIBusiness.Entities.RecursoAdmin;
 using WebAPIUI.Models.SalaAdmin;
 using WebAPIBusiness.Entities.SalaAdmin;
+using WebAPIUI.Models.HorarioAdmin;
+using WebAPIBusiness.Entities.HorarioAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -334,6 +336,46 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+
+        public static List<HorarioAdminModel> HorariosEntityToModel(List<HorarioAdminEntity> entities)
+        {
+
+            List<HorarioAdminModel> response = new List<HorarioAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new HorarioAdminModel
+                {
+                   horarioMID = entity.horarioMID,
+                   horaInicio = entity.horaInicio,
+                   horaFin = entity.horaFin 
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static HorarioAdminModel HorarioInfoEntityToModel(HorarioAdminEntity entity)
+        {
+
+            HorarioAdminModel response = new HorarioAdminModel
+            {
+                horarioMID = entity.horarioMID,
+                horaInicio = entity.horaInicio,
+                horaFin = entity.horaFin
+            };
+
+            return response;
+        }
+
+
+
+
+
+
+
+
     }
 
 }
