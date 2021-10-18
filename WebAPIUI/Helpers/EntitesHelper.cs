@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using WebAPIBusiness.Entities.Membresia;
-
-using System.Globalization;
 using WebAPIUI.Models.Membresias;
 using WebAPIUI.Models.EventoClasePersona;
 using WebAPIBusiness.Entities.EventoClasePersona;
@@ -26,6 +21,10 @@ using WebAPIUI.Models.HorarioAdmin;
 using WebAPIBusiness.Entities.HorarioAdmin;
 using WebAPIUI.Models.HorarioMAdmin;
 using WebAPIBusiness.Entities.HorarioMAdmin;
+using WebAPIUI.Models.RecursoEspecialAdmin;
+using WebAPIBusiness.Entities.RecursoEspecialAdmin;
+using WebAPIUI.Models.ClaseAdmin;
+using WebAPIBusiness.Entities.ClasesAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -271,6 +270,8 @@ namespace WebAPIUI.Helpers
             return response;
         }
         #endregion
+
+        #region DisciplinasHelper
         public static List<DisciplinaAdminModel> DisciplinasEntityToModel(List<DisciplinaAdminEntity> entities)
         {
 
@@ -305,6 +306,10 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
+        #endregion
+
+
+        #region RecursoAdminHelper
         public static List<RecursoAdminModel> RecursosEntityToModel(List<RecursoAdminEntity> entities)
         {
 
@@ -339,6 +344,46 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
+        #endregion
+
+        #region RecursoEspecialAdminHelper
+        public static List<RecursoEspecialAdminModel> RecursoEspecialsEntityToModel(List<RecursoEspecialAdminEntity> entities)
+        {
+
+            List<RecursoEspecialAdminModel> response = new List<RecursoEspecialAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new RecursoEspecialAdminModel
+                {
+                    recursoEspecialID = entity.recursoEspecialID,
+                    nombre = entity.nombre,
+                    descripcion = entity.descripcion,
+
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static RecursoEspecialAdminModel RecursoEspecialInfoEntityToModel(RecursoEspecialAdminEntity entity)
+        {
+
+            RecursoEspecialAdminModel response = new RecursoEspecialAdminModel
+            {
+                recursoEspecialID = entity.recursoEspecialID,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion,
+                
+            };
+
+            return response;
+        }
+
+        #endregion
+
+        #region HorarioAdminHelper
         public static List<HorarioAdminModel> HorariosEntityToModel(List<HorarioAdminEntity> entities)
         {
 
@@ -371,8 +416,9 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
+        #endregion
 
-
+        #region HorarioMAdminHelper
         public static List<HorarioMAdminModel> horarioMEntityToModel(List<HorarioMAdminEntity> entities)
         {
 
@@ -392,7 +438,6 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
-
         public static HorarioMAdminModel HorarioMInfoEntityToModel(HorarioMAdminEntity entity)
         {
 
@@ -405,9 +450,44 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+        #endregion
 
 
+        #region ClasesAdminHelper
+        public static List<ClaseAdminModel> ClasesEntityToModel(List<ClaseAdminEntity> entities)
+        {
 
+            List<ClaseAdminModel> response = new List<ClaseAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ClaseAdminModel
+                {
+                    claseID = entity.claseID,
+                    disciplinaID = entity.disciplinaID,
+                    nombre = entity.nombre,
+                    descripcion=entity.descripcion
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static ClaseAdminModel ClasesInfoEntityToModel(ClaseAdminEntity entity)
+        {
+
+            ClaseAdminModel response = new ClaseAdminModel
+            {
+                claseID = entity.claseID,
+                disciplinaID = entity.disciplinaID,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion
+            };
+
+            return response;
+        }
+        #endregion
 
     }
 
