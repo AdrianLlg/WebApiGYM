@@ -75,7 +75,7 @@ namespace WebAPIBusiness.BusinessCore
 
                 UsuariosRegistradosEntity person = validationPerson(identificacion);
 
-                if (person.personaID > 0)
+                if (person.personaID >= 0)
                 {
                     entity = insertDBUser(rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimient, edad);
                 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using WebAPIUI.Controllers.CRUDDisciplinaAdmin.Models;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
 using WebAPIUI.Controllers.CRUDRecursoAdmin.Models;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
@@ -33,6 +32,9 @@ using WebAPIUI.CustomExceptions.RecursoEspecialAdmin;
 using WebAPIUI.Controllers.CRUDRecursoEspecialAdmin.Models;
 using WebAPIUI.CustomExceptions.ClasesAdmin;
 using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
+using WebAPIUI.CustomExceptions.EventoAdmin;
+using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
+using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -307,7 +309,7 @@ namespace WebAPIUI.Controllers
 
         #endregion
 
-        #region Disciplina Admin Expections
+        #region DisciplinaAdmin Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -333,6 +335,7 @@ namespace WebAPIUI.Controllers
             response.ContentModify = false;
             response.ContentDetail = null;
         }
+
         #endregion
 
         #region Recurso Admin Expections
@@ -467,6 +470,35 @@ namespace WebAPIUI.Controllers
         }
 
         internal void SetResponseAsExceptionClaseAdmin(ClasesAdminResponseType code, ClaseAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
+
+
+        #region Evento Admin Expections
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionEventoAdmin(EventoAdminResponseType type, IList<string> messages)
+        {
+            var newException = new EventoAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventoAdmin(EventoAdminResponseType type, Exception ex)
+        {
+            throw new EventoAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventoAdmin(EventoAdminResponseType code, EventoAdminDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;

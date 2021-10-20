@@ -1,30 +1,32 @@
 ﻿using System.Collections.Generic;
-using WebAPIBusiness.Entities.Membresia;
-using WebAPIUI.Models.Membresias;
-using WebAPIUI.Models.EventoClasePersona;
-using WebAPIBusiness.Entities.EventoClasePersona;
-using WebAPIUI.Models.EventoRecursoEspecial;
-using WebAPIBusiness.Entities.EvetoRecursoEspecial;
-using WebAPIUI.Models.RegistroAdmin;
-using WebAPIBusiness.Entities.RegistroAdmin;
-using WebAPIUI.Models.MembresiasAdmin;
-using WebAPIBusiness.Entities.MembresiaAdmin;
-using WebAPIUI.Models.RolAdmin;
-using WebAPIBusiness.Entities.RolAdmin;
-using WebAPIUI.Models.DisciplinaAdmin;
-using WebAPIBusiness.Entities.DisciplinaAdmin;
-using WebAPIUI.Models.RecursoAdmin;
-using WebAPIBusiness.Entities.RecursoAdmin;
-using WebAPIUI.Models.SalaAdmin;
-using WebAPIBusiness.Entities.SalaAdmin;
-using WebAPIUI.Models.HorarioAdmin;
-using WebAPIBusiness.Entities.HorarioAdmin;
-using WebAPIUI.Models.HorarioMAdmin;
-using WebAPIBusiness.Entities.HorarioMAdmin;
-using WebAPIUI.Models.RecursoEspecialAdmin;
-using WebAPIBusiness.Entities.RecursoEspecialAdmin;
-using WebAPIUI.Models.ClaseAdmin;
 using WebAPIBusiness.Entities.ClasesAdmin;
+using WebAPIBusiness.Entities.DisciplinaAdmin;
+using WebAPIBusiness.Entities.EventoAdmin;
+using WebAPIBusiness.Entities.EventoClasePersona;
+using WebAPIBusiness.Entities.EvetoRecursoEspecial;
+using WebAPIBusiness.Entities.HorarioAdmin;
+using WebAPIBusiness.Entities.HorarioMAdmin;
+using WebAPIBusiness.Entities.Membresia;
+using WebAPIBusiness.Entities.MembresiaAdmin;
+using WebAPIBusiness.Entities.RecursoAdmin;
+using WebAPIBusiness.Entities.RecursoEspecialAdmin;
+using WebAPIBusiness.Entities.RegistroAdmin;
+using WebAPIBusiness.Entities.RolAdmin;
+using WebAPIBusiness.Entities.SalaAdmin;
+using WebAPIUI.Models.ClaseAdmin;
+using WebAPIUI.Models.DisciplinaAdmin;
+using WebAPIUI.Models.EventoAdmin;
+using WebAPIUI.Models.EventoClasePersona;
+using WebAPIUI.Models.EventoRecursoEspecial;
+using WebAPIUI.Models.HorarioAdmin;
+using WebAPIUI.Models.HorarioMAdmin;
+using WebAPIUI.Models.Membresias;
+using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIUI.Models.RecursoAdmin;
+using WebAPIUI.Models.RecursoEspecialAdmin;
+using WebAPIUI.Models.RegistroAdmin;
+using WebAPIUI.Models.RolAdmin;
+using WebAPIUI.Models.SalaAdmin;
 
 namespace WebAPIUI.Helpers
 {
@@ -271,7 +273,7 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
-        #region DisciplinasHelper
+        #region DisciplinasAdminHelper
         public static List<DisciplinaAdminModel> DisciplinasEntityToModel(List<DisciplinaAdminEntity> entities)
         {
 
@@ -281,10 +283,9 @@ namespace WebAPIUI.Helpers
             {
                 var item = new DisciplinaAdminModel
                 {
-                    DisciplinaID = entity.disciplinaID,
-                    Nombre = entity.nombre,
-                    Descripcion = entity.descripcion,
-                    NumeroDeClases = entity.numClases.ToString()
+                    disciplinaID = entity.disciplinaID,
+                    nombre = entity.nombre,
+                    descripcion = entity.descripcion
                 };
 
                 response.Add(item);
@@ -292,20 +293,19 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
-        public static DisciplinaAdminModel DisciplinaInfoEntityToModel(DisciplinaAdminEntity entity)
+
+        public static DisciplinaAdminModel DisciplinasInfoEntityToModel(DisciplinaAdminEntity entity)
         {
 
             DisciplinaAdminModel response = new DisciplinaAdminModel
             {
-                DisciplinaID = entity.disciplinaID,
-                Nombre = entity.nombre,
-                Descripcion = entity.descripcion,
-                NumeroDeClases = entity.numClases.ToString()
+                disciplinaID = entity.disciplinaID,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion
             };
 
             return response;
         }
-
         #endregion
 
 
@@ -488,6 +488,52 @@ namespace WebAPIUI.Helpers
             return response;
         }
         #endregion
+
+
+
+        #region EventosAdminHelper
+        public static List<EventoAdminModel> EventosEntityToModel(List<EventoAdminEntity> entities)
+        {
+
+            List<EventoAdminModel> response = new List<EventoAdminModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new EventoAdminModel
+                {
+                    eventoID = entity.eventoID,
+                    claseID = entity.claseID,
+                    horarioMID = entity.horarioMID,
+                    fecha = entity.fecha,
+                    salaID = entity.salaID,
+                    aforoMax = entity.aforoMax,
+                    aforoMin = entity.aforoMin
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static EventoAdminModel EventosInfoEntityToModel(EventoAdminEntity entity)
+        {
+
+            EventoAdminModel response = new EventoAdminModel
+            {
+                eventoID=entity.eventoID,
+                claseID=entity.claseID,
+                horarioMID=entity.horarioMID,
+                fecha=entity.fecha,
+                salaID=entity.salaID,
+                aforoMax=entity.aforoMax,
+                aforoMin=entity.aforoMin
+            };
+
+            return response;
+        }
+        #endregion
+
+
 
     }
 

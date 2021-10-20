@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.DisciplinaAdmin;
-using WebAPIBusiness.Entities.RolAdmin;
-using WebAPIUI.Controllers.CRUDDisciplinaAdmin.Models;
+using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
-using WebAPIUI.CustomExceptions.RolAdmin;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.DisciplinaAdmin;
-using WebAPIUI.Models.RolAdmin;
 
 namespace WebAPIUI.Controllers
 {
     /// <summary>
-    /// API que permite el manejo de Crear, Modificar y Consultar información de disciplinas.
+    /// API que permite el manejo de Crear, Modificar y Consultar información de Disciplinas.
     /// </summary>
     public class CRUDDisciplinaAdminController : BaseAPIController
     {
@@ -40,9 +35,9 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Insertar un nueva disciplina en la BD
+        /// Insertar un nuevo Disciplina en la BD
         /// </summary>
-        private bool InsertarNuevaDisciplina(string nombre, string descripcion, string numClases)
+        private bool InsertarNuevaDisciplina(string nombre, string descripcion)
         {
             DisciplinaAdminBO bo = new DisciplinaAdminBO();
             List<string> messages = new List<string>();
@@ -50,7 +45,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertDisciplina(nombre, descripcion, numClases);
+                response = bo.insertDisciplina(nombre, descripcion);
             }
             catch (ValidationAndMessageException DisciplinaAdminException)
             {
@@ -68,7 +63,7 @@ namespace WebAPIUI.Controllers
 
 
         /// <summary>
-        /// Consulta las disciplinas de la base 
+        /// Consulta los Disciplinas de la base 
         /// </summary>
         private List<DisciplinaAdminEntity> ConsultarDisciplinas()
         {
@@ -95,9 +90,9 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Modificar disciplina
+        /// Modificar Disciplina
         /// </summary>
-        private bool ModificarDisciplina(int disciplinaID, string nombre, string descripcion, string numClases)
+        private bool ModificarDisciplina(int DisciplinaID, string nombre, string descripcion)
         {
             DisciplinaAdminBO bo = new DisciplinaAdminBO();
             List<string> messages = new List<string>();
@@ -105,7 +100,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyDisciplina(disciplinaID, nombre, descripcion, numClases);
+                response = bo.modifyDisciplina(DisciplinaID, nombre, descripcion);
             }
             catch (ValidationAndMessageException DisciplinaAdminException)
             {
@@ -122,9 +117,9 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Consultar disciplina
+        /// Consultar Disciplina
         /// </summary>
-        private DisciplinaAdminEntity DetalleDisciplina(int disciplinaID)
+        private DisciplinaAdminEntity DetalleDisciplina(int DisciplinaID)
         {
             DisciplinaAdminBO bo = new DisciplinaAdminBO();
             List<string> messages = new List<string>();
@@ -132,7 +127,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.consultarDisciplina(disciplinaID);
+                response = bo.consultarDisciplina(DisciplinaID);
             }
             catch (ValidationAndMessageException DisciplinaAdminException)
             {
@@ -188,7 +183,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaDisciplina(dataRequest.nombre, dataRequest.descripcion, dataRequest.numClases);
+                    bool resp = InsertarNuevaDisciplina(dataRequest.nombre, dataRequest.descripcion);
 
                     if (resp)
                     {
@@ -206,7 +201,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarDisciplina(dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion, dataRequest.numClases);
+                    bool resp = ModificarDisciplina(dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion);
 
                     if (resp)
                     {
@@ -231,7 +226,7 @@ namespace WebAPIUI.Controllers
 
                     if (resp.disciplinaID > 0)
                     {
-                        model = EntitesHelper.DisciplinaInfoEntityToModel(resp);
+                        model = EntitesHelper.DisciplinasInfoEntityToModel(resp);
                         response.ResponseCode = DisciplinaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;

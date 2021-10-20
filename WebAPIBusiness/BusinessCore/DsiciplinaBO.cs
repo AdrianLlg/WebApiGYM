@@ -32,17 +32,16 @@ namespace WebAPIBusiness.BusinessCore
 
                 if (disciplinas.Count > 0)
                 {
-                    foreach (var disciplina in disciplinas)
+                    foreach (var dsp in disciplinas)
                     {
-                        DisciplinaAdminEntity Disciplina = new DisciplinaAdminEntity()
+                        DisciplinaAdminEntity disciplinasEntity = new DisciplinaAdminEntity()
                         {
-                            disciplinaID = disciplina.disciplinaID,
-                            nombre = disciplina.nombre,
-                            numClases = disciplina.numClases,
-                            descripcion = disciplina.descripcion
+                            disciplinaID = dsp.disciplinaID,
+                            nombre = dsp.nombre,
+                            descripcion = dsp.descripcion                           
                         };
 
-                        entities.Add(Disciplina);
+                        entities.Add(disciplinasEntity);
                     }
                 }
 
@@ -54,24 +53,24 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertDisciplina(string nombre, string descripcion, string numClases)
+        public bool insertDisciplina(string nombre, string descripcion)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBDisciplina(nombre, descripcion, numClases);
+                entity = insertDBDisciplina(nombre, descripcion);
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al insertar la disciplina");
+                throw new Exception("Ocurrió un error al insertar el usuario/calcular la edad del usuario.");
             }
 
             return entity;
         }
 
-        private bool insertDBDisciplina(string nombre, string descripcion, string numClases)
-        {
+        private bool insertDBDisciplina(string nombre, string descripcion)
+        {           
             disciplina item = new disciplina();
 
             try
@@ -81,8 +80,7 @@ namespace WebAPIBusiness.BusinessCore
                     item = new disciplina()
                     {
                        nombre = nombre,
-                       descripcion = descripcion,
-                       numClases = int.Parse(numClases)
+                       descripcion = descripcion
                     };
 
                     dbContext.disciplina.Add(item);
@@ -97,7 +95,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyDisciplina(int disciplinaID, string nombre, string descripcion, string numClases)
+        public bool modifyDisciplina(int disciplinaID, string nombre, string descripcion)
         {
             bool entity = false;
 
@@ -107,28 +105,29 @@ namespace WebAPIBusiness.BusinessCore
 
                 if (string.IsNullOrEmpty(validation))
                 {
-                    throw new Exception("El ID de la disciplina no se ha especificado.");
+                    throw new Exception("El ID de la persona no se ha especificado.");
                 }
 
-                entity = UpdateRecord(disciplinaID, nombre, descripcion, numClases);
+                entity = UpdateRecord(disciplinaID, nombre, descripcion);
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al modificar la disciplina.");
+                throw new Exception("Ocurrió un error al modificar el usuario.");
             }
 
             return entity;
         }
 
-        private bool UpdateRecord(int disciplinaID, string nombre, string descripcion, string numClases)
+        private bool UpdateRecord(int discplinaID, string nombre, string descripcion)
         {
-            disciplina disciplina = new disciplina();
+            bool resp = false;
+            disciplina disciplina= new disciplina();
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    disciplina = dbContext.disciplina.Where(x => x.disciplinaID == disciplinaID).FirstOrDefault();
+                    disciplina = dbContext.disciplina.Where(x => x.disciplinaID == discplinaID).FirstOrDefault();
 
                     if (disciplina != null)
                     {
@@ -139,18 +138,14 @@ namespace WebAPIBusiness.BusinessCore
                         if (!string.IsNullOrEmpty(descripcion))
                         {
                             disciplina.descripcion = descripcion;
-                        }
-                        if (!string.IsNullOrEmpty(numClases))
-                        {
-                            disciplina.numClases = int.Parse(numClases);
-                        }
+                        }                       
                     }
                     else
                     {
                         return false;
                     }
                     dbContext.SaveChanges();
-                    return true;
+                    return true; 
                 }
             }
             catch (Exception ex)
@@ -185,10 +180,9 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     resp = new DisciplinaAdminEntity()
                     {
-                        disciplinaID = disciplina.disciplinaID,
-                        nombre = disciplina.nombre,
-                        descripcion = disciplina.descripcion,
-                        numClases = disciplina.numClases
+                       disciplinaID = disciplina.disciplinaID,
+                       nombre = disciplina.nombre,
+                       descripcion = disciplina.descripcion
                     };
                 }
 
@@ -199,8 +193,5 @@ namespace WebAPIBusiness.BusinessCore
                 return resp;
             }
         }
-
-
-
     }
 }

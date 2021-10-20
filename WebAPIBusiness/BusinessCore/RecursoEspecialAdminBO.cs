@@ -49,7 +49,7 @@ namespace WebAPIBusiness.BusinessCore
                 return entities;
             }
             catch (Exception ex)
-            {
+            { 
                 return entities;
             }
         }
@@ -73,20 +73,20 @@ namespace WebAPIBusiness.BusinessCore
         private bool insertDBRecursoEspecial(string nombre, string descripcion)
         {
 
-            recurso item = new recurso();
+            recursoEspecial item = new recursoEspecial();
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    item = new recurso()
+                    item = new recursoEspecial()
                     {
                        nombre = nombre,
                        descripcion = descripcion,
                        
                     };
 
-                    dbContext.recurso.Add(item);
+                    dbContext.recursoEspecial.Add(item);
                     dbContext.SaveChanges();
                 }
 

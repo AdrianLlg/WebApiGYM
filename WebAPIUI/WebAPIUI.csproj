@@ -160,15 +160,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoAdmin\CRUDEventoAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\EventoAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\CRUDEventoAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\CRUDRecursoEspecialAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\Models\CRUDRecursoEspecialAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\Models\RecursoEspecialAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoAdmin\CRUDRecursoAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoAdmin\Models\CRUDRecursoAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoAdmin\Models\RecursoAdminDataResponse.cs" />
-    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\CRUDDisciplinaAdminController.cs" />
-    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\CRUDDisciplinaAdminDataRequest.cs" />
-    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\DisciplinaAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDHorarioAdmin\CRUDHorarioAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDHorarioAdmin\Models\CRUDHorarioAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDHorarioAdmin\Models\HorarioAdminDataResponse.cs" />
@@ -178,6 +178,9 @@
     <Compile Include="Controllers\Admin\CRUDClaseAdmin\CRUDClaseAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDClaseAdmin\Models\CRUDClaseAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDClaseAdmin\Models\ClaseAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\CRUDDisciplinaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\CRUDDisciplinaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\DisciplinaAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\CRUDSalaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\CRUDSalaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\SalaAdminDataResponse.cs" />
@@ -210,6 +213,7 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\EventoAdmin\EventoAdminException.cs" />
     <Compile Include="CustomExceptions\ClasesAdmin\ClasesAdminException.cs" />
     <Compile Include="CustomExceptions\HorarioAdmin\HorarioAdminException.cs" />
     <Compile Include="CustomExceptions\DisciplinaAdmin\DisciplinaAdminException.cs" />
@@ -230,8 +234,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
+    <Compile Include="Models\EventoAdmin\EventoAdminModel.cs" />
     <Compile Include="Models\ClaseAdmin\ClaseAdminModel.cs" />
-    <Compile Include="Models\DisciplinaAdmin\DisciplinaAdminModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
     <Compile Include="Models\HorarioMAdmin\HorarioMAdminModel.cs" />
@@ -242,6 +246,7 @@
     <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
     <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />
     <Compile Include="Models\HorarioAdmin\HorarioAdminModel.cs" />
+    <Compile Include="Models\DisciplinaAdmin\DisciplinaAdmin.cs" />
     <Compile Include="Models\SalaAdmin\SalaAdminModel.cs" />
     <Compile Include="Models\RolAdmin\RolAdminModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
