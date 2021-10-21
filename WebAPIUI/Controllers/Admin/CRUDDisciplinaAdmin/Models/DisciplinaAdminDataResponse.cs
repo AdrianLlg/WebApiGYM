@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
+using WebAPIUI.Models.MembresiasAdmin;
+using WebAPIUI.Models.RegistroAdmin;
 using WebAPIUI.Models.DisciplinaAdmin;
 
-namespace WebAPIUI.Controllers.CRUDDisciplinaAdmin.Models
+namespace WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models
 {
     public class DisciplinaAdminDataResponse
     {

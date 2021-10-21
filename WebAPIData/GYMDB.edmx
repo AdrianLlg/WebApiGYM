@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GYMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GYMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="clase">
           <Key>
             <PropertyRef Name="claseID" />
@@ -35,7 +35,6 @@
           <Property Name="disciplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
-          <Property Name="numClases" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="evento">
           <Key>
@@ -448,7 +447,8 @@
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GYMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -470,7 +470,6 @@
           <Property Name="disciplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="numClases" Type="Int32" Nullable="false" />
           <NavigationProperty Name="clase" Relationship="Self.disciplina_clase_fk" FromRole="disciplina" ToRole="clase" />
           <NavigationProperty Name="membresia_disciplina" Relationship="GYMDBModel.discplina1_fk" FromRole="disciplina" ToRole="membresia_disciplina" />
         </EntityType>
@@ -601,6 +600,16 @@
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="evento" Relationship="Self.sala_cronoID_fk" FromRole="sala" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.usuario_personaID_fk" FromRole="usuario" ToRole="persona" />
         </EntityType>
         <Association Name="disciplina_clase_fk">
           <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
@@ -734,6 +743,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="usuario_personaID_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GYMDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="clase" EntityType="Self.clase" />
           <EntitySet Name="disciplina" EntityType="Self.disciplina" />
@@ -748,6 +769,7 @@
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" />
           <EntitySet Name="roleP" EntityType="Self.roleP" />
           <EntitySet Name="sala" EntityType="Self.sala" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
           <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="clase" EntitySet="clase" />
@@ -792,8 +814,7 @@
             <End Role="roleP" EntitySet="roleP" />
             <End Role="persona" EntitySet="persona" />
           </AssociationSet>
-          <EntitySet Name="usuario" EntityType="GYMDBModel.usuario" />
-          <AssociationSet Name="usuario_personaID_fk" Association="GYMDBModel.usuario_personaID_fk">
+          <AssociationSet Name="usuario_personaID_fk" Association="Self.usuario_personaID_fk">
             <End Role="persona" EntitySet="persona" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
@@ -949,7 +970,6 @@
                 <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="numClases" ColumnName="numClases" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1073,10 +1093,10 @@
           <EntitySetMapping Name="usuario">
             <EntityTypeMapping TypeName="GYMDBModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

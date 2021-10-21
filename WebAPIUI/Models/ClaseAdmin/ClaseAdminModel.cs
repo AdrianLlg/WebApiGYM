@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models
+namespace WebAPIUI.Models.ClaseAdmin
 {
-    public class CRUDDisciplinaAdminDataRequest
+    public class ClaseAdminModel
     {
-        public int flujoID { get; set; }
+        public int claseID { get; set; }
         public int disciplinaID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
     }
-} 
+}

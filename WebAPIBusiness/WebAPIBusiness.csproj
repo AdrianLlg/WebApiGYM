@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="BusinessCore\ConfiguracionesAdminBO.cs" />
     <Compile Include="BusinessCore\DisciplinaAdminBO.cs" />
+    <Compile Include="BusinessCore\EventoAdminBO.cs" />
+    <Compile Include="BusinessCore\ClasesAdminBO .cs" />
     <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
     <Compile Include="BusinessCore\EventoClasePersonaBO.cs" />
     <Compile Include="BusinessCore\HorasDisciplinaBO.cs" />
@@ -60,18 +62,22 @@
     <Compile Include="BusinessCore\MembresiaAdminBO.cs" />
     <Compile Include="BusinessCore\MembresiaBO.cs" />
     <Compile Include="BusinessCore\LoginBO.cs" />
+    <Compile Include="BusinessCore\RecursoEspecialAdminBO.cs" />
     <Compile Include="BusinessCore\RecursoAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroAdminBO.cs" />
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="BusinessCore\HorarioAdminBO.cs" />
     <Compile Include="BusinessCore\HorarioMAdminBO.cs" />
+    <Compile Include="BusinessCore\DsiciplinaBO.cs" />
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
+    <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />
     <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
+    <Compile Include="Entities\Evento\EventoAdminEntity.cs" />
     <Compile Include="Entities\HorarioMAdmin\HorarioMAdminEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
@@ -80,6 +86,7 @@
     <Compile Include="Entities\MembresiaAdmin\MembresiaPersonaDisciplinaEntity.cs" />
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
+    <Compile Include="Entities\RecursoEspecialAdmin\RecursoEspecialAdminEntity.cs" />
     <Compile Include="Entities\RecursoAdmin\RecursoAdminEntity.cs" />
     <Compile Include="Entities\RegistroAdmin\UsuariosRegistradosEntity.cs" />
     <Compile Include="Entities\HorarioAdmin\HorarioAdminEntity.cs" />

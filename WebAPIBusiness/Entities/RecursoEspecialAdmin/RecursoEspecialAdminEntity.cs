@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAPIBusiness.Entities.DisciplinaAdmin
+namespace WebAPIBusiness.Entities.RecursoEspecialAdmin
 {
-    public class DisciplinaAdminEntity
+    public class RecursoEspecialAdminEntity
     {
-        public int disciplinaID { get; set; }
+        public int recursoEspecialID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-    }
 
+    }
 }

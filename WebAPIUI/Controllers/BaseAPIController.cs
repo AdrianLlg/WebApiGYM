@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using WebAPIUI.Controllers.CRUDDisciplinaAdmin.Models;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
 using WebAPIUI.Controllers.CRUDRecursoAdmin.Models;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
@@ -32,11 +31,20 @@ using WebAPIUI.Controllers.CRUDRHorarioMAdmin.Models;
 using WebAPIUI.Controllers.RegistroMembresiaUsuario.Models;
 using WebAPIUI.CustomExceptions.ConfiguracionesSistema;
 using WebAPIUI.Controllers.ConfiguracionesSistema.Models;
+using WebAPIUI.CustomExceptions.RecursoEspecialAdmin;
+using WebAPIUI.Controllers.CRUDRecursoEspecialAdmin.Models;
+using WebAPIUI.CustomExceptions.ClasesAdmin;
+using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
+using WebAPIUI.CustomExceptions.EventoAdmin;
+using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
+using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {
     public class BaseAPIController : ApiController
     {
+
+        #region Persona Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -60,8 +68,9 @@ namespace WebAPIUI.Controllers
             response.Content = false;
         }
 
+        #endregion
 
-
+        #region Login Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -85,8 +94,9 @@ namespace WebAPIUI.Controllers
             response.Content = null;
         }
 
+        #endregion
 
-
+        #region Usuario Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -110,7 +120,9 @@ namespace WebAPIUI.Controllers
             response.Content = null;
         }
 
+        #endregion
 
+        #region Horas_Disciplina Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -133,7 +145,9 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.Content = null;
         }
+        #endregion
 
+        #region Evento_Clase_Persona Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -157,7 +171,9 @@ namespace WebAPIUI.Controllers
             response.Content = null; 
         }
 
+        #endregion
 
+        #region Evento_RecursoEspecial Exceptions
         /// <summary>
         /// Maneja los errores controlados.
         /// </summary>
@@ -180,8 +196,14 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.Content = null;
         }
+        #endregion
 
-
+        #region Registro Admin Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionRegistroAdmin(RegistroAdminResponseType type, IList<string> messages)
         {
             var newException = new RegistroAdminException(type, messages);
@@ -202,7 +224,15 @@ namespace WebAPIUI.Controllers
             response.ContentModify = false;
             response.ContentDetail = null;
         }
+        #endregion
 
+        #region Membresia Admin Exceptions
+
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType type, IList<string> messages)
         {
             var newException = new MembresiaAdminException(type, messages);
@@ -223,7 +253,14 @@ namespace WebAPIUI.Controllers
             response.ContentModify = false;
             response.ContentDetail = null;
         }
+        #endregion
 
+        #region Rol Admin Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionRolAdmin(RolAdminResponseType type, IList<string> messages)
         {
             var newException = new RolAdminException(type, messages);
@@ -244,7 +281,14 @@ namespace WebAPIUI.Controllers
             response.ContentModify = false;
             response.ContentDetail = null;
         }
+        #endregion
 
+        #region SalaAdmin Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionSalaAdmin(SalaAdminResponseType type, IList<string> messages)
         {
             var newException = new SalaAdminException(type, messages);
@@ -266,7 +310,14 @@ namespace WebAPIUI.Controllers
             response.ContentDetail = null;
         }
 
+        #endregion
 
+        #region DisciplinaAdmin Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionDisciplinaAdmin(DisciplinaAdminResponseType type, IList<string> messages)
         {
             var newException = new DisciplinaAdminException(type, messages);
@@ -288,6 +339,14 @@ namespace WebAPIUI.Controllers
             response.ContentDetail = null;
         }
 
+        #endregion
+
+        #region Recurso Admin Expections
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType type, IList<string> messages)
         {
             var newException = new RecursoAdminException(type, messages);
@@ -308,8 +367,42 @@ namespace WebAPIUI.Controllers
             response.ContentModify = false;
             response.ContentDetail = null;
         }
+        #endregion
 
+        #region RecursoEspecial Admin Expections
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType type, IList<string> messages)
+        {
+            var newException = new RecursoEspecialAdminException(type, messages);
+            throw newException;
+        }
 
+        internal static void ThrowUnHandledExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType type, Exception ex)
+        {
+            throw new RecursoEspecialAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType code, RecursoEspecialAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
+
+        #region HorarioAdmin Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionHorarioAdmin(HorarioAdminResponseType type, IList<string> messages)
         {
             var newException = new HorarioAdminException(type, messages);
@@ -331,7 +424,14 @@ namespace WebAPIUI.Controllers
             response.ContentDetail = null;
         }
 
+        #endregion
 
+        #region HorarioMAdmin Expections
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
         internal static void ThrowHandledExceptionHorarioMAdmin(HorarioMAdminResponseType type, IList<string> messages)
         {
             var newException = new HorarioMAdminException(type, messages);
@@ -351,6 +451,20 @@ namespace WebAPIUI.Controllers
             response.ContentCreate = false;
             response.ContentModify = false;
             response.ContentDetail = null;
+        }
+        #endregion
+
+
+        #region Clases Expections
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionClaseAdmin(ClasesAdminResponseType type, IList<string> messages)
+        {
+            var newException = new ClasesAdminException(type, messages);
+            throw newException;
         }
 
         internal static void ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType type, IList<string> messages)

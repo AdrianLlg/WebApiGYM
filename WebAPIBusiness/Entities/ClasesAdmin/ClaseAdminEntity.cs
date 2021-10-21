@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models
+namespace WebAPIBusiness.Entities.ClasesAdmin
 {
-    public class CRUDDisciplinaAdminDataRequest
+    public class ClaseAdminEntity
     {
-        public int flujoID { get; set; }
+        public int claseID { get; set; }
         public int disciplinaID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
     }
-} 
+}
