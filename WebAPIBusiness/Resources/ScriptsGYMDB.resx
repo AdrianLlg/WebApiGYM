@@ -220,4 +220,17 @@ INNER JOIN membresia M ON M.membresiaID = MPD.membresiaID
 INNER JOIN disciplina D ON D.disciplinaID = MPD.disciplinaID
 WHERE MPD.personaID = {0}</value>
   </data>
+  <data name="getMembresiasUsuario2" xml:space="preserve">
+    <value>SELECT m.nombre as nombreMembresia, 
+m.precio as precioMembresia,
+d.nombre as nombreDisciplina,
+MPD.fechaPago,
+MPD.fechaLimite,
+MPD.numClasesDisponibles
+FROM membresia_persona_disciplina MPD INNER JOIN membresia_disciplina MD 
+on MPD.membresia_disciplinaID = MD.membresia_disciplinaID
+INNER JOIN membresia M on MD.membresiaID = M.membresiaID 
+INNER JOIN disciplina D on MD.disciplinaID = D.disciplinaID
+WHERE MPD.personaID = {0}</value>
+  </data>
 </root>
