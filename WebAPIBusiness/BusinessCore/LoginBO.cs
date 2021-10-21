@@ -48,8 +48,6 @@ namespace WebAPIBusiness.BusinessCore
             {
                 return usuarioDB;
             }
-        }
-
-        
+        }        
     }
 }

@@ -56,7 +56,7 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Insertar un nuevo usuario en la base de datos.
+        /// Consulta la membresía(s) según el usuario.
         /// </summary>
         /// <param name="dataRequest"></param>
         /// <returns></returns>

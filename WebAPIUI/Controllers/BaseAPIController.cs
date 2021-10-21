@@ -29,6 +29,9 @@ using WebAPIUI.CustomExceptions.SalaAdmin;
 using WebAPIUI.CustomExceptions.HorarioAdmin;
 using WebAPIUI.CustomExceptions.HorarioMAdmin;
 using WebAPIUI.Controllers.CRUDRHorarioMAdmin.Models;
+using WebAPIUI.Controllers.RegistroMembresiaUsuario.Models;
+using WebAPIUI.CustomExceptions.ConfiguracionesSistema;
+using WebAPIUI.Controllers.ConfiguracionesSistema.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -348,6 +351,43 @@ namespace WebAPIUI.Controllers
             response.ContentCreate = false;
             response.ContentModify = false;
             response.ContentDetail = null;
+        }
+
+        internal static void ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType type, IList<string> messages)
+        {
+            var newException = new RegistroMembresiaUsuarioException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType type, Exception ex)
+        {
+            throw new RegistroMembresiaUsuarioException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType code, RegistroMembresiaUsuarioDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = false;
+        }
+
+
+        internal static void ThrowHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType type, IList<string> messages)
+        {
+            var newException = new ConfiguracionesSistemaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType type, Exception ex)
+        {
+            throw new ConfiguracionesSistemaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType code, ConfiguracionesSistemaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
         }
 
     }

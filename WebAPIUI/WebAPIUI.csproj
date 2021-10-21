@@ -178,6 +178,12 @@
     <Compile Include="Controllers\Admin\CRUDRolAdmin\CRUDRolAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\CRUDRolAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\RolAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionesSistema\Models\ConfiguracionesSistemaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionesSistema\Models\ConfiguracionesSistemaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionesSistema\ConfiguracionesSistemaController.cs" />
+    <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\RegistroMembresiaUsuarioController.cs" />
+    <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataRequest.cs" />
+    <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataResponse.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\CRUDMembresiaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\Models\CRUDMembresiaAdminDataRequest.cs" />
@@ -204,10 +210,12 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\ConfiguracionesSistema\ConfiguracionesSistemaException.cs" />
     <Compile Include="CustomExceptions\HorarioAdmin\HorarioAdminException.cs" />
     <Compile Include="CustomExceptions\DisciplinaAdmin\DisciplinaAdminException.cs" />
     <Compile Include="CustomExceptions\EventoRecursoEspecial\EventoRecursoEspecialException.cs" />
     <Compile Include="CustomExceptions\HorasDisciplina\HorasDisciplinaException.cs" />
+    <Compile Include="CustomExceptions\MembresiasAdmin\RegistroMembresiaUsuarioException.cs" />
     <Compile Include="CustomExceptions\MembresiasAdmin\MembresiaAdminException.cs" />
     <Compile Include="CustomExceptions\MembresiasUsuario\MembresiasUsuarioException.cs" />
     <Compile Include="CustomExceptions\Login\LoginException.cs" />
@@ -222,12 +230,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
+    <Compile Include="Models\ConfiguracionesSistema\ConfiguracionesSistemaModel.cs" />
     <Compile Include="Models\DisciplinaAdmin\DisciplinaAdminModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
     <Compile Include="Models\HorarioMAdmin\HorarioMAdminModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
+    <Compile Include="Models\MembresiasAdmin\NuevaMembresiaPersonaModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
     <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
     <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />

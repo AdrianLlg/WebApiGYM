@@ -56,6 +56,9 @@
     <Compile Include="clase.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="configuraciones_Sistema.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="disciplina.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>

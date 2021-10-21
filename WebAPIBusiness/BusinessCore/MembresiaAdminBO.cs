@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.MembresiaAdmin;
 using WebAPIData;
 
@@ -37,7 +39,7 @@ namespace WebAPIBusiness.BusinessCore
                             membresiaID = m.membresiaID,
                             descripcion = m.descripcion,
                             nombre = m.nombre,
-                            precio = m.precio                           
+                            precio = m.precio
                         };
 
                         entities.Add(MembresiasEntity);
@@ -80,7 +82,7 @@ namespace WebAPIBusiness.BusinessCore
 
         private bool insertDBMembership(string nombre, string descripcion, int precio)
         {
-  
+
             membresia item = new membresia();
 
             try
@@ -89,7 +91,7 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     item = new membresia()
                     {
-                        nombre =  nombre,
+                        nombre = nombre,
                         precio = precio,
                         descripcion = descripcion
                     };
@@ -108,10 +110,10 @@ namespace WebAPIBusiness.BusinessCore
 
         public bool modifyMembership(int membresiaID, string nombre, string descripcion, string precio)
         {
-            bool entity = false;          
+            bool entity = false;
 
             try
-            {                
+            {
                 if (membresiaID == 0)
                 {
                     throw new Exception("El ID de la membresia no es válido.");
@@ -208,5 +210,113 @@ namespace WebAPIBusiness.BusinessCore
                 return resp;
             }
         }
+
+
+        public bool insertNewMembership(int personaID, int membresiaID, string fechapago)
+        {
+            List<MembresiaDisciplinaEntity> entities = new List<MembresiaDisciplinaEntity>();
+            bool resp = false;
+            try
+            {
+                if (personaID > 0 && membresiaID > 0)
+                {
+                    entities = consultarDisciplinasdeMembresia(personaID, membresiaID);
+
+                    if (entities.Count > 0)
+                    {
+                        DateTime fechPago = DateTime.Parse(fechapago);
+
+                        resp = insertNewMembershipDB(personaID, membresiaID, fechPago, entities);
+                    }
+                    else
+                    {
+                        throw new ValidationAndMessageException("La membresía ingresada no contiene disciplinas o no existe la membresía.");
+                    }
+
+                    return resp;
+                }
+                else
+                {
+                    throw new ValidationAndMessageException("PersonaID o MembresiaID tienen valores inválidos.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.Message);
+            }
+
+        }
+
+        private List<MembresiaDisciplinaEntity> consultarDisciplinasdeMembresia(int personaID, int membresiaID)
+        {
+            List<MembresiaDisciplinaEntity> entities = new List<MembresiaDisciplinaEntity>();
+            List<membresia_disciplina> query = new List<membresia_disciplina>();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    query = dbContext.membresia_disciplina.Where(x => x.membresiaID == membresiaID).ToList();
+                }
+
+                if (query.Count > 0)
+                {
+
+                    foreach (var item in query)
+                    {
+                        MembresiaDisciplinaEntity entity = new MembresiaDisciplinaEntity()
+                        {
+                            membresia_disciplinaID = item.membresia_disciplinaID,
+                            membresiaID = item.membresiaID,
+                            disciplinaID = item.disciplinaID,
+                            numClasesDisponibles = item.numClasesDisponibles
+                        };
+
+                        entities.Add(entity);
+                    }
+                }
+
+                return entities;
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException("Ocurrió un error en el manejo de datos en la BD.");
+            }
+        }
+
+        private bool insertNewMembershipDB(int personaID, int membresiaID, DateTime fechapag, List<MembresiaDisciplinaEntity> entities)
+        {
+            membresia_persona_disciplina query = new membresia_persona_disciplina();
+            var fechLimite = fechapag.AddDays(30).Date;
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    foreach (var entity in entities)
+                    {
+                        query = new membresia_persona_disciplina()
+                        {
+                            membresia_disciplinaID = entity.membresia_disciplinaID,
+                            personaID = personaID,
+                            fechaPago = fechapag,
+                            fechaLimite = fechLimite,
+                            numClasesDisponibles = entity.numClasesDisponibles,
+                            status = "I"
+                        };
+
+                        dbContext.membresia_persona_disciplina.Add(query);
+                        dbContext.SaveChanges();
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException("Ocurrió un error en el manejo de datos en la BD.");
+            }
+        }
+
     }
 }

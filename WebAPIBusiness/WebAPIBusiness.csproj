@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\ConfiguracionesAdminBO.cs" />
     <Compile Include="BusinessCore\DisciplinaAdminBO.cs" />
     <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
     <Compile Include="BusinessCore\EventoClasePersonaBO.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
+    <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />
     <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
@@ -74,6 +76,8 @@
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaDisciplinaEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaPersonaDisciplinaEntity.cs" />
     <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
     <Compile Include="Entities\Login\UsuarioEntity.cs" />
     <Compile Include="Entities\RecursoAdmin\RecursoAdminEntity.cs" />

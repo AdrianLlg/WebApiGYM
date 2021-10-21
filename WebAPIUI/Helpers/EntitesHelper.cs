@@ -26,6 +26,8 @@ using WebAPIUI.Models.HorarioAdmin;
 using WebAPIBusiness.Entities.HorarioAdmin;
 using WebAPIUI.Models.HorarioMAdmin;
 using WebAPIBusiness.Entities.HorarioMAdmin;
+using WebAPIBusiness.Entities.ConfiguracionesSistemaAdmin;
+using WebAPIUI.Models.ConfiguracionesSistema;
 
 namespace WebAPIUI.Helpers
 {
@@ -406,8 +408,48 @@ namespace WebAPIUI.Helpers
             return response;
         }
 
+        public static NuevaMembresiaPersonaModel NuevaMembresiaEntityToModel(MembresiaPersonaDisciplinaEntity entity)
+        {
+
+            NuevaMembresiaPersonaModel response = new NuevaMembresiaPersonaModel
+            {
+              membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
+              membresiaID = entity.membresiaID,
+              personaID = entity.personaID,
+              statusMembresia = entity.statusMembresia,
+              fechaPago = entity.fechaPago.ToString(),
+              fechaLimite = entity.fechaLimite.ToString()
+            };
+
+            return response;
+        }
+
+        public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
+        {
+
+            List<ConfiguracionesSistemaModel> response = new List<ConfiguracionesSistemaModel>();
+
+            foreach (var entity in entities)
+            {
+                ConfiguracionesSistemaModel model = new ConfiguracionesSistemaModel()
+                {
+                    ConfiguracionSistemaID = entity.ConfiguracionSistemaID,
+                    TipoConfiguracion = entity.TipoConfiguracion,
+                    NombreConfiguracion = entity.NombreConfiguracion,
+                    DescripcionConfiguracion = entity.DescripcionConfiguracion,
+                    Valor = entity.Valor,
+                    Estado = entity.Estado,
+                    Fecha = entity.Fecha.ToString(),
+                    FechaFin = entity.FechaFin.ToString(),
+                    FechaInicio = entity.FechaInicio.ToString()
+                };
+
+                response.Add(model);
+            };
 
 
+            return response;
+        }
 
     }
 
