@@ -531,6 +531,8 @@ namespace WebAPIUI.Helpers
                 response.Add(model);
             };
 
+            return response;
+        }
 
         #region EventosAdminHelper
         public static List<EventoAdminModel> EventosEntityToModel(List<EventoAdminEntity> entities)

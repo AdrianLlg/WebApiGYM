@@ -467,6 +467,25 @@ namespace WebAPIUI.Controllers
             throw newException;
         }
 
+        internal static void ThrowUnHandledExceptionClaseAdmin(ClasesAdminResponseType type, Exception ex)
+        {
+            throw new ClasesAdminException(type, ex.Message);
+        }
+
+
+        internal void SetResponseAsExceptionClaseAdmin(ClasesAdminResponseType code, ClaseAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
+
         internal static void ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType type, IList<string> messages)
         {
             var newException = new RegistroMembresiaUsuarioException(type, messages);
@@ -477,7 +496,6 @@ namespace WebAPIUI.Controllers
         {
             throw new RegistroMembresiaUsuarioException(type, ex.Message);
         }
-
         internal void SetResponseAsExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType code, RegistroMembresiaUsuarioDataResponse response, string message)
         {
             response.ResponseCode = code;
@@ -502,6 +520,29 @@ namespace WebAPIUI.Controllers
             response.ResponseCode = code;
             response.ResponseMessage = message;
             response.Content = null;
+        }
+
+        internal static void ThrowHandledExceptionEventoAdmin(EventoAdminResponseType type, IList<string> messages)
+        {
+            var newException = new EventoAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventoAdmin(EventoAdminResponseType type, Exception ex)
+        {
+            throw new EventoAdminException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventoAdmin(EventoAdminResponseType code, EventoAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
         }
 
     }

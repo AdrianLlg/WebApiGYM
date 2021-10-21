@@ -243,7 +243,6 @@
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
     <Compile Include="Models\ConfiguracionesSistema\ConfiguracionesSistemaModel.cs" />
-    <Compile Include="Models\DisciplinaAdmin\DisciplinaAdminModel.cs" />
     <Compile Include="Models\EventoAdmin\EventoAdminModel.cs" />
     <Compile Include="Models\ClaseAdmin\ClaseAdminModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />

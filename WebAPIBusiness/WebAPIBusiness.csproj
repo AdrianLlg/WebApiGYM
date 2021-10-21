@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessCore\ConfiguracionesAdminBO.cs" />
-    <Compile Include="BusinessCore\DisciplinaAdminBO.cs" />
     <Compile Include="BusinessCore\EventoAdminBO.cs" />
     <Compile Include="BusinessCore\ClasesAdminBO .cs" />
     <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
@@ -68,7 +67,7 @@
     <Compile Include="BusinessCore\RegistroBO.cs" />
     <Compile Include="BusinessCore\HorarioAdminBO.cs" />
     <Compile Include="BusinessCore\HorarioMAdminBO.cs" />
-    <Compile Include="BusinessCore\DsiciplinaBO.cs" />
+    <Compile Include="BusinessCore\DisciplinaAdminBO.cs" />
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
