@@ -172,5 +172,24 @@ namespace WebAPIBusiness.Resources {
                 return ResourceManager.GetString("getMembresiasUsuario", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT m.nombre as nombreMembresia, 
+        ///m.precio as precioMembresia,
+        ///d.nombre as nombreDisciplina,
+        ///MPD.fechaPago,
+        ///MPD.fechaLimite,
+        ///MPD.numClasesDisponibles
+        ///FROM membresia_persona_disciplina MPD INNER JOIN membresia_disciplina MD 
+        ///on MPD.membresia_disciplinaID = MD.membresia_disciplinaID
+        ///INNER JOIN membresia M on MD.membresiaID = M.membresiaID 
+        ///INNER JOIN disciplina D on MD.disciplinaID = D.disciplinaID
+        ///WHERE MPD.personaID = {0}.
+        /// </summary>
+        internal static string getMembresiasUsuario2 {
+            get {
+                return ResourceManager.GetString("getMembresiasUsuario2", resourceCulture);
+            }
+        }
     }
 }

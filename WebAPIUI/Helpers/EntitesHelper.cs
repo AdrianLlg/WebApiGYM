@@ -47,13 +47,12 @@ namespace WebAPIUI.Helpers
             {
                 var item = new MembresiasModel
                 {
-                    disciplinaID = entity.disciplinaID,
-                    nombreDisciplina = entity.nombreDisciplina,
-                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
-                    fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
                     nombreMembresia = entity.nombreMembresia,
+                    precioMembresia = entity.precioMembresia,
+                    nombreDisciplina = entity.nombreDisciplina,
+                    fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
+                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
                     numClasesDisponibles = entity.numClasesDisponibles,
-                    precio = entity.precio
                 };
 
                 response.Add(item);

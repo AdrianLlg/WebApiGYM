@@ -19,13 +19,12 @@ namespace WebAPIBusiness.BusinessCore
 
         private List<MembresiaEntity> getMembresiasUser(string personaID)
         {
-            int ID = Convert.ToInt16(personaID);
             List<MembresiaEntity> membresias = new List<MembresiaEntity>();
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    string query = string.Format(ScriptsGYMDB.getMembresiasUsuario, personaID);
+                    string query = string.Format(ScriptsGYMDB.getMembresiasUsuario2, personaID);
                     membresias = dbContext.Database.SqlQuery<MembresiaEntity>(query).ToList();
                 }
 
