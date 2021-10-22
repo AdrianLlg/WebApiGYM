@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GYMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GYMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="clase">
           <Key>
             <PropertyRef Name="claseID" />
@@ -112,6 +112,15 @@
           <Property Name="fechaLimite" Type="date" Nullable="false" />
           <Property Name="numClasesDisponibles" Type="int" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="noticia">
+          <Key>
+            <PropertyRef Name="noticiaID" />
+          </Key>
+          <Property Name="noticiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="contenido" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="imagen" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -376,6 +385,7 @@
           <EntitySet Name="membresia" EntityType="Self.membresia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="membresia_disciplina" EntityType="Self.membresia_disciplina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="membresia_persona_disciplina" EntityType="Self.membresia_persona_disciplina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="noticia" EntityType="Self.noticia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="recurso" EntityType="Self.recurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" Schema="dbo" store:Type="Tables" />
@@ -447,7 +457,8 @@
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GYMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -461,6 +472,20 @@
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="disciplina" Relationship="Self.disciplina_clase_fk" FromRole="clase" ToRole="disciplina" />
           <NavigationProperty Name="evento" Relationship="Self.evento_cronoID_fk" FromRole="clase" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="configuraciones_Sistema">
+          <Key>
+            <PropertyRef Name="ConfiguracionSistemaID" />
+          </Key>
+          <Property Name="ConfiguracionSistemaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoConfiguracion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreConfiguracion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DescripcionConfiguracion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaFin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="disciplina">
           <Key>
@@ -567,6 +592,15 @@
           <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia_disciplinaIDfk" FromRole="membresia_persona_disciplina" ToRole="membresia_disciplina" />
           <NavigationProperty Name="persona" Relationship="Self.PersonaIdMPD_fk" FromRole="membresia_persona_disciplina" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="noticia">
+          <Key>
+            <PropertyRef Name="noticiaID" />
+          </Key>
+          <Property Name="noticiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -830,6 +864,7 @@
         </Association>
         <EntityContainer Name="GYMDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="clase" EntityType="Self.clase" />
+          <EntitySet Name="configuraciones_Sistema" EntityType="Self.configuraciones_Sistema" />
           <EntitySet Name="disciplina" EntityType="Self.disciplina" />
           <EntitySet Name="evento" EntityType="Self.evento" />
           <EntitySet Name="evento_persona" EntityType="Self.evento_persona" />
@@ -839,6 +874,7 @@
           <EntitySet Name="membresia" EntityType="Self.membresia" />
           <EntitySet Name="membresia_disciplina" EntityType="Self.membresia_disciplina" />
           <EntitySet Name="membresia_persona_disciplina" EntityType="Self.membresia_persona_disciplina" />
+          <EntitySet Name="noticia" EntityType="Self.noticia" />
           <EntitySet Name="persona" EntityType="Self.persona" />
           <EntitySet Name="recurso" EntityType="Self.recurso" />
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" />
@@ -909,22 +945,7 @@
             <End Role="persona" EntitySet="persona" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
-          <EntitySet Name="configuraciones_Sistema" EntityType="GYMDBModel.configuraciones_Sistema" />
         </EntityContainer>
-        <EntityType Name="configuraciones_Sistema">
-          <Key>
-            <PropertyRef Name="ConfiguracionSistemaID" />
-          </Key>
-          <Property Name="ConfiguracionSistemaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoConfiguracion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="NombreConfiguracion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="DescripcionConfiguracion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="Valor" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <Property Name="FechaInicio" Type="DateTime" Precision="3" />
-          <Property Name="FechaFin" Type="DateTime" Precision="3" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -938,6 +959,21 @@
                 <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configuraciones_Sistema">
+            <EntityTypeMapping TypeName="GYMDBModel.configuraciones_Sistema">
+              <MappingFragment StoreEntitySet="configuraciones_Sistema">
+                <ScalarProperty Name="ConfiguracionSistemaID" ColumnName="ConfiguracionSistemaID" />
+                <ScalarProperty Name="TipoConfiguracion" ColumnName="TipoConfiguracion" />
+                <ScalarProperty Name="NombreConfiguracion" ColumnName="NombreConfiguracion" />
+                <ScalarProperty Name="DescripcionConfiguracion" ColumnName="DescripcionConfiguracion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1035,6 +1071,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="noticia">
+            <EntityTypeMapping TypeName="GYMDBModel.noticia">
+              <MappingFragment StoreEntitySet="noticia">
+                <ScalarProperty Name="noticiaID" ColumnName="noticiaID" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="persona">
             <EntityTypeMapping TypeName="GYMDBModel.persona">
               <MappingFragment StoreEntitySet="persona">
@@ -1097,21 +1143,6 @@
                 <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="configuraciones_Sistema">
-            <EntityTypeMapping TypeName="GYMDBModel.configuraciones_Sistema">
-              <MappingFragment StoreEntitySet="configuraciones_Sistema">
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="DescripcionConfiguracion" ColumnName="DescripcionConfiguracion" />
-                <ScalarProperty Name="NombreConfiguracion" ColumnName="NombreConfiguracion" />
-                <ScalarProperty Name="TipoConfiguracion" ColumnName="TipoConfiguracion" />
-                <ScalarProperty Name="ConfiguracionSistemaID" ColumnName="ConfiguracionSistemaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

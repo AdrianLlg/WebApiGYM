@@ -68,6 +68,7 @@
     <Compile Include="BusinessCore\HorarioAdminBO.cs" />
     <Compile Include="BusinessCore\HorarioMAdminBO.cs" />
     <Compile Include="BusinessCore\DisciplinaAdminBO.cs" />
+    <Compile Include="BusinessCore\NoticiaAdminBO.cs" />
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Entities\HorarioMAdmin\HorarioMAdminEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
+    <Compile Include="Entities\Noticia\NoticiaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaDisciplinaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaPersonaDisciplinaEntity.cs" />

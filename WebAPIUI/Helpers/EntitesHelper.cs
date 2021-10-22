@@ -30,6 +30,8 @@ using WebAPIUI.Models.RecursoEspecialAdmin;
 using WebAPIUI.Models.RegistroAdmin;
 using WebAPIUI.Models.RolAdmin;
 using WebAPIUI.Models.SalaAdmin;
+using WebAPIUI.Models.NoticiaAdmin;
+using WebAPIBusiness.Entities.Noticia;
 
 namespace WebAPIUI.Helpers
 {
@@ -492,47 +494,87 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
-        public static NuevaMembresiaPersonaModel NuevaMembresiaEntityToModel(MembresiaPersonaDisciplinaEntity entity)
+        //public static NuevaMembresiaPersonaModel NuevaMembresiaEntityToModel(MembresiaPersonaDisciplinaEntity entity)
+        //{
+
+        //    NuevaMembresiaPersonaModel response = new NuevaMembresiaPersonaModel
+        //    {
+        //      membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
+        //      membresiaID = entity.membresiaID,
+        //      personaID = entity.personaID,
+        //      statusMembresia = entity.statusMembresia,
+        //      fechaPago = entity.fechaPago.ToString(),
+        //      fechaLimite = entity.fechaLimite.ToString()
+        //    };
+
+        //    return response;
+        //}
+
+        //public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
+        //{
+
+        //    List<ConfiguracionesSistemaModel> response = new List<ConfiguracionesSistemaModel>();
+
+        //    foreach (var entity in entities)
+        //    {
+        //        ConfiguracionesSistemaModel model = new ConfiguracionesSistemaModel()
+        //        {
+        //            ConfiguracionSistemaID = entity.ConfiguracionSistemaID,
+        //            TipoConfiguracion = entity.TipoConfiguracion,
+        //            NombreConfiguracion = entity.NombreConfiguracion,
+        //            DescripcionConfiguracion = entity.DescripcionConfiguracion,
+        //            Valor = entity.Valor,
+        //            Estado = entity.Estado,
+        //            Fecha = entity.Fecha.ToString(),
+        //            FechaFin = entity.FechaFin.ToString(),
+        //            FechaInicio = entity.FechaInicio.ToString()
+        //        };
+
+        //        response.Add(model);
+        //    };
+
+        //    return response;
+        //}
+
+
+        #region NoticiaAdmin
+        public static List<NoticiaAdminModel> NoticiaEntityToModel(List<NoticiaEntity> entities)
         {
 
-            NuevaMembresiaPersonaModel response = new NuevaMembresiaPersonaModel
-            {
-              membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
-              membresiaID = entity.membresiaID,
-              personaID = entity.personaID,
-              statusMembresia = entity.statusMembresia,
-              fechaPago = entity.fechaPago.ToString(),
-              fechaLimite = entity.fechaLimite.ToString()
-            };
-
-            return response;
-        }
-
-        public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
-        {
-
-            List<ConfiguracionesSistemaModel> response = new List<ConfiguracionesSistemaModel>();
+            List<NoticiaAdminModel> response = new List<NoticiaAdminModel>();
 
             foreach (var entity in entities)
             {
-                ConfiguracionesSistemaModel model = new ConfiguracionesSistemaModel()
+                var item = new NoticiaAdminModel
                 {
-                    ConfiguracionSistemaID = entity.ConfiguracionSistemaID,
-                    TipoConfiguracion = entity.TipoConfiguracion,
-                    NombreConfiguracion = entity.NombreConfiguracion,
-                    DescripcionConfiguracion = entity.DescripcionConfiguracion,
-                    Valor = entity.Valor,
-                    Estado = entity.Estado,
-                    Fecha = entity.Fecha.ToString(),
-                    FechaFin = entity.FechaFin.ToString(),
-                    FechaInicio = entity.FechaInicio.ToString()
+                    noticiaID=entity.noticiaID,
+                    titulo=entity.titulo,
+                    contenido=entity.contenido,
+                    imagen=entity.imagen
+                    
+                    
                 };
 
-                response.Add(model);
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static NoticiaAdminModel NoticiaInfoEntityToModel(NoticiaEntity entity)
+        {
+
+            NoticiaAdminModel response = new NoticiaAdminModel
+            {
+                noticiaID = entity.noticiaID,
+                titulo = entity.titulo,
+                contenido = entity.contenido,
+                imagen = entity.imagen
+
             };
 
             return response;
         }
+        #endregion
 
         #region EventosAdminHelper
         public static List<EventoAdminModel> EventosEntityToModel(List<EventoAdminEntity> entities)
