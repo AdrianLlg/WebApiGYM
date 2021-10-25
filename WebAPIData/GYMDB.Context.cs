@@ -41,7 +41,6 @@ namespace WebAPIData
         public virtual DbSet<roleP> roleP { get; set; }
         public virtual DbSet<sala> sala { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
-        public virtual DbSet<configuraciones_Sistema> configuraciones_Sistema { get; set; }
         public virtual DbSet<membresia> membresia { get; set; }
         public virtual DbSet<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
     }
