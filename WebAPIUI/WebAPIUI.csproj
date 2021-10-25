@@ -181,6 +181,9 @@
     <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\CRUDDisciplinaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\CRUDDisciplinaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\DisciplinaAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\CRUDNoticiaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\Models\CRUDNoticiaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\Models\CRUDNoticiaAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\CRUDSalaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\CRUDSalaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\SalaAdminDataResponse.cs" />
@@ -236,6 +239,7 @@
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
     <Compile Include="CustomExceptions\RegistroAdmin\RegistroAdminException.cs" />
     <Compile Include="CustomExceptions\HorarioMAdmin\HorarioMAdminException.cs" />
+    <Compile Include="CustomExceptions\NoticiaAdmin\NoticiaAdminException.cs" />
     <Compile Include="CustomExceptions\SalaAdmin\SalaAdminException.cs" />
     <Compile Include="CustomExceptions\RolAdmin\RolAdminException.cs" />
     <Compile Include="Global.asax.cs">
@@ -252,6 +256,7 @@
     <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
     <Compile Include="Models\MembresiasAdmin\NuevaMembresiaPersonaModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
+    <Compile Include="Models\NoticiaAdmin\NoticiaAdminModel.cs" />
     <Compile Include="Models\RecursoEspecialAdmin\RecursoEspecialAdminModel.cs" />
     <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
     <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />

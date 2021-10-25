@@ -101,6 +101,9 @@
     <Compile Include="membresia_persona_disciplina.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="noticia.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="persona.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>

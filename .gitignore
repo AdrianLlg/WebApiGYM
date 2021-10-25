@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/WebAPIBusiness/BusinessCore/MembresiaPersonaDisciplinaBO.cs
+/WebAPIBusiness/Entities/MembresiaPersonaDisciplina/MembresiaPersonaDisciplinaEntity.cs
+/WebAPIUI/Controllers/Admin/CRUDMembresiaPersonaDisciplinaAdminAdmin

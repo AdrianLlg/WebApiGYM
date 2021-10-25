@@ -38,6 +38,8 @@ using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
 using WebAPIUI.CustomExceptions.EventoAdmin;
 using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
 using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
+using WebAPIUI.CustomExceptions.NoticiaAdmin;
+using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -454,6 +456,38 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
+
+
+        #region NoticiaAdmin Expections
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionNoticiaAdmin(NoticiaAdminResponseType type, IList<string> messages)
+        {
+            var newException = new NoticiaAdminException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionNoticiaAdmin(NoticiaAdminResponseType type, Exception ex)
+        {
+            throw new NoticiaAdminException(type, ex.Message);
+        }
+
+
+        internal void SetResponseAsExceptionNoticiaAdmin(NoticiaAdminResponseType code, CRUDNoticiaAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
 
         #region Clases Expections
         /// <summary>

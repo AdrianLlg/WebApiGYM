@@ -26,6 +26,7 @@ namespace WebAPIData
         }
     
         public virtual DbSet<clase> clase { get; set; }
+        public virtual DbSet<configuraciones_Sistema> configuraciones_Sistema { get; set; }
         public virtual DbSet<disciplina> disciplina { get; set; }
         public virtual DbSet<evento> evento { get; set; }
         public virtual DbSet<evento_persona> evento_persona { get; set; }
@@ -33,6 +34,7 @@ namespace WebAPIData
         public virtual DbSet<evento_recursoEspecial> evento_recursoEspecial { get; set; }
         public virtual DbSet<horarioM> horarioM { get; set; }
         public virtual DbSet<membresia_disciplina> membresia_disciplina { get; set; }
+        public virtual DbSet<noticia> noticia { get; set; }
         public virtual DbSet<persona> persona { get; set; }
         public virtual DbSet<recurso> recurso { get; set; }
         public virtual DbSet<recursoEspecial> recursoEspecial { get; set; }
