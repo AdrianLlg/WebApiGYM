@@ -39,7 +39,9 @@ namespace WebAPIBusiness.BusinessCore
                             membresiaID = m.membresiaID,
                             descripcion = m.descripcion,
                             nombre = m.nombre,
-                            precio = m.precio
+                            precio = m.precio,
+                            periodicidad = m.periodicidad
+                            
                         };
 
                         entities.Add(MembresiasEntity);
@@ -54,23 +56,23 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertMembership(string nombre, string descripcion, string precio)
+        public bool insertMembership(string nombre, string descripcion, string precio, string periodicidad)
         {
             bool entity = false;
-            int valPrecio = 0;
+            decimal valPrecio;
 
             try
             {
                 if (string.IsNullOrEmpty(precio))
                 {
-                    throw new Exception("El precio ingresado no es un entero válido.");
+                    throw new Exception("El precio ingresado no es un valor válido.");
                 }
                 else
                 {
-                    valPrecio = int.Parse(precio);
+                    valPrecio = decimal.Parse(precio);
                 }
 
-                entity = insertDBMembership(nombre, descripcion, valPrecio);
+                entity = insertDBMembership(nombre, descripcion, valPrecio, periodicidad);
             }
             catch (Exception ex)
             {
@@ -80,7 +82,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBMembership(string nombre, string descripcion, int precio)
+        private bool insertDBMembership(string nombre, string descripcion, decimal precio, string periodicidad)
         {
 
             membresia item = new membresia();
@@ -93,7 +95,8 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         nombre = nombre,
                         precio = precio,
-                        descripcion = descripcion
+                        descripcion = descripcion,
+                        periodicidad = periodicidad
                     };
 
                     dbContext.membresia.Add(item);
@@ -300,9 +303,9 @@ namespace WebAPIBusiness.BusinessCore
                             membresia_disciplinaID = entity.membresia_disciplinaID,
                             personaID = personaID,
                             fechaPago = fechapag,
-                            fechaLimite = fechLimite,
+                            fechaFinMembresia = fechLimite,
                             numClasesDisponibles = entity.numClasesDisponibles,
-                            status = "I"
+                            estado = "I"
                         };
 
                         dbContext.membresia_persona_disciplina.Add(query);

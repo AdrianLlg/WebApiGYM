@@ -45,7 +45,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar una nueva membresia en la tabla
         /// </summary>
-        private bool InsertarNuevaMembresia(string nombre, string descripcion, string precio)
+        private bool InsertarNuevaMembresia(string nombre, string descripcion, string precio, string periodicidad)
         {
             MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
@@ -53,7 +53,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertMembership(nombre, descripcion, precio);
+                response = bo.insertMembership(nombre, descripcion, precio, periodicidad);
             }
             catch (ValidationAndMessageException MembresiaAdminException)
             {
@@ -191,7 +191,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaMembresia(dataRequest.nombre, dataRequest.descripcion, dataRequest.precio);
+                    bool resp = InsertarNuevaMembresia(dataRequest.nombre, dataRequest.descripcion, dataRequest.precio, dataRequest.periodicidad);
 
                     if (resp)
                     {
@@ -224,7 +224,7 @@ namespace WebAPIUI.Controllers
                         response.ContentModify = false;
                     }
                 }  
-                //Detalle de persona
+                //Detalle de membresia
                 else if (dataRequest.flujoID == 3)
                 {
                     MembresiaAdminEntity resp = new MembresiaAdminEntity();

@@ -17,10 +17,10 @@ namespace WebAPIData
         public int membresia_persona_disciplinaID { get; set; }
         public int personaID { get; set; }
         public int membresia_disciplinaID { get; set; }
-        public System.DateTime fechaPago { get; set; }
-        public System.DateTime fechaLimite { get; set; }
+        public Nullable<System.DateTime> fechaPago { get; set; }
+        public System.DateTime fechaFinMembresia { get; set; }
         public int numClasesDisponibles { get; set; }
-        public string status { get; set; }
+        public string estado { get; set; }
     
         public virtual membresia_disciplina membresia_disciplina { get; set; }
         public virtual persona persona { get; set; }
