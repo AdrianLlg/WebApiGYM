@@ -118,9 +118,11 @@
             <PropertyRef Name="noticiaID" />
           </Key>
           <Property Name="noticiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="titulo" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="contenido" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="contenido" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="imagen" Type="varbinary(max)" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -598,9 +600,11 @@
             <PropertyRef Name="noticiaID" />
           </Key>
           <Property Name="noticiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="titulo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="contenido" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -1078,6 +1082,8 @@
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

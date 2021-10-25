@@ -118,489 +118,371 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Creacion 2.0" xml:space="preserve">
-    <value>USE [master]
-GO
-/****** Object:  Database [GYMDB]    Script Date: 28/09/2021 23:28:08 ******/
-CREATE DATABASE [GYMDB]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'GYMDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'GYMDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB_log.ldf' , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
-GO
-ALTER DATABASE [GYMDB] SET COMPATIBILITY_LEVEL = 150
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [GYMDB].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [GYMDB] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [GYMDB] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [GYMDB] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [GYMDB] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [GYMDB] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [GYMDB] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [GYMDB] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [GYMDB] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [GYMDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [GYMDB] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [GYMDB] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [GYMDB] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [GYMDB] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [GYMDB] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [GYMDB] SET  ENABLE_BROKER 
-GO
-ALTER DATABASE [GYMDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [GYMDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [GYMDB] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [GYMDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [GYMDB] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [GYMDB] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [GYMDB] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [GYMDB] SET RECOVERY FULL 
-GO
-ALTER DATABASE [GYMDB] SET  MULTI_USER 
-GO
-ALTER DATABASE [GYMDB] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [GYMDB] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [GYMDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [GYMDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [GYMDB] SET DELAYED_DURABILITY = DISABLED 
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'GYMDB', N'ON'
-GO
-ALTER DATABASE [GYMDB] SET QUERY_STORE = OFF
-GO
-USE [GYMDB]
-GO
-/****** Object:  Table [dbo].[clase]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[clase](
-	[claseID] [int] IDENTITY(1,1) NOT NULL,
-	[disciplinaID] [int] NOT NULL,
-	[nombre] [varchar](30) NOT NULL,
-	[descripcion] [varchar](300) NOT NULL,
- CONSTRAINT [clase_pk] PRIMARY KEY CLUSTERED 
-(
-	[claseID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[clase_persona]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[clase_persona](
-	[clase_personaID] [int] IDENTITY(1,1) NOT NULL,
-	[claseID] [int] NOT NULL,
-	[personaID] [int] NOT NULL,
-	[rolePID] [int] NOT NULL,
-	[asistencia] [int] NOT NULL,
- CONSTRAINT [clase_persona_pk] PRIMARY KEY CLUSTERED 
-(
-	[clase_personaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[clase_recurso]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[clase_recurso](
-	[clase_recursoID] [int] IDENTITY(1,1) NOT NULL,
-	[claseID] [int] NOT NULL,
-	[recursoID] [int] NOT NULL,
-	[reservado] [int] NOT NULL,
-	[personaID] [int] NOT NULL,
- CONSTRAINT [claserecurso_pk] PRIMARY KEY CLUSTERED 
-(
-	[clase_recursoID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[cronograma]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[cronograma](
-	[cronogramaID] [int] IDENTITY(1,1) NOT NULL,
-	[claseID] [int] NOT NULL,
-	[horarioMID] [int] NOT NULL,
-	[fecha] [date] NOT NULL,
-	[salaID] [int] NOT NULL,
- CONSTRAINT [cronograma_pk] PRIMARY KEY CLUSTERED 
-(
-	[cronogramaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[disciplina]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[disciplina](
-	[disciplinaID] [int] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](30) NOT NULL,
-	[descripcion] [varchar](300) NOT NULL
- CONSTRAINT [disciplina_pk] PRIMARY KEY CLUSTERED 
-(
-	[disciplinaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[horarioM]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[horarioM](
-	[horarioMID] [int] IDENTITY(1,1) NOT NULL,
-	[horaInicio] [varchar](10) NOT NULL,
-	[horaFin] [varchar](10) NOT NULL,
- CONSTRAINT [horarioM_pk] PRIMARY KEY CLUSTERED 
-(
-	[horarioMID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[membresia]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[membresia](
-	[membresiaID] [int] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](50) NULL,
-	[descripcion] [varchar](300) NULL,
-	[precio] [decimal] NOT NULL,
- CONSTRAINT [membresiaID_pk] PRIMARY KEY CLUSTERED 
-(
-	[membresiaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[membresia_disciplina]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[membresia_disciplina](
-	[membresia_disciplinaID] [int] IDENTITY(1,1) NOT NULL,
-	[membresiaID] [int] NOT NULL,
-	[disciplinaID] [int] NOT NULL,
-	[numClasesDisponibles] [int] NOT NULL
- CONSTRAINT [membresia_discplinaID_pk] PRIMARY KEY CLUSTERED 
-(
-	[membresia_disciplinaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[membresia_persona_disciplina]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[membresia_persona_disciplina](
-	[membresia_persona_disciplinaID] [int] IDENTITY(1,1) NOT NULL,
-	[personaID] [int] NOT NULL,
-	[membresia_disciplinaID] [int] NOT NULL,
-	[fechaPago] [date] NOT NULL,
-	[fechaLimite] [date] NOT NULL,	
-	[numClasesDisponibles] [int] NOT NULL,
-	[status] [varchar] NOT NULL
- CONSTRAINT [membresia_persona_disciplinaID_pk] PRIMARY KEY CLUSTERED 
-(
-	[membresia_persona_disciplinaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[persona]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[persona](
-	[personaID] [int] IDENTITY(1,1) NOT NULL,
-	[rolePID] [int] NOT NULL,
-	[nombres] [varchar](80) NOT NULL,
-	[apellidos] [varchar](80) NOT NULL,
-	[identificacion] [varchar](30) NOT NULL,
-	[email] [varchar](80) NOT NULL,
-	[telefono] [varchar](10) NOT NULL,
-	[edad] [varchar](2) NOT NULL,
-	[sexo] [varchar](1) NOT NULL,
-	[fechaNacimiento] [date] NOT NULL,
-	[fechaCreacion] [date] NOT NULL,
- CONSTRAINT [persona_pk] PRIMARY KEY CLUSTERED 
-(
-	[personaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[recurso]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[recurso](
-	[recursoID] [int] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](30) NOT NULL,
-	[descripcion] [varchar](300) NOT NULL,
- CONSTRAINT [recurso_pk] PRIMARY KEY CLUSTERED 
-(
-	[recursoID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[roleP]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[roleP](
-	[rolePID] [int] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](20) NOT NULL,
-	[descripcion] [varchar](300) NOT NULL,
- CONSTRAINT [roleP_pk] PRIMARY KEY CLUSTERED 
-(
-	[rolePID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[sala]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[sala](
-	[salaID] [int] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](30) NOT NULL,
-	[descripcion] [varchar](300) NOT NULL,
- CONSTRAINT [sala_pk] PRIMARY KEY CLUSTERED 
-(
-	[salaID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[usuario]    Script Date: 28/09/2021 23:28:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[usuario](
-	[usuarioID] [int] IDENTITY(1,1) NOT NULL,
-	[personaID] [int] NOT NULL,
-	[email] [varchar](20) NOT NULL,
-	[password] [varchar](300) NOT NULL,
- CONSTRAINT [usuario_pk] PRIMARY KEY CLUSTERED 
-(
-	[usuarioID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET IDENTITY_INSERT [dbo].[clase] ON 
+    <value>--CREATE DATABASE GYMDB
+USE GYMDB
+GO
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'configuraciones_Sistema ') DROP TABLE configuraciones_Sistema ;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'noticia ') DROP TABLE noticia ;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_persona_disciplina ') DROP TABLE membresia_persona_disciplina ;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'evento_recurso') DROP TABLE evento_recurso;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'evento_persona') DROP TABLE evento_persona;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'evento_recursoEspecial') DROP TABLE evento_recursoEspecial;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'recursoEspecial') DROP TABLE recursoEspecial;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'evento') DROP TABLE evento;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia_disciplina') DROP TABLE membresia_disciplina;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'membresia') DROP TABLE membresia;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'clase') DROP TABLE clase;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'recurso') DROP TABLE recurso;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'sala') DROP TABLE sala;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'disciplina') DROP TABLE disciplina;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'horarioM') DROP TABLE horarioM;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'usuario') DROP TABLE usuario;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'persona') DROP TABLE persona;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'roleP') DROP TABLE roleP;
 
-INSERT [dbo].[clase] ([claseID], [disciplinaID], [nombre], [descripcion]) VALUES (1, 1, N'Pole', N'Clase Pole')
-INSERT [dbo].[clase] ([claseID], [disciplinaID], [nombre], [descripcion]) VALUES (2, 2, N'Bachata', N'Clase Bachata')
-INSERT [dbo].[clase] ([claseID], [disciplinaID], [nombre], [descripcion]) VALUES (3, 3, N'Baile', N'Clase Baile')
-SET IDENTITY_INSERT [dbo].[clase] OFF
-GO
-SET IDENTITY_INSERT [dbo].[cronograma] ON 
 
-INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (1, 1, 1, CAST(N'2021-09-11' AS Date), 1)
-INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (2, 2, 2, CAST(N'2021-09-12' AS Date), 2)
-INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (3, 2, 3, CAST(N'2021-09-13' AS Date), 2)
-INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (4, 3, 4, CAST(N'2021-09-14' AS Date), 2)
-INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (5, 3, 5, CAST(N'2021-09-15' AS Date), 2)
-INSERT [dbo].[cronograma] ([cronogramaID], [claseID], [horarioMID], [fecha], [salaID]) VALUES (6, 2, 6, CAST(N'2021-09-16' AS Date), 2)
-SET IDENTITY_INSERT [dbo].[cronograma] OFF
-GO
-SET IDENTITY_INSERT [dbo].[disciplina] ON 
 
-INSERT [dbo].[disciplina] ([disciplinaID], [nombre], [descripcion], [numClases]) VALUES (1, N'Pole', N'Descripcion Pole', 10)
-INSERT [dbo].[disciplina] ([disciplinaID], [nombre], [descripcion], [numClases]) VALUES (2, N'Bachata', N'Descripcion Bachata', 10)
-INSERT [dbo].[disciplina] ([disciplinaID], [nombre], [descripcion], [numClases]) VALUES (3, N'Baile', N'Descripcion Baile', 10)
-SET IDENTITY_INSERT [dbo].[disciplina] OFF
-GO
-SET IDENTITY_INSERT [dbo].[horarioM] ON 
 
-INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (1, N'0800', N'0900')
-INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (2, N'0900', N'1000')
-INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (3, N'1000', N'1100')
-INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (4, N'1100', N'1200')
-INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (5, N'1300', N'1400')
-INSERT [dbo].[horarioM] ([horarioMID], [horaInicio], [horaFin]) VALUES (6, N'1400', N'1500')
-SET IDENTITY_INSERT [dbo].[horarioM] OFF
-GO
-SET IDENTITY_INSERT [dbo].[membresia] ON 
 
-INSERT [dbo].[membresia] ([membresiaID], [nombre], [descripcion], [precio]) VALUES (1, N'Premium', N'Descripcion membresia Premium', 40)
-INSERT [dbo].[membresia] ([membresiaID], [nombre], [descripcion], [precio]) VALUES (2, N'Standard', N'Descripcion membresia Standard', 30)
-INSERT [dbo].[membresia] ([membresiaID], [nombre], [descripcion], [precio]) VALUES (3, N'Simple', N'Descripcion membresia Simple', 10)
-SET IDENTITY_INSERT [dbo].[membresia] OFF
-GO
-SET IDENTITY_INSERT [dbo].[membresia_disciplina] ON 
+CREATE TABLE roleP(
+rolePID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(20) NOT NULL,
+descripcion VARCHAR(300) NOT NULL
+CONSTRAINT roleP_pk PRIMARY KEY (rolePID)
+)
 
-INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID], [numClasesDisponibles]) VALUES (1, 3, 1, 10)
-INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID], [numClasesDisponibles]) VALUES (2, 3, 2, 10)
-INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID], [numClasesDisponibles]) VALUES (3, 3, 3, 10)
-SET IDENTITY_INSERT [dbo].[membresia_disciplina] OFF
-GO
-SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] ON 
 
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (2, 2, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (1, 1, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (3, 3, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (4, 1, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (5, 2, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (6, 3, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (7, 1, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (8, 2, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-INSERT [dbo].[membresia_persona_disciplina] ([membresia_persona_disciplinaID], [personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (9, 3, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
-SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] OFF
-GO
-SET IDENTITY_INSERT [dbo].[persona] ON 
+CREATE TABLE persona(
+personaID INTEGER IDENTITY (1,1) NOT NULL,
+rolePID INT NOT NULL,
+nombres VARCHAR(80) NOT NULL,
+apellidos VARCHAR(80) NOT NULL,
+identificacion VARCHAR(30) NOT NULL,
+email VARCHAR(80) NOT NULL,
+telefono VARCHAR(10) NOT NULL,
+edad VARCHAR(2) NOT NULL,
+sexo VARCHAR(1) NOT NULL,
+fechaNacimiento DATE NOT NULL,
+fechaCreacion DATE NOT NULL,
+estado varchar(3) not null,
+CONSTRAINT persona_pk PRIMARY KEY (personaID),
+CONSTRAINT rolePID_fk FOREIGN KEY (rolePID) REFERENCES roleP(rolePID)
+)
 
-INSERT [dbo].[persona] ([personaID], [rolePID], [nombres], [apellidos], [identificacion], [email], [telefono], [edad], [sexo], [fechaNacimiento], [fechaCreacion]) VALUES (1, 3, N'Francisco Nathan', N'Hunt Wooten', N'16940421 4596', N'mi.lorem@faucibusorci.edu', N'7943280514', N'22', N'H', CAST(N'2022-02-05' AS Date), CAST(N'2020-09-02' AS Date))
-INSERT [dbo].[persona] ([personaID], [rolePID], [nombres], [apellidos], [identificacion], [email], [telefono], [edad], [sexo], [fechaNacimiento], [fechaCreacion]) VALUES (2, 3, N'Martin Mona', N'Richmond Britt', N'16460918 5907', N'eget.tincidunt.dui@auctor.com', N'4862324092', N'39', N'M', CAST(N'2021-03-13' AS Date), CAST(N'2022-06-01' AS Date))
-INSERT [dbo].[persona] ([personaID], [rolePID], [nombres], [apellidos], [identificacion], [email], [telefono], [edad], [sexo], [fechaNacimiento], [fechaCreacion]) VALUES (3, 3, N'Adrian Isaac', N'Villarreal Henry', N'16740622 3763', N'sociis@luctusetultrices.ca', N'2908152905', N'30', N'M', CAST(N'2022-07-22' AS Date), CAST(N'2020-11-04' AS Date))
-SET IDENTITY_INSERT [dbo].[persona] OFF
-GO
-SET IDENTITY_INSERT [dbo].[recurso] ON 
+CREATE TABLE usuario(
+usuarioID INTEGER IDENTITY (1,1) NOT NULL,
+personaID INT NOT NULL,
+email VARCHAR(80) NOT NULL,
+password VARCHAR(300) NOT NULL
+CONSTRAINT usuario_pk PRIMARY KEY (usuarioID)
+CONSTRAINT usuario_personaID_fk FOREIGN KEY (personaID) REFERENCES persona(personaID)
+)
 
-INSERT [dbo].[recurso] ([recursoID], [nombre], [descripcion]) VALUES (1, N'Recurso 1', N'Descripcion Recurso 1')
-INSERT [dbo].[recurso] ([recursoID], [nombre], [descripcion]) VALUES (2, N'Recurso 2', N'Descripcion Recurso 2')
-SET IDENTITY_INSERT [dbo].[recurso] OFF
-GO
-SET IDENTITY_INSERT [dbo].[roleP] ON 
 
-INSERT [dbo].[roleP] ([rolePID], [nombre], [descripcion]) VALUES (1, N'Admin', N'Persona encargada de la actualizaci')
-INSERT [dbo].[roleP] ([rolePID], [nombre], [descripcion]) VALUES (2, N'Profesor', N'Persona que imparte las clases')
-INSERT [dbo].[roleP] ([rolePID], [nombre], [descripcion]) VALUES (3, N'Cliente', N'Persona que asiste a las clases')
-SET IDENTITY_INSERT [dbo].[roleP] OFF
-GO
-SET IDENTITY_INSERT [dbo].[sala] ON 
+CREATE TABLE horarioM(
+horarioMID INTEGER IDENTITY (1,1) NOT NULL,
+horaInicio VARCHAR(10) NOT NULL,
+horaFin VARCHAR(10) NOT NULL
+CONSTRAINT horarioM_pk PRIMARY KEY (horarioMID)
+)
 
-INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (1, N'SALA-1', N'Descripcion SALA-1')
-INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (2, N'SALA-2', N'Descripcion SALA-2')
-INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (3, N'SALA-3', N'Descripcion SALA-3')
-INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (4, N'SALA-4', N'Descripcion SALA-4')
-SET IDENTITY_INSERT [dbo].[sala] OFF
-GO
-ALTER TABLE [dbo].[clase]  WITH CHECK ADD  CONSTRAINT [discplina_clase_fk] FOREIGN KEY([disciplinaID])
-REFERENCES [dbo].[disciplina] ([disciplinaID])
-GO
-ALTER TABLE [dbo].[clase] CHECK CONSTRAINT [discplina_clase_fk]
-GO
-ALTER TABLE [dbo].[clase_persona]  WITH CHECK ADD  CONSTRAINT [clase_persona_fk] FOREIGN KEY([claseID])
-REFERENCES [dbo].[clase] ([claseID])
-GO
-ALTER TABLE [dbo].[clase_persona] CHECK CONSTRAINT [clase_persona_fk]
-GO
-ALTER TABLE [dbo].[clase_persona]  WITH CHECK ADD  CONSTRAINT [clase_persona_Id_fk] FOREIGN KEY([personaID])
-REFERENCES [dbo].[persona] ([personaID])
-GO
-ALTER TABLE [dbo].[clase_persona] CHECK CONSTRAINT [clase_persona_Id_fk]
-GO
-ALTER TABLE [dbo].[clase_recurso]  WITH CHECK ADD  CONSTRAINT [claseID_fk] FOREIGN KEY([claseID])
-REFERENCES [dbo].[clase] ([claseID])
-GO
-ALTER TABLE [dbo].[clase_recurso] CHECK CONSTRAINT [claseID_fk]
-GO
-ALTER TABLE [dbo].[clase_recurso]  WITH CHECK ADD  CONSTRAINT [personaID_fk] FOREIGN KEY([personaID])
-REFERENCES [dbo].[persona] ([personaID])
-GO
-ALTER TABLE [dbo].[clase_recurso] CHECK CONSTRAINT [personaID_fk]
-GO
-ALTER TABLE [dbo].[clase_recurso]  WITH CHECK ADD  CONSTRAINT [recursoID_fk] FOREIGN KEY([recursoID])
-REFERENCES [dbo].[recurso] ([recursoID])
-GO
-ALTER TABLE [dbo].[clase_recurso] CHECK CONSTRAINT [recursoID_fk]
-GO
-ALTER TABLE [dbo].[cronograma]  WITH CHECK ADD  CONSTRAINT [clase_cronoID_fk] FOREIGN KEY([claseID])
-REFERENCES [dbo].[clase] ([claseID])
-GO
-ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [clase_cronoID_fk]
-GO
-ALTER TABLE [dbo].[cronograma]  WITH CHECK ADD  CONSTRAINT [horarioM_cronoID_fk] FOREIGN KEY([horarioMID])
-REFERENCES [dbo].[horarioM] ([horarioMID])
-GO
-ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [horarioM_cronoID_fk]
-GO
-ALTER TABLE [dbo].[cronograma]  WITH CHECK ADD  CONSTRAINT [sala_cronoID_fk] FOREIGN KEY([salaID])
-REFERENCES [dbo].[sala] ([salaID])
-GO
-ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [sala_cronoID_fk]
-GO
-ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [discplina1_fk] FOREIGN KEY([disciplinaID])
-REFERENCES [dbo].[disciplina] ([disciplinaID])
-GO
-ALTER TABLE [dbo].[membresia_disciplina] CHECK CONSTRAINT [discplina1_fk]
-GO
-ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [membresia1_fk] FOREIGN KEY([membresiaID])
-REFERENCES [dbo].[membresia] ([membresiaID])
-GO
-ALTER TABLE [dbo].[membresia_disciplina] CHECK CONSTRAINT [membresia1_fk]
-GO
-ALTER TABLE [dbo].[membresia_persona_disciplina]  WITH CHECK ADD  CONSTRAINT [membresiadisciplina_membresia_persona_disciplina_fk] FOREIGN KEY([membresia_disciplinaID])
-REFERENCES [dbo].[membresia_disciplina] ([membresia_disciplinaID])
-GO
-ALTER TABLE [dbo].[membresia_persona_disciplina] CHECK CONSTRAINT [membresiadisciplina_membresia_persona_disciplina_fk]
-GO
 
-ALTER TABLE [dbo].[membresia_persona_disciplina]  WITH CHECK ADD  CONSTRAINT [personaID_membresia_persona_disciplina_fk] FOREIGN KEY([personaID])
-REFERENCES [dbo].[persona] ([personaID])
-GO
-ALTER TABLE [dbo].[membresia_persona_disciplina] CHECK CONSTRAINT [personaID_membresia_persona_disciplina_fk]
-GO
-ALTER TABLE [dbo].[persona]  WITH CHECK ADD  CONSTRAINT [rolePID_fk] FOREIGN KEY([rolePID])
-REFERENCES [dbo].[roleP] ([rolePID])
-GO
-ALTER TABLE [dbo].[persona] CHECK CONSTRAINT [rolePID_fk]
-GO
-ALTER TABLE [dbo].[usuario]  WITH CHECK ADD  CONSTRAINT [usuario_personaID_fk] FOREIGN KEY([personaID])
-REFERENCES [dbo].[persona] ([personaID])
-GO
-ALTER TABLE [dbo].[usuario] CHECK CONSTRAINT [usuario_personaID_fk]
-GO
-USE [master]
-GO
-ALTER DATABASE [GYMDB] SET  READ_WRITE 
-GO</value>
+
+CREATE TABLE disciplina (
+disciplinaID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL,
+CONSTRAINT disciplina_pk PRIMARY KEY (disciplinaID)
+)
+
+
+CREATE TABLE sala (
+salaID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL,
+--recursosImg blob 
+CONSTRAINT sala_pk PRIMARY KEY (salaID)
+)
+
+
+CREATE TABLE recurso (
+recursoID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL,
+cantidadRecurso INT NOT NULL
+CONSTRAINT recurso_pk PRIMARY KEY (recursoID)
+)
+
+CREATE TABLE recursoEspecial (
+recursoEspecialID INTEGER IDENTITY (1,1) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR(300) NOT NULL
+CONSTRAINT recursoEspecial_pk PRIMARY KEY (recursoEspecialID)
+)
+
+CREATE TABLE clase (
+claseID INTEGER IDENTITY (1,1) NOT NULL,
+disciplinaID INT NOT NULL,
+nombre VARCHAR(30)NOT NULL,
+descripcion VARCHAR(300) NOT NULL,
+CONSTRAINT clase_pk PRIMARY KEY (claseID),
+CONSTRAINT disciplina_clase_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina(disciplinaID)
+)
+
+CREATE TABLE evento(
+eventoID INTEGER IDENTITY (1,1) NOT NULL,
+claseID INT NOT NULL,
+horarioMID INT NOT NULL,
+fecha DATE NOT NULL,
+salaID INT NOT NULL,
+aforoMax INT NOT NULL,
+aforoMin INT NOT NULL
+CONSTRAINT evento_pk PRIMARY KEY (eventoID),
+CONSTRAINT evento_cronoID_fk FOREIGN KEY (claseID) REFERENCES clase (claseID),
+CONSTRAINT horarioM_cronoID_fk FOREIGN KEY (horarioMID) REFERENCES horarioM (horarioMID),
+CONSTRAINT sala_cronoID_fk FOREIGN KEY (salaID) REFERENCES sala (salaID)
+
+)
+CREATE TABLE evento_recurso (
+evento_recursoID INTEGER IDENTITY (1,1) NOT NULL,
+eventoID INT NOT NULL,
+recursoID INT NOT NULL,
+cantidadRecurso INT NOT NULL,
+CONSTRAINT eventorecurso_pk PRIMARY KEY (evento_recursoID),
+CONSTRAINT eventoID_fk FOREIGN KEY (eventoID) REFERENCES evento (eventoID),
+CONSTRAINT recursoID_fk FOREIGN KEY (recursoID) REFERENCES recurso(recursoID),
+)
+
+CREATE TABLE evento_recursoEspecial (
+evento_recursoEspecialID INTEGER IDENTITY (1,1) NOT NULL,
+eventoID INT NOT NULL,
+recursoEspecialID INT NOT NULL,
+personaID INT,
+CONSTRAINT eventoRecursoEspecial_pk PRIMARY KEY (evento_recursoEspecialID),
+CONSTRAINT eventoID_fk2 FOREIGN KEY (eventoID) REFERENCES evento (eventoID),
+CONSTRAINT recursEspecialoID_fk FOREIGN KEY (recursoEspecialID) REFERENCES recursoEspecial(recursoEspecialID),
+)
+
+
+
+CREATE TABLE evento_persona(
+evento_personaID INTEGER IDENTITY (1,1) NOT NULL,
+eventoID INT NOT NULL,
+personaID INT NOT NULL,
+asistencia INT NOT NULL,
+CONSTRAINT evento_persona_pk PRIMARY KEY (evento_personaID),
+CONSTRAINT evento_persona_fk FOREIGN KEY (eventoID) REFERENCES evento (eventoID),
+CONSTRAINT evento_persona_Id_fk FOREIGN KEY (personaID) REFERENCES persona (personaID)
+)
+
+CREATE TABLE membresia(
+membresiaID INTEGER IDENTITY(1,1) NOT NULL,
+nombre VARCHAR(50),
+descripcion VARCHAR(300),
+precio INT NOT NULL,
+CONSTRAINT membresiaID_pk PRIMARY KEY (membresiaID)
+)
+
+CREATE TABLE membresia_disciplina(
+membresia_disciplinaID INTEGER IDENTITY (1,1) NOT NULL,
+membresiaID INT NOT NULL,
+disciplinaID INT NOT NULL,
+numClasesDisponibles [int] NOT NULL
+CONSTRAINT membresia_discplinaID_pk PRIMARY KEY (membresia_disciplinaID),
+CONSTRAINT membresia1_fk FOREIGN KEY (membresiaID) REFERENCES membresia (membresiaID),
+CONSTRAINT discplina1_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina (disciplinaID)
+)
+
+
+CREATE TABLE membresia_persona_disciplina(
+membresia_persona_disciplinaID INT IDENTITY(1,1) NOT NULL,
+personaID INT NOT NULL,
+membresia_disciplinaID int NOT NULL,
+fechaPago DATE NOT NULL,
+fechaLimite DATE NOT NULL,
+numClasesDisponibles INT NOT NULL,
+status VARCHAR NOT NULL
+CONSTRAINT membresia_persona_disciplina_pk PRIMARY KEY (membresia_persona_disciplinaID),
+CONSTRAINT PersonaIdMPD_fk FOREIGN KEY (personaID) REFERENCES persona (personaID),
+CONSTRAINT membresia_disciplinaIDfk FOREIGN KEY (membresia_disciplinaID) REFERENCES membresia_disciplina (membresia_disciplinaID)
+)
+
+CREATE TABLE noticia(
+noticiaID INTEGER IDENTITY (1,1) NOT NULL,
+titulo varchar(500) NOT NULL,
+contenido varchar(500) NOT NULL,
+imagen varbinary(MAX) NOT NULL,
+fechaInicio Date NOT NULL,
+fechaFin Date NOT NULL,
+CONSTRAINT noticia_pk PRIMARY KEY (noticiaID),
+)
+
+CREATE TABLE configuraciones_Sistema(
+ConfiguracionSistemaID int IDENTITY(1,1) NOT NULL,
+TipoConfiguracion varchar(250) NOT NULL,
+NombreConfiguracion varchar(250) NOT NULL,
+DescripcionConfiguracion varchar(300) NULL,
+Estado varchar(5) NOT NULL,
+Valor varchar(250) NOT NULL,
+Fecha Datetime NULL,
+FechaInicio Datetime NULL,
+FechaFin Datetime NULL
+CONSTRAINT ConfiguracionSistemaID_pk PRIMARY KEY (ConfiguracionSistemaID)
+)
+
+ 
+--INSERT ROLEP
+INSERT roleP (nombre, descripcion) VALUES ('Admin', 'Persona encargada de la actualizaci');
+INSERT roleP (nombre, descripcion) VALUES ('Profesor', 'Persona que imparte las clases');
+INSERT roleP (nombre, descripcion) VALUES ('Cliente', 'Persona que asiste a las clases');
+
+ --INSERT PERSONA
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (3, 'Francisco Nathan', 'Hunt Wooten', '16940421 4596', 'francisco@gmail.com', '7943280514', '22', 'H', CAST('2022-02-05' AS DATE), CAST('2020-09-02' AS DATE), 'A');
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (3, 'Martin Mona', 'Richmond Britt', '16460918 5907', 'martin@gmail.com', '4862324092', '39', 'H', CAST('2021-03-13' AS DATE), CAST('2022-06-01' AS DATE), 'A');
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (3, 'Luisa ', 'Torres Fuente', '16940421 4596', 'luisa@gmail.com', '7943280514', '22', 'H', CAST('2022-02-05' AS DATE), CAST('2020-09-02' AS DATE), 'A');
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (3, 'Jose ', 'Zambrano Zambrano', '16940421 4596', 'jose@gmail.com', '7943280514', '22', 'H', CAST('2022-02-05' AS DATE), CAST('2020-09-02' AS DATE), 'A');
+
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (2, 'Adrian Isaac', 'Villarreal Henry', '16740622 3763', 'adrian@gmail.com', '2908152905', '30', 'M', CAST('2022-07-22' AS DATE), CAST('2020-11-04' AS DATE), 'A');
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (2, 'Profesor', 'Villarreal Henry', '16740622 3763', 'profesor@gmail.com', '2908152905', '30', 'M', CAST('2022-07-22' AS DATE), CAST('2020-11-04' AS DATE), 'A');
+INSERT persona (rolePID, nombres, apellidos, identificacion, email, telefono, edad, sexo, fechaNacimiento, fechaCreacion, estado) VALUES (2, 'Profesor2', 'Perez', '16740622 3763', 'profesor2@gmail.com', '2908152905', '30', 'M', CAST('2022-07-22' AS DATE), CAST('2020-11-04' AS DATE), 'A');
+
+--INSERT USUARIO
+INSERT usuario (personaID,email,password ) VALUES (1,'francisco@gmail.com','12345');
+INSERT usuario (personaID,email,password ) VALUES (2,'martin@gmail.com','12345');
+INSERT usuario (personaID,email,password ) VALUES (3,'adrian@gmail.com','12345');
+INSERT usuario (personaID,email,password ) VALUES (4,'luisa@gmail.com','12345');
+INSERT usuario (personaID,email,password ) VALUES (5,'jose@gmail.com','12345');
+INSERT usuario (personaID,email,password ) VALUES (6,'profesor@gmail.com','12345');
+INSERT usuario (personaID,email,password ) VALUES (7,'profesor2@gmail.com','12345');
+
+
+--INSERT HORARIOM
+INSERT horarioM (horaInicio, horaFin) VALUES ( '0800','0900');
+INSERT horarioM (horaInicio, horaFin) VALUES ( '0900','1000');
+INSERT horarioM (horaInicio, horaFin) VALUES ( '1000','1100');
+INSERT horarioM (horaInicio, horaFin) VALUES ( '1100','1200');
+INSERT horarioM (horaInicio, horaFin) VALUES ( '1300','1400');
+INSERT horarioM (horaInicio, horaFin) VALUES ('1400', '1500');
+
+--INSERT DISCIPLINA
+INSERT disciplina (nombre, descripcion) VALUES ('Pole', 'Descripcion Pole');
+INSERT disciplina (nombre, descripcion) VALUES ('Bachata', 'Descripcion Bachata');
+INSERT disciplina (nombre, descripcion) VALUES ('Baile', 'Descripcion Baile');
+INSERT disciplina (nombre, descripcion) VALUES ('Tribal','Descripcion Tribal');
+INSERT disciplina (nombre, descripcion) VALUES ('HipHop','Descripcion Hip Hop');
+INSERT disciplina (nombre, descripcion) VALUES ('Popping','Descripcion Popping');
+INSERT disciplina (nombre, descripcion) VALUES ('Baile',' Descripcion Baile');
+INSERT disciplina (nombre, descripcion) VALUES ('Shuffle','Descripcion Shuffle');
+INSERT disciplina (nombre, descripcion) VALUES ('Electrodance','Descripcion Electrodance');
+
+
+
+
+
+
+--INSERT SALA
+INSERT sala (nombre, descripcion) VALUES ('SALA-1', 'Descripcion SALA-1');
+INSERT sala (nombre, descripcion) VALUES ('SALA-2', 'Descripcion SALA-2');
+INSERT sala (nombre, descripcion) VALUES ('SALA-3', 'Descripcion SALA-3');
+INSERT sala (nombre, descripcion) VALUES ('SALA-4', 'Descripcion SALA-4');
+INSERT sala (nombre, descripcion) VALUES ('SALA-5', 'Descripcion SALA-5');
+INSERT sala (nombre, descripcion) VALUES ('SALA-6', 'Descripcion SALA-6');
+INSERT sala (nombre, descripcion) VALUES ('SALA-7', 'Descripcion SALA-7');
+INSERT sala (nombre, descripcion) VALUES ('SALA-8', 'Descripcion SALA-8');
+
+--INSERT RECURSO 
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 1', 'Descripcion Recurso 1',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 2', 'Descripcion Recurso 2',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 3', 'Descripcion Recurso 3',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 4', 'Descripcion Recurso 4',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 5', 'Descripcion Recurso 5',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 6', 'Descripcion Recurso 6',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 7', 'Descripcion Recurso 7',10);
+INSERT recurso (nombre, descripcion,cantidadRecurso) VALUES ('Recurso 8', 'Descripcion Recurso 8',10);
+
+--INSERT CLASE
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (1,'Pole', 'Clase Pole');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (2,'Bachata','Clase Bachata');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (3,'Baile','Clase Baile');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (4,'Tribal','Clase Tribal');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (5,'HipHop','Clase Hip Hop');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (6,'Popping','Clase Popping');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (7,'Shuffle','Clase Shuffle');
+INSERT clase (disciplinaID, nombre, descripcion) VALUES (8,'Electrodance','Clase Electrodance ');
+
+
+
+--INSERT evento
+INSERT evento (claseID, horarioMID, fecha, salaID,aforoMax,aforoMin) VALUES (1, 1, CAST('2021-09-11' AS DATE), 1,10,5);
+INSERT evento (claseID, horarioMID, fecha, salaID,aforoMax,aforoMin) VALUES (2, 2, CAST('2021-09-12' AS DATE), 2,10,5);
+INSERT evento (claseID, horarioMID, fecha, salaID,aforoMax,aforoMin) VALUES (2, 3, CAST('2021-09-13' AS DATE), 2,10,5);
+INSERT evento (claseID, horarioMID, fecha, salaID,aforoMax,aforoMin) VALUES (3, 4, CAST('2021-09-14' AS DATE), 2,10,5);
+INSERT evento (claseID, horarioMID, fecha, salaID,aforoMax,aforoMin) VALUES (3, 5, CAST('2021-09-15' AS DATE), 2,10,5);
+INSERT evento (claseID, horarioMID, fecha, salaID,aforoMax,aforoMin) VALUES (2, 6, CAST('2021-09-16' AS DATE), 2,10,5);
+
+
+--INSERT MEMBRESIA
+INSERT membresia (nombre, descripcion, precio) VALUES ('Premium', 'Descripcion membresia Premium', 40);
+INSERT membresia (nombre, descripcion, precio) VALUES ('Standard','Descripcion membresia Standard', 30);
+INSERT membresia (nombre, descripcion, precio) VALUES ('Simple', 'Descripcion membresia Simple', 10);
+
+--INSERT MEMEBRESIA DISCIPLINA
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 1, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 2, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 3, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 4, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 5, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 6, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 7, 10);
+INSERT membresia_disciplina (membresiaID, disciplinaID,numClasesDisponibles) VALUES (3, 8, 10);
+
+--INSERT MEMBRESIA PERSONA DISCIPLINA
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (2, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (1, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (3, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (1, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (2, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (3, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (1, 2, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (2, 3, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+INSERT [dbo].[membresia_persona_disciplina] ([personaID], [membresia_disciplinaID], [fechaPago], [fechaLimite], [numClasesDisponibles], [status]) VALUES (3, 1, CAST(N'2021-08-12' AS Date), CAST(N'2021-08-12' AS Date), 10, 'A')
+
+
+
+
+--INSERT CLASE_PERSONA
+INSERT INTO evento_persona(eventoID,personaID,asistencia)VALUES(1,1,0);
+INSERT INTO evento_persona(eventoID,personaID,asistencia)VALUES(1,2,0);
+INSERT INTO evento_persona(eventoID,personaID,asistencia)VALUES(1,3,0);
+INSERT INTO evento_persona(eventoID,personaID,asistencia)VALUES(1,4,0);
+INSERT INTO evento_persona(eventoID,personaID,asistencia) VALUES(1,7,0)
+--INSERT INTO clase_persona (claseID,personaID,asistencia)VALUES(4,2,0);
+--INSERT INTO clase_persona (claseID,personaID,asistencia)VALUES(5,2,0);
+
+--INSERT RECURSOS ESPECIALES
+
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 1','DESCRIPCION RECURSO ESPECIAL 1');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 2','DESCRIPCION RECURSO ESPECIAL 2');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 3','DESCRIPCION RECURSO ESPECIAL 3');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 4','DESCRIPCION RECURSO ESPECIAL 4');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 5','DESCRIPCION RECURSO ESPECIAL 5');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 6','DESCRIPCION RECURSO ESPECIAL 6');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 7','DESCRIPCION RECURSO ESPECIAL 7');
+INSERT INTO recursoEspecial(nombre,descripcion)VALUES('RECURSO ESPECIAL 8','DESCRIPCION RECURSO ESPECIAL 8');
+
+--INSERT EVENTO_RECURSOESPECIAL
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,1,'')
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,2,'')
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,3,'')
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,4,2)
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,5,'')
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,6,1)
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,7,'')
+INSERT INTO evento_recursoEspecial(eventoID,recursoEspecialID,personaID)VALUES(1,8,'')
+
+--INSERT POLITICAS 
+INSERT INTO [dbo].[configuraciones_Sistema] ([TipoConfiguracion], [NombreConfiguracion], [DescripcionConfiguracion], [Estado], [Valor]) VALUES ('politicasCancelacion', 'politicasCancelacion', 'Configuración que contiene las politicas de cancelación. Valor: Número de horas con las que anticipadamente el sistema podrá dejar cancelar una reserva.', 'A', '24')</value>
+    <comment>Cambios 24/10/2021</comment>
   </data>
   <data name="Script" xml:space="preserve">
     <value>USE [master]

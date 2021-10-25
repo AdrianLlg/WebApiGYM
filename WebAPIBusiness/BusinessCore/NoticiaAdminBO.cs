@@ -37,8 +37,9 @@ namespace WebAPIBusiness.BusinessCore
                             noticiaID = nt.noticiaID,
                             titulo=nt.titulo,
                             contenido=nt.contenido,
-                            imagen= Convert.ToBase64String(nt.imagen)
-
+                            imagen= Convert.ToBase64String(nt.imagen),
+                            fechaInicio=nt.fechaInicio,
+                            fechaFin = nt.fechaFin,
                         };
 
                         entities.Add(NoticiasEntity);
@@ -53,23 +54,23 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertNoticia(string titulo, string contenido,string imagen)
+        public bool insertNoticia(string titulo, string contenido,string imagen,string fechaInicio,string fechaFin)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBNoticia(titulo, contenido, imagen);
+                entity = insertDBNoticia(titulo, contenido, imagen, fechaInicio, fechaFin);
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al insertar el usuario/calcular la edad del usuario.");
+                throw new Exception("Ocurrió un error al insertar .");
             }
 
             return entity;
         }
 
-        private bool insertDBNoticia(string titulo, string contenido, string imagen)
+        private bool insertDBNoticia(string titulo, string contenido, string imagen, string fechaInicio, string fechaFin)
         {           
             noticia item = new noticia();
 
@@ -81,8 +82,9 @@ namespace WebAPIBusiness.BusinessCore
                     {
                       titulo=titulo,
                       contenido=contenido,
-                      imagen= Convert.FromBase64String(imagen)
-
+                      imagen= Convert.FromBase64String(imagen),
+                      fechaInicio=Convert.ToDateTime(fechaInicio),
+                      fechaFin= Convert.ToDateTime(fechaFin)
                     };
 
                     dbContext.noticia.Add(item);
@@ -97,7 +99,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyNoticia(int noticiaID,string titulo, string contenido, string imagen)
+        public bool modifyNoticia(int noticiaID,string titulo, string contenido, string imagen, string fechaInicio,string fechaFin)
         {
             bool entity = false;
 
@@ -110,7 +112,7 @@ namespace WebAPIBusiness.BusinessCore
                     throw new Exception("El ID de la persona no se ha especificado.");
                 }
 
-                entity = UpdateRecord(noticiaID, titulo, contenido,imagen);
+                entity = UpdateRecord(noticiaID, titulo, contenido,imagen,fechaInicio,fechaFin);
             }
             catch (Exception ex)
             {
@@ -120,7 +122,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool UpdateRecord(int noticiaID, string titulo, string contenido, string imagen)
+        private bool UpdateRecord(int noticiaID, string titulo, string contenido, string imagen,string fechaInicio,string fechaFin)
         {
             bool resp = false;
             noticia noticia = new noticia();
@@ -187,7 +189,9 @@ namespace WebAPIBusiness.BusinessCore
                         noticiaID = nt.noticiaID,
                         titulo = nt.titulo,
                         contenido = nt.contenido,
-                        imagen = Convert.ToBase64String(nt.imagen)
+                        imagen = Convert.ToBase64String(nt.imagen),
+                        fechaInicio=nt.fechaInicio,
+                        fechaFin=nt.fechaFin
                     };
                 }
 

@@ -549,9 +549,10 @@ namespace WebAPIUI.Helpers
                     noticiaID=entity.noticiaID,
                     titulo=entity.titulo,
                     contenido=entity.contenido,
-                    imagen=entity.imagen
-                    
-                    
+                    imagen=entity.imagen,
+                    fechaInicio=entity.fechaInicio.ToString(),
+                    fechaFin=entity.fechaFin.ToString()
+
                 };
 
                 response.Add(item);
@@ -567,7 +568,9 @@ namespace WebAPIUI.Helpers
                 noticiaID = entity.noticiaID,
                 titulo = entity.titulo,
                 contenido = entity.contenido,
-                imagen = entity.imagen
+                imagen = entity.imagen,
+                fechaInicio = entity.fechaInicio.ToString(),
+                fechaFin = entity.fechaFin.ToString()
 
             };
 

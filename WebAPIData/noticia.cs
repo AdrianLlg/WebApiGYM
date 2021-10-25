@@ -18,5 +18,7 @@ namespace WebAPIData
         public string titulo { get; set; }
         public string contenido { get; set; }
         public byte[] imagen { get; set; }
+        public System.DateTime fechaInicio { get; set; }
+        public System.DateTime fechaFin { get; set; }
     }
 }

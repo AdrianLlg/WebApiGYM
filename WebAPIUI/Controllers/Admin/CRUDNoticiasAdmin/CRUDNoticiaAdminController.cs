@@ -37,15 +37,15 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo Noticia en la BD
         /// </summary>
-        private bool InsertarNuevaNoticia(string titulo, string contenido, string imagen)
+        private bool InsertarNuevaNoticia(string titulo, string contenido, string imagen,string fechaInicio,string fechaFin)
         {
             NoticiaAdminBO bo = new NoticiaAdminBO();
             List<string> messages = new List<string>();
             bool response = false;
-
+             
             try
             {
-                response = bo.insertNoticia(titulo, contenido, imagen);
+                response = bo.insertNoticia(titulo, contenido, imagen,fechaInicio,fechaFin);
             }
             catch (ValidationAndMessageException NoticiaAdminException)
             {
@@ -92,7 +92,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar Noticia
         /// </summary>
-        private bool ModificarNoticia(int noticiaID, string titulo, string contenido, string imagen)
+        private bool ModificarNoticia(int noticiaID, string titulo, string contenido, string imagen,string fechaInicio,string fechaFin)
         {
             NoticiaAdminBO bo = new NoticiaAdminBO();
             List<string> messages = new List<string>();
@@ -100,7 +100,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyNoticia(noticiaID, titulo, contenido, imagen);
+                response = bo.modifyNoticia(noticiaID, titulo, contenido, imagen,fechaInicio,fechaFin);
             }
             catch (ValidationAndMessageException NoticiaAdminException)
             {
@@ -183,7 +183,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaNoticia(dataRequest.titulo, dataRequest.contenido,dataRequest.imagen);
+                    bool resp = InsertarNuevaNoticia(dataRequest.titulo, dataRequest.contenido,dataRequest.imagen, dataRequest.fechaInicio, dataRequest.fechaFin);
 
                     if (resp)
                     {
@@ -201,7 +201,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarNoticia(dataRequest.noticiaID, dataRequest.titulo, dataRequest.contenido,dataRequest.imagen);
+                    bool resp = ModificarNoticia(dataRequest.noticiaID, dataRequest.titulo, dataRequest.contenido,dataRequest.imagen, dataRequest.fechaInicio, dataRequest.fechaFin);
 
                     if (resp)
                     {

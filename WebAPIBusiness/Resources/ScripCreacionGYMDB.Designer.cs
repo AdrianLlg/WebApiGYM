@@ -61,15 +61,13 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to USE [master]
+        ///   Looks up a localized string similar to --CREATE DATABASE GYMDB
+        ///USE GYMDB
         ///GO
-        ////****** Object:  Database [GYMDB]    Script Date: 28/09/2021 23:28:08 ******/
-        ///CREATE DATABASE [GYMDB]
-        /// CONTAINMENT = NONE
-        /// ON  PRIMARY 
-        ///( NAME = N&apos;GYMDB&apos;, FILENAME = N&apos;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB.mdf&apos; , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
-        /// LOG ON 
-        ///( NAME = N&apos;GYMDB_log&apos;, FILENAME = N&apos;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\GYMDB_log.ldf&apos; , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH  [rest of string was truncated]&quot;;.
+        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;configuraciones_Sistema &apos;) DROP TABLE configuraciones_Sistema ;
+        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;noticia &apos;) DROP TABLE noticia ;
+        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;membresia_persona_disciplina &apos;) DROP TABLE membresia_persona_disciplina ;
+        ///IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = &apos;evento_recurso&apos; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Creacion_2_0 {
             get {

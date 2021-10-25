@@ -12,5 +12,7 @@ namespace WebAPIUI.Controllers.CRUDNoticiaAdmin.Models
         public string titulo { get; set; }
         public string contenido { get; set; }
         public string imagen { get; set; }
+        public string fechaInicio { get; set; }
+        public string fechaFin { get; set; }
     }
-} 
+}
