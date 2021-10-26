@@ -510,31 +510,31 @@ namespace WebAPIUI.Helpers
         //    return response;
         //}
 
-        //public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
-        //{
+        public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
+        {
 
-        //    List<ConfiguracionesSistemaModel> response = new List<ConfiguracionesSistemaModel>();
+            List<ConfiguracionesSistemaModel> response = new List<ConfiguracionesSistemaModel>();
 
-        //    foreach (var entity in entities)
-        //    {
-        //        ConfiguracionesSistemaModel model = new ConfiguracionesSistemaModel()
-        //        {
-        //            ConfiguracionSistemaID = entity.ConfiguracionSistemaID,
-        //            TipoConfiguracion = entity.TipoConfiguracion,
-        //            NombreConfiguracion = entity.NombreConfiguracion,
-        //            DescripcionConfiguracion = entity.DescripcionConfiguracion,
-        //            Valor = entity.Valor,
-        //            Estado = entity.Estado,
-        //            Fecha = entity.Fecha.ToString(),
-        //            FechaFin = entity.FechaFin.ToString(),
-        //            FechaInicio = entity.FechaInicio.ToString()
-        //        };
+            foreach (var entity in entities)
+            {
+                ConfiguracionesSistemaModel model = new ConfiguracionesSistemaModel()
+                {
+                    ConfiguracionSistemaID = entity.ConfiguracionSistemaID,
+                    TipoConfiguracion = entity.TipoConfiguracion,
+                    NombreConfiguracion = entity.NombreConfiguracion,
+                    DescripcionConfiguracion = entity.DescripcionConfiguracion,
+                    Valor = entity.Valor,
+                    Estado = entity.Estado,
+                    Fecha = entity.Fecha.ToString(),
+                    FechaFin = entity.FechaFin.ToString(),
+                    FechaInicio = entity.FechaInicio.ToString()
+                };
 
-        //        response.Add(model);
-        //    };
+                response.Add(model);
+            };
 
-        //    return response;
-        //}
+            return response;
+        }
 
 
         #region NoticiaAdmin

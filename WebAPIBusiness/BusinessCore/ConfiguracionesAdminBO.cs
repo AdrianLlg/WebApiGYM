@@ -30,8 +30,7 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     configResp = dbContext.configuraciones_Sistema.Where(x => x.TipoConfiguracion == tipoConfiguracion
-                                                                         && x.Estado == "A").ToList();
-                                                                                    
+                                                                         && x.Estado == "A").ToList();                                                                      
                 }
 
                 if (configResp.Count > 0)
