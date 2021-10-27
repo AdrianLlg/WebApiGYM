@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using WebAPIBusiness.CustomExceptions;
+using WebAPIBusiness.Entities.DisciplinaAdmin;
+using WebAPIBusiness.Entities.Membresia;
 using WebAPIBusiness.Entities.MembresiaAdmin;
 using WebAPIData;
 
@@ -41,7 +43,7 @@ namespace WebAPIBusiness.BusinessCore
                             nombre = m.nombre,
                             precio = m.precio,
                             periodicidad = m.periodicidad
-                            
+
                         };
 
                         entities.Add(MembresiasEntity);
@@ -56,9 +58,9 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertMembership(string nombre, string descripcion, string precio, string periodicidad)
+        public bool insertMembership(string nombre, string descripcion, string precio, string periodicidad, List<DisciplinasMembresiaRequestEntity> disciplinas)
         {
-            bool entity = false;
+            bool resp = false;
             decimal valPrecio;
 
             try
@@ -72,20 +74,26 @@ namespace WebAPIBusiness.BusinessCore
                     valPrecio = decimal.Parse(precio);
                 }
 
-                entity = insertDBMembership(nombre, descripcion, valPrecio, periodicidad);
+                resp = insertDBMembership(nombre, descripcion, valPrecio, periodicidad, out int id);
+
+                if (resp)
+                {
+                    resp = insertDBMembershipAndDisciplines(disciplinas, id);
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception("Ocurrió un error al insertar el usuario/calcular la edad del usuario.");
             }
 
-            return entity;
+            return resp;
         }
 
-        private bool insertDBMembership(string nombre, string descripcion, decimal precio, string periodicidad)
+        private bool insertDBMembership(string nombre, string descripcion, decimal precio, string periodicidad, out int id)
         {
 
             membresia item = new membresia();
+            id = 0;
 
             try
             {
@@ -101,6 +109,41 @@ namespace WebAPIBusiness.BusinessCore
 
                     dbContext.membresia.Add(item);
                     dbContext.SaveChanges();
+
+                    id = dbContext.membresia.OrderByDescending(x => x.membresiaID).Select(x => x.membresiaID).FirstOrDefault();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private bool insertDBMembershipAndDisciplines(List<DisciplinasMembresiaRequestEntity> disciplinas, int membresiaid)
+        {
+            if (membresiaid == 0)
+            {
+                throw new Exception("El ID de la membresia no es válido.");
+            }
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    foreach (var disc in disciplinas)
+                    {
+                        membresia_disciplina item = new membresia_disciplina()
+                        {
+                            membresiaID = membresiaid,
+                            disciplinaID = int.Parse(disc.Value),
+                            numClasesDisponibles = disc.Quantity
+                        };
+
+                        dbContext.membresia_disciplina.Add(item);
+                        dbContext.SaveChanges();
+                    }
                 }
 
                 return true;
@@ -202,7 +245,8 @@ namespace WebAPIBusiness.BusinessCore
                         membresiaID = memb.membresiaID,
                         nombre = memb.nombre,
                         descripcion = memb.descripcion,
-                        precio = memb.precio
+                        precio = memb.precio,
+                        periodicidad = memb.periodicidad
                     };
                 }
 
@@ -320,6 +364,56 @@ namespace WebAPIBusiness.BusinessCore
                 throw new ValidationAndMessageException("Ocurrió un error en el manejo de datos en la BD.");
             }
         }
+
+        public List<Membresia_Disciplina_NumClasesEntity> consultarDisciplinasDeMembresia(int membresiaID)
+        {
+            List<Membresia_Disciplina_NumClasesEntity> resp = new List<Membresia_Disciplina_NumClasesEntity>();
+
+            resp = getMembershipDisciplinesInfo(membresiaID);
+
+            return resp;
+        }
+
+
+        private List<Membresia_Disciplina_NumClasesEntity> getMembershipDisciplinesInfo(int membresiaID)
+        {
+            List<membresia_disciplina> memb = new List<membresia_disciplina>();
+            List<Membresia_Disciplina_NumClasesEntity> resp = new List<Membresia_Disciplina_NumClasesEntity>();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    memb = dbContext.membresia_disciplina.Where(x => x.membresiaID == membresiaID).ToList();
+
+                    if (memb.Count > 0)
+                    {
+                        foreach (var m in memb)
+                        {
+                            Membresia_Disciplina_NumClasesEntity item = new Membresia_Disciplina_NumClasesEntity()
+                            {
+                                disciplinaID = m.disciplinaID,
+                                nombre = m.disciplina.nombre,
+                                descripcion = m.disciplina.descripcion,
+                                numClasesDisponibles = m.numClasesDisponibles
+                            };
+
+                            resp.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        throw new ValidationAndMessageException("No se encontró las disciplinas de la membresía buscada.");
+                    }
+                }
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                return resp;
+            }
+        }
+
 
     }
 }

@@ -75,12 +75,14 @@
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />
+    <Compile Include="Entities\DisciplinaAdmin\Membresia_Disciplina_NumClasesEntity.cs" />
     <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
     <Compile Include="Entities\Evento\EventoAdminEntity.cs" />
     <Compile Include="Entities\HorarioMAdmin\HorarioMAdminEntity.cs" />
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\DisciplinasMembresiaRequestEntity.cs" />
     <Compile Include="Entities\Noticia\NoticiaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaDisciplinaEntity.cs" />

@@ -194,7 +194,7 @@ namespace WebAPIUI.Helpers
         }
        
 
-        public static MembresiaAdminModel MembresiaInfoEntityToModel(MembresiaAdminEntity entity)
+        public static MembresiaAdminModel MembresiaInfoEntityToModel(MembresiaAdminEntity entity, List<Membresia_Disciplina_NumClasesEntity> entities)
         {
 
             MembresiaAdminModel response = new MembresiaAdminModel
@@ -202,7 +202,9 @@ namespace WebAPIUI.Helpers
                 MembresiaID = entity.membresiaID,
                 Nombre = entity.nombre,
                 Descripcion = entity.descripcion,
-                Precio = entity.precio
+                Precio = entity.precio,
+                Periodicidad = entity.periodicidad,
+                membresiaDisciplinas = entities
             };
 
             return response;

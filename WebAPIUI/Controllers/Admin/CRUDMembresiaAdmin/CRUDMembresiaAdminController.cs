@@ -5,17 +5,14 @@ using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
+using WebAPIBusiness.Entities.DisciplinaAdmin;
+using WebAPIBusiness.Entities.Membresia;
 using WebAPIBusiness.Entities.MembresiaAdmin;
-using WebAPIBusiness.Entities.RegistroAdmin;
+using WebAPIUI.Controllers.Admin.CRUDMembresiaAdmin.Models;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
-using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
-using WebAPIUI.CustomExceptions.RegisterPerson;
-using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.Helpers;
-using WebAPIUI.Models.Login;
 using WebAPIUI.Models.MembresiasAdmin;
-using WebAPIUI.Models.RegistroAdmin;
 
 namespace WebAPIUI.Controllers
 {
@@ -45,15 +42,35 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar una nueva membresia en la tabla
         /// </summary>
-        private bool InsertarNuevaMembresia(string nombre, string descripcion, string precio, string periodicidad)
+        private bool InsertarNuevaMembresia(string nombre, string descripcion, string precio, string periodicidad, List<DisciplinasMembresiaModel> disciplinas)
         {
             MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
             bool response = false;
-
+            List<DisciplinasMembresiaRequestEntity> disciplinas1 = new List<DisciplinasMembresiaRequestEntity>();
             try
             {
-                response = bo.insertMembership(nombre, descripcion, precio, periodicidad);
+                if (disciplinas.Count > 0)
+                {
+                    foreach (var disciplina in disciplinas)
+                    {
+                        DisciplinasMembresiaRequestEntity disc = new DisciplinasMembresiaRequestEntity()
+                        {
+                            Quantity = disciplina.Quantity,
+                            Selected = disciplina.Selected,
+                            Text = disciplina.Text,
+                            Value = disciplina.Value
+                        };
+
+                        disciplinas1.Add(disc);
+                    }
+
+                    response = bo.insertMembership(nombre, descripcion, precio, periodicidad, disciplinas1);
+                }
+                else
+                {
+                    throw new Exception("No se especificaron las disciplinas de la membresía.");
+                }
             }
             catch (ValidationAndMessageException MembresiaAdminException)
             {
@@ -127,7 +144,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Consultar membresia
         /// </summary>
-        private MembresiaAdminEntity DetallePersona(int membresiaID)
+        private MembresiaAdminEntity DetalleMembresia(int membresiaID)
         {
             MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
@@ -152,6 +169,34 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
+        /// Consultar disciplinas de membresia
+        /// </summary>
+        private List<Membresia_Disciplina_NumClasesEntity> DetalleMembresiaDisciplinas(int membresiaID)
+        {
+            MembresiaAdminBO bo = new MembresiaAdminBO();
+            List<string> messages = new List<string>();
+            List<Membresia_Disciplina_NumClasesEntity> response = new List<Membresia_Disciplina_NumClasesEntity>();
+
+            try
+            {
+                response = bo.consultarDisciplinasDeMembresia(membresiaID);
+            }
+            catch (ValidationAndMessageException MembresiaAdminException)
+            {
+                messages.Add(MembresiaAdminException.Message);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+
+        /// <summary>
         /// CRUD para el Admin para Registro Personas
         /// </summary>
         /// <param name="dataRequest"></param>
@@ -164,7 +209,7 @@ namespace WebAPIUI.Controllers
             try
             {
                 List<string> messages = new List<string>();
-                string message = string.Empty;               
+                string message = string.Empty;
 
                 ValidatePostRequest(dataRequest);
 
@@ -191,7 +236,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaMembresia(dataRequest.nombre, dataRequest.descripcion, dataRequest.precio, dataRequest.periodicidad);
+                    bool resp = InsertarNuevaMembresia(dataRequest.nombre, dataRequest.descripcion, dataRequest.precio, dataRequest.periodicidad, dataRequest.disciplinas);
 
                     if (resp)
                     {
@@ -223,18 +268,19 @@ namespace WebAPIUI.Controllers
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentModify = false;
                     }
-                }  
+                }
                 //Detalle de membresia
                 else if (dataRequest.flujoID == 3)
                 {
                     MembresiaAdminEntity resp = new MembresiaAdminEntity();
                     MembresiaAdminModel model = new MembresiaAdminModel();
 
-                    resp = DetallePersona(dataRequest.membresiaID);
+                    resp = DetalleMembresia(dataRequest.membresiaID);
+                    List<Membresia_Disciplina_NumClasesEntity> entities = DetalleMembresiaDisciplinas(dataRequest.membresiaID);
 
                     if (resp.membresiaID > 0)
                     {
-                        model = EntitesHelper.MembresiaInfoEntityToModel(resp);
+                        model = EntitesHelper.MembresiaInfoEntityToModel(resp, entities);
                         response.ResponseCode = MembresiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;

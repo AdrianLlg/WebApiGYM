@@ -163,6 +163,7 @@
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\CRUDEventoAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\EventoAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\CRUDEventoAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\Models\DisciplinasMembresiaModel.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\CRUDRecursoEspecialAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\Models\CRUDRecursoEspecialAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\Models\RecursoEspecialAdminDataResponse.cs" />
