@@ -11,16 +11,116 @@ namespace WebAPIBusiness.BusinessCore
 {
     public class ConfiguracionesAdminBO
     {
-        public List<ConfiguracionesAdminEntity> getConfigurations(string tipoConfiguracion)
+        public List<ConfiguracionesAdminEntity> getConfigurations()
         {
             List<ConfiguracionesAdminEntity> resp = new List<ConfiguracionesAdminEntity>();
 
-            resp = getConfigDB(tipoConfiguracion);
+            resp = getConfigDB();
 
             return resp;
         }
 
-        private List<ConfiguracionesAdminEntity> getConfigDB(string tipoConfiguracion)
+        public bool editarConfigurations(
+            int ConfiguracionSistemaID,
+            string Valor,
+            string Fecha,
+            string FechaInicio,
+            string FechaFin
+
+            )
+        {
+            bool entity = false;
+
+            try
+            {
+                string validation = ConfiguracionSistemaID.ToString();
+
+                if (string.IsNullOrEmpty(validation))
+                {
+                    throw new Exception("El ID de la configuracion no se ha especificado.");
+                }
+
+                entity = editarConfigDB(
+                    ConfiguracionSistemaID,
+                    Valor,
+                    Fecha,
+                    FechaInicio,
+                    FechaFin);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al modificar la disciplina.");
+            }
+
+            return entity;
+        }
+
+        
+
+        private bool editarConfigDB(
+            int ConfiguracionSistemaID,
+            string Valor,
+            string Fecha,
+            string FechaInicio,
+            string FechaFin
+            )
+        {
+            configuraciones_Sistema confSistema = new configuraciones_Sistema();
+            DateTime FechaDB = new DateTime();
+            DateTime FechaInicioDB = new DateTime();
+            DateTime FechaFinDB = new DateTime();
+            try
+            {
+                FechaDB = Convert.ToDateTime(Fecha);
+                FechaInicioDB = Convert.ToDateTime(FechaInicio);
+                FechaFinDB = Convert.ToDateTime(FechaFin);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al transformar una de las entidades en el formato requerido.");
+            }
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    confSistema = dbContext.configuraciones_Sistema.Where(x => x.ConfiguracionSistemaID == ConfiguracionSistemaID).FirstOrDefault();
+
+                    if (confSistema != null)
+                    {
+                        if (!string.IsNullOrEmpty(Valor))
+                        {
+                            confSistema.Valor = Valor;
+                        }
+                        if (!string.IsNullOrEmpty(Fecha))
+                        {
+                            confSistema.Fecha = FechaDB;
+                        }
+                        if (!string.IsNullOrEmpty(FechaInicio))
+                        {
+                            confSistema.FechaInicio = FechaInicioDB;
+                        }
+                        if (!string.IsNullOrEmpty(FechaFin))
+                        {
+                            confSistema.FechaFin = FechaFinDB;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        
+
+        private List<ConfiguracionesAdminEntity> getConfigDB()
         {
             List<ConfiguracionesAdminEntity> configEntities = new List<ConfiguracionesAdminEntity>();
             List<configuraciones_Sistema> configResp = new List<configuraciones_Sistema>();
@@ -29,8 +129,7 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    configResp = dbContext.configuraciones_Sistema.Where(x => x.TipoConfiguracion == tipoConfiguracion
-                                                                         && x.Estado == "A").ToList();                                                                      
+                    configResp = dbContext.configuraciones_Sistema.ToList();                                                                      
                 }
 
                 if (configResp.Count > 0)

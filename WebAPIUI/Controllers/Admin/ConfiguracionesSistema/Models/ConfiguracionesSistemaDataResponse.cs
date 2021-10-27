@@ -30,6 +30,10 @@ namespace WebAPIUI.Controllers.ConfiguracionesSistema.Models
         /// Contenido de respuesta
         /// </summary>
         public List<ConfiguracionesSistemaModel> Content { get; set; }
+        /// <summary>
+        /// Respuesta modificacion 
+        /// </summary>
+        public bool ContentModify { get; set; }
 
     }
 }

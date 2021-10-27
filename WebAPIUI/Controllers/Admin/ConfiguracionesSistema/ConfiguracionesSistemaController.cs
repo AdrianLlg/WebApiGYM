@@ -31,7 +31,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Consulta las configuraciones
         /// </summary>
-        private List<ConfiguracionesAdminEntity> ConsultaConfiguracion(string tipoConfiguracion)
+        private List<ConfiguracionesAdminEntity> ConsultaConfiguracion()
         {
             ConfiguracionesAdminBO bo = new ConfiguracionesAdminBO();
             List<string> messages = new List<string>();
@@ -39,7 +39,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                entities = bo.getConfigurations(tipoConfiguracion);
+                entities = bo.getConfigurations();
             }
             catch (ValidationAndMessageException ConfiguracionesSistemaException)
             {
@@ -54,6 +54,45 @@ namespace WebAPIUI.Controllers
 
             return entities;
         }
+
+
+        private bool EditarConfiguracion(
+            int ConfiguracionSistemaID,
+            string Valor,
+            string Fecha,
+            string FechaInicio,
+            string FechaFin
+            )
+        {
+            ConfiguracionesAdminBO bo = new ConfiguracionesAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.editarConfigurations(
+                    ConfiguracionSistemaID,
+                    Valor,
+                    Fecha,
+                    FechaInicio,
+                    FechaFin
+                    );
+            }
+            catch (ValidationAndMessageException ConfiguracionesSistemaException)
+            {
+                messages.Add(ConfiguracionesSistemaException.Message);
+                ThrowHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+       
 
         /// <summary>
         /// Consulta la configuración pasada por parámetro
@@ -73,21 +112,50 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                List<ConfiguracionesAdminEntity> entities = ConsultaConfiguracion(dataRequest.tipoConfiguracion);
 
-                if (entities.Count > 0)
+                if (dataRequest.flujoID == 0)
                 {
-                    model = EntitesHelper.EntityToModelConfiguracionesSistema(entities);
-                    response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
-                    response.ResponseMessage = "Método ejecutado con éxito.";
-                    response.Content = model;
+                    List<ConfiguracionesAdminEntity> entities = ConsultaConfiguracion();
+                    if (entities.Count > 0)
+                    {
+                        model = EntitesHelper.EntityToModelConfiguracionesSistema(entities);
+                        response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.Content = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
+                        response.ResponseMessage = "No existen registros.";
+                        response.Content = null;
+                    }
                 }
-                else
+                else if (dataRequest.flujoID == 2)
                 {
-                    response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
-                    response.ResponseMessage = "No existen registros.";
-                    response.Content = null;
+                    bool resp = EditarConfiguracion(
+                       dataRequest.ConfiguracionSistemaID,
+                       dataRequest.Valor,
+                       dataRequest.Fecha,
+                       dataRequest.FechaInicio,
+                       dataRequest.FechaFin
+                        );
+
+                    if (resp)
+                    {
+                        response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentModify = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = ConfiguracionesSistemaResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentModify = false;
+                    }
                 }
+
+
+
 
             }
             catch (ConfiguracionesSistemaException ConfiguracionesSistemaException)

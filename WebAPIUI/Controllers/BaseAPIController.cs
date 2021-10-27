@@ -456,8 +456,6 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
-
-
         #region NoticiaAdmin Expections
         /// <summary>
         /// Maneja los errores controlados.
@@ -520,6 +518,7 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
+        #region RegistroMembresiasUsuario Expections
         internal static void ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType type, IList<string> messages)
         {
             var newException = new RegistroMembresiaUsuarioException(type, messages);
@@ -536,8 +535,9 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.Content = false;
         }
+        #endregion
 
-
+        #region ConfiguracionesSistema Expections
         internal static void ThrowHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType type, IList<string> messages)
         {
             var newException = new ConfiguracionesSistemaException(type, messages);
@@ -555,7 +555,9 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.Content = null;
         }
+        #endregion
 
+        #region Evento Expections
         internal static void ThrowHandledExceptionEventoAdmin(EventoAdminResponseType type, IList<string> messages)
         {
             var newException = new EventoAdminException(type, messages);
@@ -578,6 +580,6 @@ namespace WebAPIUI.Controllers
             response.ContentModify = false;
             response.ContentDetail = null;
         }
-
+        #endregion
     }
 }
