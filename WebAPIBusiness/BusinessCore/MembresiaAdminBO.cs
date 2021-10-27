@@ -259,7 +259,7 @@ namespace WebAPIBusiness.BusinessCore
         }
 
 
-        public bool insertNewMembership(int personaID, int membresiaID, string fechapago)
+        public bool insertNewMembership(int personaID, int membresiaID)
         {
             List<MembresiaDisciplinaEntity> entities = new List<MembresiaDisciplinaEntity>();
             bool resp = false;
@@ -271,9 +271,7 @@ namespace WebAPIBusiness.BusinessCore
 
                     if (entities.Count > 0)
                     {
-                        DateTime fechPago = DateTime.Parse(fechapago);
-
-                        resp = insertNewMembershipDB(personaID, membresiaID, fechPago, entities);
+                        resp = insertNewPersonMembershipDB(personaID, membresiaID, entities);
                     }
                     else
                     {
@@ -331,10 +329,9 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private bool insertNewMembershipDB(int personaID, int membresiaID, DateTime fechapag, List<MembresiaDisciplinaEntity> entities)
+        private bool insertNewPersonMembershipDB(int personaID, int membresiaID, List<MembresiaDisciplinaEntity> entities)
         {
             membresia_persona_disciplina query = new membresia_persona_disciplina();
-            var fechLimite = fechapag.AddDays(30).Date;
 
             try
             {
@@ -346,8 +343,6 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             membresia_disciplinaID = entity.membresia_disciplinaID,
                             personaID = personaID,
-                            fechaPago = fechapag,
-                            fechaFinMembresia = fechLimite,
                             numClasesDisponibles = entity.numClasesDisponibles,
                             estado = "I"
                         };

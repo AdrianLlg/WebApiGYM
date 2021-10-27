@@ -11,6 +11,5 @@ namespace WebAPIUI.Controllers.RegistroMembresiaUsuario.Models
 
         public int membresiaID { get; set; }
 
-        public string fechaPago { get; set; }
     }
 }
