@@ -160,6 +160,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Admin\Agendamiento\AgendamientoController.cs" />
+    <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\CRUDEventoAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\EventoAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\CRUDEventoAdminDataRequest.cs" />
@@ -185,6 +188,9 @@
     <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\CRUDNoticiaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\Models\CRUDNoticiaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\Models\CRUDNoticiaAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaHorarios\ConsultaHorariosController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaHorarios\Models\ConsultaHorariosDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaHorarios\Models\ConsultaHorariosDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\CRUDSalaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\CRUDSalaAdminDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\SalaAdminDataResponse.cs" />
@@ -223,6 +229,7 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\ConsultaHorarios\ConsultaHorariosException.cs" />
     <Compile Include="CustomExceptions\EventoAdmin\EventoAdminException.cs" />
     <Compile Include="CustomExceptions\ClasesAdmin\ClasesAdminException.cs" />
     <Compile Include="CustomExceptions\ConfiguracionesSistema\ConfiguracionesSistemaException.cs" />

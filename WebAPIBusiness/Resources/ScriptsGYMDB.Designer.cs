@@ -121,6 +121,22 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///ev.fecha,
+        ///hm.horarioMID,
+        ///ev.salaID
+        ///FROM evento ev
+        ///INNER JOIN horarioM hm ON hm.horarioMID = ev.horarioMID 
+        ///WHERE 
+        ///fecha &gt;= &apos;{0}&apos; and fecha &lt;= &apos;{1}&apos;.
+        /// </summary>
+        internal static string getHorariosFecha {
+            get {
+                return ResourceManager.GetString("getHorariosFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
         ///INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
         ///INNER JOIN horarioM HM ON HM.horarioMID = CR.horarioMID
