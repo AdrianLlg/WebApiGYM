@@ -51,9 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessCore\AgendamientoBO.cs" />
     <Compile Include="BusinessCore\ConsultaHorariosBO.cs" />
     <Compile Include="BusinessCore\ConfiguracionesAdminBO.cs" />
+    <Compile Include="BusinessCore\EventoSerializadoBO.cs" />
     <Compile Include="BusinessCore\EventoAdminBO.cs" />
     <Compile Include="BusinessCore\ClasesAdminBO .cs" />
     <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
@@ -74,13 +74,13 @@
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
-    <Compile Include="Entities\Agendamiento\AgendamientoEntity.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaHorarios\ConsultaHorariosModel.cs" />
     <Compile Include="Entities\ConsultaHorarios\SalaEntity.cs" />
     <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />
     <Compile Include="Entities\DisciplinaAdmin\Membresia_Disciplina_NumClasesEntity.cs" />
+    <Compile Include="Entities\EventosSerializados\EventosSerializadosEntity.cs" />
     <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
     <Compile Include="Entities\Evento\EventoAdminEntity.cs" />
@@ -131,6 +131,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ScriptsGYMDB.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Agendamiento\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

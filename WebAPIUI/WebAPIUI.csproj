@@ -163,6 +163,9 @@
     <Compile Include="Controllers\Admin\Agendamiento\AgendamientoController.cs" />
     <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataRequest.cs" />
     <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\EventosSerializados\EventosSerializadosController.cs" />
+    <Compile Include="Controllers\Admin\EventosSerializados\Models\EventosSerializadosDataRequest.cs" />
+    <Compile Include="Controllers\Admin\EventosSerializados\Models\EventoAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\CRUDEventoAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\EventoAdminDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\CRUDEventoAdminDataRequest.cs" />
@@ -230,6 +233,7 @@
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
     <Compile Include="CustomExceptions\ConsultaHorarios\ConsultaHorariosException.cs" />
+    <Compile Include="CustomExceptions\EventosSerializados\EventosSerializadosException.cs" />
     <Compile Include="CustomExceptions\EventoAdmin\EventoAdminException.cs" />
     <Compile Include="CustomExceptions\ClasesAdmin\ClasesAdminException.cs" />
     <Compile Include="CustomExceptions\ConfiguracionesSistema\ConfiguracionesSistemaException.cs" />

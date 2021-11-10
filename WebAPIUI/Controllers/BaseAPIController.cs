@@ -42,6 +42,8 @@ using WebAPIUI.CustomExceptions.NoticiaAdmin;
 using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
 using WebAPIUI.CustomExceptions.ConsultaHorarios;
 using WebAPIUI.Controllers.CRUDRConsultaHorarios.Models;
+using WebAPIUI.CustomExceptions.EventosSerializados;
+using WebAPIUI.Controllers.EventosSerializados.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -606,5 +608,27 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
+        #region EventosSerializados Expections
+        internal static void ThrowHandledExceptionEventosSerializados(EventosSerializadosResponseType type, IList<string> messages)
+        {
+            var newException = new EventosSerializadosException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventosSerializados(EventosSerializadosResponseType type, Exception ex)
+        {
+            throw new EventosSerializadosException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventosSerializados(EventosSerializadosResponseType code, EventosSerializadosDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentCreate = false;
+            
+        }
+        #endregion
     }
 }

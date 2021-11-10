@@ -33,8 +33,8 @@ namespace WebAPIBusiness.BusinessCore
                 DateTime fechaDB = Convert.ToDateTime(fechaInicio);
                 DateTime fechaFinDB = Convert.ToDateTime(fechaFin);
                 using (var dbContext = new GYMDBEntities())
-                {
-                    string query = string.Format(ScriptsGYMDB.getHorariosFecha, fechaDB, fechaFinDB);
+                { 
+                    string query = string.Format(ScriptsGYMDB.getHorariosFecha, fechaInicio,fechaFin );
                     horariosConsultados = dbContext.Database.SqlQuery<ConsultaHorariosModel>(query).ToList();
                     HorariosM = dbContext.horarioM.ToList();
                 }
