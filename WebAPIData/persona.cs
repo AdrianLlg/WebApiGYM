@@ -18,8 +18,10 @@ namespace WebAPIData
         public persona()
         {
             this.evento_persona = new HashSet<evento_persona>();
-            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
             this.usuario = new HashSet<usuario>();
+            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
+            this.membresia_persona_pago = new HashSet<membresia_persona_pago>();
+            this.solicitud_membresiaPersona = new HashSet<solicitud_membresiaPersona>();
         }
     
         public int personaID { get; set; }
@@ -37,10 +39,14 @@ namespace WebAPIData
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_persona> evento_persona { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
         public virtual roleP roleP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuario> usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_pago> membresia_persona_pago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<solicitud_membresiaPersona> solicitud_membresiaPersona { get; set; }
     }
 }

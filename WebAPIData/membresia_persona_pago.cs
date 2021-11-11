@@ -12,27 +12,28 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class membresia
+    public partial class membresia_persona_pago
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public membresia()
+        public membresia_persona_pago()
         {
-            this.membresia_disciplina = new HashSet<membresia_disciplina>();
-            this.membresia_persona_pago = new HashSet<membresia_persona_pago>();
             this.solicitud_membresiaPersona = new HashSet<solicitud_membresiaPersona>();
         }
     
+        public int membresia_persona_pagoID { get; set; }
+        public int personaID { get; set; }
         public int membresiaID { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public decimal precio { get; set; }
-        public string periodicidad { get; set; }
+        public System.DateTime fechaInicioMembresia { get; set; }
+        public System.DateTime fechaFinMembresia { get; set; }
+        public string formaPago { get; set; }
+        public System.DateTime fechaTransaccion { get; set; }
+        public string nroDocumento { get; set; }
+        public string tipoBanco { get; set; }
+        public string estado { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_disciplina> membresia_disciplina { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona_pago> membresia_persona_pago { get; set; }
+        public virtual membresia membresia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<solicitud_membresiaPersona> solicitud_membresiaPersona { get; set; }
+        public virtual persona persona { get; set; }
     }
 }

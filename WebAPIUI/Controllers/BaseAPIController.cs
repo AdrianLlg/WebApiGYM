@@ -40,6 +40,8 @@ using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
 using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 using WebAPIUI.CustomExceptions.NoticiaAdmin;
 using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
+using WebAPIUI.CustomExceptions.SolicitudesMembresias;
+using WebAPIUI.Controllers.SolicitudesMembresias.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -579,6 +581,26 @@ namespace WebAPIUI.Controllers
             response.ContentCreate = false;
             response.ContentModify = false;
             response.ContentDetail = null;
+        }
+        #endregion
+
+        #region SolicitudesMembresias
+        internal static void ThrowHandledExceptionSolicitudesMembresias(SolicitudesMembresiasResponseType type, IList<string> messages)
+        {
+            var newException = new SolicitudesMembresiasException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionSolicitudesMembresias(SolicitudesMembresiasResponseType type, Exception ex)
+        {
+            throw new SolicitudesMembresiasException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionSolicitudesMembresias(SolicitudesMembresiasResponseType code, SolicitudesMembresiasDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
         }
         #endregion
     }

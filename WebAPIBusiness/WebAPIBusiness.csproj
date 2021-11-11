@@ -71,6 +71,7 @@
     <Compile Include="BusinessCore\NoticiaAdminBO.cs" />
     <Compile Include="BusinessCore\SalaAdminBO.cs" />
     <Compile Include="BusinessCore\RolAdminBO.cs" />
+    <Compile Include="BusinessCore\SolicitudesMembresiasBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
     <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\DisciplinasMembresiaRequestEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaPersonaPagoEntity.cs" />
     <Compile Include="Entities\Noticia\NoticiaEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />
     <Compile Include="Entities\MembresiaAdmin\MembresiaDisciplinaEntity.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Entities\HorarioAdmin\HorarioAdminEntity.cs" />
     <Compile Include="Entities\SalaAdmin\SalaAdminEntity.cs" />
     <Compile Include="Entities\RolAdmin\RolAdminEntity.cs" />
+    <Compile Include="Entities\SolicitudesMembresias\SolicitudesMembresiasEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ScripCreacionGYMDB.Designer.cs">
       <AutoGen>True</AutoGen>

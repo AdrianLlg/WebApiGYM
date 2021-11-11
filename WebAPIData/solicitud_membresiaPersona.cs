@@ -12,18 +12,18 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class membresia_persona_disciplina
+    public partial class solicitud_membresiaPersona
     {
-        public int membresia_persona_disciplinaID { get; set; }
+        public int solicitud_membresiaPersonaID { get; set; }
         public int personaID { get; set; }
-        public int membresia_disciplinaID { get; set; }
-        public Nullable<System.DateTime> fechaInicio { get; set; }
-        public System.DateTime fechaFin { get; set; }
-        public int numClasesDisponibles { get; set; }
-        public int numClasesTomadas { get; set; }
+        public int membresiaID { get; set; }
+        public int membresia_persona_pagoID { get; set; }
+        public System.DateTime fechaRegistroSolicitud { get; set; }
+        public byte[] comprobante { get; set; }
         public string estado { get; set; }
     
-        public virtual membresia_disciplina membresia_disciplina { get; set; }
+        public virtual membresia membresia { get; set; }
+        public virtual membresia_persona_pago membresia_persona_pago { get; set; }
         public virtual persona persona { get; set; }
     }
 }

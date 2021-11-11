@@ -33,7 +33,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Inserta la membresias ligada a la persona
         /// </summary>
-        private bool membresiaUser(int personaID, int membresiaID)
+        private bool membresiaUser(int personaID, int membresiaID, string fechaInicioMembresia, string formaPago, string fechaTransaccion, string nroDocumento, string tipoBanco)
         {
             MembresiaAdminBO bo = new MembresiaAdminBO();
             List<string> messages = new List<string>();
@@ -41,7 +41,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                membresias = bo.insertNewMembership(personaID, membresiaID);
+                membresias = bo.insertNewMembership(personaID, membresiaID, fechaInicioMembresia, formaPago, fechaTransaccion,  nroDocumento, tipoBanco);
             }
             catch (ValidationAndMessageException RegistroMembresiaUsuarioException)
             {
@@ -74,7 +74,7 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                bool membresia = membresiaUser(dataRequest.personaID, dataRequest.membresiaID);
+                bool membresia = membresiaUser(dataRequest.personaID, dataRequest.membresiaID, dataRequest.fechaInicioMembresia, dataRequest.formaPago, dataRequest.fechaTransaccion, dataRequest.nroDocumento, dataRequest.tipoBanco);
 
                 if (membresia)
                 {

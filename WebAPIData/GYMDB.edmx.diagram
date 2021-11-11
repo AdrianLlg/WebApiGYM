@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="GYMDBModel.horarioM" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.membresia" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.membresia_disciplina" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_disciplina" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.noticia" Width="1.5" PointX="9.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.persona" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.recurso" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
@@ -35,10 +34,18 @@
         <AssociationConnector Association="GYMDBModel.recursoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.recursEspecialoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.membresia1_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.membresia_disciplinaIDfk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.PersonaIdMPD_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.rolePID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.usuario_personaID_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_disciplina" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="GYMDBModel.membresia_disciplinaIDfk" />
+        <AssociationConnector Association="GYMDBModel.PersonaIdMPD_fk" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_pago" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="GYMDBModel.solicitud_membresiaPersona" Width="1.5" PointX="12.5" PointY="4" />
+        <AssociationConnector Association="GYMDBModel.MembresiaIdMPP_fk" />
+        <AssociationConnector Association="GYMDBModel.MembresiaIdSMP_fk" />
+        <AssociationConnector Association="GYMDBModel.membresia_persona_pagoID_fk" />
+        <AssociationConnector Association="GYMDBModel.PersonaIdMPP_fk" />
+        <AssociationConnector Association="GYMDBModel.PersonaIdSMP_fk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

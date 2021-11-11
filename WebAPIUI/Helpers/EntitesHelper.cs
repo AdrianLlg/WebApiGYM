@@ -32,6 +32,9 @@ using WebAPIUI.Models.RolAdmin;
 using WebAPIUI.Models.SalaAdmin;
 using WebAPIUI.Models.NoticiaAdmin;
 using WebAPIBusiness.Entities.Noticia;
+using WebAPIUI.Models.SolicitudesMembresias;
+using WebAPIBusiness.Entities.SolicitudesMembresias;
+using System;
 
 namespace WebAPIUI.Helpers
 {
@@ -623,6 +626,32 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
+        public static List<SolicitudesMembresiasModel> EntityToModelSolicitudesMembresias(List<SolicitudesMembresiasEntity> entities)
+        {
+
+            List<SolicitudesMembresiasModel> response = new List<SolicitudesMembresiasModel>();
+
+            foreach (var entity in entities)
+            {
+                SolicitudesMembresiasModel model = new SolicitudesMembresiasModel()
+                {
+                    solicitud_membresiaPersonaID = entity.solicitud_membresiaPersonaID,
+                    personaID = entity.personaID,
+                    nombrePersona = entity.nombrePersona,
+                    identificacionPersona = entity.identificacionPersona,
+                    membresiaID = entity.membresiaID,
+                    nombreMembresia = entity.nombreMembresia,
+                    perioridicidadMembresia = entity.perioridicidadMembresia,
+                    membresia_persona_pagoID = entity.membresia_persona_pagoID,
+                    fechaRegistroSolicitud = entity.fechaRegistroSolicitud.ToString(),
+                    comprobante = Convert.ToBase64String(entity.comprobante)
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
 
 
     }

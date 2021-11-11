@@ -101,6 +101,9 @@
     <Compile Include="membresia_persona_disciplina.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="membresia_persona_pago.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="noticia.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
@@ -118,6 +121,9 @@
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="sala.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="solicitud_membresiaPersona.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
