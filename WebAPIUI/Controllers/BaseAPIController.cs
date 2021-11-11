@@ -40,6 +40,10 @@ using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
 using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 using WebAPIUI.CustomExceptions.NoticiaAdmin;
 using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
+using WebAPIUI.CustomExceptions.ConsultaHorarios;
+using WebAPIUI.Controllers.CRUDRConsultaHorarios.Models;
+using WebAPIUI.CustomExceptions.EventosSerializados;
+using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.CustomExceptions.SolicitudesMembresias;
 using WebAPIUI.Controllers.SolicitudesMembresias.Models;
 
@@ -601,6 +605,51 @@ namespace WebAPIUI.Controllers
             response.ResponseCode = code;
             response.ResponseMessage = message;
             response.Content = null;
+        }
+        #endregion
+
+        #region ConsultaHorarios Expections
+        internal static void ThrowHandledExceptionConsultaHorarios(ConsultaHorariosResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaHorariosException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaHorarios(ConsultaHorariosResponseType type, Exception ex)
+        {
+            throw new ConsultaHorariosException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaHorarios(ConsultaHorariosResponseType code, ConsultaHorariosDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region EventosSerializados Expections
+        internal static void ThrowHandledExceptionEventosSerializados(EventosSerializadosResponseType type, IList<string> messages)
+        {
+            var newException = new EventosSerializadosException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventosSerializados(EventosSerializadosResponseType type, Exception ex)
+        {
+            throw new EventosSerializadosException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventosSerializados(EventosSerializadosResponseType code, EventosSerializadosDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentCreate = false;
+            
         }
         #endregion
     }

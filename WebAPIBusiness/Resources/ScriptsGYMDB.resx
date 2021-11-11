@@ -176,6 +176,16 @@ FROM evento_recursoEspecial ERE
 INNER JOIN recursoEspecial RE ON ERE.recursoEspecialID = RE.recursoEspecialID
 WHERE ERE.eventoID = {1}/*Parametro*/</value>
   </data>
+  <data name="getHorariosFecha" xml:space="preserve">
+    <value>SELECT 
+ev.fecha,
+hm.horarioMID,
+ev.salaID
+FROM evento ev
+INNER JOIN horarioM hm ON hm.horarioMID = ev.horarioMID 
+WHERE 
+fecha &gt;= '{0}' and fecha &lt;= '{1}'</value>
+  </data>
   <data name="getHorasDisciplina" xml:space="preserve">
     <value>SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
 INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
