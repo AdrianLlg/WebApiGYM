@@ -8,7 +8,7 @@ namespace WebAPIBusiness.Entities.SolicitudesMembresias
 {
     public class SolicitudesMembresiasEntity
     {
-        public int solicitud_membresiaPersonaID { get; set; }
+        public int solicitud_membresiaPagoID { get; set; }        
 
         public int personaID { get; set; }
         public string nombrePersona { get; set; }

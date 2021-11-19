@@ -46,6 +46,7 @@ using WebAPIUI.CustomExceptions.EventosSerializados;
 using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.CustomExceptions.SolicitudesMembresias;
 using WebAPIUI.Controllers.SolicitudesMembresias.Models;
+using WebAPIUI.Controllers.RenovacionMembresiaUsuario.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -652,5 +653,27 @@ namespace WebAPIUI.Controllers
             
         }
         #endregion
+
+        #region Renovacion Membresia Usuario
+        internal static void ThrowHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType type, IList<string> messages)
+        {
+            var newException = new RenovacionMembresiaUsuarioException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType type, Exception ex)
+        {
+            throw new RenovacionMembresiaUsuarioException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType code, RenovacionMembresiaUsuarioDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = false;
+        }
+        #endregion
+
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.SolicitudesMembresias;
 using WebAPIData;
 
@@ -22,12 +23,12 @@ namespace WebAPIBusiness.BusinessCore
         private List<SolicitudesMembresiasEntity> getMembershipsRequestsDB()
         {
             List<SolicitudesMembresiasEntity> entities = new List<SolicitudesMembresiasEntity>();
-            List<solicitud_membresiaPersona> membresiasSol = new List<solicitud_membresiaPersona>();
+            List<sol_membresiaPago> membresiasSol = new List<sol_membresiaPago>();
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    membresiasSol = dbContext.solicitud_membresiaPersona.Where(x => x.estado == "A").ToList();
+                    membresiasSol = dbContext.sol_membresiaPago.Where(x => x.estado == "A").ToList();
 
                     if (membresiasSol.Count > 0)
                     {
@@ -35,7 +36,7 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             SolicitudesMembresiasEntity MembresiasEntity = new SolicitudesMembresiasEntity()
                             {
-                                solicitud_membresiaPersonaID = m.solicitud_membresiaPersonaID,
+                                solicitud_membresiaPagoID = m.sol_membresiaPagoID,
                                 personaID = m.personaID,
                                 nombrePersona = m.persona.nombres + " " + m.persona.apellidos,
                                 identificacionPersona = m.persona.identificacion,
@@ -53,7 +54,8 @@ namespace WebAPIBusiness.BusinessCore
                     }
                     else
                     {
-                        throw new Exception("No existen solicitudes a buscar.");
+                        throw new ValidationAndMessageException("No existen solicitudes pendientes" +
+                            ".");
                     }
                 }
 
@@ -61,10 +63,99 @@ namespace WebAPIBusiness.BusinessCore
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new ValidationAndMessageException(ex.Message);
             }
         }
 
+        public bool declineOrAcceptRequest(int solicitud_membresiaPagoID, int membresia_persona_pagoID, int IdentificadorAceptarEliminar, string formaPago, string fechaTransaccion, string nroDocumento, string Banco)
+        {
+            bool resp = false;
+
+            try
+            { 
+                resp = declineOrAcceptRequestDB(solicitud_membresiaPagoID, membresia_persona_pagoID, IdentificadorAceptarEliminar, formaPago, fechaTransaccion, nroDocumento, Banco);
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.Message);
+            }
+
+            return resp;
+        }
+
+        private bool declineOrAcceptRequestDB(int solicitud_membresiaPagoID, int membresia_persona_pagoID, int IdentificadorAceptarEliminar, string formaPago, string fechaTransaccion, string nroDocumento, string Banco)
+        {
+            MembresiaAdminBO bo = new MembresiaAdminBO();
+            try
+            {               
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var objectSol = dbContext.sol_membresiaPago.Where(x => x.sol_membresiaPagoID == solicitud_membresiaPagoID).FirstOrDefault();
+
+                    if (objectSol != null)
+                    {
+                        var objmembresia_persona_pago = dbContext.membresia_persona_pago
+                                                                     .Where(x => x.membresia_persona_pagoID == membresia_persona_pagoID)
+                                                                     .FirstOrDefault();
+                        if (objmembresia_persona_pago != null)
+                        {
+                            //Aceptar Solicitud
+                            if (IdentificadorAceptarEliminar == 1)
+                            {
+                                var disciplinas = bo.consultarDisciplinasdeMembresia(objmembresia_persona_pago.membresiaID);
+
+                                foreach (var entity in disciplinas)
+                                {
+                                    membresia_persona_disciplina query = new membresia_persona_disciplina()
+                                    {
+                                        personaID = objmembresia_persona_pago.personaID,
+                                        membresia_disciplinaID = entity.membresia_disciplinaID,
+                                        fechaInicio = objmembresia_persona_pago.fechaInicioMembresia,
+                                        fechaFin = objmembresia_persona_pago.fechaFinMembresia,
+                                        numClasesDisponibles = entity.numClasesDisponibles,
+                                        estado = "A"
+                                    };
+
+                                    dbContext.membresia_persona_disciplina.Add(query);
+                                    dbContext.SaveChanges();
+                                }
+
+                                objmembresia_persona_pago.estado = "A";
+                                objmembresia_persona_pago.formaPago = formaPago;
+                                objmembresia_persona_pago.fechaTransaccion = Convert.ToDateTime(fechaTransaccion);
+                                objmembresia_persona_pago.nroDocumento = nroDocumento;
+                                objmembresia_persona_pago.Banco = Banco;
+                                dbContext.sol_membresiaPago.Remove(objectSol);
+                                dbContext.SaveChanges();
+
+                                return true;
+                            }
+                            //Eliminar Solicitu
+                            else
+                            {
+                                dbContext.sol_membresiaPago.Remove(objectSol);
+                                dbContext.membresia_persona_pago.Remove(objmembresia_persona_pago);
+                                dbContext.SaveChanges();
+
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("No se encontró el registro de pago ligado a la solicitud");
+                        }                        
+                    }
+                    else
+                    {
+                        throw new Exception("La solicitud ingresada no existe o está inactiva");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 }

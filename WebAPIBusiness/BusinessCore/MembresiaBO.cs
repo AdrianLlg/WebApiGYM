@@ -22,17 +22,38 @@ namespace WebAPIBusiness.BusinessCore
             List<MembresiaEntity> membresias = new List<MembresiaEntity>();
             try
             {
+                int personID = int.Parse(personaID);
+
                 using (var dbContext = new GYMDBEntities())
                 {
-                    string query = string.Format(ScriptsGYMDB.getMembresiasUsuario2, personaID);
-                    membresias = dbContext.Database.SqlQuery<MembresiaEntity>(query).ToList();
+                    var items1 = dbContext.membresia_persona_pago.Where(x => x.personaID == personID).OrderBy(x => x.fechaInicioMembresia).ToList();
+
+                    if (items1.Count > 0)
+                    {
+                        foreach (var item in items1)
+                        {
+                            var items2 = dbContext.membresia_persona_disciplina.Where(x => x.personaID == personID && x.fechaInicio == item.fechaInicioMembresia.Date).ToList();
+
+                            MembresiaEntity entity = new MembresiaEntity()
+                            {
+                                nombreMembresia = item.membresia.nombre,
+                                precioMembresia = item.membresia.precio,
+                                periodicidadMembresia = item.membresia.periodicidad,
+                                fechaPago = Convert.ToDateTime(item.fechaTransaccion),
+                                fechaLimite = item.fechaFinMembresia,
+                                disciplinasmembresia = items2
+                            };
+
+                            membresias.Add(entity);
+                        }
+                    }                    
                 }
 
                 return membresias;
             }
             catch (Exception ex)
             {
-                return membresias;
+                throw new Exception("Ocurrió un error al manejar la BDD.");
             }
         }
 

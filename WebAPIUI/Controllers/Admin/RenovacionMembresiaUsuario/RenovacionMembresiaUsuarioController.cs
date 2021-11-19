@@ -20,7 +20,7 @@ namespace WebAPIUI.Controllers
             if (dataRequest == null)
             {
                 messages.Add("No se han especificado datos de ingreso.");
-                //ThrowHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.InvalidParameters, messages);
+                ThrowHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.InvalidParameters, messages);
             }
         }
 
@@ -40,19 +40,19 @@ namespace WebAPIUI.Controllers
             catch (ValidationAndMessageException RenovacionMembresiaUsuarioException)
             {
                 messages.Add(RenovacionMembresiaUsuarioException.Message);
-                //ThrowHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.Error, messages);
+                ThrowHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                //ThrowUnHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.Error, ex);
+                ThrowUnHandledExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.Error, ex);
             }
 
             return membresias;
         }
 
         /// <summary>
-        /// Inserta una nueva solicitud de aceptación membresía
+        /// Inserta una nueva solicitud de aceptación membresía creada desde el APP
         /// </summary>
         /// <param name="dataRequest"></param>
         /// <returns></returns>
@@ -86,12 +86,12 @@ namespace WebAPIUI.Controllers
             }
             catch (RenovacionMembresiaUsuarioException RenovacionMembresiaUsuarioException)
             {
-                //SetResponseAsExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioException.Type, response, RenovacionMembresiaUsuarioException.Message);
+                SetResponseAsExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioException.Type, response, RenovacionMembresiaUsuarioException.Message);
             }
             catch (Exception ex)
             {
                 string message = "Se ha produccido un error al invocar RenovacionMembresiaUsuario.";
-                //SetResponseAsExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.Error, response, message);
+                SetResponseAsExceptionRenovacionMembresiaUsuario(RenovacionMembresiaUsuarioResponseType.Error, response, message);
             }
 
             return response;

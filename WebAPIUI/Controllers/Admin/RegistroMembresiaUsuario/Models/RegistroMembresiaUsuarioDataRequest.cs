@@ -15,6 +15,6 @@ namespace WebAPIUI.Controllers.RegistroMembresiaUsuario.Models
         public string formaPago { get; set; }
         public string fechaTransaccion {get; set; }
         public string nroDocumento     {get; set; }
-        public string tipoBanco { get; set; }
+        public string Banco { get; set; }
     }
 }

@@ -28,10 +28,33 @@ namespace WebAPIUI.Controllers
                 messages.Add("No se han especificado datos de ingreso.");
                 ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType.InvalidParameters, messages);
             }
+
+            if (string.IsNullOrEmpty(dataRequest.formaPago))
+            {
+                messages.Add("No se han especificado la forma de pago.");
+                ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType.InvalidParameters, messages);
+            }
+            if (string.IsNullOrEmpty(dataRequest.fechaTransaccion))
+            {
+                messages.Add("No se han especificado la forma de pago.");
+                ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType.InvalidParameters, messages);
+            }
+            if (string.IsNullOrEmpty(dataRequest.nroDocumento))
+            {
+                messages.Add("No se han especificado la forma de pago.");
+                ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType.InvalidParameters, messages);
+            }
+
+            if (string.IsNullOrEmpty(dataRequest.Banco))
+            {
+                messages.Add("No se han especificado la forma de pago.");
+                ThrowHandledExceptionRegistroMembresiaUsuario(RegistroMembresiaUsuarioResponseType.InvalidParameters, messages);
+            }
+
         }
 
         /// <summary>
-        /// Inserta la membresias ligada a la persona
+        /// Inserta la membresia ligada a la persona
         /// </summary>
         private bool membresiaUser(int personaID, int membresiaID, string fechaInicioMembresia, string formaPago, string fechaTransaccion, string nroDocumento, string tipoBanco)
         {
@@ -58,7 +81,7 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
-        /// Insertar un nuevo usuario en la base de datos.
+        /// Inserta la membresia ligada a la persona
         /// </summary>
         /// <param name="dataRequest"></param>
         /// <returns></returns>
@@ -74,7 +97,7 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                bool membresia = membresiaUser(dataRequest.personaID, dataRequest.membresiaID, dataRequest.fechaInicioMembresia, dataRequest.formaPago, dataRequest.fechaTransaccion, dataRequest.nroDocumento, dataRequest.tipoBanco);
+                bool membresia = membresiaUser(dataRequest.personaID, dataRequest.membresiaID, dataRequest.fechaInicioMembresia, dataRequest.formaPago, dataRequest.fechaTransaccion, dataRequest.nroDocumento, dataRequest.Banco);
 
                 if (membresia)
                 {

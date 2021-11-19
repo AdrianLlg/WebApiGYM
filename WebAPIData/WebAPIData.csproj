@@ -123,7 +123,7 @@
     <Compile Include="sala.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="solicitud_membresiaPersona.cs">
+    <Compile Include="sol_membresiaPago.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">

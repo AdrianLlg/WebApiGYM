@@ -39,13 +39,13 @@
         <EntityTypeShape EntityType="GYMDBModel.membresia_persona_disciplina" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="GYMDBModel.membresia_disciplinaIDfk" />
         <AssociationConnector Association="GYMDBModel.PersonaIdMPD_fk" />
-        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_pago" Width="1.5" PointX="8.25" PointY="0.75" />
-        <EntityTypeShape EntityType="GYMDBModel.solicitud_membresiaPersona" Width="1.5" PointX="12.5" PointY="4" />
-        <AssociationConnector Association="GYMDBModel.MembresiaIdMPP_fk" />
+        <EntityTypeShape EntityType="GYMDBModel.sol_membresiaPago" Width="1.5" PointX="12.5" PointY="3" />
         <AssociationConnector Association="GYMDBModel.MembresiaIdSMP_fk" />
+        <AssociationConnector Association="GYMDBModel.PersonaIdSMP_fk" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_pago" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="GYMDBModel.MembresiaIdMPP_fk" />
         <AssociationConnector Association="GYMDBModel.membresia_persona_pagoID_fk" />
         <AssociationConnector Association="GYMDBModel.PersonaIdMPP_fk" />
-        <AssociationConnector Association="GYMDBModel.PersonaIdSMP_fk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

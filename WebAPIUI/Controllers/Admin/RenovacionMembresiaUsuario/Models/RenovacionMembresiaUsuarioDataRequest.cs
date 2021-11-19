@@ -11,6 +11,5 @@ namespace WebAPIUI.Controllers.RenovacionMembresiaUsuario.Models
 
         public int membresiaID { get; set; }
         public string imagen { get; set; }
-
     }
 }

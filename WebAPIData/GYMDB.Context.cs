@@ -43,7 +43,7 @@ namespace WebAPIData
         public virtual DbSet<sala> sala { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
+        public virtual DbSet<sol_membresiaPago> sol_membresiaPago { get; set; }
         public virtual DbSet<membresia_persona_pago> membresia_persona_pago { get; set; }
-        public virtual DbSet<solicitud_membresiaPersona> solicitud_membresiaPersona { get; set; }
     }
 }

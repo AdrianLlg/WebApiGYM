@@ -20,7 +20,6 @@ using WebAPIUI.Models.EventoClasePersona;
 using WebAPIUI.Models.EventoRecursoEspecial;
 using WebAPIUI.Models.HorarioAdmin;
 using WebAPIUI.Models.HorarioMAdmin;
-using WebAPIBusiness.Entities.HorarioMAdmin;
 using WebAPIBusiness.Entities.ConfiguracionesSistemaAdmin;
 using WebAPIUI.Models.ConfiguracionesSistema;
 using WebAPIUI.Models.Membresias;
@@ -52,10 +51,9 @@ namespace WebAPIUI.Helpers
                 {
                     nombreMembresia = entity.nombreMembresia,
                     precioMembresia = entity.precioMembresia,
-                    nombreDisciplina = entity.nombreDisciplina,
+                    periodicidadMembresia = entity.periodicidadMembresia,
                     fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
-                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
-                    numClasesDisponibles = entity.numClasesDisponibles,
+                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),                    
                 };
 
                 response.Add(item);
@@ -635,7 +633,7 @@ namespace WebAPIUI.Helpers
             {
                 SolicitudesMembresiasModel model = new SolicitudesMembresiasModel()
                 {
-                    solicitud_membresiaPersonaID = entity.solicitud_membresiaPersonaID,
+                    solicitud_membresiaPagoID = entity.solicitud_membresiaPagoID,
                     personaID = entity.personaID,
                     nombrePersona = entity.nombrePersona,
                     identificacionPersona = entity.identificacionPersona,

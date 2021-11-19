@@ -261,7 +261,6 @@ namespace WebAPIBusiness.BusinessCore
 
         public bool insertNewMembership(int personaID, int membresiaID, string fechaInicioMembresia, string formaPago, string fechaTransaccion, string nroDocumento, string tipoBanco)
         {
-            List<MembresiaDisciplinaEntity> disciplinas = new List<MembresiaDisciplinaEntity>();
             bool resp = false;
             try
             {
@@ -276,7 +275,7 @@ namespace WebAPIBusiness.BusinessCore
 
                     if (verifyInsert)
                     {
-                        disciplinas = consultarDisciplinasdeMembresia(personaID, membresiaID);
+                        List<MembresiaDisciplinaEntity> disciplinas = consultarDisciplinasdeMembresia(membresiaID);
 
                         if (disciplinas.Count > 0)
                         {
@@ -331,7 +330,7 @@ namespace WebAPIBusiness.BusinessCore
 
                     if (membership_type != null)
                     {
-                        monthsToAdd = calculateDaysOfPeriodTime(membership_type);
+                        monthsToAdd = calculateMonthsOfPeriodTime(membership_type);
                     }
                     else
                     {
@@ -347,7 +346,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private List<MembresiaDisciplinaEntity> consultarDisciplinasdeMembresia(int personaID, int membresiaID)
+        public List<MembresiaDisciplinaEntity> consultarDisciplinasdeMembresia(int membresiaID)
         {
             List<MembresiaDisciplinaEntity> entities = new List<MembresiaDisciplinaEntity>();
             List<membresia_disciplina> query = new List<membresia_disciplina>();
@@ -433,7 +432,7 @@ namespace WebAPIBusiness.BusinessCore
                         formaPago = formaPago,
                         fechaTransaccion = fechaTransaccion.Date,
                         nroDocumento = nroDocumento,
-                        tipoBanco = tipoBanco,
+                        Banco = tipoBanco,
                         estado = "A"
                     };
 
@@ -501,24 +500,22 @@ namespace WebAPIBusiness.BusinessCore
         public bool insertPendingMembership(int personaID, int membresiaID, string imagen)
         {
             bool resp = false;
-            MembresiaPersonaPagoEntity item = new MembresiaPersonaPagoEntity();
-            MembresiaPersonaPagoEntity sol = new MembresiaPersonaPagoEntity();
-            int daysToAddM = 0;
+            int monthsToAddM = 0;
             int membresiaPersonaPagoID = 0;
 
             try
             {
                 if (personaID > 0 && membresiaID > 0)
                 {
-                    item = hasPreviousMembership(personaID, membresiaID, out daysToAddM);
+                    MembresiaPersonaPagoEntity item = hasPreviousMembership(personaID, membresiaID, out monthsToAddM);
 
-                    if (item.membresia_persona_pagoID > 0)
+                    if (item != null)
                     {
-                        resp = insertPendingDBRegister(personaID, membresiaID, item.fechaInicioMembresia, imagen, daysToAddM, out membresiaPersonaPagoID);
+                        resp = insertPendingDBRegister(personaID, membresiaID, item.fechaInicioMembresia, monthsToAddM, out membresiaPersonaPagoID);
 
                         if (resp)
                         {
-                            resp = insertPendingSol(personaID, membresiaID, membresiaPersonaPagoID);
+                            resp = insertPendingSol(personaID, membresiaID, membresiaPersonaPagoID, imagen);
                         }
                     }
 
@@ -554,7 +551,7 @@ namespace WebAPIBusiness.BusinessCore
                                                 .First();
                     if (query != null)
                     {
-                        daysToAdd = calculateDaysOfPeriodTime(query.membresia.periodicidad);
+                        daysToAdd = calculateMonthsOfPeriodTime(query.membresia.periodicidad);
                     }
 
                 }
@@ -581,15 +578,18 @@ namespace WebAPIBusiness.BusinessCore
             }
             catch (Exception ex)
             {
-                return entity = null;
+                throw new ValidationAndMessageException(ex.Message);
             }
         }
 
-        private bool insertPendingDBRegister(int personaID, int membresiaID, DateTime datePreviousMembreship, string imagen, int daysToAdd, out int membresiaPersonaPagoID)
+        private bool insertPendingDBRegister(int personaID, int membresiaID, DateTime datePreviousMembreship, int monthsToAddM, out int membresiaPersonaPagoID)
         {
             MembresiaPersonaPagoEntity entity = new MembresiaPersonaPagoEntity();
             membresia_persona_pago item = new membresia_persona_pago();
-            DateTime newTimeMembership = datePreviousMembreship.AddDays(daysToAdd);
+            DateTime newTimeMembership = datePreviousMembreship.AddMonths(monthsToAddM);
+            newTimeMembership = newTimeMembership.AddDays(1);
+
+            DateTime endTimeMembership = newTimeMembership.AddMonths(monthsToAddM);
             membresiaPersonaPagoID = 0;
 
             try
@@ -602,7 +602,7 @@ namespace WebAPIBusiness.BusinessCore
                         personaID = personaID,
                         membresiaID = membresiaID,
                         fechaInicioMembresia = newTimeMembership,
-                        fechaFinMembresia = newTimeMembership.AddDays(daysToAdd),
+                        fechaFinMembresia = endTimeMembership,
                         estado = "I"
                     };
 
@@ -612,7 +612,7 @@ namespace WebAPIBusiness.BusinessCore
                     membresiaPersonaPagoID = dbContext.membresia_persona_pago.Where(x => x.personaID == personaID
                                                                         && x.membresiaID == membresiaID
                                                                         && x.fechaInicioMembresia == newTimeMembership
-                                                                        && x.fechaFinMembresia == newTimeMembership.AddDays(daysToAdd)
+                                                                        && x.fechaFinMembresia == endTimeMembership
                                                                         && x.estado == "I")
                                                                         .Select(x => x.membresia_persona_pagoID)
                                                                         .FirstOrDefault();
@@ -626,7 +626,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public int calculateDaysOfPeriodTime(string Periodicidad)
+        public int calculateMonthsOfPeriodTime(string Periodicidad)
         {
             int val = 0;
 
@@ -651,10 +651,8 @@ namespace WebAPIBusiness.BusinessCore
 
             return val;
         }
-        private bool insertPendingSol(int personaID, int membresiaID, int membresiaPersonaPagoID)
+        private bool insertPendingSol(int personaID, int membresiaID, int membresiaPersonaPagoID, string imagen)
         {
-            MembresiaPersonaPagoEntity entity;
-            solicitud_membresiaPersona query = new solicitud_membresiaPersona();
             DateTime hoy = DateTime.Now;
 
             try
@@ -662,16 +660,17 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
 
-                    query = new solicitud_membresiaPersona()
+                    sol_membresiaPago query = new sol_membresiaPago()
                     {
                         personaID = personaID,
                         membresiaID = membresiaID,
                         membresia_persona_pagoID = membresiaPersonaPagoID,
                         fechaRegistroSolicitud = hoy,
+                        comprobante = Convert.FromBase64String(imagen),
                         estado = "A"
                     };
 
-                    dbContext.solicitud_membresiaPersona.Add(query);
+                    dbContext.sol_membresiaPago.Add(query);
                     dbContext.SaveChanges();
                 }
 
