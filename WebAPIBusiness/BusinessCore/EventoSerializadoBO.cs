@@ -60,15 +60,15 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertEvento(List<EventoAdminEntity>listaEventos)
+        public bool insertEvento(List<EventoAdminEntity> listaEventos)
         {
             bool entity = false;
 
             try
             {
-                for (int i=0;i<listaEventos.Count;i++) {
-                    entity = insertDBEvento(listaEventos);   
-                }
+
+                entity = insertDBEvento(listaEventos);
+
                 entity = true;
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBEvento( List<EventoAdminEntity> listaEventos)
+        private bool insertDBEvento(List<EventoAdminEntity> listaEventos)
         {
             List<evento> items = new List<evento>();
             evento item = new evento();
@@ -88,26 +88,27 @@ namespace WebAPIBusiness.BusinessCore
             try
             {
                 using (var dbContext = new GYMDBEntities())
-                { 
-                    foreach (var evento in listaEventos) {
-                        DateTime fechaF = Convert.ToDateTime(evento.fecha);
+                {
+                    for (int i = 0; i < listaEventos.Count; i++)
+                    {
+                        DateTime fechaF = Convert.ToDateTime(listaEventos[i].fecha);
                         item = new evento()
                         {
-                            claseID = int.Parse(evento.claseID),
-                            horarioMID = int.Parse(evento.horarioMID),
-                            fecha =fechaF ,
-                            salaID = int.Parse(evento.salaID),
-                            aforoMax = int.Parse(evento.aforoMax),
-                            aforoMin = int.Parse(evento.aforoMin),
+                            claseID = int.Parse(listaEventos[i].claseID),
+                            horarioMID = int.Parse(listaEventos[i].horarioMID),
+                            fecha = fechaF,
+                            salaID = int.Parse(listaEventos[i].salaID),
+                            aforoMax = int.Parse(listaEventos[i].aforoMax),
+                            aforoMin = int.Parse(listaEventos[i].aforoMin),
                         };
 
-                        items.Add(item);
                         dbContext.evento.Add(item);
                         dbContext.SaveChanges();
                     }
-                    
-                    
                 }
+
+
+
 
                 return true;
             }
