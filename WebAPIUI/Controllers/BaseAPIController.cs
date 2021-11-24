@@ -57,6 +57,7 @@ using WebAPIUI.CustomExceptions.TransaccionesAnuales;
 using WebAPIUI.Controllers.TransaccionesAnuales.Models;
 using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
 using WebAPIUI.Controllers.ConsultaVentasMembresias.Models;
+using WebAPIUI.Controllers.ModificarMembresiaUsuario.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -793,5 +794,26 @@ namespace WebAPIUI.Controllers
             response.ContentIndex = null;
         }
         #endregion
+
+        #region ModificarMembresiaUsuario
+        internal static void ThrowHandledExceptionModificarMembresiaUsuario(ModificarMembresiaUsuarioResponseType type, IList<string> messages)
+        {
+            var newException = new ModificarMembresiaUsuarioException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionModificarMembresiaUsuario(ModificarMembresiaUsuarioResponseType type, Exception ex)
+        {
+            throw new ModificarMembresiaUsuarioException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionModificarMembresiaUsuario(ModificarMembresiaUsuarioResponseType code, ModificarMembresiaUsuarioDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = false;
+        }
+        #endregion
+
     }
 }

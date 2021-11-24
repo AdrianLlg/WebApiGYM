@@ -41,6 +41,9 @@ namespace WebAPIBusiness.BusinessCore
                                 nombreMembresia = item.membresia.nombre,
                                 precioMembresia = item.membresia.precio,
                                 periodicidadMembresia = item.membresia.periodicidad,
+                                formaPago = item.formaPago,
+                                nroDocumento = item.nroDocumento,
+                                Banco = item.Banco,
                                 fechaPago = Convert.ToDateTime(item.fechaTransaccion),
                                 fechaLimite = (DateTime)item.fechaFinMembresia,
                                 fechaInicioMembresia = (DateTime)item.fechaInicioMembresia,
@@ -58,10 +61,54 @@ namespace WebAPIBusiness.BusinessCore
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al manejar la BDD.");
+                throw new Exception(ex.Message);
             }
         }
 
-        
+        public bool updateUserMembership(int membresia_persona_pagoID, string fechaInicioMembresia, string fechaFinMembresia, string Banco, string fechaPago, string formaPago, string nroDocumento)
+        {
+            bool resp = updateRecord(membresia_persona_pagoID, fechaInicioMembresia, fechaFinMembresia, Banco, fechaPago, formaPago, nroDocumento);
+
+            return resp;
+        }
+
+        private bool updateRecord(int membresia_persona_pagoID, string fechaInicioMembresia, string fechaFinMembresia, string Banco, string fechaPago, string formaPago, string nroDocumento)
+        {
+            try
+            {
+                DateTime fechaInicio = Convert.ToDateTime(fechaInicioMembresia);
+                DateTime fechaFin = Convert.ToDateTime(fechaFinMembresia);
+                DateTime fechaTransaccion = Convert.ToDateTime(fechaPago);
+
+
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var record = dbContext.membresia_persona_pago.Where(x => x.membresia_persona_pagoID == membresia_persona_pagoID).FirstOrDefault();
+                    
+                    if (record != null)
+                    {
+                        record.fechaInicioMembresia = fechaInicio;
+                        record.fechaFinMembresia = fechaFin;
+                        record.Banco = Banco;
+                        record.fechaTransaccion = fechaTransaccion;
+                        record.formaPago = formaPago;
+                        record.nroDocumento = nroDocumento;
+
+                        dbContext.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                    {
+                        throw new Exception("El ID proporcionado no existe.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

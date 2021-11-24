@@ -639,8 +639,6 @@ namespace WebAPIBusiness.BusinessCore
 
         private bool insertPendingDBRegister(int personaID, int membresiaID, DateTime datePreviousMembreship, int monthsToAddM, out int membresiaPersonaPagoID)
         {
-            MembresiaPersonaPagoEntity entity = new MembresiaPersonaPagoEntity();
-            membresia_persona_pago item = new membresia_persona_pago();
             DateTime newTimeMembership = datePreviousMembreship.AddMonths(monthsToAddM);
             newTimeMembership = newTimeMembership.AddDays(1);
 
