@@ -23,8 +23,8 @@ namespace WebAPIData
         public int membresia_persona_pagoID { get; set; }
         public int personaID { get; set; }
         public int membresiaID { get; set; }
-        public System.DateTime fechaInicioMembresia { get; set; }
-        public System.DateTime fechaFinMembresia { get; set; }
+        public Nullable<System.DateTime> fechaInicioMembresia { get; set; }
+        public Nullable<System.DateTime> fechaFinMembresia { get; set; }
         public string formaPago { get; set; }
         public Nullable<System.DateTime> fechaTransaccion { get; set; }
         public string nroDocumento { get; set; }
