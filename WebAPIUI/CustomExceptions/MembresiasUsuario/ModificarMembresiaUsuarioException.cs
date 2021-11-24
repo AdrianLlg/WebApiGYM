@@ -8,7 +8,7 @@ namespace WebAPIUI.CustomExceptions.MembresiasUsuario
     /// <summary>
     /// Enumerado de errores.
     /// </summary>
-    public enum ModificarMembresiaUsuarioResponseType
+    public enum MembresiasUsuarioResponseType
     {
         /// <summary>
         /// Ok. No existe error.
@@ -34,14 +34,14 @@ namespace WebAPIUI.CustomExceptions.MembresiasUsuario
     }
 
     /// <summary>
-    /// ModificarMembresiaUsuarioException Exception
+    /// ConsultaRepositorioImagenes Exception
     /// </summary>
-    public class ModificarMembresiaUsuarioException : Exception
+    public class MembresiasUsuarioException : Exception
     {
         /// <summary>
         /// Tipo de error.
         /// </summary>
-        public ModificarMembresiaUsuarioResponseType Type { get; private set; }
+        public MembresiasUsuarioResponseType Type { get; private set; }
 
         /// <summary>
         /// Tipo de error.
@@ -54,7 +54,7 @@ namespace WebAPIUI.CustomExceptions.MembresiasUsuario
         /// </summary>
         /// <param name="type"></param>
         /// <param name="message"></param>
-        public ModificarMembresiaUsuarioException(ModificarMembresiaUsuarioResponseType type, string message)
+        public MembresiasUsuarioException(MembresiasUsuarioResponseType type, string message)
             : base(message)
         {
             this.Type = type;
@@ -65,7 +65,7 @@ namespace WebAPIUI.CustomExceptions.MembresiasUsuario
         /// </summary>
         /// <param name="type"></param>
         /// <param name="messageList"></param>
-        public ModificarMembresiaUsuarioException(ModificarMembresiaUsuarioResponseType type, IList<string> messageList)
+        public MembresiasUsuarioException(MembresiasUsuarioResponseType type, IList<string> messageList)
             : base(JoinMessages(messageList))
         {
             this.Type = type;

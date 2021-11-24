@@ -14,7 +14,9 @@ namespace WebAPIUI.Models.Membresias
         public string periodicidadMembresia { get; set; }
         public string fechaInicioMembresia { get; set; }
         public string fechaFinMembresia { get; set; }
-        // public List<membresia_persona_disciplina> disciplinasmembresia { get; set; }
+        public string formaPago { get; set; }
+        public string nroDocumento { get; set; }
+        public string Banco { get; set; }
         public string fechaPago { get; set; }
         public string fechaLimite { get; set; }
         public string estado { get; set; }

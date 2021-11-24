@@ -169,6 +169,9 @@
     <Compile Include="Controllers\Admin\ConsultaVentasMembresias\ConsultaVentasMembresiasController.cs" />
     <Compile Include="Controllers\Admin\ConsultaVentasMembresias\Models\ConsultaVentasMembresiasDataRequest.cs" />
     <Compile Include="Controllers\Admin\ConsultaVentasMembresias\Models\ConsultaVentasMembresiasDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ModificarMembresiaUsuario\ModificarMembresiaUsuarioController.cs" />
+    <Compile Include="Controllers\Admin\ModificarMembresiaUsuario\Models\ModificarMembresiaUsuarioDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ModificarMembresiaUsuario\Models\ModificarMembresiaUsuarioDataResponse.cs" />
     <Compile Include="Controllers\Admin\TransaccionesAnuales\TransaccionesAnualesController.cs" />
     <Compile Include="Controllers\Admin\TransaccionesAnuales\Models\TransaccionesAnualesDataRequest.cs" />
     <Compile Include="Controllers\Admin\TransaccionesAnuales\Models\TransaccionesAnualesDataResponse.cs" />
@@ -254,6 +257,7 @@
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
     <Compile Include="CustomExceptions\ConsultaVentasMembresias\ConsultaVentasMembresiasException.cs" />
+    <Compile Include="CustomExceptions\MembresiasUsuario\ModificarMembresiaUsuarioException.cs" />
     <Compile Include="CustomExceptions\TransaccionesAnuales\TransaccionesAnualesException.cs" />
     <Compile Include="CustomExceptions\ConsultaPersonaEstado\ConsultaPersonaEstadoException.cs" />
     <Compile Include="CustomExceptions\ConsultaRepEventoSala\ConsultaRepEventoSalaException.cs" />

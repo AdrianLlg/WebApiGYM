@@ -16,9 +16,13 @@ namespace WebAPIBusiness.Entities.Membresia
         public string periodicidadMembresia { get; set; }
         public DateTime fechaInicioMembresia { get; set; }
         public DateTime fechaFinMembresia { get; set; }
-        public List<membresia_persona_disciplina> disciplinasmembresia { get; set; }
+        public string formaPago { get; set; }
+        public string nroDocumento { get; set; }
+        public string Banco { get; set; }
         public DateTime fechaPago { get; set; }
         public DateTime fechaLimite { get; set; }
         public string estado { get; set; }
+
+
     }
 }
