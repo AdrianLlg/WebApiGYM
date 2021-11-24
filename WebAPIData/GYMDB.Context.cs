@@ -35,15 +35,16 @@ namespace WebAPIData
         public virtual DbSet<horarioM> horarioM { get; set; }
         public virtual DbSet<membresia> membresia { get; set; }
         public virtual DbSet<membresia_disciplina> membresia_disciplina { get; set; }
+        public virtual DbSet<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
+        public virtual DbSet<membresia_persona_pago> membresia_persona_pago { get; set; }
         public virtual DbSet<noticia> noticia { get; set; }
         public virtual DbSet<persona> persona { get; set; }
         public virtual DbSet<recurso> recurso { get; set; }
         public virtual DbSet<recursoEspecial> recursoEspecial { get; set; }
         public virtual DbSet<roleP> roleP { get; set; }
         public virtual DbSet<sala> sala { get; set; }
-        public virtual DbSet<usuario> usuario { get; set; }
-        public virtual DbSet<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
         public virtual DbSet<sol_membresiaPago> sol_membresiaPago { get; set; }
-        public virtual DbSet<membresia_persona_pago> membresia_persona_pago { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<usuario> usuario { get; set; }
     }
 }

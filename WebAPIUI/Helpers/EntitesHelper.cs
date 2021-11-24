@@ -34,6 +34,16 @@ using WebAPIBusiness.Entities.Noticia;
 using WebAPIUI.Models.SolicitudesMembresias;
 using WebAPIBusiness.Entities.SolicitudesMembresias;
 using System;
+using WebAPIUI.Models.ConsultaRepEventoDisciplina;
+using WebAPIBusiness.Entities.ConsultaRepEventoDisciplina;
+using WebAPIUI.Models.ConsultaPersonaEstado;
+using WebAPIBusiness.Entities.ConsultaPersonaEstado;
+using WebAPIUI.Models.ConsultaRepEventoSala;
+using WebAPIBusiness.Entities.ConsultaRepEventoSala;
+using WebAPIUI.Models.TransaccionesAnuales;
+using WebAPIBusiness.Entities.TransaccionesAnuales;
+using WebAPIUI.Models.ConsultaVentasMembresias;
+using WebAPIBusiness.Entities.ConsultaVentasMembresias;
 
 namespace WebAPIUI.Helpers
 {
@@ -53,7 +63,7 @@ namespace WebAPIUI.Helpers
                     precioMembresia = entity.precioMembresia,
                     periodicidadMembresia = entity.periodicidadMembresia,
                     fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
-                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),                    
+                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
                 };
 
                 response.Add(item);
@@ -193,7 +203,7 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
-       
+
 
         public static MembresiaAdminModel MembresiaInfoEntityToModel(MembresiaAdminEntity entity, List<Membresia_Disciplina_NumClasesEntity> entities)
         {
@@ -222,9 +232,9 @@ namespace WebAPIUI.Helpers
             {
                 var item = new RolAdminModel
                 {
-                   rolePID = entity.rolePID,
-                   nombre = entity.nombre,
-                   descripcion = entity.descripcion
+                    rolePID = entity.rolePID,
+                    nombre = entity.nombre,
+                    descripcion = entity.descripcion
                 };
 
                 response.Add(item);
@@ -383,7 +393,7 @@ namespace WebAPIUI.Helpers
                 recursoEspecialID = entity.recursoEspecialID,
                 nombre = entity.nombre,
                 descripcion = entity.descripcion,
-                
+
             };
 
             return response;
@@ -401,9 +411,9 @@ namespace WebAPIUI.Helpers
             {
                 var item = new HorarioAdminModel
                 {
-                   horarioMID = entity.horarioMID,
-                   horaInicio = entity.horaInicio,
-                   horaFin = entity.horaFin 
+                    horarioMID = entity.horarioMID,
+                    horaInicio = entity.horaInicio,
+                    horaFin = entity.horaFin
                 };
 
                 response.Add(item);
@@ -474,7 +484,7 @@ namespace WebAPIUI.Helpers
                     claseID = entity.claseID,
                     disciplinaID = entity.disciplinaID,
                     nombre = entity.nombre,
-                    descripcion=entity.descripcion
+                    descripcion = entity.descripcion
                 };
 
                 response.Add(item);
@@ -513,6 +523,7 @@ namespace WebAPIUI.Helpers
         //    return response;
         //}
 
+        #region Configuraciones Helper
         public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
         {
 
@@ -538,7 +549,7 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
-
+        #endregion
 
         #region NoticiaAdmin
         public static List<NoticiaAdminModel> NoticiaEntityToModel(List<NoticiaEntity> entities)
@@ -550,12 +561,12 @@ namespace WebAPIUI.Helpers
             {
                 var item = new NoticiaAdminModel
                 {
-                    noticiaID=entity.noticiaID,
-                    titulo=entity.titulo,
-                    contenido=entity.contenido,
-                    imagen=entity.imagen,
-                    fechaInicio=entity.fechaInicio.ToString(),
-                    fechaFin=entity.fechaFin.ToString()
+                    noticiaID = entity.noticiaID,
+                    titulo = entity.titulo,
+                    contenido = entity.contenido,
+                    imagen = entity.imagen,
+                    fechaInicio = entity.fechaInicio.ToString(),
+                    fechaFin = entity.fechaFin.ToString()
 
                 };
 
@@ -611,19 +622,21 @@ namespace WebAPIUI.Helpers
 
             EventoAdminModel response = new EventoAdminModel
             {
-                eventoID=entity.eventoID,
-                claseID=entity.claseID,
-                horarioMID=entity.horarioMID,
-                fecha=entity.fecha,
-                salaID=entity.salaID,
-                aforoMax=entity.aforoMax,
-                aforoMin=entity.aforoMin
+                eventoID = entity.eventoID,
+                claseID = entity.claseID,
+                horarioMID = entity.horarioMID,
+                fecha = entity.fecha,
+                salaID = entity.salaID,
+                aforoMax = entity.aforoMax,
+                aforoMin = entity.aforoMin
             };
 
             return response;
         }
         #endregion
 
+
+        #region SolicitudesMembresiasModel
         public static List<SolicitudesMembresiasModel> EntityToModelSolicitudesMembresias(List<SolicitudesMembresiasEntity> entities)
         {
 
@@ -650,7 +663,121 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+        #endregion
 
+        #region ConsultaRepEventoDisciplinaModel
+        public static List<ConsultaRepEventoDisciplinaModel> EntityToModelConsultaRepEventoDisciplina(List<ConsultaRepEventoDisciplinaEntity> entities)
+        {
+
+            List<ConsultaRepEventoDisciplinaModel> response = new List<ConsultaRepEventoDisciplinaModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaRepEventoDisciplinaModel model = new ConsultaRepEventoDisciplinaModel()
+                {
+                    CantidadEventos = entity.CantidadEventos,
+                    Disciplina = entity.Disciplina,
+
+
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
+
+        #region ConsultaPersonaEstadoModel
+        public static List<ConsultaPersonaEstadoModel> EntityToModelConsultaPersonaEstado(List<ConsultaPersonaEstadoEntity> entities)
+        {
+
+            List<ConsultaPersonaEstadoModel> response = new List<ConsultaPersonaEstadoModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaPersonaEstadoModel model = new ConsultaPersonaEstadoModel()
+                {
+                    Cantidad = entity.Cantidad,
+                    Estado = entity.Estado,
+
+
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
+
+        #region ConsultaRepEventoSalaModel
+        public static List<ConsultaRepEventoSalaModel> EntityToModelConsultaRepEventoSala(List<ConsultaRepEventoSalaEntity> entities)
+        {
+
+            List<ConsultaRepEventoSalaModel> response = new List<ConsultaRepEventoSalaModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaRepEventoSalaModel model = new ConsultaRepEventoSalaModel()
+                {
+                    CantidadEventos = entity.CantidadEventos,
+                    Sala = entity.Sala,
+
+
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
+
+        #region TransaccionesAnualesModel
+        public static List<TransaccionesAnualesModel> EntityToModelTransaccionesAnuales(List<TransaccionesAnualesEntity> entities)
+        {
+
+            List<TransaccionesAnualesModel> response = new List<TransaccionesAnualesModel>();
+
+            foreach (var entity in entities)
+            {
+                TransaccionesAnualesModel model = new TransaccionesAnualesModel()
+                {
+                    Transacciones = entity.Transacciones,
+                    Anio = entity.Anio,
+                    Mes = entity.Mes
+
+
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
+
+        #region ConsultaVentasMembresiasModel
+        public static List<ConsultaVentasMembresiasModel> EntityToModelConsultaVentasMembresias(List<ConsultaVentasMembresiasEntity> entities)
+        {
+
+            List<ConsultaVentasMembresiasModel> response = new List<ConsultaVentasMembresiasModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaVentasMembresiasModel model = new ConsultaVentasMembresiasModel()
+                {
+                    Membresia = entity.Membresia,
+                    TotalVentas= entity.TotalVentas
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
 
     }
 

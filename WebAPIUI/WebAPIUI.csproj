@@ -163,6 +163,21 @@
     <Compile Include="Controllers\Admin\Agendamiento\AgendamientoController.cs" />
     <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataRequest.cs" />
     <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaPersonaEstado\ConsultaPersonaEstadoController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaPersonaEstado\Models\ConsultaPersonaEstadoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaPersonaEstado\Models\ConsultaPersonaEstadoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaVentasMembresias\ConsultaVentasMembresiasController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaVentasMembresias\Models\ConsultaVentasMembresiasDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaVentasMembresias\Models\ConsultaVentasMembresiasDataResponse.cs" />
+    <Compile Include="Controllers\Admin\TransaccionesAnuales\TransaccionesAnualesController.cs" />
+    <Compile Include="Controllers\Admin\TransaccionesAnuales\Models\TransaccionesAnualesDataRequest.cs" />
+    <Compile Include="Controllers\Admin\TransaccionesAnuales\Models\TransaccionesAnualesDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoSala\ConsultaRepEventoSalaController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoSala\Models\ConsultaRepEventoSalaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoSala\Models\ConsultaRepEventoSalaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoDisciplina\Models\ConsultaRepEventoDisciplinaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoDisciplina\Models\ConsultaRepEventoDisciplinaDataResponse.cs" />
     <Compile Include="Controllers\Admin\EventosSerializados\EventosSerializadosController.cs" />
     <Compile Include="Controllers\Admin\EventosSerializados\Models\EventosSerializadosDataRequest.cs" />
     <Compile Include="Controllers\Admin\EventosSerializados\Models\EventoAdminDataResponse.cs" />
@@ -238,6 +253,11 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\ConsultaVentasMembresias\ConsultaVentasMembresiasException.cs" />
+    <Compile Include="CustomExceptions\TransaccionesAnuales\TransaccionesAnualesException.cs" />
+    <Compile Include="CustomExceptions\ConsultaPersonaEstado\ConsultaPersonaEstadoException.cs" />
+    <Compile Include="CustomExceptions\ConsultaRepEventoSala\ConsultaRepEventoSalaException.cs" />
+    <Compile Include="CustomExceptions\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaException.cs" />
     <Compile Include="CustomExceptions\ConsultaHorarios\ConsultaHorariosException.cs" />
     <Compile Include="CustomExceptions\EventosSerializados\EventosSerializadosException.cs" />
     <Compile Include="CustomExceptions\EventoAdmin\EventoAdminException.cs" />
@@ -267,6 +287,10 @@
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
     <Compile Include="Models\ConfiguracionesSistema\ConfiguracionesSistemaModel.cs" />
+    <Compile Include="Models\ConsultaPersonaEstado\ConsultaPersonaEstadoModel.cs" />
+    <Compile Include="Models\ConsultaRepEventoSala\ConsultaRepEventoSalaModel.cs" />
+    <Compile Include="Models\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaModel.cs" />
+    <Compile Include="Models\ConsultaVentasMembresias\ConsultaVentasMembresiasModel.cs" />
     <Compile Include="Models\EventoAdmin\EventoAdminModel.cs" />
     <Compile Include="Models\ClaseAdmin\ClaseAdminModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
@@ -285,6 +309,7 @@
     <Compile Include="Models\SalaAdmin\SalaAdminModel.cs" />
     <Compile Include="Models\RolAdmin\RolAdminModel.cs" />
     <Compile Include="Models\SolicitudesMembresias\SolicitudesMembresiasModel.cs" />
+    <Compile Include="Models\TransaccionesAnuales\TransaccionesAnualesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

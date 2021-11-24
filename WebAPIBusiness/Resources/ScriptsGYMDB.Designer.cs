@@ -121,6 +121,30 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT nombre as Sala ,COUNT(*)as cantidadEventos FROM evento
+        ///  INNER JOIN Sala ON evento.salaID=sala.salaID WHERE evento.fecha between &apos;{0}&apos; and &apos;{1}&apos;
+        ///  GROUP BY nombre
+        ///HAVING COUNT(*) &gt; 0.
+        /// </summary>
+        internal static string getEventoSala {
+            get {
+                return ResourceManager.GetString("getEventoSala", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
+        ///  INNER JOIN clase ON evento.claseID=clase.claseID WHERE evento.fecha between &apos;{0}&apos; and &apos;{1}&apos;
+        ///  GROUP BY nombre
+        ///HAVING COUNT(*) &gt; 0.
+        /// </summary>
+        internal static string getEventosPorDisciplina {
+            get {
+                return ResourceManager.GetString("getEventosPorDisciplina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT 
         ///ev.fecha,
         ///hm.horarioMID,
@@ -205,6 +229,43 @@ namespace WebAPIBusiness.Resources {
         internal static string getMembresiasUsuario2 {
             get {
                 return ResourceManager.GetString("getMembresiasUsuario2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT estado as Estado,Count(*)as Cantidad
+        ///FROM persona 
+        ///GROUP BY estado
+        ///HAVING COUNT(*) &gt; 0.
+        /// </summary>
+        internal static string getPersonasEstado {
+            get {
+                return ResourceManager.GetString("getPersonasEstado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT Mes , Anio,COUNT(*) as Transacciones  FROM (SELECT (DATENAME(month,fechaTransaccion)) AS Mes,(YEAR(fechaTransaccion)) AS Anio FROM membresia_persona_pago as MPP WHERE YEAR(MPP.fechaTransaccion) = {0} AND MPP.estado=&apos;A&apos;)AS TABLA
+        ///group by Mes,Anio
+        ///HAVING count(*) &gt;0.
+        /// </summary>
+        internal static string getTransaccionesAnuales {
+            get {
+                return ResourceManager.GetString("getTransaccionesAnuales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT nombre as Membresia,(precio*Cantidad)AS TotalVentas FROM(
+        ///  SELECT membresia.nombre ,membresia.precio ,COUNT(*)as Cantidad from membresia_persona_pago
+        ///  INNER JOIN membresia ON membresia_persona_pago.membresiaID=membresia.membresiaID
+        ///  WHERE fechaTransaccion &gt;= &apos;{0}&apos; AND fechaTransaccion&lt;= &apos;{1}&apos;
+        ///  GROUP BY membresia.nombre,membresia.precio
+        ///  HAVING COUNT(*)&gt;0)as S1.
+        /// </summary>
+        internal static string getVentasMembresias {
+            get {
+                return ResourceManager.GetString("getVentasMembresias", resourceCulture);
             }
         }
     }

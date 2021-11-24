@@ -47,6 +47,16 @@ using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.CustomExceptions.SolicitudesMembresias;
 using WebAPIUI.Controllers.SolicitudesMembresias.Models;
 using WebAPIUI.Controllers.RenovacionMembresiaUsuario.Models;
+using WebAPIUI.CustomExceptions.ConsultaRepEventoDisciplina;
+using WebAPIUI.Controllers.ConsultaRepEventoDisciplina.Models;
+using WebAPIUI.CustomExceptions.ConsultaPersonaEstado;
+using WebAPIUI.Controllers.ConsultaPersonaEstado.Models;
+using WebAPIUI.CustomExceptions.ConsultaRepEventoSala;
+using WebAPIUI.Controllers.ConsultaRepEventoSala.Models;
+using WebAPIUI.CustomExceptions.TransaccionesAnuales;
+using WebAPIUI.Controllers.TransaccionesAnuales.Models;
+using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
+using WebAPIUI.Controllers.ConsultaVentasMembresias.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -674,6 +684,114 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
+        #region ConsultaRepEventoDisciplina Expections
+        internal static void ThrowHandledExceptionConsultaRepEventoDisciplina(ConsultaRepEventoDisciplinaResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaRepEventoDisciplinaException(type, messages);
+            throw newException;
+        }
 
+        internal static void ThrowUnHandledExceptionConsultaRepEventoDisciplina(ConsultaRepEventoDisciplinaResponseType type, Exception ex)
+        {
+            throw new ConsultaRepEventoDisciplinaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaRepEventoDisciplina(ConsultaRepEventoDisciplinaResponseType code, ConsultaRepEventoDisciplinaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region ConsultaRepEventoSala Expections
+        internal static void ThrowHandledExceptionConsultaRepEventoSala(ConsultaRepEventoSalaResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaRepEventoSalaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaRepEventoSala(ConsultaRepEventoSalaResponseType type, Exception ex)
+        {
+            throw new ConsultaRepEventoSalaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaRepEventoSala(ConsultaRepEventoSalaResponseType code, ConsultaRepEventoSalaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion 
+
+        #region ConsultaPersonaEstado Expections
+        internal static void ThrowHandledExceptionConsultaPersonaEstado(ConsultaPersonaEstadoResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaPersonaEstadoException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaPersonaEstado(ConsultaPersonaEstadoResponseType type, Exception ex)
+        {
+            throw new ConsultaPersonaEstadoException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaPersonaEstado(ConsultaPersonaEstadoResponseType code, ConsultaPersonaEstadoDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region TransaccionesAnuales Expections
+        internal static void ThrowHandledExceptionTransaccionesAnuales(TransaccionesAnualesResponseType type, IList<string> messages)
+        {
+            var newException = new TransaccionesAnualesException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionTransaccionesAnuales(TransaccionesAnualesResponseType type, Exception ex)
+        {
+            throw new TransaccionesAnualesException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionTransaccionesAnuales(TransaccionesAnualesResponseType code, TransaccionesAnualesDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region ConsultaVentasMembresias Expections
+        internal static void ThrowHandledExceptionConsultaVentasMembresias(ConsultaVentasMembresiasResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaVentasMembresiasException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaVentasMembresias(ConsultaVentasMembresiasResponseType type, Exception ex)
+        {
+            throw new ConsultaVentasMembresiasException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaVentasMembresias(ConsultaVentasMembresiasResponseType code, ConsultaVentasMembresiasDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
     }
 }
