@@ -176,6 +176,20 @@ FROM evento_recursoEspecial ERE
 INNER JOIN recursoEspecial RE ON ERE.recursoEspecialID = RE.recursoEspecialID
 WHERE ERE.eventoID = {1}/*Parametro*/</value>
   </data>
+  <data name="getEventoSala" xml:space="preserve">
+    <value>SELECT nombre as Sala ,COUNT(*)as cantidadEventos FROM evento
+  INNER JOIN Sala ON evento.salaID=sala.salaID WHERE evento.fecha between '{0}' and '{1}'
+  GROUP BY nombre
+HAVING COUNT(*) &gt; 0</value>
+    <comment>--Cantidad de veces que una sala se ha usado en eventos en un rango de fecha</comment>
+  </data>
+  <data name="getEventosPorDisciplina" xml:space="preserve">
+    <value>SELECT nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
+  INNER JOIN clase ON evento.claseID=clase.claseID WHERE evento.fecha between '{0}' and '{1}'
+  GROUP BY nombre
+HAVING COUNT(*) &gt; 0</value>
+    <comment>--Query para sacar numero de eventos por disciplina</comment>
+  </data>
   <data name="getHorariosFecha" xml:space="preserve">
     <value>SELECT 
 ev.fecha,
@@ -242,5 +256,26 @@ on MPD.membresia_disciplinaID = MD.membresia_disciplinaID
 INNER JOIN membresia M on MD.membresiaID = M.membresiaID 
 INNER JOIN disciplina D on MD.disciplinaID = D.disciplinaID
 WHERE MPD.personaID = {0}</value>
+  </data>
+  <data name="getPersonasEstado" xml:space="preserve">
+    <value>SELECT estado as Estado,Count(*)as Cantidad
+FROM persona 
+GROUP BY estado
+HAVING COUNT(*) &gt; 0</value>
+    <comment>-- Estatus personas activo e inactivo</comment>
+  </data>
+  <data name="getTransaccionesAnuales" xml:space="preserve">
+    <value>SELECT Mes , Anio,COUNT(*) as Transacciones  FROM (SELECT (DATENAME(month,fechaTransaccion)) AS Mes,(YEAR(fechaTransaccion)) AS Anio FROM membresia_persona_pago as MPP WHERE YEAR(MPP.fechaTransaccion) = {0} AND MPP.estado='A')AS TABLA
+group by Mes,Anio
+HAVING count(*) &gt;0</value>
+  </data>
+  <data name="getVentasMembresias" xml:space="preserve">
+    <value>SELECT nombre as Membresia,(precio*Cantidad)AS TotalVentas FROM(
+  SELECT membresia.nombre ,membresia.precio ,COUNT(*)as Cantidad from membresia_persona_pago
+  INNER JOIN membresia ON membresia_persona_pago.membresiaID=membresia.membresiaID
+  WHERE fechaTransaccion &gt;= '{0}' AND fechaTransaccion&lt;= '{1}'
+  GROUP BY membresia.nombre,membresia.precio
+  HAVING COUNT(*)&gt;0)as S1</value>
+    <comment>--Calcula el total de ventas por tipo de membresia</comment>
   </data>
 </root>

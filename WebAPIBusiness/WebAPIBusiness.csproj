@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\ReporteVentasMembresiasBO.cs" />
+    <Compile Include="BusinessCore\TransaccionesAnualesBO.cs" />
+    <Compile Include="BusinessCore\ReporteNoEventosSalaBO.cs" />
+    <Compile Include="BusinessCore\ReportePersonasEstadoBO.cs" />
+    <Compile Include="BusinessCore\ReporteNoEventosDisciplinaBO.cs" />
     <Compile Include="BusinessCore\ConsultaHorariosBO.cs" />
     <Compile Include="BusinessCore\ConfiguracionesAdminBO.cs" />
     <Compile Include="BusinessCore\EventoSerializadoBO.cs" />
@@ -77,6 +82,11 @@
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
+    <Compile Include="Entities\ConsultaPersonaEstado\ConsultaPersonaEstadoEntity.cs" />
+    <Compile Include="Entities\ConsultaVentasMembresias\ConsultaVentasMembresiasEntity.cs" />
+    <Compile Include="Entities\TransaccionesAnuales\TransaccionesAnualesEntity.cs" />
+    <Compile Include="Entities\ConsultaRepEventoSala\ConsultaRepEventoSalaEntity.cs" />
+    <Compile Include="Entities\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaEntity.cs" />
     <Compile Include="Entities\ConsultaHorarios\ConsultaHorariosModel.cs" />
     <Compile Include="Entities\ConsultaHorarios\SalaEntity.cs" />
     <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />

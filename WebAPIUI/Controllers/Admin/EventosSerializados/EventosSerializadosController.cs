@@ -10,9 +10,9 @@ using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.CustomExceptions.EventosSerializados;
 using WebAPIUI.Helpers;
 
-namespace WebAPIUI.ContEventolers
+namespace WebAPIUI.Controllers
 {
-    /// <summary>
+    /// <summary> 
     /// API que permite el manejo de Crear, Modificar y Consultar información de Eventos.
     /// </summary>
     public class EventosSerializadosController : BaseAPIController
@@ -21,12 +21,12 @@ namespace WebAPIUI.ContEventolers
         {
             List<string> messages = new List<string>();
             string message = string.Empty;
-
-            if (dataRequest == null)
-            {
-                messages.Add("No se han especificado datos de ingreso.");
-                ThrowHandledExceptionEventosSerializados(EventosSerializadosResponseType.InvalidParameters, messages);
-            }
+            
+            //if (dataRequest.listaEventos.Count == 0)
+            //{ 
+            //    messages.Add("No se han especificado datos de ingreso.");
+            //    ThrowHandledExceptionEventosSerializados(EventosSerializadosResponseType.InvalidParameters, messages);
+            //}
 
             //if (string.IsNullOrEmpty(dataRequest.nombres))
             //{
@@ -85,8 +85,7 @@ namespace WebAPIUI.ContEventolers
 
                 
                 //Crear
-                if (dataRequest.flujoID == 1)
-                {
+                
                     bool resp = InsertarNuevaEvento(dataRequest.listaEventos);
 
                     if (resp)
@@ -101,7 +100,7 @@ namespace WebAPIUI.ContEventolers
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentCreate = false;
                     }
-                }
+                
                 
                 
 
