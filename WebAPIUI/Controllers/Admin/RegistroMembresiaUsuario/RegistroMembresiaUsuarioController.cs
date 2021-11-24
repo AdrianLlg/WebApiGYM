@@ -107,8 +107,8 @@ namespace WebAPIUI.Controllers
                 }
                 else
                 {
-                    response.ResponseCode = RegistroMembresiaUsuarioResponseType.Ok;
-                    response.ResponseMessage = "No existen registros.";
+                    response.ResponseCode = RegistroMembresiaUsuarioResponseType.Error;
+                    response.ResponseMessage = "Ocurrió un error al insertar el registro.";
                     response.Content = false;
                 }
 

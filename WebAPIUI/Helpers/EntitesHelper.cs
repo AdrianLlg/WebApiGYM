@@ -49,11 +49,16 @@ namespace WebAPIUI.Helpers
             {
                 var item = new MembresiasModel
                 {
+                    membresia_persona_pagoID = entity.membresia_persona_pagoID,
+                    membresiaID = entity.membresiaID,
                     nombreMembresia = entity.nombreMembresia,
                     precioMembresia = entity.precioMembresia,
                     periodicidadMembresia = entity.periodicidadMembresia,
                     fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
-                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),                    
+                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),  
+                    fechaInicioMembresia = entity.fechaInicioMembresia.ToString(),
+                    fechaFinMembresia = entity.fechaFinMembresia.ToString(),
+                    estado = entity.estado
                 };
 
                 response.Add(item);

@@ -32,16 +32,21 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         foreach (var item in items1)
                         {
-                            var items2 = dbContext.membresia_persona_disciplina.Where(x => x.personaID == personID && x.fechaInicio == item.fechaInicioMembresia.Date).ToList();
+                            //var items2 = dbContext.membresia_persona_disciplina.Where(x => x.personaID == personID && x.fechaInicio == item.fechaInicioMembresia.Date).ToList();
 
                             MembresiaEntity entity = new MembresiaEntity()
                             {
+                                membresia_persona_pagoID = item.membresia_persona_pagoID,
+                                membresiaID = item.membresiaID,
                                 nombreMembresia = item.membresia.nombre,
                                 precioMembresia = item.membresia.precio,
                                 periodicidadMembresia = item.membresia.periodicidad,
                                 fechaPago = Convert.ToDateTime(item.fechaTransaccion),
                                 fechaLimite = item.fechaFinMembresia,
-                                disciplinasmembresia = items2
+                                fechaInicioMembresia = item.fechaInicioMembresia,
+                                fechaFinMembresia = item.fechaFinMembresia,
+                                estado = item.estado                                
+                                //disciplinasmembresia = items2
                             };
 
                             membresias.Add(entity);

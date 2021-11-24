@@ -9,12 +9,16 @@ namespace WebAPIBusiness.Entities.Membresia
 {
     public class MembresiaEntity
     {
+        public int membresia_persona_pagoID { get; set; }
+        public int membresiaID { get; set; }
         public string nombreMembresia { get; set; }
         public decimal precioMembresia { get; set; }
-
         public string periodicidadMembresia { get; set; }
+        public DateTime fechaInicioMembresia { get; set; }
+        public DateTime fechaFinMembresia { get; set; }
         public List<membresia_persona_disciplina> disciplinasmembresia { get; set; }
         public DateTime fechaPago { get; set; }
         public DateTime fechaLimite { get; set; }
+        public string estado { get; set; }
     }
 }
