@@ -233,6 +233,18 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT u.usuarioID,p.personaID,rolePID,nombres,apellidos,identificacion,u.email,u.password,telefono,edad,sexo,fechaNacimiento,fechaCreacion,estado
+        ///  FROM persona p
+        ///  INNER JOIN usuario u ON p.personaID=u.personaID
+        ///  WHERE p.personaID=&apos;{0}&apos;.
+        /// </summary>
+        internal static string getPerfil {
+            get {
+                return ResourceManager.GetString("getPerfil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT estado as Estado,Count(*)as Cantidad
         ///FROM persona 
         ///GROUP BY estado
@@ -241,6 +253,66 @@ namespace WebAPIBusiness.Resources {
         internal static string getPersonasEstado {
             get {
                 return ResourceManager.GetString("getPersonasEstado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+        ///  cl.nombre as Clase,
+        ///  dsp.nombre as Disciplina,
+        ///  evt.fecha as Fecha,
+        ///  (SELECT CASE WHEN ep.asistencia = 1 THEN &apos;Si&apos; ELSE &apos;No&apos; END ) as Asistencia
+        ///  FROM evento evt
+        ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER JOIN persona p ON  ep.personaID=p.personaID
+        ///  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+        ///  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+        ///  Where p.personaID=&apos;{0}&apos; and evt.fecha&gt;=&apos;{1}&apos; and ev [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getReporteAsistenciaLog {
+            get {
+                return ResourceManager.GetString("getReporteAsistenciaLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///  dsp.nombre as Disciplina,
+        ///   COUNT(*)as ClasesAsistidas
+        ///  FROM evento evt
+        ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER JOIN persona p ON  ep.personaID=p.personaID
+        ///  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+        ///  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+        ///  Where p.personaID=&apos;{0}&apos; and evt.fecha&gt;=&apos;{1}&apos; and evt.fecha&lt;=&apos;{2}&apos; and ep.asistencia=1
+        ///  GROUP BY dsp.nombre,ep.asistencia
+        ///  HAVING COUNT(*) &gt; 0 
+        ///  
+        ///  .
+        /// </summary>
+        internal static string getReporteGeneralAsistenciaCA {
+            get {
+                return ResourceManager.GetString("getReporteGeneralAsistenciaCA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///  dsp.nombre as Disciplina,
+        ///   COUNT(*)as ClasesNoAsistidas
+        ///  FROM evento evt
+        ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER JOIN persona p ON  ep.personaID=p.personaID
+        ///  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+        ///  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+        ///  Where p.personaID=&apos;{0}&apos; and evt.fecha&gt;=&apos;{1}&apos; and evt.fecha&lt;=&apos;{2}&apos; and ep.asistencia=0
+        ///  GROUP BY dsp.nombre,ep.asistencia
+        ///  HAVING COUNT(*) &gt; 0.
+        /// </summary>
+        internal static string getReporteGeneralAsistenciaCNA {
+            get {
+                return ResourceManager.GetString("getReporteGeneralAsistenciaCNA", resourceCulture);
             }
         }
         

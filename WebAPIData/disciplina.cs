@@ -18,6 +18,7 @@ namespace WebAPIData
         public disciplina()
         {
             this.clase = new HashSet<clase>();
+            this.fichaEntrenamiento = new HashSet<fichaEntrenamiento>();
             this.membresia_disciplina = new HashSet<membresia_disciplina>();
         }
     
@@ -27,6 +28,8 @@ namespace WebAPIData
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clase> clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fichaEntrenamiento> fichaEntrenamiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<membresia_disciplina> membresia_disciplina { get; set; }
     }

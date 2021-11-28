@@ -74,6 +74,12 @@
     <Compile Include="evento_recursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="fichaEntrenamiento.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fichaPersona.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="GYMDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -124,6 +130,9 @@
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="sol_membresiaPago.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
