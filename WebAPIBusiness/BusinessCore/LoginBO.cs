@@ -27,13 +27,18 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     user = dbContext.usuario.Where(x => x.email == email && x.password == password).FirstOrDefault();
-                    recoverPerson = dbContext.persona.Where(x => x.personaID == user.personaID).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        recoverPerson = dbContext.persona.Where(x => x.personaID == user.personaID).FirstOrDefault();
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
 
-                if(user == null)
-                {
-                    return null;
-                }else
+                if (recoverPerson != null)
                 {
                     usuarioDB = new UsuarioEntity()
                     {
