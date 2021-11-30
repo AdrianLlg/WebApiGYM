@@ -44,6 +44,12 @@ using WebAPIUI.Models.TransaccionesAnuales;
 using WebAPIBusiness.Entities.TransaccionesAnuales;
 using WebAPIUI.Models.ConsultaVentasMembresias;
 using WebAPIBusiness.Entities.ConsultaVentasMembresias;
+using WebAPIUI.Models.ReporteGeneralAsistencia;
+using WebAPIBusiness.Entities.ReporteGeneralAsistencia;
+using WebAPIUI.Models.Fichas;
+using WebAPIBusiness.Entities.Fichas;
+using WebAPIUI.Models.ConsultaPerfilModel;
+using WebAPIBusiness.Entities.ConsultaPerfil;
 
 namespace WebAPIUI.Helpers
 {
@@ -68,7 +74,7 @@ namespace WebAPIUI.Helpers
                     nroDocumento = entity.nroDocumento,
                     Banco = entity.Banco,
                     fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
-                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),  
+                    fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
                     fechaInicioMembresia = entity.fechaInicioMembresia.ToString(),
                     fechaFinMembresia = entity.fechaFinMembresia.ToString(),
                     estado = entity.estado
@@ -188,6 +194,8 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+
+
         #endregion
 
         #region MembresiaAdminHelper
@@ -777,7 +785,7 @@ namespace WebAPIUI.Helpers
                 ConsultaVentasMembresiasModel model = new ConsultaVentasMembresiasModel()
                 {
                     Membresia = entity.Membresia,
-                    TotalVentas= entity.TotalVentas
+                    TotalVentas = entity.TotalVentas
                 };
 
                 response.Add(model);
@@ -787,6 +795,271 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
+
+        #region ReporteGeneralAsistenciaModel
+        public static List<ReporteGeneralAsistenciaModel> EntityToModelReporteGeneralAsistencia(List<ReporteGeneralAsistenciaEntity> entities)
+        {
+
+            List<ReporteGeneralAsistenciaModel> response = new List<ReporteGeneralAsistenciaModel>();
+            List<ReporteGeneralAsistenciaCAModel> aux1 = new List<ReporteGeneralAsistenciaCAModel>();
+            List<ReporteGeneralAsistenciaCNAModel> aux2 = new List<ReporteGeneralAsistenciaCNAModel>();
+
+            foreach (var entity in entities)
+            {
+                ReporteGeneralAsistenciaModel model = new ReporteGeneralAsistenciaModel()
+                {
+                    Persona = entity.Persona,
+                    Clase = entity.Clase,
+                    Disciplina = entity.Disciplina,
+                    Fecha = entity.Fecha,
+                    Asistencia = entity.Asistencia,
+                    clasesAsistidas = EntityToModelReporteGeneralAsistenciaCA(entity.clasesAsistidas),
+                    clasesNoAsistidas = EntityToModelReporteGeneralAsistenciaCNA(entity.clasesNoAsistidas)
+
+                };
+                response.Add(model);
+
+            };
+            return response;
+        }
+
+
+
+
+        public static List<ReporteGeneralAsistenciaCAModel> EntityToModelReporteGeneralAsistenciaCA(List<ReporteGeneralAsistenciaCAEntity> cAsistidas)
+        {
+
+            List<ReporteGeneralAsistenciaCAModel> response = new List<ReporteGeneralAsistenciaCAModel>();
+            ReporteGeneralAsistenciaCAEntity item = new ReporteGeneralAsistenciaCAEntity();
+
+            foreach (var model in cAsistidas)
+            {
+                item = new ReporteGeneralAsistenciaCAEntity()
+                {
+                    Disciplina = model.Disciplina,
+                    ClasesAsistidas = model.ClasesAsistidas
+                };
+
+                response.Add(EntityToModelRCA(item));
+
+
+            }
+
+
+
+            return response;
+        }
+
+        public static List<ReporteGeneralAsistenciaCNAModel> EntityToModelReporteGeneralAsistenciaCNA(List<ReporteGeneralAsistenciaCNAEntity> cNAsistidas)
+        {
+
+            List<ReporteGeneralAsistenciaCNAModel> response = new List<ReporteGeneralAsistenciaCNAModel>();
+            ReporteGeneralAsistenciaCNAEntity item = new ReporteGeneralAsistenciaCNAEntity();
+
+            foreach (var model in cNAsistidas)
+            {
+                item = new ReporteGeneralAsistenciaCNAEntity()
+                {
+                    Disciplina = model.Disciplina,
+                    ClasesNoAsistidas = model.ClasesNoAsistidas
+                };
+
+                response.Add(EntityToModelRCNA(item));
+
+
+            }
+
+
+
+            return response;
+        }
+
+        public static ReporteGeneralAsistenciaCAModel EntityToModelRCA(ReporteGeneralAsistenciaCAEntity entity)
+        {
+
+            ReporteGeneralAsistenciaCAModel response = new ReporteGeneralAsistenciaCAModel();
+            ReporteGeneralAsistenciaCAModel item = new ReporteGeneralAsistenciaCAModel();
+
+
+            item = new ReporteGeneralAsistenciaCAModel()
+            {
+                Disciplina = entity.Disciplina,
+                ClasesAsistidas = entity.ClasesAsistidas
+            };
+
+            response = item;
+            return response;
+
+
+
+        }
+
+        public static ReporteGeneralAsistenciaCNAModel EntityToModelRCNA(ReporteGeneralAsistenciaCNAEntity entity)
+        {
+
+            ReporteGeneralAsistenciaCNAModel response = new ReporteGeneralAsistenciaCNAModel();
+            ReporteGeneralAsistenciaCNAModel item = new ReporteGeneralAsistenciaCNAModel();
+
+
+            item = new ReporteGeneralAsistenciaCNAModel()
+            {
+                Disciplina = entity.Disciplina,
+                ClasesNoAsistidas = entity.ClasesNoAsistidas
+            };
+
+            response = item;
+            return response;
+
+
+
+        }
+
+
+
+
+        #endregion
+
+
+        #region FichaPersonaHelper
+        public static List<FichaPersonaModel> FichaPersonasEntityToModel(List<FichaPersonaEntity> entities)
+        {
+
+            List<FichaPersonaModel> response = new List<FichaPersonaModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new FichaPersonaModel
+                {
+                    fichaPersonaID = entity.fichaPersonaID,
+                    PersonaID = entity.PersonaID,
+                    Peso = entity.Peso,
+                    Altura = entity.Altura,
+                    MesoTipo = entity.MesoTipo,
+                    NivelActualActividadFisica = entity.NivelActualActividadFisica,
+                    IndiceMasaMuscular = entity.IndiceMasaMuscular,
+                    IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
+                    MedicionBrazos = entity.MedicionBrazos,
+                    MedicionPecho = entity.MedicionPecho,
+                    MedicionEspalda = entity.MedicionEspalda,
+                    MedicionPiernas = entity.MedicionPiernas,
+                    MedicionCintura = entity.MedicionCintura,
+                    MedicionCuello = entity.MedicionCuello,
+                    AntecendesMedicos = entity.AntecendesMedicos,
+                    Alergias = entity.Alergias,
+                    Enfermedades = entity.Enfermedades
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static FichaPersonaModel FichaPersonaInfoEntityToModel(FichaPersonaEntity entity)
+        {
+
+            FichaPersonaModel response = new FichaPersonaModel
+            {
+                fichaPersonaID = entity.fichaPersonaID,
+                PersonaID = entity.PersonaID,
+                Peso = entity.Peso,
+                Altura = entity.Altura,
+                MesoTipo = entity.MesoTipo,
+                NivelActualActividadFisica = entity.NivelActualActividadFisica,
+                IndiceMasaMuscular = entity.IndiceMasaMuscular,
+                IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
+                MedicionBrazos = entity.MedicionBrazos,
+                MedicionPecho = entity.MedicionPecho,
+                MedicionEspalda = entity.MedicionEspalda,
+                MedicionPiernas = entity.MedicionPiernas,
+                MedicionCintura = entity.MedicionCintura,
+                MedicionCuello = entity.MedicionCuello,
+                AntecendesMedicos = entity.AntecendesMedicos,
+                Alergias = entity.Alergias,
+                Enfermedades = entity.Enfermedades
+            };
+
+            return response;
+        }
+
+        #endregion
+
+        #region FichaEntrenamientoHelper
+        public static List<FichaEntrenamientoModel> FichaEntrenamientosEntityToModel(List<FichaEntrenamientoEntity> entities)
+        {
+
+            List<FichaEntrenamientoModel> response = new List<FichaEntrenamientoModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new FichaEntrenamientoModel
+                {
+                    fichaEntrenamientoID = entity.fichaEntrenamientoID,
+                    FechaCreacion = entity.FechaCreacion,
+                    fichaPersonaID = entity.fichaPersonaID,
+                    ProfesorID = entity.ProfesorID,
+                    DiciplinaID = entity.DiciplinaID,
+                    Observaciones = entity.Observaciones
+
+
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static FichaEntrenamientoModel FichaEntrenamientoInfoEntityToModel(FichaEntrenamientoEntity entity)
+        {
+
+            FichaEntrenamientoModel response = new FichaEntrenamientoModel
+            {
+                fichaEntrenamientoID = entity.fichaEntrenamientoID,
+                FechaCreacion = entity.FechaCreacion,
+                fichaPersonaID = entity.fichaPersonaID,
+                ProfesorID = entity.ProfesorID,
+                DiciplinaID = entity.DiciplinaID,
+                Observaciones = entity.Observaciones
+            };
+
+            return response;
+        }
+
+        #endregion
+
+        #region ConsultaPerfilModel
+        public static List<ConsultaPerfilModel> EntityToModelConsultaPerfil(List<ConsultaPerfilEntity> entities)
+        {
+
+            List<ConsultaPerfilModel> response = new List<ConsultaPerfilModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaPerfilModel model = new ConsultaPerfilModel()
+                {
+                    usuarioID = entity.usuarioID,
+                    personaID = entity.personaID,
+                    rolePID = entity.rolePID,
+                    nombres = entity.nombres,
+                    apellidos = entity.apellidos,
+                    identificacion = entity.identificacion,
+                    email = entity.email,
+                    password = entity.password,
+                    telefono = entity.telefono,
+                    edad = entity.edad,
+                    sexo = entity.sexo,
+                    fechaNacimiento = entity.fechaNacimiento,
+                    fechaCreacion = entity.fechaCreacion,
+                    estado = entity.estado
+
+
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
     }
 
 }

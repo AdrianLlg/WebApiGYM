@@ -45,9 +45,9 @@ namespace WebAPIBusiness.BusinessCore
                                 nroDocumento = item.nroDocumento,
                                 Banco = item.Banco,
                                 fechaPago = Convert.ToDateTime(item.fechaTransaccion),
-                                fechaLimite = item.fechaFinMembresia,
-                                fechaInicioMembresia = item.fechaInicioMembresia,
-                                fechaFinMembresia = item.fechaFinMembresia,
+                                fechaLimite = (DateTime)item.fechaFinMembresia,
+                                fechaInicioMembresia = (DateTime)item.fechaInicioMembresia,
+                                fechaFinMembresia = (DateTime)item.fechaFinMembresia, 
                                 estado = item.estado                                
                                 //disciplinasmembresia = items2
                             };

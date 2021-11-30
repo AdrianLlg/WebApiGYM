@@ -32,6 +32,8 @@ namespace WebAPIData
         public virtual DbSet<evento_persona> evento_persona { get; set; }
         public virtual DbSet<evento_recurso> evento_recurso { get; set; }
         public virtual DbSet<evento_recursoEspecial> evento_recursoEspecial { get; set; }
+        public virtual DbSet<fichaEntrenamiento> fichaEntrenamiento { get; set; }
+        public virtual DbSet<fichaPersona> fichaPersona { get; set; }
         public virtual DbSet<horarioM> horarioM { get; set; }
         public virtual DbSet<membresia> membresia { get; set; }
         public virtual DbSet<membresia_disciplina> membresia_disciplina { get; set; }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using WebAPIBusiness.Entities.ConsultaPersonaEstado;
-using WebAPIBusiness.Entities.ConsultaRepEventoDisciplina;
 using WebAPIBusiness.Resources;
 using WebAPIData;
 

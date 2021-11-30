@@ -257,12 +257,63 @@ INNER JOIN membresia M on MD.membresiaID = M.membresiaID
 INNER JOIN disciplina D on MD.disciplinaID = D.disciplinaID
 WHERE MPD.personaID = {0}</value>
   </data>
+  <data name="getPerfil" xml:space="preserve">
+    <value>SELECT u.usuarioID,p.personaID,rolePID,nombres,apellidos,identificacion,u.email,u.password,telefono,edad,sexo,fechaNacimiento,fechaCreacion,estado
+  FROM persona p
+  INNER JOIN usuario u ON p.personaID=u.personaID
+  WHERE p.personaID='{0}'</value>
+    <comment>--Consulta informacion del perfil Persona|Usuario</comment>
+  </data>
   <data name="getPersonasEstado" xml:space="preserve">
     <value>SELECT estado as Estado,Count(*)as Cantidad
 FROM persona 
 GROUP BY estado
 HAVING COUNT(*) &gt; 0</value>
     <comment>-- Estatus personas activo e inactivo</comment>
+  </data>
+  <data name="getReporteAsistenciaLog" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  evt.fecha as Fecha,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'
+
+</value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCA" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesAsistidas
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0 
+  
+  </value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCNA" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesNoAsistidas
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0</value>
   </data>
   <data name="getTransaccionesAnuales" xml:space="preserve">
     <value>SELECT Mes , Anio,COUNT(*) as Transacciones  FROM (SELECT (DATENAME(month,fechaTransaccion)) AS Mes,(YEAR(fechaTransaccion)) AS Anio FROM membresia_persona_pago as MPP WHERE YEAR(MPP.fechaTransaccion) = {0} AND MPP.estado='A')AS TABLA

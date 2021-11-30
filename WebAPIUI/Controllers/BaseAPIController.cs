@@ -58,6 +58,14 @@ using WebAPIUI.Controllers.TransaccionesAnuales.Models;
 using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
 using WebAPIUI.Controllers.ConsultaVentasMembresias.Models;
 using WebAPIUI.Controllers.ModificarMembresiaUsuario.Models;
+using WebAPIUI.CustomExceptions.ReporteGeneralAsistencia;
+using WebAPIUI.Controllers.ReporteGeneralAsistencia.Models;
+using WebAPIUI.CustomExceptions.FichaPersona;
+using WebAPIUI.Controllers.CRUDFichaPersona.Models;
+using WebAPIUI.CustomExceptions.FichaEntrenamiento;
+using WebAPIUI.Controllers.CRUDFichaEntrenamiento.Models;
+using WebAPIUI.CustomExceptions.ConsultaPerfil;
+using WebAPIUI.Controllers.ConsultaPerfil.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -812,6 +820,100 @@ namespace WebAPIUI.Controllers
             response.ResponseCode = code;
             response.ResponseMessage = message;
             response.Content = false;
+        }
+        #endregion
+
+        #region ReporteGeneralAsistencia Expections
+        internal static void ThrowHandledExceptionReporteGeneralAsistencia(ReporteGeneralAsistenciaResponseType type, IList<string> messages)
+        {
+            var newException = new ReporteGeneralAsistenciaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionReporteGeneralAsistencia(ReporteGeneralAsistenciaResponseType type, Exception ex)
+        {
+            throw new ReporteGeneralAsistenciaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionReporteGeneralAsistencia(ReporteGeneralAsistenciaResponseType code, ReporteGeneralAsistenciaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region FichaPersona Expections
+        internal static void ThrowHandledExceptionFichaPersona(FichaPersonaResponseType type, IList<string> messages)
+        {
+            var newException = new FichaPersonaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionFichaPersona(FichaPersonaResponseType type, Exception ex)
+        {
+            throw new FichaPersonaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionFichaPersona(FichaPersonaResponseType code, FichaPersonaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
+
+        #region FichaEntrenamiento Expections
+        internal static void ThrowHandledExceptionFichaEntrenamiento(FichaEntrenamientoResponseType type, IList<string> messages)
+        {
+            var newException = new FichaEntrenamientoException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionFichaEntrenamiento(FichaEntrenamientoResponseType type, Exception ex)
+        {
+            throw new FichaEntrenamientoException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionFichaEntrenamiento(FichaEntrenamientoResponseType code, FichaEntrenamientoDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
+
+        #region ConsultaPerfil Expections
+        internal static void ThrowHandledExceptionConsultaPerfil(ConsultaPerfilResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaPerfilException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaPerfil(ConsultaPerfilResponseType type, Exception ex)
+        {
+            throw new ConsultaPerfilException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaPerfil(ConsultaPerfilResponseType code, ConsultaPerfilDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
         }
         #endregion
 

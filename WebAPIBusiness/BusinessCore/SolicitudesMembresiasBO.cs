@@ -111,7 +111,7 @@ namespace WebAPIBusiness.BusinessCore
                                         personaID = objmembresia_persona_pago.personaID,
                                         membresia_disciplinaID = entity.membresia_disciplinaID,
                                         fechaInicio = objmembresia_persona_pago.fechaInicioMembresia,
-                                        fechaFin = objmembresia_persona_pago.fechaFinMembresia,
+                                        fechaFin = (DateTime)objmembresia_persona_pago.fechaFinMembresia,
                                         numClasesDisponibles = entity.numClasesDisponibles,
                                         estado = "A"
                                     };

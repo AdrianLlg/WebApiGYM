@@ -74,6 +74,12 @@
     <Compile Include="evento_recursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="fichaEntrenamiento.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fichaPersona.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="GYMDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

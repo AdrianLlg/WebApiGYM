@@ -4,14 +4,12 @@ using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.ConsultaHorarios;
-using WebAPIUI.Controllers;
 using WebAPIUI.Controllers.ConsultaHorarios.Models;
 using WebAPIUI.Controllers.CRUDRConsultaHorarios.Models;
 using WebAPIUI.CustomExceptions.ConsultaHorarios;
-using WebAPIBusiness.Entities.ConsultaHorarios;
 
-namespace WebAPIUI.ContSalalers
-{
+namespace WebAPIUI.Controllers
+{ 
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Salas.
     /// </summary>

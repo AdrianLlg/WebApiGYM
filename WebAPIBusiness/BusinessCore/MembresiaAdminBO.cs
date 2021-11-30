@@ -294,7 +294,7 @@ namespace WebAPIBusiness.BusinessCore
                     else
                     {
                         throw new ValidationAndMessageException("La persona ya tiene la misma membresía ingresada al sistema.");
-                    }                    
+                    }
 
                     return resp;
                 }
@@ -421,7 +421,7 @@ namespace WebAPIBusiness.BusinessCore
             try
             {
                 using (var dbContext = new GYMDBEntities())
-                {                   
+                {
 
                     membresia_persona_pago query = new membresia_persona_pago()
                     {
@@ -518,6 +518,36 @@ namespace WebAPIBusiness.BusinessCore
                             resp = insertPendingSol(personaID, membresiaID, membresiaPersonaPagoID, imagen);
                         }
                     }
+                    
+                    if(item==null)
+                    {
+
+                        resp = newMembership(personaID, membresiaID);
+                        
+                        if (resp == true)
+                        {
+
+                            using (var dbContext = new GYMDBEntities())
+                            {
+                                int ID = dbContext.membresia_persona_pago.OrderByDescending(x => x.membresia_persona_pagoID).FirstOrDefault().membresia_persona_pagoID;
+                                sol_membresiaPago query = new sol_membresiaPago()
+                                {
+                                    personaID = personaID,
+                                    membresiaID = membresiaID,
+                                    membresia_persona_pagoID =ID,
+                                    fechaRegistroSolicitud = DateTime.Now,
+                                    comprobante = Convert.FromBase64String(imagen),
+                                    estado = "A" 
+                                };
+
+                                dbContext.sol_membresiaPago.Add(query);
+                                dbContext.SaveChanges();
+                            }
+
+                            return true;
+                        }
+
+                    }
 
                     return resp;
                 }
@@ -548,7 +578,7 @@ namespace WebAPIBusiness.BusinessCore
                                                          && x.personaID == personaID
                                                          && x.estado == "A")
                                                 .OrderByDescending(x => x.fechaInicioMembresia)
-                                                .First();
+                                                .FirstOrDefault();
                     if (query != null)
                     {
                         daysToAdd = calculateMonthsOfPeriodTime(query.membresia.periodicidad);
@@ -565,13 +595,13 @@ namespace WebAPIBusiness.BusinessCore
                         membresiaID = query.membresiaID,
                         personaID = query.personaID,
                         estado = query.estado,
-                        fechaInicioMembresia = query.fechaInicioMembresia,
-                        fechaFinMembresia = query.fechaFinMembresia
+                        fechaInicioMembresia = (DateTime)query.fechaInicioMembresia,
+                        fechaFinMembresia = (DateTime)query.fechaFinMembresia
                     };
                 }
                 else
                 {
-                    throw new ValidationAndMessageException("No se encontró una membresía para renovar. Por favor, contactar con el administrador para ingresar una nueva membresía.");
+                    entity = null;
                 }
 
                 return entity;
@@ -581,6 +611,31 @@ namespace WebAPIBusiness.BusinessCore
                 throw new ValidationAndMessageException(ex.Message);
             }
         }
+
+        private bool newMembership(int personaID, int membresiaID)
+        {
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    membresia_persona_pago query = new membresia_persona_pago()
+                    {
+                        personaID = personaID,
+                        membresiaID = membresiaID,
+                        estado = "I"
+                    };
+                    dbContext.membresia_persona_pago.Add(query);
+                    dbContext.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.Message);
+            }
+        }
+
 
         private bool insertPendingDBRegister(int personaID, int membresiaID, DateTime datePreviousMembreship, int monthsToAddM, out int membresiaPersonaPagoID)
         {
@@ -623,6 +678,9 @@ namespace WebAPIBusiness.BusinessCore
                 throw new ValidationAndMessageException(ex.Message);
             }
         }
+
+
+
 
         public int calculateMonthsOfPeriodTime(string Periodicidad)
         {
