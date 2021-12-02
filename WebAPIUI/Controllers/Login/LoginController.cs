@@ -72,7 +72,7 @@ namespace WebAPIUI.Controllers
 
                 UsuarioEntity user = searchUser(dataRequest.email,dataRequest.password);
 
-                if (user.personaID == 0)
+                if (user != null)
                 {
                     response.ResponseCode = LoginResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";
@@ -81,8 +81,8 @@ namespace WebAPIUI.Controllers
                 else
                 {
                     response.ResponseCode = LoginResponseType.Ok;
-                    response.ResponseMessage = "Método ejecutado con éxito.";
-                    response.Content = user;
+                    response.ResponseMessage = "Error en la ejecución";
+                    response.Content = null;
                 }
 
             }
