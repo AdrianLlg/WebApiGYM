@@ -18,6 +18,8 @@ namespace WebAPIData
         public sala()
         {
             this.evento = new HashSet<evento>();
+            this.SalaRecurso = new HashSet<SalaRecurso>();
+            this.SalaRecursoEspecial = new HashSet<SalaRecursoEspecial>();
         }
     
         public int salaID { get; set; }
@@ -26,5 +28,9 @@ namespace WebAPIData
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento> evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalaRecurso> SalaRecurso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalaRecursoEspecial> SalaRecursoEspecial { get; set; }
     }
 }

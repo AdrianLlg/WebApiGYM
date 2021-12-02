@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPIBusiness.Entities.FKRelationships;
 using WebAPIBusiness.Entities.RecursoAdmin;
+using WebAPIBusiness.Resources;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
@@ -40,7 +42,7 @@ namespace WebAPIBusiness.BusinessCore
                             nombre = recurso.nombre,
                             descripcion = recurso.descripcion,
                             cantidadRecurso = recurso.cantidadRecurso
-                            
+
                         };
 
                         entities.Add(RecursoEntity);
@@ -61,7 +63,7 @@ namespace WebAPIBusiness.BusinessCore
 
             try
             {
-               entity = insertDBRecurso(nombre, descripcion, cantidadRecurso);
+                entity = insertDBRecurso(nombre, descripcion, cantidadRecurso);
             }
             catch (Exception ex)
             {
@@ -82,9 +84,9 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     item = new recurso()
                     {
-                       nombre = nombre,
-                       descripcion = descripcion,
-                       cantidadRecurso = int.Parse(cantidadRecurso)
+                        nombre = nombre,
+                        descripcion = descripcion,
+                        cantidadRecurso = int.Parse(cantidadRecurso)
                     };
 
                     dbContext.recurso.Add(item);
@@ -145,7 +147,7 @@ namespace WebAPIBusiness.BusinessCore
                         if (!string.IsNullOrEmpty(cantidadRecurso))
                         {
                             rec.cantidadRecurso = int.Parse(cantidadRecurso);
-                        }                        
+                        }
                     }
                     else
                     {
@@ -202,6 +204,98 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+        public bool eliminarRecurso(int recursoID)
+        {
+            bool resp = false;
+
+            resp = eliminarRecursoDB(recursoID);
+
+            return resp;
+        }
+
+
+        private bool eliminarRecursoDB(int recursoID)
+        {
+
+            RecursoAdminEntity resp = new RecursoAdminEntity();
+
+            try
+            {
+                //List<string> tablasFK = checkForeignKeys();
+
+
+                bool canDelete = false; 
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var check = false;
+                    var evR=dbContext.evento_recurso.Where(s => s.recursoID == recursoID).FirstOrDefault<evento_recurso>(); ;
+                    if (evR == null)
+                    {
+                        check = true;
+                        canDelete = check;
+                    }
+                    else {
+                        canDelete = false;
+                    }
+                }
+                 
+
+                if (canDelete == true)
+                {
+
+                    using (var dbContext = new GYMDBEntities())
+                    {
+                        var nt = dbContext.recurso.Where(x => x.recursoID == recursoID).FirstOrDefault();
+                        if (nt != null)
+                        {
+                            dbContext.recurso.Remove(nt);
+                            dbContext.SaveChanges();
+                        }
+                       
+                    }
+
+                    return true;
+
+                }
+                else {
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private List<string> checkForeignKeys()
+        {
+
+            List<FKListEntity> consulta = new List<FKListEntity>();
+            List<string> resp = new List<string>();
+
+           
+
+            using (var dbContext = new GYMDBEntities())
+            {
+                string query = string.Format(ScriptsGYMDB.get_FKRelationships, "recurso");
+                consulta = dbContext.Database.SqlQuery<FKListEntity>(query).ToList();
+            }
+
+            foreach (var i in consulta)
+            {
+                resp.Add(i.FKTABLE_NAME);
+            }
+
+            return resp;
+        }
+
+
+
+
+
+
 
     }
 }
+

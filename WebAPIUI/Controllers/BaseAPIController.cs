@@ -66,6 +66,8 @@ using WebAPIUI.CustomExceptions.FichaEntrenamiento;
 using WebAPIUI.Controllers.CRUDFichaEntrenamiento.Models;
 using WebAPIUI.CustomExceptions.ConsultaPerfil;
 using WebAPIUI.Controllers.ConsultaPerfil.Models;
+using WebAPIUI.CustomExceptions.EventoPersona;
+using WebAPIUI.Controllers.CRUDREventoPersona.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -596,6 +598,31 @@ namespace WebAPIUI.Controllers
         }
 
         internal void SetResponseAsExceptionEventoAdmin(EventoAdminResponseType code, EventoAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+        #endregion
+
+        #region EventoPersona Expections
+        internal static void ThrowHandledExceptionEventoPersona(EventoPersonaResponseType type, IList<string> messages)
+        {
+            var newException = new EventoPersonaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEventoPersona(EventoPersonaResponseType type, Exception ex)
+        {
+            throw new EventoPersonaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEventoPersona(EventoPersonaResponseType code, EventoPersonaDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;

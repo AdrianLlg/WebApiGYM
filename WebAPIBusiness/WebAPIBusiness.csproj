@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
+    <Compile Include="BusinessCore\EventoPersonaBO.cs" />
     <Compile Include="BusinessCore\FichaEntrenamientoBO.cs" />
     <Compile Include="BusinessCore\FichaPersonaBO.cs" />
     <Compile Include="BusinessCore\ReporteGeneralAsistenciaBO.cs" />
@@ -87,8 +88,10 @@
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaPerfil\ConsultaPerfilEntity.cs" />
+    <Compile Include="Entities\EventoPersona\EventoPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaEntrenamientoEntity.cs" />
+    <Compile Include="Entities\FKRelationships\FKListEntity.cs" />
     <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCAEntity.cs" />
     <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCNAEntity.cs" />
     <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaEntity.cs" />

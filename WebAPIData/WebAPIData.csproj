@@ -129,6 +129,12 @@
     <Compile Include="sala.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="SalaRecurso.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalaRecursoEspecial.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="sol_membresiaPago.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>

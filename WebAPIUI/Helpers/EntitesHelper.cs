@@ -50,6 +50,8 @@ using WebAPIUI.Models.Fichas;
 using WebAPIBusiness.Entities.Fichas;
 using WebAPIUI.Models.ConsultaPerfilModel;
 using WebAPIBusiness.Entities.ConsultaPerfil;
+using WebAPIUI.Models.EventoPersona;
+using WebAPIBusiness.Entities.EventoPersona;
 
 namespace WebAPIUI.Helpers
 {
@@ -651,6 +653,42 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
+        #region Evento Persona Helper
+        public static List<EventoPersonaModel> EventoPersonaEntityToModel(List<EventoPersonaEntity> entities)
+        {
+
+            List<EventoPersonaModel> response = new List<EventoPersonaModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new EventoPersonaModel
+                {
+                    evento_personaID = entity.evento_personaID,
+                    eventoID = entity.eventoID,
+                    personaID = entity.personaID,
+                    asistencia = entity.asistencia
+
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static EventoPersonaModel EventoPersonaInfoEntityToModel(EventoPersonaEntity entity)
+        {
+
+            EventoPersonaModel response = new EventoPersonaModel
+            {
+                evento_personaID = entity.evento_personaID,
+                eventoID = entity.eventoID,
+                personaID = entity.personaID,
+                asistencia = entity.asistencia
+            };
+
+            return response;
+        }
+        #endregion
 
         #region SolicitudesMembresiasModel
         public static List<SolicitudesMembresiasModel> EntityToModelSolicitudesMembresias(List<SolicitudesMembresiasEntity> entities)
@@ -932,18 +970,8 @@ namespace WebAPIUI.Helpers
                 {
                     fichaPersonaID = entity.fichaPersonaID,
                     PersonaID = entity.PersonaID,
-                    Peso = entity.Peso,
-                    Altura = entity.Altura,
                     MesoTipo = entity.MesoTipo,
                     NivelActualActividadFisica = entity.NivelActualActividadFisica,
-                    IndiceMasaMuscular = entity.IndiceMasaMuscular,
-                    IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
-                    MedicionBrazos = entity.MedicionBrazos,
-                    MedicionPecho = entity.MedicionPecho,
-                    MedicionEspalda = entity.MedicionEspalda,
-                    MedicionPiernas = entity.MedicionPiernas,
-                    MedicionCintura = entity.MedicionCintura,
-                    MedicionCuello = entity.MedicionCuello,
                     AntecendesMedicos = entity.AntecendesMedicos,
                     Alergias = entity.Alergias,
                     Enfermedades = entity.Enfermedades
@@ -961,18 +989,8 @@ namespace WebAPIUI.Helpers
             {
                 fichaPersonaID = entity.fichaPersonaID,
                 PersonaID = entity.PersonaID,
-                Peso = entity.Peso,
-                Altura = entity.Altura,
                 MesoTipo = entity.MesoTipo,
                 NivelActualActividadFisica = entity.NivelActualActividadFisica,
-                IndiceMasaMuscular = entity.IndiceMasaMuscular,
-                IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
-                MedicionBrazos = entity.MedicionBrazos,
-                MedicionPecho = entity.MedicionPecho,
-                MedicionEspalda = entity.MedicionEspalda,
-                MedicionPiernas = entity.MedicionPiernas,
-                MedicionCintura = entity.MedicionCintura,
-                MedicionCuello = entity.MedicionCuello,
                 AntecendesMedicos = entity.AntecendesMedicos,
                 Alergias = entity.Alergias,
                 Enfermedades = entity.Enfermedades
@@ -998,6 +1016,16 @@ namespace WebAPIUI.Helpers
                     fichaPersonaID = entity.fichaPersonaID,
                     ProfesorID = entity.ProfesorID,
                     DiciplinaID = entity.DiciplinaID,
+                    Altura = entity.Altura,
+                    Peso = entity.Peso,
+                    IndiceMasaMuscular = entity.IndiceMasaMuscular,
+                    IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
+                    MedicionBrazos = entity.MedicionBrazos,
+                    MedicionPecho = entity.MedicionPecho,
+                    MedicionEspalda = entity.MedicionEspalda,
+                    MedicionPiernas = entity.MedicionPiernas,
+                    MedicionCintura = entity.MedicionCintura,
+                    MedicionCuello = entity.MedicionCuello,
                     Observaciones = entity.Observaciones
 
 
@@ -1018,7 +1046,18 @@ namespace WebAPIUI.Helpers
                 fichaPersonaID = entity.fichaPersonaID,
                 ProfesorID = entity.ProfesorID,
                 DiciplinaID = entity.DiciplinaID,
+                Altura = entity.Altura,
+                Peso = entity.Peso,
+                IndiceMasaMuscular = entity.IndiceMasaMuscular,
+                IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
+                MedicionBrazos = entity.MedicionBrazos,
+                MedicionPecho = entity.MedicionPecho,
+                MedicionEspalda = entity.MedicionEspalda,
+                MedicionPiernas = entity.MedicionPiernas,
+                MedicionCintura = entity.MedicionCintura,
+                MedicionCuello = entity.MedicionCuello,
                 Observaciones = entity.Observaciones
+
             };
 
             return response;

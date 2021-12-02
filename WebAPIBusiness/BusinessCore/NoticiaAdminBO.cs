@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.Noticia;
+using WebAPIBusiness.Resources;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
@@ -200,6 +202,45 @@ namespace WebAPIBusiness.BusinessCore
             catch (Exception ex)
             {
                 return resp;
+            }
+        }
+
+        public bool eliminarNoticia(int noticiaID)
+        {
+            bool resp = false ;
+
+            resp = eliminarInfo(noticiaID);
+
+            return resp; 
+        }
+
+
+        private bool eliminarInfo(int noticiaID)
+        {
+            
+            NoticiaEntity resp = new NoticiaEntity();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var nt = dbContext.noticia.Where(x => x.noticiaID == noticiaID).FirstOrDefault();
+                    if (nt != null)
+                    { 
+                        dbContext.noticia.Remove(nt);
+                        dbContext.SaveChanges();
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+
+                              
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

@@ -119,6 +119,34 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
+        /// Eliminar recurso
+        /// </summary>
+        private bool EliminarRecurso(int recursoID)
+        {
+            RecursoAdminBO bo = new RecursoAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                
+                response = bo.eliminarRecurso(recursoID);
+            }
+            catch (ValidationAndMessageException RecursoAdminException)
+            {
+                messages.Add(RecursoAdminException.Message);
+                ThrowHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionRecursoAdmin(RecursoAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// Consultar recurso
         /// </summary>
         private RecursoAdminEntity DetalleRecurso(int recursoID)
@@ -238,6 +266,29 @@ namespace WebAPIUI.Controllers
                         response.ResponseCode = RecursoAdminResponseType.Error;
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentDetail = null;
+                    }
+
+                }
+                //Detalle de persona
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+                    RecursoAdminModel model = new RecursoAdminModel();
+
+                    resp = EliminarRecurso(dataRequest.recursoID);
+
+                    if (resp==true)
+                    {
+                        
+                        response.ResponseCode = RecursoAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDelete = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = RecursoAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDelete = false;
                     }
 
                 }

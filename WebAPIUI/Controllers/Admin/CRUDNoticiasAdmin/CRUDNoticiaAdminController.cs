@@ -117,6 +117,33 @@ namespace WebAPIUI.Controllers
         }
 
         /// <summary>
+        /// Modificar Noticia
+        /// </summary>
+        private bool EliminarNoticia(int noticiaID)
+        {
+            NoticiaAdminBO bo = new NoticiaAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarNoticia(noticiaID);
+            }
+            catch (ValidationAndMessageException NoticiaAdminException)
+            {
+                messages.Add(NoticiaAdminException.Message);
+                ThrowHandledExceptionNoticiaAdmin(NoticiaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionNoticiaAdmin(NoticiaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// Consultar Noticia
         /// </summary>
         private NoticiaEntity DetalleNoticia(int noticiaID)
@@ -216,7 +243,7 @@ namespace WebAPIUI.Controllers
                         response.ContentModify = false;
                     }
                 }  
-                //Detalle de persona
+                //Detalle de Noticia
                 else if (dataRequest.flujoID == 3)
                 {
                     NoticiaEntity resp = new NoticiaEntity();
@@ -227,6 +254,29 @@ namespace WebAPIUI.Controllers
                     if (resp.noticiaID > 0)
                     {
                         model = EntitesHelper.NoticiaInfoEntityToModel(resp);
+                        response.ResponseCode = NoticiaAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = NoticiaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+                //Eliminar  Noticia
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+                    NoticiaAdminModel model = new NoticiaAdminModel();
+
+                    resp = EliminarNoticia(dataRequest.noticiaID);
+
+                    if (resp==true)
+                    {
+                        
                         response.ResponseCode = NoticiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;

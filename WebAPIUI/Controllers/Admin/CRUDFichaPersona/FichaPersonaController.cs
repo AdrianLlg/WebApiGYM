@@ -37,9 +37,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo recurso en la BD
         /// </summary>
-        private bool InsertarNuevoRecurso(int PersonaID, decimal Peso, decimal Altura, string MesoTipo,
-        string NivelActualActividadFisica, string IndiceMasaMuscular, string IndiceGrasaCorporal, string MedicionBrazos, string MedicionPecho,
-        string MedicionEspalda, string MedicionPiernas, string MedicionCintura, string MedicionCuello, string AntecendesMedicos, string Alergias, string Enfermedades)
+        private bool InsertarNuevoRecurso(int PersonaID, string MesoTipo,string NivelActualActividadFisica,string AntecendesMedicos, string Alergias, string Enfermedades)
         {
             FichaPersonaBO bo = new FichaPersonaBO();
             List<string> messages = new List<string>();
@@ -47,9 +45,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertfichaPersona(PersonaID,Peso, Altura, MesoTipo,
-                NivelActualActividadFisica, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho,
-                 MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, AntecendesMedicos, Alergias, Enfermedades);
+                response = bo.insertfichaPersona(PersonaID, MesoTipo,NivelActualActividadFisica, AntecendesMedicos, Alergias, Enfermedades);
             }
             catch (ValidationAndMessageException FichaPersonaException)
             {
@@ -96,9 +92,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar recurso
         /// </summary>
-        private bool ModificarFicha(int fichaPersonaID, int PersonaID, decimal Peso, decimal Altura, string MesoTipo,
-        string NivelActualActividadFisica, string IndiceMasaMuscular, string IndiceGrasaCorporal, string MedicionBrazos, string MedicionPecho,
-        string MedicionEspalda, string MedicionPiernas, string MedicionCintura, string MedicionCuello, string AntecendesMedicos, string Alergias, string Enfermedades)
+        private bool ModificarFicha(int fichaPersonaID, int PersonaID, string MesoTipo,string NivelActualActividadFisica,string AntecendesMedicos, string Alergias, string Enfermedades)
         {
             FichaPersonaBO bo = new FichaPersonaBO();
             List<string> messages = new List<string>();
@@ -106,9 +100,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyfichaPersona(fichaPersonaID, PersonaID, Peso, Altura, MesoTipo,
-         NivelActualActividadFisica, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho,
-         MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, AntecendesMedicos, Alergias, Enfermedades);
+                response = bo.modifyfichaPersona(fichaPersonaID, PersonaID, MesoTipo,NivelActualActividadFisica, AntecendesMedicos, Alergias, Enfermedades);
             }
             catch (ValidationAndMessageException FichaPersonaException)
             {
@@ -191,9 +183,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevoRecurso(dataRequest.PersonaID, dataRequest.Peso, dataRequest.Altura, dataRequest.MesoTipo, dataRequest.
-                NivelActualActividadFisica, dataRequest.IndiceMasaMuscular, dataRequest.IndiceGrasaCorporal, dataRequest.MedicionBrazos, dataRequest.MedicionPecho, dataRequest.
-                 MedicionEspalda, dataRequest.MedicionPiernas, dataRequest.MedicionCintura, dataRequest.MedicionCuello, dataRequest.AntecendesMedicos, dataRequest.Alergias, dataRequest.Enfermedades);
+                    bool resp = InsertarNuevoRecurso(dataRequest.PersonaID, dataRequest.MesoTipo, dataRequest.NivelActualActividadFisica, dataRequest.AntecendesMedicos, dataRequest.Alergias, dataRequest.Enfermedades);
 
                     if (resp)
                     {
@@ -211,9 +201,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarFicha(dataRequest.fichaPersonaID,dataRequest.PersonaID, dataRequest.Peso, dataRequest.Altura, dataRequest.MesoTipo, dataRequest.
-                NivelActualActividadFisica, dataRequest.IndiceMasaMuscular, dataRequest.IndiceGrasaCorporal, dataRequest.MedicionBrazos, dataRequest.MedicionPecho, dataRequest.
-                 MedicionEspalda, dataRequest.MedicionPiernas, dataRequest.MedicionCintura, dataRequest.MedicionCuello, dataRequest.AntecendesMedicos, dataRequest.Alergias, dataRequest.Enfermedades);
+                    bool resp = ModificarFicha(dataRequest.fichaPersonaID,dataRequest.PersonaID, dataRequest.MesoTipo, dataRequest.NivelActualActividadFisica,  dataRequest.AntecendesMedicos, dataRequest.Alergias, dataRequest.Enfermedades);
 
                     if (resp)
                     {

@@ -38,9 +38,25 @@ namespace WebAPIBusiness.BusinessCore
                             fichaEntrenamientoID = FichaEntrenamiento.fichaEntrenamientoID,
                             FechaCreacion = FichaEntrenamiento.FechaCreacion,
                             fichaPersonaID = FichaEntrenamiento.fichaPersonaID,
+                            ProfesorID = FichaEntrenamiento.ProfesorID,
                             DiciplinaID = FichaEntrenamiento.DiciplinaID,
+                            Altura = FichaEntrenamiento.Altura,
+                            Peso = FichaEntrenamiento.Peso,
+                            IndiceMasaMuscular = FichaEntrenamiento.IndiceMasaMuscular,
+                            IndiceGrasaCorporal = FichaEntrenamiento.IndiceGrasaCorporal,
+                            MedicionBrazos = FichaEntrenamiento.MedicionBrazos,
+                            MedicionPecho = FichaEntrenamiento.MedicionPecho,
+                            MedicionEspalda = FichaEntrenamiento.MedicionEspalda,
+                            MedicionPiernas = FichaEntrenamiento.MedicionPiernas,
+                            MedicionCintura = FichaEntrenamiento.MedicionCintura,
+                            MedicionCuello = FichaEntrenamiento.MedicionCuello,
                             Observaciones = FichaEntrenamiento.Observaciones,
-                            ProfesorID = FichaEntrenamiento.ProfesorID
+
+
+
+
+
+
 
                         };
 
@@ -60,13 +76,13 @@ namespace WebAPIBusiness.BusinessCore
 
 
 
-        public bool insertFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, string Observaciones)
+        public bool insertFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBFichaEntrenamiento(FechaCreacion, fichaPersonaID, ProfesorID, DiciplinaID, Observaciones);
+                entity = insertDBFichaEntrenamiento(FechaCreacion, fichaPersonaID, ProfesorID, DiciplinaID, Altura, Peso, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho, MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, Observaciones);
             }
             catch (Exception ex)
             {
@@ -76,7 +92,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, string Observaciones)
+        private bool insertDBFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
         {
 
             fichaEntrenamiento item = new fichaEntrenamiento();
@@ -91,7 +107,17 @@ namespace WebAPIBusiness.BusinessCore
                         fichaPersonaID = fichaPersonaID,
                         ProfesorID = ProfesorID,
                         DiciplinaID = DiciplinaID,
-                        Observaciones = Observaciones
+                        Altura = Altura,
+                        Peso = Peso,
+                        IndiceMasaMuscular = IndiceMasaMuscular,
+                        IndiceGrasaCorporal = IndiceGrasaCorporal,
+                        MedicionBrazos = MedicionBrazos,
+                        MedicionPecho = MedicionPecho,
+                        MedicionEspalda = MedicionEspalda,
+                        MedicionPiernas = MedicionPiernas,
+                        MedicionCintura = MedicionCintura,
+                        MedicionCuello = MedicionCuello,
+                        Observaciones = Observaciones,
                     };
                     dbContext.fichaEntrenamiento.Add(item);
                     dbContext.SaveChanges();
@@ -107,7 +133,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyFichaEntrenamiento(int FichaEntrenamientoID, string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, string Observaciones)
+        public bool modifyFichaEntrenamiento(int FichaEntrenamientoID, string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
 
         {
             bool entity = false;
@@ -121,7 +147,7 @@ namespace WebAPIBusiness.BusinessCore
                     throw new Exception("El ID del FichaEntrenamiento no se ha especificado.");
                 }
 
-                entity = UpdateRecord(FichaEntrenamientoID, FechaCreacion, fichaPersonaID, ProfesorID, DiciplinaID, Observaciones);
+                entity = UpdateRecord(FichaEntrenamientoID, FechaCreacion, fichaPersonaID, ProfesorID, DiciplinaID, Altura, Peso, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho, MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, Observaciones);
             }
             catch (Exception ex)
             {
@@ -131,7 +157,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool UpdateRecord(int FichaEntrenamientoID, string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, string Observaciones)
+        private bool UpdateRecord(int FichaEntrenamientoID, string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
         {
             fichaEntrenamiento rec = new fichaEntrenamiento();
 
@@ -144,11 +170,28 @@ namespace WebAPIBusiness.BusinessCore
                     if (rec != null)
                     {
 
-
+                        if (!string.IsNullOrEmpty(FechaCreacion))
+                        {
+                            rec.FechaCreacion= Convert.ToDateTime(FechaCreacion);
+                        }
                         if (!string.IsNullOrEmpty(Observaciones))
                         {
                             rec.Observaciones = Observaciones;
                         }
+
+                        rec.fichaPersonaID = fichaPersonaID;
+                        rec.ProfesorID = ProfesorID;
+                        rec.DiciplinaID = DiciplinaID;
+                        rec.Altura = Altura;
+                        rec.Peso = Peso;
+                        rec.IndiceMasaMuscular = IndiceMasaMuscular;
+                        rec.IndiceGrasaCorporal = IndiceGrasaCorporal;
+                        rec.MedicionBrazos = MedicionBrazos;
+                        rec.MedicionPecho = MedicionPecho;
+                        rec.MedicionEspalda = MedicionEspalda;
+                        rec.MedicionPiernas = MedicionPiernas;
+                        rec.MedicionCintura = MedicionCintura;
+                        rec.MedicionCuello = MedicionCuello;
 
                     }
                     else
@@ -196,7 +239,19 @@ namespace WebAPIBusiness.BusinessCore
                         fichaPersonaID = rec.fichaPersonaID,
                         ProfesorID = rec.ProfesorID,
                         DiciplinaID = rec.DiciplinaID,
+                        Altura = rec.Altura,
+                        Peso = rec.Peso,
+                        IndiceMasaMuscular = rec.IndiceMasaMuscular,
+                        IndiceGrasaCorporal = rec.IndiceGrasaCorporal,
+                        MedicionBrazos = rec.MedicionBrazos,
+                        MedicionPecho = rec.MedicionPecho,
+                        MedicionEspalda = rec.MedicionEspalda,
+                        MedicionPiernas = rec.MedicionPiernas,
+                        MedicionCintura = rec.MedicionCintura,
+                        MedicionCuello = rec.MedicionCuello,
                         Observaciones = rec.Observaciones
+
+
                     };
                 }
 
