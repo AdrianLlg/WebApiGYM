@@ -37,7 +37,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo Noticia en la BD
         /// </summary>
-        private bool InsertarNuevaNoticia(string titulo, string contenido, string imagen,string fechaInicio,string fechaFin)
+        private bool InsertarNuevaNoticia(string titulo, string contenido, string imagen,string fechaInicio,string fechaFin,string estado)
         {
             NoticiaAdminBO bo = new NoticiaAdminBO();
             List<string> messages = new List<string>();
@@ -45,7 +45,7 @@ namespace WebAPIUI.Controllers
              
             try
             {
-                response = bo.insertNoticia(titulo, contenido, imagen,fechaInicio,fechaFin);
+                response = bo.insertNoticia(titulo, contenido, imagen,fechaInicio,fechaFin,estado);
             }
             catch (ValidationAndMessageException NoticiaAdminException)
             {
@@ -92,7 +92,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar Noticia
         /// </summary>
-        private bool ModificarNoticia(int noticiaID, string titulo, string contenido, string imagen,string fechaInicio,string fechaFin)
+        private bool ModificarNoticia(int noticiaID, string titulo, string contenido, string imagen,string fechaInicio,string fechaFin,string estado)
         {
             NoticiaAdminBO bo = new NoticiaAdminBO();
             List<string> messages = new List<string>();
@@ -100,7 +100,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyNoticia(noticiaID, titulo, contenido, imagen,fechaInicio,fechaFin);
+                response = bo.modifyNoticia(noticiaID, titulo, contenido, imagen,fechaInicio,fechaFin,estado);
             }
             catch (ValidationAndMessageException NoticiaAdminException)
             {
@@ -119,7 +119,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar Noticia
         /// </summary>
-        private bool EliminarNoticia(int noticiaID)
+        private bool InactivarNoticia(int noticiaID)
         {
             NoticiaAdminBO bo = new NoticiaAdminBO();
             List<string> messages = new List<string>();
@@ -127,7 +127,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.eliminarNoticia(noticiaID);
+                response = bo.inactivarNoticias(noticiaID);
             }
             catch (ValidationAndMessageException NoticiaAdminException)
             {
@@ -210,7 +210,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaNoticia(dataRequest.titulo, dataRequest.contenido,dataRequest.imagen, dataRequest.fechaInicio, dataRequest.fechaFin);
+                    bool resp = InsertarNuevaNoticia(dataRequest.titulo, dataRequest.contenido,dataRequest.imagen, dataRequest.fechaInicio, dataRequest.fechaFin,dataRequest.estado);
 
                     if (resp)
                     {
@@ -228,7 +228,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarNoticia(dataRequest.noticiaID, dataRequest.titulo, dataRequest.contenido,dataRequest.imagen, dataRequest.fechaInicio, dataRequest.fechaFin);
+                    bool resp = ModificarNoticia(dataRequest.noticiaID, dataRequest.titulo, dataRequest.contenido,dataRequest.imagen, dataRequest.fechaInicio, dataRequest.fechaFin,dataRequest.estado);
 
                     if (resp)
                     {
@@ -272,11 +272,34 @@ namespace WebAPIUI.Controllers
                     bool resp = false;
                     NoticiaAdminModel model = new NoticiaAdminModel();
 
-                    resp = EliminarNoticia(dataRequest.noticiaID);
+                    resp = InactivarNoticia(dataRequest.noticiaID);
 
-                    if (resp==true)
+                    if (resp == true)
                     {
-                        
+
+                        response.ResponseCode = NoticiaAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = NoticiaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+                //Inactivar  Noticia
+                else if (dataRequest.flujoID == 5) 
+                {
+                    bool resp = false;
+                    NoticiaAdminModel model = new NoticiaAdminModel();
+
+                    resp = InactivarNoticia(dataRequest.noticiaID);
+
+                    if (resp == true)
+                    {
+
                         response.ResponseCode = NoticiaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;

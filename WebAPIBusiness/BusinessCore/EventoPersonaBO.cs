@@ -38,7 +38,8 @@ namespace WebAPIBusiness.BusinessCore
                             evento_personaID = evtp.evento_personaID,
                             eventoID = evtp.eventoID,
                             personaID = evtp.personaID,
-                            asistencia = evtp.asistencia
+                            asistencia = evtp.asistencia,
+                            estadoRegistro=evtp.estadoRegistro
 
                         };
 
@@ -83,7 +84,8 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         eventoID = eventoID,
                         personaID = personaID,
-                        asistencia = asistencia
+                        asistencia = asistencia,
+                        estadoRegistro="A"
                     };
 
                     dbContext.evento_persona.Add(item);
@@ -180,8 +182,8 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         eventoID = ep.eventoID,
                         personaID = ep.personaID,
-                        asistencia = ep.eventoID
-
+                        asistencia = ep.eventoID,
+                        estadoRegistro=ep.estadoRegistro
                     };
                 }
 
@@ -190,6 +192,53 @@ namespace WebAPIBusiness.BusinessCore
             catch (Exception ex)
             {
                 return resp;
+            }
+        }
+
+        public bool eliminarEventoPersona(int eventoPersonaID)
+        {
+            bool resp = false;
+
+            resp = EliminarInfo(eventoPersonaID);
+
+            return resp;
+        }
+
+
+
+
+        private bool EliminarInfo(int eventoPersonaID)
+        {
+
+            EventoPersonaEntity resp = new EventoPersonaEntity();
+            //FKS:
+            //evento
+            //eventoPersonaRecurso
+            //eventoPersonaRecursoEspecial
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var eventoPersona = dbContext.evento_persona.Where(x => x.evento_personaID == eventoPersonaID).FirstOrDefault();
+
+
+                    if (eventoPersona != null)
+                    {
+                        dbContext.evento_persona.Remove(eventoPersona);
+                        dbContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

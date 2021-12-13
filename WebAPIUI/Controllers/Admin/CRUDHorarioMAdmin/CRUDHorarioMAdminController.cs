@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
-using WebAPIUI.Controllers;
 using WebAPIUI.Helpers;
 using WebAPIBusiness.Entities.HorarioMAdmin;
 using WebAPIUI.Models.HorarioMAdmin;
 using WebAPIUI.CustomExceptions.HorarioMAdmin;
 using WebAPIUI.Controllers.CRUDRHorarioMAdmin.Models;
-using WebAPIUI.Controllers.CRUDSHorarioMAdmin.Models;
+using WebAPIUI.Controllers.CRUDHorarioMAdmin.Models;
 
-namespace WebAPIUI.ContHorarioMlers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de HorarioM.

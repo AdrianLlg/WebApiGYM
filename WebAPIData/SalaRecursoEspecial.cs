@@ -12,11 +12,12 @@ namespace WebAPIData
     using System;
     using System.Collections.Generic;
     
-    public partial class SalaRecursoEspecial
+    public partial class salaRecursoEspecial
     {
         public int salaRecursoEspecialID { get; set; }
         public int salaID { get; set; }
         public int recursoEspecialID { get; set; }
+        public string estadoRegistro { get; set; }
     
         public virtual recursoEspecial recursoEspecial { get; set; }
         public virtual sala sala { get; set; }

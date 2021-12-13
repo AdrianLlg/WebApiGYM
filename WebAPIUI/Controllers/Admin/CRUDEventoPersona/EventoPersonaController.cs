@@ -118,6 +118,34 @@ namespace WebAPIUI.ContEventolers
             return response;
         }
 
+
+        /// <summary>
+        /// Modificar Evento
+        /// </summary>
+        private bool EliminarEventoPersona(int evento_personaID)
+        {
+            EventoPersonaBO bo = new EventoPersonaBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarEventoPersona(evento_personaID);
+            }
+            catch (ValidationAndMessageException EventoPersonaException)
+            {
+                messages.Add(EventoPersonaException.Message);
+                ThrowHandledExceptionEventoPersona(EventoPersonaResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionEventoPersona(EventoPersonaResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
         /// <summary>
         /// Consultar Evento
         /// </summary>
@@ -242,7 +270,24 @@ namespace WebAPIUI.ContEventolers
                     }
 
                 }
+                //Modificar
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = EliminarEventoPersona(dataRequest.evento_personaID);
 
+                    if (resp)
+                    {
+                        response.ResponseCode = EventoPersonaResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentModify = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = EventoPersonaResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentModify = false;
+                    } 
+                }
             }
             catch (EventoPersonaException EventoPersonaException)
             {

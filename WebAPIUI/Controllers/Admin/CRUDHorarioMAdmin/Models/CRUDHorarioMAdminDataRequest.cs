@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPIUI.Controllers.CRUDSHorarioMAdmin.Models
+namespace WebAPIUI.Controllers.CRUDHorarioMAdmin.Models
 {
     public class CRUDHorarioMAdminDataRequest
     {

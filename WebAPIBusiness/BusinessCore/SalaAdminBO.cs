@@ -38,7 +38,8 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             salaID = Sala.salaID,
                             nombre = Sala.nombre,
-                            descripcion = Sala.descripcion                           
+                            descripcion = Sala.descripcion,
+                            estadoRegistro=Sala.estadoRegistro
                         };
 
                         entities.Add(SalasEntity);
@@ -80,7 +81,8 @@ namespace WebAPIBusiness.BusinessCore
                     item = new sala()
                     {
                        nombre = nombre,
-                       descripcion = descripcion
+                       descripcion = descripcion,
+                       estadoRegistro="A"
                     };
 
                     dbContext.sala.Add(item);
@@ -182,7 +184,8 @@ namespace WebAPIBusiness.BusinessCore
                     {
                        salaID = Sala.salaID,
                        nombre = Sala.nombre,
-                       descripcion = Sala.descripcion
+                       descripcion = Sala.descripcion,
+                       estadoRegistro=Sala.estadoRegistro
                     };
                 }
 
@@ -191,6 +194,113 @@ namespace WebAPIBusiness.BusinessCore
             catch (Exception ex)
             {
                 return resp;
+            }
+        }
+
+        public bool eliminarSala(int salaID)
+        {
+            bool resp = false;
+
+            resp = EliminarInfo(salaID);
+
+            return resp;
+        }
+
+
+
+
+        private bool EliminarInfo(int salaID)
+        {
+
+            SalaAdminEntity resp = new SalaAdminEntity();
+            //FKS:
+            //evento
+            //salaRecurso
+            //salaRecursoEspecial
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var sala = dbContext.sala.Where(x => x.salaID == salaID).FirstOrDefault();
+                    var salaRecursoEspecialLS = dbContext.salaRecursoEspecial.ToList();
+                    var eventoLS = dbContext.evento.ToList();
+                    var salaRecursoLS = dbContext.salaRecurso.ToList();
+                    bool hasEvento = eventoLS.Any(x => x.salaID == salaID);
+                    bool hasSalaRecurso = salaRecursoLS.Any(x => x.salaID == salaID);
+                    bool hasSalaRecursoEspecial = salaRecursoEspecialLS.Any(x => x.salaID == salaID);
+                    if (sala != null)
+                    {
+                        if (hasEvento == false && hasSalaRecurso == false && hasSalaRecursoEspecial == false)
+                        {
+                            dbContext.sala.Remove(sala);
+                            dbContext.SaveChanges();
+                            return true; 
+                        }
+                        else if (hasEvento == false || hasSalaRecurso == false || hasSalaRecursoEspecial == false)
+                        {
+                            dbContext.sala.Remove(sala);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool inactivarSala(int salaID)
+        {
+            bool resp = false;
+
+            resp = InactivarInfo(salaID);
+
+            return resp;
+        }
+
+        private bool InactivarInfo(int salaID)
+        {
+
+            sala sala = new sala();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    sala = dbContext.sala.Where(x => x.salaID == salaID).FirstOrDefault();
+
+                    if (sala != null)
+                    {
+                        if (sala.estadoRegistro == "A")
+                        {
+                            sala.estadoRegistro = "I";
+                        }
+                        else if (sala.estadoRegistro == "I")  
+                        {
+                            sala.estadoRegistro = "A";
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

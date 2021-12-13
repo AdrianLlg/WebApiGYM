@@ -4,6 +4,7 @@ using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.DisciplinaAdmin;
+using WebAPIUI.Controllers.CRUDDisciplinaAdmin.Models;
 using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
 using WebAPIUI.Helpers;
@@ -37,7 +38,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo Disciplina en la BD
         /// </summary>
-        private bool InsertarNuevaDisciplina(string nombre, string descripcion)
+        private bool InsertarNuevaDisciplina(string nombre, string descripcion,string estadoRegistro)
         {
             DisciplinaAdminBO bo = new DisciplinaAdminBO();
             List<string> messages = new List<string>();
@@ -45,7 +46,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertDisciplina(nombre, descripcion);
+                response = bo.insertDisciplina(nombre, descripcion, estadoRegistro);
             }
             catch (ValidationAndMessageException DisciplinaAdminException)
             {
@@ -92,7 +93,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar Disciplina
         /// </summary>
-        private bool ModificarDisciplina(int DisciplinaID, string nombre, string descripcion)
+        private bool ModificarDisciplina(int DisciplinaID, string nombre, string descripcion,string estado)
         {
             DisciplinaAdminBO bo = new DisciplinaAdminBO();
             List<string> messages = new List<string>();
@@ -116,6 +117,59 @@ namespace WebAPIUI.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Eliminar Disciplina si no hay foreign keys
+        /// </summary>
+        private bool EliminarDisciplina(int DisciplinaID)
+        {
+            DisciplinaAdminBO bo = new DisciplinaAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarDisciplina(DisciplinaID);
+            }
+            catch (ValidationAndMessageException DisciplinaAdminException)
+            {
+                messages.Add(DisciplinaAdminException.Message);
+                ThrowHandledExceptionDisciplinaAdmin(DisciplinaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionDisciplinaAdmin(DisciplinaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Eliminar Disciplina si no hay foreign keys
+        /// </summary>
+        private bool InactivarDisciplina(int DisciplinaID)
+        {
+            DisciplinaAdminBO bo = new DisciplinaAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.inactivarDisciplina(DisciplinaID);
+            }
+            catch (ValidationAndMessageException DisciplinaAdminException)
+            {
+                messages.Add(DisciplinaAdminException.Message);
+                ThrowHandledExceptionDisciplinaAdmin(DisciplinaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionDisciplinaAdmin(DisciplinaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
         /// <summary>
         /// Consultar Disciplina
         /// </summary>
@@ -160,7 +214,7 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                //Mostrar Listado de membresias
+                //Mostrar Listado de disicplinas
                 if (dataRequest.flujoID == 0)
                 {
                     List<DisciplinaAdminModel> model = new List<DisciplinaAdminModel>();
@@ -180,10 +234,10 @@ namespace WebAPIUI.Controllers
                         response.ContentIndex = null;
                     }
                 }
-                //Crear
+                //Crear Disciplina
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaDisciplina(dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = InsertarNuevaDisciplina(dataRequest.nombre, dataRequest.descripcion,dataRequest.estadoRegistro);
 
                     if (resp)
                     {
@@ -198,10 +252,10 @@ namespace WebAPIUI.Controllers
                         response.ContentCreate = false;
                     }
                 }
-                //Modificar
+                //Modificar Disiciplina
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarDisciplina(dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = ModificarDisciplina(dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion,dataRequest.estadoRegistro);
 
                     if (resp)
                     {
@@ -216,7 +270,7 @@ namespace WebAPIUI.Controllers
                         response.ContentModify = false;
                     }
                 }  
-                //Detalle de persona
+                //Detalle disciplina
                 else if (dataRequest.flujoID == 3)
                 {
                     DisciplinaAdminEntity resp = new DisciplinaAdminEntity();
@@ -239,6 +293,52 @@ namespace WebAPIUI.Controllers
                     }
 
                 }
+
+                //Eliminar de disciplina
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+                    DisciplinaAdminModel model = new DisciplinaAdminModel();
+
+                    resp = EliminarDisciplina(dataRequest.disciplinaID);
+
+                    if (resp==true) 
+                    {
+                        response.ResponseCode = DisciplinaAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = DisciplinaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+                //Eliminar de disciplina
+                else if (dataRequest.flujoID == 5)
+                {
+                    bool resp = false;
+                    DisciplinaAdminModel model = new DisciplinaAdminModel();
+
+                    resp = InactivarDisciplina(dataRequest.disciplinaID);
+
+                    if (resp == true)
+                    {
+                        response.ResponseCode = DisciplinaAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = DisciplinaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+
 
             }
             catch (DisciplinaAdminException DisciplinaAdminException)

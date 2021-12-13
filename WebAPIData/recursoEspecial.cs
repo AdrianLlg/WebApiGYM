@@ -17,17 +17,15 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public recursoEspecial()
         {
-            this.evento_recursoEspecial = new HashSet<evento_recursoEspecial>();
-            this.SalaRecursoEspecial = new HashSet<SalaRecursoEspecial>();
+            this.salaRecursoEspecial = new HashSet<salaRecursoEspecial>();
         }
     
         public int recursoEspecialID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
+        public string estadoRegistro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evento_recursoEspecial> evento_recursoEspecial { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalaRecursoEspecial> SalaRecursoEspecial { get; set; }
+        public virtual ICollection<salaRecursoEspecial> salaRecursoEspecial { get; set; }
     }
 }

@@ -40,6 +40,7 @@ namespace WebAPIBusiness.BusinessCore
                             recursoEspecialID = recurso.recursoEspecialID,
                             nombre = recurso.nombre,
                             descripcion = recurso.descripcion,
+                            estadoRegistro=recurso.estadoRegistro
                         };
 
                         entities.Add(recursoEspecialAdminEntity);
@@ -54,13 +55,13 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertRecursoEspecial(string nombre, string descripcion)
+        public bool insertRecursoEspecial(string nombre, string descripcion, string estadoRegistro)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBRecursoEspecial(nombre, descripcion);
+                entity = insertDBRecursoEspecial(nombre, descripcion,estadoRegistro);
             }
             catch (Exception ex)
             {
@@ -70,7 +71,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBRecursoEspecial(string nombre, string descripcion)
+        private bool insertDBRecursoEspecial(string nombre, string descripcion,string estadoRegistro)
         {
 
             recursoEspecial item = new recursoEspecial();
@@ -83,6 +84,7 @@ namespace WebAPIBusiness.BusinessCore
                     {
                        nombre = nombre,
                        descripcion = descripcion,
+                       estadoRegistro="A"
                        
                     };
 
@@ -98,7 +100,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyRecursoEspecial(int recursoEspecialID, string nombre, string descripcion )
+        public bool modifyRecursoEspecial(int recursoEspecialID, string nombre, string descripcion,string estadoRegistro)
         {
             bool entity = false;
 
@@ -111,7 +113,7 @@ namespace WebAPIBusiness.BusinessCore
                     throw new Exception("El ID del recurso no se ha especificado.");
                 }
 
-                entity = UpdateRecord(recursoEspecialID, nombre, descripcion);
+                entity = UpdateRecord(recursoEspecialID, nombre, descripcion, estadoRegistro);
             }
             catch (Exception ex)
             {
@@ -121,7 +123,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool UpdateRecord(int recursoEspecialID, string nombre, string descripcion)
+        private bool UpdateRecord(int recursoEspecialID, string nombre, string descripcion,string estadoRegistro)
         {
             recursoEspecial rec = new recursoEspecial();
 
@@ -141,7 +143,8 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             rec.descripcion = descripcion;
                         }
-                                 
+                        rec.estadoRegistro = estadoRegistro;
+                        
                     }
                     else
                     {
@@ -186,7 +189,7 @@ namespace WebAPIBusiness.BusinessCore
                         recursoEspecialID = rec.recursoEspecialID,
                         nombre = rec.nombre,
                         descripcion = rec.descripcion,
-                        
+                        estadoRegistro=rec.estadoRegistro
                     };
                 }
 
@@ -198,6 +201,99 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+
+        public bool eliminarRecursoEspecial(int recursoEspecialID)
+        {
+            bool resp = false;
+
+            resp = EliminarInfo(recursoEspecialID);
+
+            return resp;
+        }
+
+
+
+
+        private bool EliminarInfo(int recursoEspecialID)
+        {
+
+            RecursoEspecialAdminEntity resp = new RecursoEspecialAdminEntity();
+            //FKS:
+            //evento
+            //recursoEspecialRecurso
+            //recursoEspecialRecursoEspecial
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var recursoEspecial = dbContext.recursoEspecial.Where(x => x.recursoEspecialID == recursoEspecialID).FirstOrDefault();
+                    var salaRecursoEspeciallLS = dbContext.salaRecursoEspecial.ToList();
+                    
+                    bool hasSalaRecursoEspecial = salaRecursoEspeciallLS.Any(x => x.recursoEspecialID == recursoEspecialID);
+                    
+                    if (recursoEspecial != null)
+                    {
+                        if (hasSalaRecursoEspecial == false)
+                        {
+                            dbContext.recursoEspecial.Remove(recursoEspecial);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+                        
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool inactivarRecursoEspecial(int recursoEspecialID)
+        {
+            bool resp = false;
+
+            resp = InactivarInfo(recursoEspecialID);
+
+            return resp;
+        }
+
+        private bool InactivarInfo(int recursoEspecialID)
+        {
+
+            recursoEspecial recursoEspecial = new recursoEspecial();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    recursoEspecial = dbContext.recursoEspecial.Where(x => x.recursoEspecialID == recursoEspecialID).FirstOrDefault();
+
+                    if (recursoEspecial.estadoRegistro == "A")
+                    {
+                        recursoEspecial.estadoRegistro = "I";
+                    }
+                    else if (recursoEspecial.estadoRegistro == "I")
+                    {
+                        recursoEspecial.estadoRegistro = "A";
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
     }
 }

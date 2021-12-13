@@ -38,7 +38,8 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             disciplinaID = dsp.disciplinaID,
                             nombre = dsp.nombre,
-                            descripcion = dsp.descripcion                           
+                            descripcion = dsp.descripcion,
+                            estadoRegistro=dsp.estadoRegistro
                         };
 
                         entities.Add(disciplinasEntity);
@@ -53,13 +54,13 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertDisciplina(string nombre, string descripcion)
+        public bool insertDisciplina(string nombre, string descripcion, string estadoRegistro)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBDisciplina(nombre, descripcion);
+                entity = insertDBDisciplina(nombre, descripcion, estadoRegistro);
             }
             catch (Exception ex)
             {
@@ -69,8 +70,8 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBDisciplina(string nombre, string descripcion)
-        {           
+        private bool insertDBDisciplina(string nombre, string descripcion, string estadoRegistro)
+        {
             disciplina item = new disciplina();
 
             try
@@ -79,8 +80,9 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     item = new disciplina()
                     {
-                       nombre = nombre,
-                       descripcion = descripcion
+                        nombre = nombre,
+                        descripcion = descripcion,
+                        estadoRegistro = "A"
                     };
 
                     dbContext.disciplina.Add(item);
@@ -121,7 +123,7 @@ namespace WebAPIBusiness.BusinessCore
         private bool UpdateRecord(int discplinaID, string nombre, string descripcion)
         {
             bool resp = false;
-            disciplina disciplina= new disciplina();
+            disciplina disciplina = new disciplina();
 
             try
             {
@@ -138,14 +140,14 @@ namespace WebAPIBusiness.BusinessCore
                         if (!string.IsNullOrEmpty(descripcion))
                         {
                             disciplina.descripcion = descripcion;
-                        }                       
+                        }
                     }
                     else
                     {
                         return false;
                     }
                     dbContext.SaveChanges();
-                    return true; 
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -180,9 +182,9 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     resp = new DisciplinaAdminEntity()
                     {
-                       disciplinaID = disciplina.disciplinaID,
-                       nombre = disciplina.nombre,
-                       descripcion = disciplina.descripcion
+                        disciplinaID = disciplina.disciplinaID,
+                        nombre = disciplina.nombre,
+                        descripcion = disciplina.descripcion
                     };
                 }
 
@@ -193,5 +195,112 @@ namespace WebAPIBusiness.BusinessCore
                 return resp;
             }
         }
+
+
+        public bool eliminarDisciplina(int disciplinaID)
+        {
+            bool resp = false;
+
+            resp = EliminarInfo(disciplinaID);
+
+            return resp;
+        }
+
+
+
+
+        private bool EliminarInfo(int disciplinaID)
+        {
+
+            DisciplinaAdminEntity resp = new DisciplinaAdminEntity();
+            //FKS:
+            //clase
+            //fichaEntrenamiento
+            //membresia_disciplina
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var dsp = dbContext.disciplina.Where(x => x.disciplinaID == disciplinaID).FirstOrDefault();
+                    var clasesLS = dbContext.clase.ToList();
+                    var fichaentrenamientoLS = dbContext.fichaEntrenamiento.ToList();
+                    var membresia_disciplinaLS = dbContext.membresia_disciplina.ToList();
+                    bool hasClases = clasesLS.Any(x => x.disciplinaID == disciplinaID);
+                    bool hasFichaentrenamiento = fichaentrenamientoLS.Any(x => x.DiciplinaID == disciplinaID);
+                    bool hasMembresia_disciplina = membresia_disciplinaLS.Any(x => x.disciplinaID == disciplinaID);
+                    if (dsp != null)
+                    {
+                        if (hasClases == false && hasFichaentrenamiento == false && hasMembresia_disciplina == false)
+                        {
+                            dbContext.disciplina.Remove(dsp);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+                        else if (hasClases == false || hasFichaentrenamiento == false || hasMembresia_disciplina == false)
+                        {
+                            dbContext.disciplina.Remove(dsp);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool inactivarDisciplina(int disciplinaID)
+        {
+            bool resp = false;
+
+            resp = InactivarInfo(disciplinaID);
+
+            return resp;
+        }
+
+        private bool InactivarInfo(int disciplinaID)
+        {
+            
+            disciplina disciplina = new disciplina();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    disciplina = dbContext.disciplina.Where(x => x.disciplinaID == disciplinaID).FirstOrDefault();
+
+                    if (disciplina != null)
+                    {
+                        if (disciplina.estadoRegistro == "A") {
+                            disciplina.estadoRegistro = "I";
+                        }else if (disciplina.estadoRegistro == "I") {
+                            disciplina.estadoRegistro = "A";
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
     }
 }

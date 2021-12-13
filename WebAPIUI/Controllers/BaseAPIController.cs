@@ -1,11 +1,11 @@
-﻿using System;
+﻿#region Usings
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
 using WebAPIUI.Controllers.CRUDRecursoAdmin.Models;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
 using WebAPIUI.Controllers.CRUDRolAdmin.Models;
-using WebAPIUI.Controllers.CRUDRSalaAdmin.Models;
 using WebAPIUI.Controllers.EventoClasePersona.Models;
 using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
 using WebAPIUI.Controllers.HorasDisciplina.Models;
@@ -68,6 +68,12 @@ using WebAPIUI.CustomExceptions.ConsultaPerfil;
 using WebAPIUI.Controllers.ConsultaPerfil.Models;
 using WebAPIUI.CustomExceptions.EventoPersona;
 using WebAPIUI.Controllers.CRUDREventoPersona.Models;
+using WebAPIUI.CustomExceptions.SalaRecurso;
+using WebAPIUI.Controllers.CRUDSalaRecurso.Models;
+using WebAPIUI.Controllers.CRUDSalaAdmin.Models;
+using WebAPIUI.CustomExceptions.SalaRecursoEspecial;
+using WebAPIUI.Controllers.CRUDSalaRecursoEspecialEspecial.Models;
+#endregion
 
 namespace WebAPIUI.Controllers
 {
@@ -331,6 +337,64 @@ namespace WebAPIUI.Controllers
         }
 
         internal void SetResponseAsExceptionSalaAdmin(SalaAdminResponseType code, SalaAdminDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+
+        #endregion
+
+        #region SalaRecurso Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionSalaRecurso(SalaRecursoResponseType type, IList<string> messages)
+        {
+            var newException = new SalaRecursoException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionSalaRecurso(SalaRecursoResponseType type, Exception ex)
+        {
+            throw new SalaRecursoException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionSalaRecurso(SalaRecursoResponseType code, SalaRecursoDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
+        }
+
+        #endregion
+
+        #region SalaRecursoEspecial Exceptions
+        /// <summary>
+        /// Maneja los errores controlados.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="messages"></param>
+        internal static void ThrowHandledExceptionSalaRecursoEspecial(SalaRecursoEspecialResponseType type, IList<string> messages)
+        {
+            var newException = new SalaRecursoEspecialException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionSalaRecursoEspecial(SalaRecursoEspecialResponseType type, Exception ex)
+        {
+            throw new SalaRecursoEspecialException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionSalaRecursoEspecial(SalaRecursoEspecialResponseType code, SalaRecursoEspecialDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;

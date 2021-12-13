@@ -20,5 +20,6 @@ namespace WebAPIData
         public byte[] imagen { get; set; }
         public System.DateTime fechaInicio { get; set; }
         public System.DateTime fechaFin { get; set; }
+        public string estadoRegistro { get; set; }
     }
 }

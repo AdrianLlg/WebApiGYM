@@ -14,5 +14,6 @@ namespace WebAPIUI.Controllers.CRUDNoticiaAdmin.Models
         public string imagen { get; set; }
         public string fechaInicio { get; set; }
         public string fechaFin { get; set; }
+        public string estado { get; set; }
     }
 }

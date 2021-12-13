@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.SalaAdmin;
-using WebAPIUI.Controllers;
-using WebAPIUI.Controllers.CRUDRSalaAdmin.Models;
 using WebAPIUI.Controllers.CRUDSalaAdmin.Models;
 using WebAPIUI.CustomExceptions.SalaAdmin;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.SalaAdmin;
 
-namespace WebAPIUI.ContSalalers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Salas.
     /// </summary>
-    public class CRUDRSalaAdminController : BaseAPIController
+    public class CRUDSalaAdminController : BaseAPIController
     {
         private void ValidatePostRequest(CRUDSalaAdminDataRequest dataRequest)
         {
@@ -121,6 +117,59 @@ namespace WebAPIUI.ContSalalers
         }
 
         /// <summary>
+        /// Modificar Sala
+        /// </summary>
+        private bool InactivarSala(int salaID)
+        {
+            SalaAdminBO bo = new SalaAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.inactivarSala(salaID);
+            }
+            catch (ValidationAndMessageException SalaAdminException)
+            {
+                messages.Add(SalaAdminException.Message);
+                ThrowHandledExceptionSalaAdmin(SalaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionSalaAdmin(SalaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Modificar Sala
+        /// </summary>
+        private bool EliminarSala(int salaID)
+        {
+            SalaAdminBO bo = new SalaAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarSala(salaID);
+            }
+            catch (ValidationAndMessageException SalaAdminException)
+            {
+                messages.Add(SalaAdminException.Message);
+                ThrowHandledExceptionSalaAdmin(SalaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionSalaAdmin(SalaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+        /// <summary>
         /// Consultar Sala
         /// </summary>
         private SalaAdminEntity DetalleSala(int SalaID)
@@ -160,7 +209,7 @@ namespace WebAPIUI.ContSalalers
             try
             {
                 List<string> messages = new List<string>();
-                string message = string.Empty;               
+                string message = string.Empty;
 
                 ValidatePostRequest(dataRequest);
 
@@ -219,7 +268,7 @@ namespace WebAPIUI.ContSalalers
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentModify = false;
                     }
-                }  
+                }
                 //Detalle de persona
                 else if (dataRequest.flujoID == 3)
                 {
@@ -231,6 +280,51 @@ namespace WebAPIUI.ContSalalers
                     if (resp.salaID > 0)
                     {
                         model = EntitesHelper.SalaInfoEntityToModel(resp);
+                        response.ResponseCode = SalaAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = SalaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+                //Eliminar Sala
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+                    SalaAdminModel model = new SalaAdminModel();
+
+                    resp = EliminarSala(dataRequest.salaID);
+
+                    if (resp==true)
+                    {
+                        response.ResponseCode = SalaAdminResponseType.Ok; 
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = SalaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+
+                //Inactivar Sala
+                else if (dataRequest.flujoID == 5)
+                {
+                    bool resp = false;
+                    SalaAdminModel model = new SalaAdminModel();
+
+                    resp = InactivarSala(dataRequest.salaID);
+
+                    if (resp == true)
+                    {
                         response.ResponseCode = SalaAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;

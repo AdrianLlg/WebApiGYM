@@ -44,7 +44,7 @@ namespace WebAPIBusiness.BusinessCore
                             salaID = evt.salaID.ToString(),
                             aforoMax = evt.aforoMax.ToString(),
                             aforoMin = evt.aforoMin.ToString(),
-
+                            estadoRegistro=evt.estadoRegistro
 
                         };
 
@@ -60,13 +60,13 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin)
+        public bool insertEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin);
+                entity = insertDBEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin, estadoRegistro);
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin)
+        private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro)
         {
             evento item = new evento();
 
@@ -93,6 +93,7 @@ namespace WebAPIBusiness.BusinessCore
                         salaID = int.Parse(salaID),
                         aforoMax = int.Parse(aforoMax),
                         aforoMin = int.Parse(aforoMin),
+                        estadoRegistro="A"
                     };
 
                     dbContext.evento.Add(item);
@@ -214,6 +215,7 @@ namespace WebAPIBusiness.BusinessCore
                         salaID = Evento.salaID.ToString(),
                         aforoMax = Evento.aforoMax.ToString(),
                         aforoMin = Evento.aforoMin.ToString(),
+                        estadoRegistro=Evento.estadoRegistro
                     };
                 }
 
@@ -222,6 +224,103 @@ namespace WebAPIBusiness.BusinessCore
             catch (Exception ex)
             {
                 return resp;
+            }
+        }
+
+        public bool eliminarEvento(int eventoID)
+        {
+            bool resp = false;
+
+            resp = EliminarInfo(eventoID);
+
+            return resp;
+        }
+
+
+
+
+        private bool EliminarInfo(int eventoID)
+        {
+
+            EventoAdminEntity resp = new EventoAdminEntity();
+            //FKS:
+            //evento
+            //eventoRecurso
+            //eventoRecursoEspecial
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
+                    
+                    var eventoPersonaLS = dbContext.evento_persona.ToList();
+                    bool hasEventoPersona = eventoPersonaLS.Any(x => x.eventoID == eventoID);
+                    
+                    if (evento != null)
+                    {
+                        if (hasEventoPersona == false)
+                        {
+                            dbContext.evento.Remove(evento);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+                        
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool inactivarEvento(int eventoID)
+        {
+            bool resp = false;
+
+            resp = InactivarInfo(eventoID);
+
+            return resp;
+        }
+
+        private bool InactivarInfo(int eventoID)
+        {
+
+            evento evento = new evento();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
+
+                    if (evento != null)
+                    {
+                        if (evento.estadoRegistro == "A") {
+                            evento.estadoRegistro = "I";
+                        } else if (evento.estadoRegistro == "I") {
+                            evento.estadoRegistro = "A";
+                        }
+                        
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

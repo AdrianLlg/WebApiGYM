@@ -68,12 +68,6 @@
     <Compile Include="evento_persona.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="evento_recurso.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="evento_recursoEspecial.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="fichaEntrenamiento.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
@@ -129,16 +123,13 @@
     <Compile Include="sala.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SalaRecurso.cs">
+    <Compile Include="salaRecurso.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SalaRecursoEspecial.cs">
+    <Compile Include="salaRecursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="sol_membresiaPago.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">

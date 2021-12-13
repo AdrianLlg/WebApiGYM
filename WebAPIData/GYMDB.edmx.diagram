@@ -4,44 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff5fe379c9fb48b3b60428f37cf4decb" Name="Diagram1">
-        <EntityTypeShape EntityType="GYMDBModel.clase" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+      <Diagram DiagramId="d1a0e1ad6d944491890f5c4ff3c784ac" Name="Diagram1">
+        <EntityTypeShape EntityType="GYMDBModel.clase" Width="1.5" PointX="0.75" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.configuraciones_Sistema" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.disciplina" Width="1.5" PointX="3.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.evento" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.evento" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.evento_persona" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.evento_recurso" Width="1.5" PointX="8.25" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.evento_recursoEspecial" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.fichaEntrenamiento" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.fichaPersona" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.horarioM" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.fichaEntrenamiento" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.fichaPersona" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.horarioM" Width="1.5" PointX="0.75" PointY="20" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.membresia" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.membresia_disciplina" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_disciplina" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_pago" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.noticia" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.persona" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.recurso" Width="1.5" PointX="6" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.recursoEspecial" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.roleP" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.sala" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.SalaRecurso" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.SalaRecursoEspecial" Width="1.5" PointX="6" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.sol_membresiaPago" Width="1.5" PointX="10.5" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.usuario" Width="1.5" PointX="5.25" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_disciplina" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_disciplina" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.membresia_persona_pago" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.noticia" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.persona" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.recurso" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.recursoEspecial" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.roleP" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.sala" Width="1.5" PointX="0.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.salaRecurso" Width="1.5" PointX="3" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.salaRecursoEspecial" Width="1.5" PointX="6" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.sol_membresiaPago" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.usuario" Width="1.5" PointX="5.25" PointY="30.125" IsExpanded="true" />
         <AssociationConnector Association="GYMDBModel.disciplina_clase_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.evento_cronoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.disciplina_fEntrenamiento_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.discplina1_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.evento_persona_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.eventoID_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.eventoID_fk2" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.horarioM_cronoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.sala_cronoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.evento_persona_Id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.recursoID_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="GYMDBModel.recursEspecialoID_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.persona_fEntrenamiento_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.profesor_fEntrenamiento_fk" ManuallyRouted="false" />
         <AssociationConnector Association="GYMDBModel.persona_ficha_fk" ManuallyRouted="false" />

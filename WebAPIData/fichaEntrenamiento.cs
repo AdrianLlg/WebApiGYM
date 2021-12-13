@@ -19,8 +19,8 @@ namespace WebAPIData
         public int fichaPersonaID { get; set; }
         public int ProfesorID { get; set; }
         public int DiciplinaID { get; set; }
-        public decimal Altura { get; set; }
         public decimal Peso { get; set; }
+        public decimal Altura { get; set; }
         public decimal IndiceMasaMuscular { get; set; }
         public decimal IndiceGrasaCorporal { get; set; }
         public decimal MedicionBrazos { get; set; }
