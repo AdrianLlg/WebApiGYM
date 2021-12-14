@@ -19,7 +19,7 @@ namespace WebAPIUI.Controllers.ConsultaPerfil.Models
         /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<ConsultaPerfilModel> ContentIndex { get; set; }
+        public ConsultaPerfilModel ContentIndex { get; set; }
 
     }
 }

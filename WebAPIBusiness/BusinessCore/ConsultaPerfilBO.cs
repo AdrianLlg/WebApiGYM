@@ -10,33 +10,50 @@ namespace WebAPIBusiness.BusinessCore
 {
     public class ConsultaPerfilBO
     {
-        public List<ConsultaPerfilEntity> getPerfil(int personaID)
+        public ConsultaPerfilEntity getPerfil(int personaID)
         {
-            List<ConsultaPerfilEntity> entities = new List<ConsultaPerfilEntity>();
+            ConsultaPerfilEntity entity = new ConsultaPerfilEntity();
 
-            entities = getPerfilDB(personaID);
+            entity = getPerfilDB(personaID);
 
 
-            return entities;
+            return entity;
         }
 
-        private List<ConsultaPerfilEntity> getPerfilDB(int personaID)
+        private ConsultaPerfilEntity getPerfilDB(int personaID)
         {
 
-            List<ConsultaPerfilEntity> consulta = new List<ConsultaPerfilEntity>();
-            ConsultaPerfilEntity item = new ConsultaPerfilEntity();
+            ConsultaPerfilEntity resp;
+            persona item = new persona();
 
 
             using (var dbContext = new GYMDBEntities())
             {
-                string query = string.Format(ScriptsGYMDB.getPerfil, personaID);
-                consulta = dbContext.Database.SqlQuery<ConsultaPerfilEntity>(query).ToList();
+                item = dbContext.persona.Where(x => x.personaID == personaID).FirstOrDefault();
             }
 
+            if (item != null)
+            {
+                resp = new ConsultaPerfilEntity()
+                {
+                    personaID = item.personaID,
+                    apellidos = item.apellidos,
+                    nombres = item.nombres,
+                    edad = item.edad,
+                    email = item.email,
+                    estado = item.estado,
+                    fechaNacimiento = item.fechaNacimiento,
+                    identificacion = item.identificacion,
+                    rolePID = item.rolePID,
+                    sexo = item.sexo,
+                    telefono = item.telefono
+                };
 
-
-
-            return consulta;
+                return resp;
+            }else
+            {
+                return null;
+            }
         }
 
 

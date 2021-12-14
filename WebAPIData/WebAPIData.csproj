@@ -132,9 +132,6 @@
     <Compile Include="sol_membresiaPago.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="usuario.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>

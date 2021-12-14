@@ -54,8 +54,7 @@ namespace WebAPIBusiness.BusinessCore
                     }
                     else
                     {
-                        throw new ValidationAndMessageException("No existen solicitudes pendientes" +
-                            ".");
+                        throw new ValidationAndMessageException("No existen solicitudes pendientes.");
                     }
                 }
 

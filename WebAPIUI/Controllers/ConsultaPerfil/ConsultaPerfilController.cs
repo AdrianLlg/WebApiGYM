@@ -31,18 +31,18 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Consulta los Salas de la base 
         /// </summary>
-        private List<ConsultaPerfilModel> consultarPerfil(ConsultaPerfilDataRequest dataRequest)
+        private ConsultaPerfilModel consultarPerfil(ConsultaPerfilDataRequest dataRequest)
         {
             ConsultaPerfilBO bo = new ConsultaPerfilBO();
             List<string> messages = new List<string>();
-            List<ConsultaPerfilModel> response = new List<ConsultaPerfilModel>();
-            List<ConsultaPerfilEntity> aux = new List<ConsultaPerfilEntity>();
+            ConsultaPerfilModel response = new ConsultaPerfilModel();
+            ConsultaPerfilEntity aux = new ConsultaPerfilEntity();
 
 
             try
             {
                 aux = bo.getPerfil(dataRequest.personaID);
-                response =EntitesHelper.EntityToModelConsultaPerfil(aux) ;
+                response =EntitesHelper.EntityToModelConsultaPerfil(aux);
             }
             catch (ValidationAndMessageException ConsultaPerfilException) 
             {
@@ -79,10 +79,10 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                List<ConsultaPerfilModel> model = new List<ConsultaPerfilModel>();
+                ConsultaPerfilModel model = new ConsultaPerfilModel();
                 model = consultarPerfil(dataRequest);
 
-                if (model.Count > 0)
+                if (model != null)
                 {
                     response.ResponseCode = ConsultaPerfilResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";

@@ -66,6 +66,14 @@ using WebAPIUI.CustomExceptions.FichaEntrenamiento;
 using WebAPIUI.Controllers.CRUDFichaEntrenamiento.Models;
 using WebAPIUI.CustomExceptions.ConsultaPerfil;
 using WebAPIUI.Controllers.ConsultaPerfil.Models;
+using WebAPIUI.CustomExceptions.App.ModificacionDatosPersonales;
+using WebAPIUI.Controllers.App.ModificacionDatosPersonales.Models;
+using WebAPIUI.CustomExceptions.App.EnviarMailValidacion;
+using WebAPIUI.Controllers.App.EnviarMailValidacion.Models;
+using WebAPIUI.CustomExceptions.App.ConsultaHorariosDeportista;
+using WebAPIUI.Controllers.App.ConsultaHorariosDeportista.Models;
+using WebAPIUI.CustomExceptions.App.InscripcionUsuarioSesion;
+using WebAPIUI.Controllers.App.InscripcionUsuarioSesion.Models;
 
 namespace WebAPIUI.Controllers
 {
@@ -917,5 +925,86 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
+        #region ModificacionDatosPersonales Expections
+        internal static void ThrowHandledExceptionModificacionDatosPersonales(ModificacionDatosPersonalesResponseType type, IList<string> messages)
+        {
+            var newException = new ModificacionDatosPersonalesException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionModificacionDatosPersonales(ModificacionDatosPersonalesResponseType type, Exception ex)
+        {
+            throw new ModificacionDatosPersonalesException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionModificacionDatosPersonales(ModificacionDatosPersonalesResponseType code, ModificacionDatosPersonalesDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentPassword = false;
+            response.ContentPersonalInfo = false;
+        }
+        #endregion
+
+
+        #region EnviarMailValidacion Exceptions
+        internal static void ThrowHandledExceptionEnviarMailValidacion(EnviarMailValidacionResponseType type, IList<string> messages)
+        {
+            var newException = new EnviarMailValidacionException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionEnviarMailValidacion(EnviarMailValidacionResponseType type, Exception ex)
+        {
+            throw new EnviarMailValidacionException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionEnviarMailValidacion(EnviarMailValidacionResponseType code, EnviarMailValidacionDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
+        }
+        #endregion
+
+        #region ConsultaHorariosDeportista Exceptions
+        internal static void ThrowHandledExceptionConsultaHorariosDeportista(ConsultaHorariosDeportistaResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaHorariosDeportistaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaHorariosDeportista(ConsultaHorariosDeportistaResponseType type, Exception ex)
+        {
+            throw new ConsultaHorariosDeportistaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaHorariosDeportista(ConsultaHorariosDeportistaResponseType code, ConsultaHorariosDeportistaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
+        }
+        #endregion
+
+        #region InscripcionUsuarioSesion Exceptions
+        internal static void ThrowHandledExceptionInscripcionUsuarioSesion(InscripcionUsuarioSesionResponseType type, IList<string> messages)
+        {
+            var newException = new InscripcionUsuarioSesionException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionInscripcionUsuarioSesion(InscripcionUsuarioSesionResponseType type, Exception ex)
+        {
+            throw new InscripcionUsuarioSesionException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionInscripcionUsuarioSesion(InscripcionUsuarioSesionResponseType code, InscripcionUsuarioSesionDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = false;
+        }
+        #endregion
     }
 }

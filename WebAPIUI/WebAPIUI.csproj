@@ -239,6 +239,18 @@
     <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\RegistroMembresiaUsuarioController.cs" />
     <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataRequest.cs" />
     <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataResponse.cs" />
+    <Compile Include="Controllers\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionController.cs" />
+    <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataRequest.cs" />
+    <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaController.cs" />
+    <Compile Include="Controllers\App\ConsultaHorariosDeportista\Models\ConsultaHorariosDeportistaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaHorariosDeportista\Models\ConsultaHorariosDeportistaDataResponse.cs" />
+    <Compile Include="Controllers\App\EnviarMailValidacion\Models\EnviarMailValidacionDataRequest.cs" />
+    <Compile Include="Controllers\App\EnviarMailValidacion\Models\EnviarMailValidacionDataResponse.cs" />
+    <Compile Include="Controllers\App\EnviarMailValidacion\EnviarMailValidacionController.cs" />
+    <Compile Include="Controllers\App\ModificacionDatosPersonales\ModificacionDatosPersonalesController.cs" />
+    <Compile Include="Controllers\App\ModificacionDatosPersonales\Models\ModificacionDatosPersonalesDataRequest.cs" />
+    <Compile Include="Controllers\App\ModificacionDatosPersonales\Models\ModificacionDatosPersonalesDataResponse.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\CRUDMembresiaAdminController.cs" />
     <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\Models\CRUDMembresiaAdminDataRequest.cs" />
@@ -268,6 +280,10 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaException.cs" />
+    <Compile Include="CustomExceptions\App\EnviarMailValidacion\EnviarMailValidacion.cs" />
+    <Compile Include="CustomExceptions\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionException.cs" />
+    <Compile Include="CustomExceptions\App\ModificacionDatosPersonales\ModificacionDatosPersonalesException.cs" />
     <Compile Include="CustomExceptions\ConsultaPerfil\ConsultaPerfilException.cs" />
     <Compile Include="CustomExceptions\Fichas\FichaEntrenamientoException.cs" />
     <Compile Include="CustomExceptions\Fichas\FichaPersonaException.cs" />
@@ -464,6 +480,13 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

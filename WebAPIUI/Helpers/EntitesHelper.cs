@@ -75,8 +75,8 @@ namespace WebAPIUI.Helpers
                     Banco = entity.Banco,
                     fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
                     fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
-                    fechaInicioMembresia = entity.fechaInicioMembresia.ToString(),
-                    fechaFinMembresia = entity.fechaFinMembresia.ToString(),
+                    fechaInicioMembresia = entity.fechaInicioMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
+                    fechaFinMembresia = entity.fechaFinMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     estado = entity.estado
                 };
 
@@ -1027,35 +1027,27 @@ namespace WebAPIUI.Helpers
         #endregion
 
         #region ConsultaPerfilModel
-        public static List<ConsultaPerfilModel> EntityToModelConsultaPerfil(List<ConsultaPerfilEntity> entities)
+        public static ConsultaPerfilModel EntityToModelConsultaPerfil(ConsultaPerfilEntity entity)
         {
 
-            List<ConsultaPerfilModel> response = new List<ConsultaPerfilModel>();
-
-            foreach (var entity in entities)
-            {
-                ConsultaPerfilModel model = new ConsultaPerfilModel()
+                ConsultaPerfilModel response = new ConsultaPerfilModel()
                 {
-                    usuarioID = entity.usuarioID,
+                    //usuarioID = entity.usuarioID,
                     personaID = entity.personaID,
                     rolePID = entity.rolePID,
                     nombres = entity.nombres,
                     apellidos = entity.apellidos,
                     identificacion = entity.identificacion,
                     email = entity.email,
-                    password = entity.password,
+                    //password = entity.password,
                     telefono = entity.telefono,
                     edad = entity.edad,
                     sexo = entity.sexo,
-                    fechaNacimiento = entity.fechaNacimiento,
-                    fechaCreacion = entity.fechaCreacion,
+                    fechaNacimiento = entity.fechaNacimiento.ToString("dd-MM-yyyy"),
                     estado = entity.estado
 
 
                 };
-
-                response.Add(model);
-            };
 
             return response;
         }
