@@ -1373,42 +1373,6 @@
             <End Role="salaRecursoEspecial" EntitySet="salaRecursoEspecial" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="evento_persona">
-          <Key>
-            <PropertyRef Name="evento_personaID" />
-          </Key>
-          <Property Name="evento_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="eventoID" Type="Int32" Nullable="false" />
-          <Property Name="personaID" Type="Int32" Nullable="false" />
-          <Property Name="asistencia" Type="Int32" Nullable="false" />
-          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="evento" Relationship="GYMDBModel.evento_persona_fk" FromRole="evento_persona" ToRole="evento" />
-          <NavigationProperty Name="persona" Relationship="GYMDBModel.evento_persona_Id_fk" FromRole="evento_persona" ToRole="persona" />
-        </EntityType>
-        <Association Name="evento_persona_fk">
-          <End Type="GYMDBModel.evento" Role="evento" Multiplicity="1" />
-          <End Type="GYMDBModel.evento_persona" Role="evento_persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="evento">
-              <PropertyRef Name="eventoID" />
-            </Principal>
-            <Dependent Role="evento_persona">
-              <PropertyRef Name="eventoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="evento_persona_Id_fk">
-          <End Type="GYMDBModel.persona" Role="persona" Multiplicity="1" />
-          <End Type="GYMDBModel.evento_persona" Role="evento_persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="persona">
-              <PropertyRef Name="personaID" />
-            </Principal>
-            <Dependent Role="evento_persona">
-              <PropertyRef Name="personaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

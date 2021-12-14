@@ -150,12 +150,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebAPIData\WebAPIData.csproj">
-      <Project>{52391b71-5280-4c87-b9a8-76f94d8610c2}</Project>
-      <Name>WebAPIData</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\ScripCreacionGYMDB.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ScripCreacionGYMDB.Designer.cs</LastGenOutput>
@@ -167,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\Agendamiento\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebAPIData\WebAPIData.csproj">
+      <Project>{52391b71-5280-4c87-b9a8-76f94d8610c2}</Project>
+      <Name>WebAPIData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,7 +34,5 @@ namespace WebAPIData
         public virtual ICollection<evento_persona> evento_persona { get; set; }
         public virtual horarioM horarioM { get; set; }
         public virtual sala sala { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evento_persona> evento_persona { get; set; }
     }
 }
