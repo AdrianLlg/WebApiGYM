@@ -35,12 +35,13 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     foreach (var clase in clases)
                     {
-                        ClaseAdminEntity Clase= new ClaseAdminEntity()
+                        ClaseAdminEntity Clase = new ClaseAdminEntity()
                         {
-                            claseID=clase.claseID,
-                            disciplinaID=clase.disciplinaID,
-                            nombre=clase.nombre,
-                            descripcion=clase.descripcion
+                            claseID = clase.claseID,
+                            disciplinaID = clase.disciplinaID,
+                            nombre = clase.nombre,
+                            descripcion = clase.descripcion,
+                            estadoRegistro = clase.estadoRegistro
                         };
 
                         entities.Add(Clase);
@@ -55,13 +56,13 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertClase(string disciplinaID, string nombre, string descripcion)
+        public bool insertClase(int disciplinaID, string nombre, string descripcion, string estadoRegistro)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBClase(disciplinaID, nombre, descripcion);
+                entity = insertDBClase(disciplinaID, nombre, descripcion, estadoRegistro);
             }
             catch (Exception ex)
             {
@@ -71,7 +72,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBClase( string disciplinaID, string nombre, string descripcion)
+        private bool insertDBClase(int disciplinaID, string nombre, string descripcion, string estadoRegistro)
         {
             clase item = new clase();
 
@@ -81,9 +82,10 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     item = new clase()
                     {
-                        disciplinaID = int.Parse(disciplinaID),
+                        disciplinaID = disciplinaID,
                         nombre = nombre,
-                        descripcion = descripcion
+                        descripcion = descripcion,
+                        estadoRegistro = "A"
                     };
 
                     dbContext.clase.Add(item);
@@ -98,7 +100,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyClase(int claseID, string discplinaID, string nombre,string descripcion )
+        public bool modifyClase(int claseID, int disciplinaID, string nombre, string descripcion)
         {
             bool entity = false;
 
@@ -111,7 +113,7 @@ namespace WebAPIBusiness.BusinessCore
                     throw new Exception("El ID de la clase no se ha especificado.");
                 }
 
-                entity = UpdateRecord(claseID,  discplinaID,  nombre,  descripcion);
+                entity = UpdateRecord(claseID, disciplinaID, nombre, descripcion);
             }
             catch (Exception ex)
             {
@@ -121,7 +123,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool UpdateRecord(int claseID,string disciplinaID, string nombre, string descripcion)
+        private bool UpdateRecord(int claseID, int disciplinaID, string nombre, string descripcion)
         {
             clase clase = new clase();
 
@@ -133,10 +135,9 @@ namespace WebAPIBusiness.BusinessCore
 
                     if (clase != null)
                     {
-                        if (!string.IsNullOrEmpty(disciplinaID))
-                        {
-                            clase.disciplinaID = int.Parse(disciplinaID);
-                        }
+                       
+                            clase.disciplinaID = disciplinaID;
+                      
                         if (!string.IsNullOrEmpty(nombre))
                         {
                             clase.nombre = nombre;
@@ -172,7 +173,7 @@ namespace WebAPIBusiness.BusinessCore
 
         private ClaseAdminEntity getClaseInfo(int claseID)
         {
-            clase clase= new clase();
+            clase clase = new clase();
             ClaseAdminEntity resp = new ClaseAdminEntity();
 
             try
@@ -189,7 +190,8 @@ namespace WebAPIBusiness.BusinessCore
                         claseID = clase.claseID,
                         disciplinaID = clase.disciplinaID,
                         nombre = clase.nombre,
-                        descripcion = clase.descripcion
+                        descripcion = clase.descripcion,
+                        estadoRegistro = clase.estadoRegistro
                     };
                 }
 
@@ -201,7 +203,106 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+        public bool eliminarClase(int claseID)
+        {
+            bool resp = false;
 
+            resp = EliminarInfo(claseID);
+
+            return resp;
+        }
+
+
+
+
+        private bool EliminarInfo(int claseID)
+        {
+
+            ClaseAdminEntity resp = new ClaseAdminEntity();
+            //FKS:
+            //evento
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var clase = dbContext.clase.Where(x => x.claseID == claseID).FirstOrDefault();
+
+                    var eventoLS = dbContext.evento.ToList();
+
+                    bool hasEvento = eventoLS.Any(x => x.claseID == claseID);
+
+                    if (clase != null)
+                    {
+                        if (hasEvento == false)
+                        {
+                            dbContext.clase.Remove(clase);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool inactivarClase(int claseID)
+        {
+            bool resp = false;
+
+            resp = InactivarInfo(claseID);
+
+            return resp;
+        }
+
+        private bool InactivarInfo(int claseID)
+        {
+
+            clase clase = new clase();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    clase = dbContext.clase.Where(x => x.claseID == claseID).FirstOrDefault();
+
+                    if (clase != null)
+                    {
+                        if (clase.estadoRegistro == "A")
+                        {
+                            clase.estadoRegistro = "I";
+                        }
+                        else if (clase.estadoRegistro == "I")
+                        {
+                            clase.estadoRegistro = "A";
+                        }
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
     }
 }

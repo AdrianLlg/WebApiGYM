@@ -37,7 +37,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo recurso en la BD
         /// </summary>
-        private bool InsertarNuevoRecurso(string nombre, string descripcion)
+        private bool InsertarNuevoRecurso(string nombre, string descripcion,string estadoRegistro)
         {
             RecursoEspecialAdminBO bo = new RecursoEspecialAdminBO();
             List<string> messages = new List<string>();
@@ -45,7 +45,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertRecursoEspecial(nombre, descripcion);
+                response = bo.insertRecursoEspecial(nombre, descripcion, estadoRegistro);
             }
             catch (ValidationAndMessageException RecursoEspecialAdminException)
             {
@@ -92,7 +92,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar recurso
         /// </summary>
-        private bool ModificarRecursoEspecial(int recursoEspecialID, string nombre, string descripcion)
+        private bool ModificarRecursoEspecial(int recursoEspecialID, string nombre, string descripcion,string estadoRegistro)
         {
             RecursoEspecialAdminBO bo = new RecursoEspecialAdminBO();
             List<string> messages = new List<string>();
@@ -100,7 +100,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyRecursoEspecial(recursoEspecialID, nombre, descripcion);
+                response = bo.modifyRecursoEspecial(recursoEspecialID, nombre, descripcion,estadoRegistro);
             }
             catch (ValidationAndMessageException RecursoEspecialAdminException)
             {
@@ -116,6 +116,59 @@ namespace WebAPIUI.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Eliminar recurso
+        /// </summary>
+        private bool EliminarRecursoEspecial(int recursoEspecialID)
+        {
+            RecursoEspecialAdminBO bo = new RecursoEspecialAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarRecursoEspecial(recursoEspecialID);
+            }
+            catch (ValidationAndMessageException RecursoEspecialAdminException)
+            {
+                messages.Add(RecursoEspecialAdminException.Message);
+                ThrowHandledExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Inactivar recurso
+        /// </summary>
+        private bool InactivarRecursoEspecial(int recursoEspecialID)
+        {
+            RecursoEspecialAdminBO bo = new RecursoEspecialAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.inactivarRecursoEspecial(recursoEspecialID);
+            }
+            catch (ValidationAndMessageException RecursoEspecialAdminException)
+            {
+                messages.Add(RecursoEspecialAdminException.Message);
+                ThrowHandledExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionRecursoEspecialAdmin(RecursoEspecialAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
         /// <summary>
         /// Consultar recurso
         /// </summary>
@@ -183,7 +236,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevoRecurso(dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = InsertarNuevoRecurso(dataRequest.nombre, dataRequest.descripcion,dataRequest.estadoRegistro);
 
                     if (resp)
                     {
@@ -201,7 +254,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarRecursoEspecial(dataRequest.recursoEspecialID, dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = ModificarRecursoEspecial(dataRequest.recursoEspecialID, dataRequest.nombre, dataRequest.descripcion,dataRequest.estadoRegistro);
 
                     if (resp)
                     {
@@ -238,6 +291,44 @@ namespace WebAPIUI.Controllers
                         response.ContentDetail = null;
                     }
 
+                }
+
+                //Eliminar Recurso Especial
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = EliminarRecursoEspecial(dataRequest.recursoEspecialID);
+
+                    if (resp)
+                    {
+                        response.ResponseCode = RecursoEspecialAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentModify = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = RecursoEspecialAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentModify = false;
+                    }
+                }
+
+                //Eliminar Recurso Especial
+                else if (dataRequest.flujoID == 5)
+                {
+                    bool resp = InactivarRecursoEspecial(dataRequest.recursoEspecialID);
+
+                    if (resp)
+                    {
+                        response.ResponseCode = RecursoEspecialAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentModify = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = RecursoEspecialAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentModify = false;
+                    }
                 }
 
             }

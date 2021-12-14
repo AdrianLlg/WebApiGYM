@@ -11,7 +11,7 @@ using WebAPIUI.CustomExceptions.EventoAdmin;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.EventoAdmin;
 
-namespace WebAPIUI.ContEventolers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Eventos.
@@ -39,7 +39,7 @@ namespace WebAPIUI.ContEventolers
         /// <summary>
         /// Insertar un nuevo Evento en la BD
         /// </summary>
-        private bool InsertarNuevaEvento(string claseID,string horarioMID,string fecha,string salaID,string aforoMax,string aforoMin)
+        private bool InsertarNuevoEvento(string claseID,string horarioMID,string fecha,string salaID,string aforoMax,string aforoMin,string estadoRegistro)
         {
             EventoAdminBO bo = new EventoAdminBO();
             List<string> messages = new List<string>();
@@ -47,7 +47,7 @@ namespace WebAPIUI.ContEventolers
 
             try
             {
-                response = bo.insertEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin);
+                response = bo.insertEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin,estadoRegistro);
             }
             catch (ValidationAndMessageException EventoAdminException)
             {
@@ -103,6 +103,57 @@ namespace WebAPIUI.ContEventolers
             try
             {
                 response = bo.modifyEvento( eventoID, claseID,  horarioMID,fecha, salaID, aforoMax,aforoMin);
+            }
+            catch (ValidationAndMessageException EventoAdminException)
+            {
+                messages.Add(EventoAdminException.Message);
+                ThrowHandledExceptionEventoAdmin(EventoAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionEventoAdmin(EventoAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Eliminar Evento
+        /// </summary>
+        private bool EliminarEvento(int eventoID)
+        {
+            EventoAdminBO bo = new EventoAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarEvento(eventoID);
+            }
+            catch (ValidationAndMessageException EventoAdminException)
+            {
+                messages.Add(EventoAdminException.Message);
+                ThrowHandledExceptionEventoAdmin(EventoAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionEventoAdmin(EventoAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        private bool InactivarEvento(int eventoID)
+        {
+            EventoAdminBO bo = new EventoAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.inactivarEvento(eventoID);
             }
             catch (ValidationAndMessageException EventoAdminException)
             {
@@ -185,7 +236,8 @@ namespace WebAPIUI.ContEventolers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaEvento(dataRequest.claseID, dataRequest.horarioMID, dataRequest.fecha, dataRequest.salaID, dataRequest.aforoMax, dataRequest.aforoMin);
+                    bool resp = InsertarNuevoEvento(dataRequest.claseID, dataRequest.horarioMID, dataRequest.fecha, dataRequest.salaID, dataRequest.aforoMax, dataRequest.aforoMin, dataRequest.estadoRegistro);
+
 
                     if (resp)
                     {
@@ -229,6 +281,51 @@ namespace WebAPIUI.ContEventolers
                     if (resp.eventoID > 0)
                     {
                         model = EntitesHelper.EventosInfoEntityToModel(resp);
+                        response.ResponseCode = EventoAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = EventoAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+                //Eliminar Evento
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+                    EventoAdminModel model = new EventoAdminModel();
+
+                    resp = EliminarEvento(dataRequest.eventoID);
+
+                    if (resp==true)
+                    { 
+                        response.ResponseCode = EventoAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = EventoAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+                //Inactivar Evento
+                else if (dataRequest.flujoID == 5)
+                {
+                    bool resp = false;
+                    EventoAdminModel model = new EventoAdminModel();
+
+                    resp = InactivarEvento(dataRequest.eventoID);
+
+                    if (resp == true)
+                    {
+                        
                         response.ResponseCode = EventoAdminResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
                         response.ContentDetail = model;

@@ -61,6 +61,15 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EXEC sp_fkeys &apos;{0}&apos;.
+        /// </summary>
+        internal static string get_FKRelationships {
+            get {
+                return ResourceManager.GetString("get FKRelationships", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///SELECT 
         ///CL.nombre AS Clase,

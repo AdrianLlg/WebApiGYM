@@ -12,6 +12,7 @@ namespace WebAPIUI.Models.NoticiaAdmin
         public string contenido { get; set; }
         public string imagen { get; set; }
         public string fechaInicio { get; set; } 
-        public string fechaFin { get; set; }   
+        public string fechaFin { get; set; }
+        public string estadoRegistro { get; set; }
     }
 }

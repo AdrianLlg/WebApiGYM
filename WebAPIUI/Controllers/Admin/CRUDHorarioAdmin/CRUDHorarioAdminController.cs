@@ -13,7 +13,7 @@ using WebAPIUI.CustomExceptions.HorarioAdmin;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.HorarioAdmin;
 
-namespace WebAPIUI.ContHorariolers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Horarios.

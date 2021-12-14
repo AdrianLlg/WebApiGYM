@@ -11,5 +11,6 @@ namespace WebAPIUI.Controllers.CRUDSalaAdmin.Models
         public int salaID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
+        public string estadoRegistro { get; set; }
     }
 } 

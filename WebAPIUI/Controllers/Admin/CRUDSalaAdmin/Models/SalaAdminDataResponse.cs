@@ -8,7 +8,7 @@ using WebAPIUI.Models.MembresiasAdmin;
 using WebAPIUI.Models.RegistroAdmin;
 using WebAPIUI.Models.SalaAdmin;
 
-namespace WebAPIUI.Controllers.CRUDRSalaAdmin.Models
+namespace WebAPIUI.Controllers.CRUDSalaAdmin.Models
 {
     public class SalaAdminDataResponse
     {

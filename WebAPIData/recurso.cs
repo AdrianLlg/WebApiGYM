@@ -14,18 +14,10 @@ namespace WebAPIData
     
     public partial class recurso
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public recurso()
-        {
-            this.evento_recurso = new HashSet<evento_recurso>();
-        }
-    
         public int recursoID { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public int cantidadRecurso { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evento_recurso> evento_recurso { get; set; }
+        public string estadoRegistro { get; set; }
     }
 }

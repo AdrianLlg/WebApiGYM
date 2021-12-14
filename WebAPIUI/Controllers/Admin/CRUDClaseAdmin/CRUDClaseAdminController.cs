@@ -4,14 +4,13 @@ using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.ClasesAdmin;
-using WebAPIUI.Controllers;
 using WebAPIUI.Controllers.CRUDClaseAdmin.Models;
 using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
 using WebAPIUI.CustomExceptions.ClasesAdmin;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.ClaseAdmin;
 
-namespace WebAPIUI.ContClaselers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Clases.
@@ -39,7 +38,7 @@ namespace WebAPIUI.ContClaselers
         /// <summary>
         /// Insertar un nuevo Clase en la BD
         /// </summary>
-        private bool InsertarNuevaClase(string disciplinaID,string nombre, string descripcion)
+        private bool InsertarNuevaClase(int disciplinaID, string nombre, string descripcion,string estadoRegistro)
         {
             ClasesAdminBO bo = new ClasesAdminBO();
             List<string> messages = new List<string>();
@@ -47,7 +46,7 @@ namespace WebAPIUI.ContClaselers
 
             try
             {
-                response = bo.insertClase(disciplinaID,nombre, descripcion);
+                response = bo.insertClase(disciplinaID, nombre, descripcion, estadoRegistro);
             }
             catch (ValidationAndMessageException ClaseAdminException)
             {
@@ -94,7 +93,7 @@ namespace WebAPIUI.ContClaselers
         /// <summary>
         /// Modificar Clase
         /// </summary>
-        private bool ModificarClase(int ClaseID,string disciplinaID, string nombre, string descripcion)
+        private bool ModificarClase(int ClaseID, int disciplinaID, string nombre, string descripcion)
         {
             ClasesAdminBO bo = new ClasesAdminBO();
             List<string> messages = new List<string>();
@@ -102,7 +101,62 @@ namespace WebAPIUI.ContClaselers
 
             try
             {
-                response = bo.modifyClase(ClaseID,disciplinaID, nombre, descripcion);
+                response = bo.modifyClase(ClaseID, disciplinaID, nombre, descripcion);
+            }
+            catch (ValidationAndMessageException ClaseAdminException)
+            {
+                messages.Add(ClaseAdminException.Message);
+                ThrowHandledExceptionClaseAdmin(ClasesAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionClaseAdmin(ClasesAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+
+        /// <summary>
+        /// Eliminar Clase
+        /// </summary>
+        private bool EliminarClase(int claseID)
+        {
+            ClasesAdminBO bo = new ClasesAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.eliminarClase(claseID);
+            }
+            catch (ValidationAndMessageException ClaseAdminException)
+            {
+                messages.Add(ClaseAdminException.Message);
+                ThrowHandledExceptionClaseAdmin(ClasesAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionClaseAdmin(ClasesAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Eliminar Clase
+        /// </summary>
+        private bool InactivarClase(int claseID)
+        {
+            ClasesAdminBO bo = new ClasesAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.inactivarClase(claseID);
             }
             catch (ValidationAndMessageException ClaseAdminException)
             {
@@ -158,7 +212,7 @@ namespace WebAPIUI.ContClaselers
             try
             {
                 List<string> messages = new List<string>();
-                string message = string.Empty;               
+                string message = string.Empty;
 
                 ValidatePostRequest(dataRequest);
 
@@ -185,7 +239,7 @@ namespace WebAPIUI.ContClaselers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevaClase(dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = InsertarNuevaClase(dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion,dataRequest.estadoRegistro);
 
                     if (resp)
                     {
@@ -203,7 +257,7 @@ namespace WebAPIUI.ContClaselers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarClase(dataRequest.claseID,dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion);
+                    bool resp = ModificarClase(dataRequest.claseID, dataRequest.disciplinaID, dataRequest.nombre, dataRequest.descripcion);
 
                     if (resp)
                     {
@@ -217,7 +271,7 @@ namespace WebAPIUI.ContClaselers
                         response.ResponseMessage = "Fallo en la ejecución.";
                         response.ContentModify = false;
                     }
-                }  
+                }
                 //Detalle de persona
                 else if (dataRequest.flujoID == 3)
                 {
@@ -242,6 +296,53 @@ namespace WebAPIUI.ContClaselers
 
                 }
 
+                //Eliminar clase
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+                    ClaseAdminModel model = new ClaseAdminModel();
+
+                    resp = EliminarClase(dataRequest.claseID);
+
+                    if (resp == false)
+                    {
+                        
+                        response.ResponseCode = ClasesAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = ClasesAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
+
+                //Inactivar clase
+                else if (dataRequest.flujoID == 5)
+                {
+                    bool resp = false;
+                    ClaseAdminModel model = new ClaseAdminModel();
+
+                    resp = InactivarClase(dataRequest.claseID);
+
+                    if (resp == true)
+                    {
+                        
+                        response.ResponseCode = ClasesAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentDetail = model;
+                    }
+                    else
+                    {
+                        response.ResponseCode = ClasesAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentDetail = null;
+                    }
+
+                }
             }
             catch (ClasesAdminException ClaseAdminException)
             {

@@ -27,6 +27,8 @@ namespace WebAPIUI.Controllers.CRUDRecursoAdmin.Models
         public bool ContentCreate { get; set; }
 
         public bool ContentModify { get; set; }
+        
+        public bool ContentDelete { get; set; }
 
         public RecursoAdminModel ContentDetail { get; set; }
     }

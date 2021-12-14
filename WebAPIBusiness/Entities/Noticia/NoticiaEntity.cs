@@ -14,7 +14,7 @@ namespace WebAPIBusiness.Entities.Noticia
         public string contenido { get; set; }
         public string imagen { get; set; }
         public DateTime fechaInicio{ get; set; } 
-        public DateTime fechaFin { get; set; } 
-
+        public DateTime fechaFin { get; set; }
+        public string estadoRegistro { get; set; } 
     }
 }

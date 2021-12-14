@@ -14,5 +14,6 @@ namespace WebAPIUI.Models.EventoAdmin
         public string salaID { get; set; }
         public string aforoMax { get; set; }
         public string aforoMin { get; set; }
+        public string estadoRegistro { get; set; }
     }
 }

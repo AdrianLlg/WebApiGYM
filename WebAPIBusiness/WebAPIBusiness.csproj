@@ -53,10 +53,13 @@
   <ItemGroup>
     <Compile Include="BusinessCore\App\PersonaUsuarioBO.cs" />
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
+    <Compile Include="BusinessCore\EventoPersonaBO.cs" />
     <Compile Include="BusinessCore\FichaEntrenamientoBO.cs" />
     <Compile Include="BusinessCore\FichaPersonaBO.cs" />
     <Compile Include="BusinessCore\ReporteGeneralAsistenciaBO.cs" />
     <Compile Include="BusinessCore\ReporteVentasMembresiasBO.cs" />
+    <Compile Include="BusinessCore\SalaRecursoEspecialBO.cs" />
+    <Compile Include="BusinessCore\SalaRecursoBO.cs" />
     <Compile Include="BusinessCore\TransaccionesAnualesBO.cs" />
     <Compile Include="BusinessCore\ReporteNoEventosSalaBO.cs" />
     <Compile Include="BusinessCore\ReportePersonasEstadoBO.cs" />
@@ -89,13 +92,18 @@
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaPerfil\ConsultaPerfilEntity.cs" />
+    <Compile Include="Entities\EventoPersona\EventoPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaEntrenamientoEntity.cs" />
+    <Compile Include="Entities\FKRelationships\FKListEntity.cs" />
+    <Compile Include="Entities\Noticia\NoticiaEntityHelper.cs" />
     <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCAEntity.cs" />
     <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCNAEntity.cs" />
     <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaEntity.cs" />
     <Compile Include="Entities\ConsultaPersonaEstado\ConsultaPersonaEstadoEntity.cs" />
     <Compile Include="Entities\ConsultaVentasMembresias\ConsultaVentasMembresiasEntity.cs" />
+    <Compile Include="Entities\SalaRecursoEspecial\SalaRecursoEspecialEntity.cs" />
+    <Compile Include="Entities\SalaRecurso\SalaRecursoEntity.cs" />
     <Compile Include="Entities\TransaccionesAnuales\TransaccionesAnualesEntity.cs" />
     <Compile Include="Entities\ConsultaRepEventoSala\ConsultaRepEventoSalaEntity.cs" />
     <Compile Include="Entities\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaEntity.cs" />

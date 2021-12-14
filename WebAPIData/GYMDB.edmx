@@ -13,6 +13,7 @@
           <Property Name="disciplinaID" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="configuraciones_Sistema">
           <Key>
@@ -35,6 +36,7 @@
           <Property Name="disciplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="evento">
           <Key>
@@ -47,6 +49,7 @@
           <Property Name="salaID" Type="int" Nullable="false" />
           <Property Name="aforoMax" Type="int" Nullable="false" />
           <Property Name="aforoMin" Type="int" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="evento_persona">
           <Key>
@@ -56,25 +59,7 @@
           <Property Name="eventoID" Type="int" Nullable="false" />
           <Property Name="personaID" Type="int" Nullable="false" />
           <Property Name="asistencia" Type="int" Nullable="false" />
-          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" />
-        </EntityType>
-        <EntityType Name="evento_recurso">
-          <Key>
-            <PropertyRef Name="evento_recursoID" />
-          </Key>
-          <Property Name="evento_recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="eventoID" Type="int" Nullable="false" />
-          <Property Name="recursoID" Type="int" Nullable="false" />
-          <Property Name="cantidadRecurso" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="evento_recursoEspecial">
-          <Key>
-            <PropertyRef Name="evento_recursoEspecialID" />
-          </Key>
-          <Property Name="evento_recursoEspecialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="eventoID" Type="int" Nullable="false" />
-          <Property Name="recursoEspecialID" Type="int" Nullable="false" />
-          <Property Name="personaID" Type="int" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="fichaEntrenamiento">
           <Key>
@@ -85,6 +70,16 @@
           <Property Name="fichaPersonaID" Type="int" Nullable="false" />
           <Property Name="ProfesorID" Type="int" Nullable="false" />
           <Property Name="DiciplinaID" Type="int" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IndiceMasaMuscular" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IndiceGrasaCorporal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionBrazos" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionPecho" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionEspalda" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionPiernas" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionCintura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionCuello" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="fichaPersona">
@@ -93,18 +88,8 @@
           </Key>
           <Property Name="fichaPersonaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonaID" Type="int" Nullable="false" />
-          <Property Name="Peso" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Altura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="MesoTipo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="NivelActualActividadFisica" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="IndiceMasaMuscular" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="IndiceGrasaCorporal" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MedicionBrazos" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MedicionPecho" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MedicionEspalda" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MedicionPiernas" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MedicionCintura" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MedicionCuello" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="AntecendesMedicos" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Alergias" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Enfermedades" Type="varchar" MaxLength="500" Nullable="false" />
@@ -126,6 +111,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="300" />
           <Property Name="precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="periodicidad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="membresia_disciplina">
           <Key>
@@ -171,9 +157,10 @@
           <Property Name="noticiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titulo" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="contenido" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="imagen" Type="varbinary(max)" Nullable="false" />
+          <Property Name="imagen" Type="varbinary(max)" />
           <Property Name="fechaInicio" Type="date" Nullable="false" />
           <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -200,6 +187,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="cantidadRecurso" Type="int" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="recursoEspecial">
           <Key>
@@ -208,6 +196,7 @@
           <Property Name="recursoEspecialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="roleP">
           <Key>
@@ -224,6 +213,26 @@
           <Property Name="salaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salaRecurso">
+          <Key>
+            <PropertyRef Name="salaRecursoID" />
+          </Key>
+          <Property Name="salaRecursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salaID" Type="int" Nullable="false" />
+          <Property Name="nombreRecurso" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salaRecursoEspecial">
+          <Key>
+            <PropertyRef Name="salaRecursoEspecialID" />
+          </Key>
+          <Property Name="salaRecursoEspecialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salaID" Type="int" Nullable="false" />
+          <Property Name="recursoEspecialID" Type="int" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="sol_membresiaPago">
           <Key>
@@ -318,30 +327,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="eventoID_fk">
-          <End Role="evento" Type="Self.evento" Multiplicity="1" />
-          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="evento">
-              <PropertyRef Name="eventoID" />
-            </Principal>
-            <Dependent Role="evento_recurso">
-              <PropertyRef Name="eventoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="eventoID_fk2">
-          <End Role="evento" Type="Self.evento" Multiplicity="1" />
-          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="evento">
-              <PropertyRef Name="eventoID" />
-            </Principal>
-            <Dependent Role="evento_recursoEspecial">
-              <PropertyRef Name="eventoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="horarioM_cronoID_fk">
           <End Role="horarioM" Type="Self.horarioM" Multiplicity="1" />
           <End Role="evento" Type="Self.evento" Multiplicity="*" />
@@ -486,30 +471,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="recursEspecialoID_fk">
-          <End Role="recursoEspecial" Type="Self.recursoEspecial" Multiplicity="1" />
-          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="recursoEspecial">
-              <PropertyRef Name="recursoEspecialID" />
-            </Principal>
-            <Dependent Role="evento_recursoEspecial">
-              <PropertyRef Name="recursoEspecialID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="recursoID_fk">
-          <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
-          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="recurso">
-              <PropertyRef Name="recursoID" />
-            </Principal>
-            <Dependent Role="evento_recurso">
-              <PropertyRef Name="recursoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="rolePID_fk">
           <End Role="roleP" Type="Self.roleP" Multiplicity="1" />
           <End Role="persona" Type="Self.persona" Multiplicity="*" />
@@ -534,6 +495,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="sala_recurso_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="salaRecurso" Type="Self.salaRecurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="salaRecurso">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_recursoEspecial_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="salaRecursoEspecial" Type="Self.salaRecursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="salaRecursoEspecial">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_recursoEspecial_fk2">
+          <End Role="recursoEspecial" Type="Self.recursoEspecial" Multiplicity="1" />
+          <End Role="salaRecursoEspecial" Type="Self.salaRecursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
+            </Principal>
+            <Dependent Role="salaRecursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="usuario_personaID_fk">
           <End Role="persona" Type="Self.persona" Multiplicity="1" />
           <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
@@ -552,8 +549,6 @@
           <EntitySet Name="disciplina" EntityType="Self.disciplina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="evento" EntityType="Self.evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="evento_persona" EntityType="Self.evento_persona" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="evento_recurso" EntityType="Self.evento_recurso" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="evento_recursoEspecial" EntityType="Self.evento_recursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fichaEntrenamiento" EntityType="Self.fichaEntrenamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fichaPersona" EntityType="Self.fichaPersona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="horarioM" EntityType="Self.horarioM" Schema="dbo" store:Type="Tables" />
@@ -567,6 +562,8 @@
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roleP" EntityType="Self.roleP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sala" EntityType="Self.sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salaRecurso" EntityType="Self.salaRecurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salaRecursoEspecial" EntityType="Self.salaRecursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sol_membresiaPago" EntityType="Self.sol_membresiaPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
@@ -592,14 +589,6 @@
           <AssociationSet Name="evento_persona_Id_fk" Association="Self.evento_persona_Id_fk">
             <End Role="persona" EntitySet="persona" />
             <End Role="evento_persona" EntitySet="evento_persona" />
-          </AssociationSet>
-          <AssociationSet Name="eventoID_fk" Association="Self.eventoID_fk">
-            <End Role="evento" EntitySet="evento" />
-            <End Role="evento_recurso" EntitySet="evento_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="eventoID_fk2" Association="Self.eventoID_fk2">
-            <End Role="evento" EntitySet="evento" />
-            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
           </AssociationSet>
           <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
             <End Role="horarioM" EntitySet="horarioM" />
@@ -649,14 +638,6 @@
             <End Role="persona" EntitySet="persona" />
             <End Role="fichaEntrenamiento" EntitySet="fichaEntrenamiento" />
           </AssociationSet>
-          <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
-            <End Role="recursoEspecial" EntitySet="recursoEspecial" />
-            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
-          </AssociationSet>
-          <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
-            <End Role="recurso" EntitySet="recurso" />
-            <End Role="evento_recurso" EntitySet="evento_recurso" />
-          </AssociationSet>
           <AssociationSet Name="rolePID_fk" Association="Self.rolePID_fk">
             <End Role="roleP" EntitySet="roleP" />
             <End Role="persona" EntitySet="persona" />
@@ -664,6 +645,18 @@
           <AssociationSet Name="sala_cronoID_fk" Association="Self.sala_cronoID_fk">
             <End Role="sala" EntitySet="sala" />
             <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="sala_recurso_fk" Association="Self.sala_recurso_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="salaRecurso" EntitySet="salaRecurso" />
+          </AssociationSet>
+          <AssociationSet Name="sala_recursoEspecial_fk" Association="Self.sala_recursoEspecial_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="salaRecursoEspecial" EntitySet="salaRecursoEspecial" />
+          </AssociationSet>
+          <AssociationSet Name="sala_recursoEspecial_fk2" Association="Self.sala_recursoEspecial_fk2">
+            <End Role="recursoEspecial" EntitySet="recursoEspecial" />
+            <End Role="salaRecursoEspecial" EntitySet="salaRecursoEspecial" />
           </AssociationSet>
           <AssociationSet Name="usuario_personaID_fk" Association="Self.usuario_personaID_fk">
             <End Role="persona" EntitySet="persona" />
@@ -682,6 +675,7 @@
           <Property Name="disciplinaID" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="disciplina" Relationship="Self.disciplina_clase_fk" FromRole="clase" ToRole="disciplina" />
           <NavigationProperty Name="evento" Relationship="Self.evento_cronoID_fk" FromRole="clase" ToRole="evento" />
         </EntityType>
@@ -706,6 +700,7 @@
           <Property Name="disciplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="clase" Relationship="Self.disciplina_clase_fk" FromRole="disciplina" ToRole="clase" />
           <NavigationProperty Name="fichaEntrenamiento" Relationship="Self.disciplina_fEntrenamiento_fk" FromRole="disciplina" ToRole="fichaEntrenamiento" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.discplina1_fk" FromRole="disciplina" ToRole="membresia_disciplina" />
@@ -721,34 +716,23 @@
           <Property Name="salaID" Type="Int32" Nullable="false" />
           <Property Name="aforoMax" Type="Int32" Nullable="false" />
           <Property Name="aforoMin" Type="Int32" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="clase" Relationship="Self.evento_cronoID_fk" FromRole="evento" ToRole="clase" />
-          <NavigationProperty Name="evento_recurso" Relationship="Self.eventoID_fk" FromRole="evento" ToRole="evento_recurso" />
-          <NavigationProperty Name="evento_recursoEspecial" Relationship="Self.eventoID_fk2" FromRole="evento" ToRole="evento_recursoEspecial" />
+          <NavigationProperty Name="evento_persona" Relationship="Self.evento_persona_fk" FromRole="evento" ToRole="evento_persona" />
           <NavigationProperty Name="horarioM" Relationship="Self.horarioM_cronoID_fk" FromRole="evento" ToRole="horarioM" />
           <NavigationProperty Name="sala" Relationship="Self.sala_cronoID_fk" FromRole="evento" ToRole="sala" />
-          <NavigationProperty Name="evento_persona" Relationship="GYMDBModel.evento_persona_fk" FromRole="evento" ToRole="evento_persona" />
         </EntityType>
-        <EntityType Name="evento_recurso">
+        <EntityType Name="evento_persona">
           <Key>
-            <PropertyRef Name="evento_recursoID" />
+            <PropertyRef Name="evento_personaID" />
           </Key>
-          <Property Name="evento_recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="evento_personaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="eventoID" Type="Int32" Nullable="false" />
-          <Property Name="recursoID" Type="Int32" Nullable="false" />
-          <Property Name="cantidadRecurso" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="evento" Relationship="Self.eventoID_fk" FromRole="evento_recurso" ToRole="evento" />
-          <NavigationProperty Name="recurso" Relationship="Self.recursoID_fk" FromRole="evento_recurso" ToRole="recurso" />
-        </EntityType>
-        <EntityType Name="evento_recursoEspecial">
-          <Key>
-            <PropertyRef Name="evento_recursoEspecialID" />
-          </Key>
-          <Property Name="evento_recursoEspecialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="eventoID" Type="Int32" Nullable="false" />
-          <Property Name="recursoEspecialID" Type="Int32" Nullable="false" />
-          <Property Name="personaID" Type="Int32" />
-          <NavigationProperty Name="evento" Relationship="Self.eventoID_fk2" FromRole="evento_recursoEspecial" ToRole="evento" />
-          <NavigationProperty Name="recursoEspecial" Relationship="Self.recursEspecialoID_fk" FromRole="evento_recursoEspecial" ToRole="recursoEspecial" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="asistencia" Type="Int32" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="evento" Relationship="Self.evento_persona_fk" FromRole="evento_persona" ToRole="evento" />
+          <NavigationProperty Name="persona" Relationship="Self.evento_persona_Id_fk" FromRole="evento_persona" ToRole="persona" />
         </EntityType>
         <EntityType Name="fichaEntrenamiento">
           <Key>
@@ -759,6 +743,16 @@
           <Property Name="fichaPersonaID" Type="Int32" Nullable="false" />
           <Property Name="ProfesorID" Type="Int32" Nullable="false" />
           <Property Name="DiciplinaID" Type="Int32" Nullable="false" />
+          <Property Name="Peso" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Altura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IndiceMasaMuscular" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IndiceGrasaCorporal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionBrazos" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionPecho" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionEspalda" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionPiernas" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionCintura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicionCuello" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="disciplina" Relationship="Self.disciplina_fEntrenamiento_fk" FromRole="fichaEntrenamiento" ToRole="disciplina" />
           <NavigationProperty Name="fichaPersona" Relationship="Self.persona_fEntrenamiento_fk" FromRole="fichaEntrenamiento" ToRole="fichaPersona" />
@@ -770,18 +764,8 @@
           </Key>
           <Property Name="fichaPersonaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonaID" Type="Int32" Nullable="false" />
-          <Property Name="Peso" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Altura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="MesoTipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NivelActualActividadFisica" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IndiceMasaMuscular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IndiceGrasaCorporal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MedicionBrazos" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MedicionPecho" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MedicionEspalda" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MedicionPiernas" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MedicionCintura" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MedicionCuello" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AntecendesMedicos" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Alergias" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Enfermedades" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
@@ -806,6 +790,7 @@
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="periodicidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia1_fk" FromRole="membresia" ToRole="membresia_disciplina" />
           <NavigationProperty Name="membresia_persona_pago" Relationship="Self.MembresiaIdMPP_fk" FromRole="membresia" ToRole="membresia_persona_pago" />
           <NavigationProperty Name="sol_membresiaPago" Relationship="Self.MembresiaIdSMP_fk" FromRole="membresia" ToRole="sol_membresiaPago" />
@@ -844,8 +829,8 @@
           <Property Name="membresia_persona_pagoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="personaID" Type="Int32" Nullable="false" />
           <Property Name="membresiaID" Type="Int32" Nullable="false" />
-          <Property Name="fechaInicioMembresia" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="fechaFinMembresia" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="fechaInicioMembresia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaFinMembresia" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="formaPago" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="fechaTransaccion" Type="DateTime" Precision="0" />
           <Property Name="nroDocumento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -862,9 +847,10 @@
           <Property Name="noticiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contenido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -899,7 +885,7 @@
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cantidadRecurso" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="evento_recurso" Relationship="Self.recursoID_fk" FromRole="recurso" ToRole="evento_recurso" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="recursoEspecial">
           <Key>
@@ -908,7 +894,8 @@
           <Property Name="recursoEspecialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="evento_recursoEspecial" Relationship="Self.recursEspecialoID_fk" FromRole="recursoEspecial" ToRole="evento_recursoEspecial" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="salaRecursoEspecial" Relationship="Self.sala_recursoEspecial_fk2" FromRole="recursoEspecial" ToRole="salaRecursoEspecial" />
         </EntityType>
         <EntityType Name="roleP">
           <Key>
@@ -926,7 +913,32 @@
           <Property Name="salaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="evento" Relationship="Self.sala_cronoID_fk" FromRole="sala" ToRole="evento" />
+          <NavigationProperty Name="salaRecurso" Relationship="Self.sala_recurso_fk" FromRole="sala" ToRole="salaRecurso" />
+          <NavigationProperty Name="salaRecursoEspecial" Relationship="Self.sala_recursoEspecial_fk" FromRole="sala" ToRole="salaRecursoEspecial" />
+        </EntityType>
+        <EntityType Name="salaRecurso">
+          <Key>
+            <PropertyRef Name="salaRecursoID" />
+          </Key>
+          <Property Name="salaRecursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salaID" Type="Int32" Nullable="false" />
+          <Property Name="nombreRecurso" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="sala" Relationship="Self.sala_recurso_fk" FromRole="salaRecurso" ToRole="sala" />
+        </EntityType>
+        <EntityType Name="salaRecursoEspecial">
+          <Key>
+            <PropertyRef Name="salaRecursoEspecialID" />
+          </Key>
+          <Property Name="salaRecursoEspecialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salaID" Type="Int32" Nullable="false" />
+          <Property Name="recursoEspecialID" Type="Int32" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="recursoEspecial" Relationship="Self.sala_recursoEspecial_fk2" FromRole="salaRecursoEspecial" ToRole="recursoEspecial" />
+          <NavigationProperty Name="sala" Relationship="Self.sala_recursoEspecial_fk" FromRole="salaRecursoEspecial" ToRole="sala" />
         </EntityType>
         <EntityType Name="sol_membresiaPago">
           <Key>
@@ -1001,26 +1013,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="eventoID_fk">
+        <Association Name="evento_persona_fk">
           <End Role="evento" Type="Self.evento" Multiplicity="1" />
-          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="evento">
               <PropertyRef Name="eventoID" />
             </Principal>
-            <Dependent Role="evento_recurso">
-              <PropertyRef Name="eventoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="eventoID_fk2">
-          <End Role="evento" Type="Self.evento" Multiplicity="1" />
-          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="evento">
-              <PropertyRef Name="eventoID" />
-            </Principal>
-            <Dependent Role="evento_recursoEspecial">
+            <Dependent Role="evento_persona">
               <PropertyRef Name="eventoID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1049,27 +1049,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="recursoID_fk">
-          <End Role="recurso" Type="Self.recurso" Multiplicity="1" />
-          <End Role="evento_recurso" Type="Self.evento_recurso" Multiplicity="*" />
+        <Association Name="evento_persona_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="recurso">
-              <PropertyRef Name="recursoID" />
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
             </Principal>
-            <Dependent Role="evento_recurso">
-              <PropertyRef Name="recursoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="recursEspecialoID_fk">
-          <End Role="recursoEspecial" Type="Self.recursoEspecial" Multiplicity="1" />
-          <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="recursoEspecial">
-              <PropertyRef Name="recursoEspecialID" />
-            </Principal>
-            <Dependent Role="evento_recursoEspecial">
-              <PropertyRef Name="recursoEspecialID" />
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1229,13 +1217,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="sala_recursoEspecial_fk2">
+          <End Role="recursoEspecial" Type="Self.recursoEspecial" Multiplicity="1" />
+          <End Role="salaRecursoEspecial" Type="Self.salaRecursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
+            </Principal>
+            <Dependent Role="salaRecursoEspecial">
+              <PropertyRef Name="recursoEspecialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_recurso_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="salaRecurso" Type="Self.salaRecurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="salaRecurso">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sala_recursoEspecial_fk">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="salaRecursoEspecial" Type="Self.salaRecursoEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="salaID" />
+            </Principal>
+            <Dependent Role="salaRecursoEspecial">
+              <PropertyRef Name="salaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GYMDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="clase" EntityType="Self.clase" />
           <EntitySet Name="configuraciones_Sistema" EntityType="Self.configuraciones_Sistema" />
           <EntitySet Name="disciplina" EntityType="Self.disciplina" />
           <EntitySet Name="evento" EntityType="Self.evento" />
-          <EntitySet Name="evento_recurso" EntityType="Self.evento_recurso" />
-          <EntitySet Name="evento_recursoEspecial" EntityType="Self.evento_recursoEspecial" />
+          <EntitySet Name="evento_persona" EntityType="Self.evento_persona" />
           <EntitySet Name="fichaEntrenamiento" EntityType="Self.fichaEntrenamiento" />
           <EntitySet Name="fichaPersona" EntityType="Self.fichaPersona" />
           <EntitySet Name="horarioM" EntityType="Self.horarioM" />
@@ -1249,6 +1272,8 @@
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" />
           <EntitySet Name="roleP" EntityType="Self.roleP" />
           <EntitySet Name="sala" EntityType="Self.sala" />
+          <EntitySet Name="salaRecurso" EntityType="Self.salaRecurso" />
+          <EntitySet Name="salaRecursoEspecial" EntityType="Self.salaRecursoEspecial" />
           <EntitySet Name="sol_membresiaPago" EntityType="Self.sol_membresiaPago" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
           <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
@@ -1267,13 +1292,9 @@
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>
-          <AssociationSet Name="eventoID_fk" Association="Self.eventoID_fk">
+          <AssociationSet Name="evento_persona_fk" Association="Self.evento_persona_fk">
             <End Role="evento" EntitySet="evento" />
-            <End Role="evento_recurso" EntitySet="evento_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="eventoID_fk2" Association="Self.eventoID_fk2">
-            <End Role="evento" EntitySet="evento" />
-            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
           <AssociationSet Name="horarioM_cronoID_fk" Association="Self.horarioM_cronoID_fk">
             <End Role="horarioM" EntitySet="horarioM" />
@@ -1283,13 +1304,9 @@
             <End Role="sala" EntitySet="sala" />
             <End Role="evento" EntitySet="evento" />
           </AssociationSet>
-          <AssociationSet Name="recursoID_fk" Association="Self.recursoID_fk">
-            <End Role="recurso" EntitySet="recurso" />
-            <End Role="evento_recurso" EntitySet="evento_recurso" />
-          </AssociationSet>
-          <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
-            <End Role="recursoEspecial" EntitySet="recursoEspecial" />
-            <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
+          <AssociationSet Name="evento_persona_Id_fk" Association="Self.evento_persona_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
           <AssociationSet Name="persona_fEntrenamiento_fk" Association="Self.persona_fEntrenamiento_fk">
             <End Role="fichaPersona" EntitySet="fichaPersona" />
@@ -1343,14 +1360,17 @@
             <End Role="persona" EntitySet="persona" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
-          <EntitySet Name="evento_persona" EntityType="GYMDBModel.evento_persona" />
-          <AssociationSet Name="evento_persona_fk" Association="GYMDBModel.evento_persona_fk">
-            <End Role="evento" EntitySet="evento" />
-            <End Role="evento_persona" EntitySet="evento_persona" />
+          <AssociationSet Name="sala_recursoEspecial_fk2" Association="Self.sala_recursoEspecial_fk2">
+            <End Role="recursoEspecial" EntitySet="recursoEspecial" />
+            <End Role="salaRecursoEspecial" EntitySet="salaRecursoEspecial" />
           </AssociationSet>
-          <AssociationSet Name="evento_persona_Id_fk" Association="GYMDBModel.evento_persona_Id_fk">
-            <End Role="persona" EntitySet="persona" />
-            <End Role="evento_persona" EntitySet="evento_persona" />
+          <AssociationSet Name="sala_recurso_fk" Association="Self.sala_recurso_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="salaRecurso" EntitySet="salaRecurso" />
+          </AssociationSet>
+          <AssociationSet Name="sala_recursoEspecial_fk" Association="Self.sala_recursoEspecial_fk">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="salaRecursoEspecial" EntitySet="salaRecursoEspecial" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="evento_persona">
@@ -1402,6 +1422,7 @@
                 <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1426,6 +1447,7 @@
                 <ScalarProperty Name="disciplinaID" ColumnName="disciplinaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1439,26 +1461,18 @@
                 <ScalarProperty Name="salaID" ColumnName="salaID" />
                 <ScalarProperty Name="aforoMax" ColumnName="aforoMax" />
                 <ScalarProperty Name="aforoMin" ColumnName="aforoMin" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="evento_recurso">
-            <EntityTypeMapping TypeName="GYMDBModel.evento_recurso">
-              <MappingFragment StoreEntitySet="evento_recurso">
-                <ScalarProperty Name="evento_recursoID" ColumnName="evento_recursoID" />
+          <EntitySetMapping Name="evento_persona">
+            <EntityTypeMapping TypeName="GYMDBModel.evento_persona">
+              <MappingFragment StoreEntitySet="evento_persona">
+                <ScalarProperty Name="evento_personaID" ColumnName="evento_personaID" />
                 <ScalarProperty Name="eventoID" ColumnName="eventoID" />
-                <ScalarProperty Name="recursoID" ColumnName="recursoID" />
-                <ScalarProperty Name="cantidadRecurso" ColumnName="cantidadRecurso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="evento_recursoEspecial">
-            <EntityTypeMapping TypeName="GYMDBModel.evento_recursoEspecial">
-              <MappingFragment StoreEntitySet="evento_recursoEspecial">
-                <ScalarProperty Name="evento_recursoEspecialID" ColumnName="evento_recursoEspecialID" />
-                <ScalarProperty Name="eventoID" ColumnName="eventoID" />
-                <ScalarProperty Name="recursoEspecialID" ColumnName="recursoEspecialID" />
                 <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="asistencia" ColumnName="asistencia" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1470,6 +1484,16 @@
                 <ScalarProperty Name="fichaPersonaID" ColumnName="fichaPersonaID" />
                 <ScalarProperty Name="ProfesorID" ColumnName="ProfesorID" />
                 <ScalarProperty Name="DiciplinaID" ColumnName="DiciplinaID" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="IndiceMasaMuscular" ColumnName="IndiceMasaMuscular" />
+                <ScalarProperty Name="IndiceGrasaCorporal" ColumnName="IndiceGrasaCorporal" />
+                <ScalarProperty Name="MedicionBrazos" ColumnName="MedicionBrazos" />
+                <ScalarProperty Name="MedicionPecho" ColumnName="MedicionPecho" />
+                <ScalarProperty Name="MedicionEspalda" ColumnName="MedicionEspalda" />
+                <ScalarProperty Name="MedicionPiernas" ColumnName="MedicionPiernas" />
+                <ScalarProperty Name="MedicionCintura" ColumnName="MedicionCintura" />
+                <ScalarProperty Name="MedicionCuello" ColumnName="MedicionCuello" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1479,18 +1503,8 @@
               <MappingFragment StoreEntitySet="fichaPersona">
                 <ScalarProperty Name="fichaPersonaID" ColumnName="fichaPersonaID" />
                 <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
-                <ScalarProperty Name="Peso" ColumnName="Peso" />
-                <ScalarProperty Name="Altura" ColumnName="Altura" />
                 <ScalarProperty Name="MesoTipo" ColumnName="MesoTipo" />
                 <ScalarProperty Name="NivelActualActividadFisica" ColumnName="NivelActualActividadFisica" />
-                <ScalarProperty Name="IndiceMasaMuscular" ColumnName="IndiceMasaMuscular" />
-                <ScalarProperty Name="IndiceGrasaCorporal" ColumnName="IndiceGrasaCorporal" />
-                <ScalarProperty Name="MedicionBrazos" ColumnName="MedicionBrazos" />
-                <ScalarProperty Name="MedicionPecho" ColumnName="MedicionPecho" />
-                <ScalarProperty Name="MedicionEspalda" ColumnName="MedicionEspalda" />
-                <ScalarProperty Name="MedicionPiernas" ColumnName="MedicionPiernas" />
-                <ScalarProperty Name="MedicionCintura" ColumnName="MedicionCintura" />
-                <ScalarProperty Name="MedicionCuello" ColumnName="MedicionCuello" />
                 <ScalarProperty Name="AntecendesMedicos" ColumnName="AntecendesMedicos" />
                 <ScalarProperty Name="Alergias" ColumnName="Alergias" />
                 <ScalarProperty Name="Enfermedades" ColumnName="Enfermedades" />
@@ -1514,6 +1528,7 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="periodicidad" ColumnName="periodicidad" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1566,6 +1581,7 @@
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
                 <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1594,6 +1610,7 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="cantidadRecurso" ColumnName="cantidadRecurso" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1603,6 +1620,7 @@
                 <ScalarProperty Name="recursoEspecialID" ColumnName="recursoEspecialID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1621,6 +1639,28 @@
                 <ScalarProperty Name="salaID" ColumnName="salaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaRecurso">
+            <EntityTypeMapping TypeName="GYMDBModel.salaRecurso">
+              <MappingFragment StoreEntitySet="salaRecurso">
+                <ScalarProperty Name="salaRecursoID" ColumnName="salaRecursoID" />
+                <ScalarProperty Name="salaID" ColumnName="salaID" />
+                <ScalarProperty Name="nombreRecurso" ColumnName="nombreRecurso" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaRecursoEspecial">
+            <EntityTypeMapping TypeName="GYMDBModel.salaRecursoEspecial">
+              <MappingFragment StoreEntitySet="salaRecursoEspecial">
+                <ScalarProperty Name="salaRecursoEspecialID" ColumnName="salaRecursoEspecialID" />
+                <ScalarProperty Name="salaID" ColumnName="salaID" />
+                <ScalarProperty Name="recursoEspecialID" ColumnName="recursoEspecialID" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -59,6 +59,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -166,12 +167,21 @@
     <Compile Include="Controllers\Admin\ConsultaPersonaEstado\ConsultaPersonaEstadoController.cs" />
     <Compile Include="Controllers\Admin\ConsultaPersonaEstado\Models\ConsultaPersonaEstadoDataRequest.cs" />
     <Compile Include="Controllers\Admin\ConsultaPersonaEstado\Models\ConsultaPersonaEstadoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoPersona\EventoPersonaController.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoPersona\Models\EventoPersonaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoPersona\Models\EventoPersonaDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDFichaEntrenamiento\FichaEntrenamientoController.cs" />
     <Compile Include="Controllers\Admin\CRUDFichaEntrenamiento\Models\FichaEntrenamientoDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDFichaEntrenamiento\Models\FichaEntrenamientoDataResponse.cs" />
     <Compile Include="Controllers\Admin\CRUDFichaPersona\FichaPersonaController.cs" />
     <Compile Include="Controllers\Admin\CRUDFichaPersona\Models\FichaPersonaDataRequest.cs" />
     <Compile Include="Controllers\Admin\CRUDFichaPersona\Models\FichaPersonaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecursoEspecial\CRUDSalaRecursoEspecialController.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecursoEspecial\Models\CRUDSalaRecursoEspecialDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecursoEspecial\Models\CRUDSalaRecursoEspecialDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecurso\CRUDSalaRecursoController.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecurso\Models\CRUDSalaRecursoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecurso\Models\CRUDSalaRecursoDataResponse.cs" />
     <Compile Include="Controllers\Admin\ReporteGeneralAsistencia\ReporteGeneralAsistenciaController.cs" />
     <Compile Include="Controllers\Admin\ReporteGeneralAsistencia\Models\ReporteGeneralAsistenciaDataRequest.cs" />
     <Compile Include="Controllers\Admin\ReporteGeneralAsistencia\Models\ReporteGeneralAsistenciaDataResponse.cs" />
@@ -285,11 +295,14 @@
     <Compile Include="CustomExceptions\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionException.cs" />
     <Compile Include="CustomExceptions\App\ModificacionDatosPersonales\ModificacionDatosPersonalesException.cs" />
     <Compile Include="CustomExceptions\ConsultaPerfil\ConsultaPerfilException.cs" />
+    <Compile Include="CustomExceptions\EventoPersona\EventoPersonaException.cs" />
     <Compile Include="CustomExceptions\Fichas\FichaEntrenamientoException.cs" />
     <Compile Include="CustomExceptions\Fichas\FichaPersonaException.cs" />
     <Compile Include="CustomExceptions\ReporteGeneralAsistencia\ReporteGeneralAsistenciaException.cs" />
     <Compile Include="CustomExceptions\ConsultaVentasMembresias\ConsultaVentasMembresiasException.cs" />
     <Compile Include="CustomExceptions\MembresiasUsuario\ModificarMembresiaUsuarioException.cs" />
+    <Compile Include="CustomExceptions\SalaRecursoEspecial\SalaRecursoEspecialException.cs" />
+    <Compile Include="CustomExceptions\SalaRecurso\SalaRecursoException.cs" />
     <Compile Include="CustomExceptions\TransaccionesAnuales\TransaccionesAnualesException.cs" />
     <Compile Include="CustomExceptions\ConsultaPersonaEstado\ConsultaPersonaEstadoException.cs" />
     <Compile Include="CustomExceptions\ConsultaRepEventoSala\ConsultaRepEventoSalaException.cs" />
@@ -330,10 +343,12 @@
     <Compile Include="Models\ConsultaVentasMembresias\ConsultaVentasMembresiasModel.cs" />
     <Compile Include="Models\EventoAdmin\EventoAdminModel.cs" />
     <Compile Include="Models\ClaseAdmin\ClaseAdminModel.cs" />
+    <Compile Include="Models\EventoPersona\EventoPersonaModel.cs" />
     <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
     <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
     <Compile Include="Models\Fichas\FichaEntrenamientoModel.cs" />
     <Compile Include="Models\Fichas\FichaPersonaModel.cs" />
+    <Compile Include="Models\FKRelationships\FKListModel.cs" />
     <Compile Include="Models\HorarioMAdmin\HorarioMAdminModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
@@ -350,6 +365,8 @@
     <Compile Include="Models\ReporteGeneralAsistencia\ReporteGeneralAsistenciaModel.cs" />
     <Compile Include="Models\SalaAdmin\SalaAdminModel.cs" />
     <Compile Include="Models\RolAdmin\RolAdminModel.cs" />
+    <Compile Include="Models\SalaRecursoEspecial\SalaRecursoEspecialModel.cs" />
+    <Compile Include="Models\SalaRecurso\SalaRecursoModel.cs" />
     <Compile Include="Models\SolicitudesMembresias\SolicitudesMembresiasModel.cs" />
     <Compile Include="Models\TransaccionesAnuales\TransaccionesAnualesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -444,6 +461,9 @@
       <Project>{53170921-4a74-445b-beee-97391ef11f31}</Project>
       <Name>WebAPIBusiness</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
