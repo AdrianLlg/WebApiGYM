@@ -26,8 +26,8 @@ namespace WebAPIData
         public int numClasesDisponibles { get; set; }
     
         public virtual disciplina disciplina { get; set; }
+        public virtual membresia membresia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
-        public virtual membresia membresia { get; set; }
     }
 }
