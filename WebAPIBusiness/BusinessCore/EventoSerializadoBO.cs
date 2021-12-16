@@ -81,6 +81,7 @@ namespace WebAPIBusiness.BusinessCore
         {
             List<evento> items = new List<evento>();
             evento item = new evento();
+            evento eventoAux = new evento();
             evento_recursoEspecial recurso = new evento_recursoEspecial();
             List<salaRecursoEspecial> RecursosSala = new List<salaRecursoEspecial>();
             
@@ -104,26 +105,39 @@ namespace WebAPIBusiness.BusinessCore
                             salaID = int.Parse(listaEventos[i].salaID),
                             aforoMax = int.Parse(listaEventos[i].aforoMax),
                             aforoMin = int.Parse(listaEventos[i].aforoMin),
+                            personaID = listaEventos[i].personaID,
+                            estadoRegistro = listaEventos[i].estadoRegistro
                         };
+
+                        dbContext.evento.Add(item);
+                        dbContext.SaveChanges();
+
                         var existeSala = RecursosSala.Where(x => x.salaID == item.salaID).FirstOrDefault();
                         if (existeSala != null)
                         {
+                            eventoAux = dbContext.evento.Where(x => 
+                            x.claseID == item.claseID 
+                            && x.horarioMID == item.horarioMID 
+                            && x.fecha == item.fecha 
+                            && x.salaID == item.salaID).FirstOrDefault();
+
                             var RecursosInsert = RecursosSala.Where(x => x.salaID == item.salaID).ToList();
                             foreach(var rs in RecursosInsert)
                             {
                                 recurso = new evento_recursoEspecial()
                                 {
-                                    eventoID = item.eventoID,
+                                    eventoID = eventoAux.eventoID,
                                     recursoEspecialID = rs.recursoEspecialID,
                                     personaID = 0
                                 };
                                 dbContext.evento_recursoEspecial.Add(recurso);
+                                dbContext.SaveChanges();
                             }
                         }
-                        dbContext.evento.Add(item);
+                        
                         
                     }
-                    dbContext.SaveChanges();
+                    
                 }
 
 
