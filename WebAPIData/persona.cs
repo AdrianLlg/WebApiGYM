@@ -23,6 +23,7 @@ namespace WebAPIData
             this.membresia_persona_pago = new HashSet<membresia_persona_pago>();
             this.sol_membresiaPago = new HashSet<sol_membresiaPago>();
             this.usuario = new HashSet<usuario>();
+            this.evento = new HashSet<evento>();
             this.evento_persona = new HashSet<evento_persona>();
         }
     
@@ -52,6 +53,8 @@ namespace WebAPIData
         public virtual roleP roleP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuario> usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<evento> evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_persona> evento_persona { get; set; }
     }

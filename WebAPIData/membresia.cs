@@ -27,7 +27,6 @@ namespace WebAPIData
         public string descripcion { get; set; }
         public decimal precio { get; set; }
         public string periodicidad { get; set; }
-        public string estadoRegistro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<membresia_disciplina> membresia_disciplina { get; set; }

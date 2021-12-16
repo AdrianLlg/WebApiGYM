@@ -343,6 +343,8 @@ namespace WebAPIBusiness.BusinessCore
                             resp.Add(new EventosDeportistaEntity() {
                             
                             eventoID = item.eventoID,
+                            instructorID = item.personaID,
+                            nombreInscructor = item.persona.nombres + " " + item.persona.apellidos,
                             disciplina = item.clase.disciplina.nombre,
                             horaInicioEvento = item.horarioM.horaInicio,
                             horaFinEvento = item.horarioM.horaFin,

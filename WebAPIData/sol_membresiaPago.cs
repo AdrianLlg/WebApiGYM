@@ -22,8 +22,8 @@ namespace WebAPIData
         public byte[] comprobante { get; set; }
         public string estado { get; set; }
     
-        public virtual membresia membresia { get; set; }
         public virtual membresia_persona_pago membresia_persona_pago { get; set; }
         public virtual persona persona { get; set; }
+        public virtual membresia membresia { get; set; }
     }
 }

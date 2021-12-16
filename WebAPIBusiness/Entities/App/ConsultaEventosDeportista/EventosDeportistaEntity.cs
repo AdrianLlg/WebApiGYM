@@ -18,5 +18,7 @@ namespace WebAPIBusiness.Entities.App.ConsultaEventosDeportista
         public int aforoMin { get; set; }
         public int asistencia { get; set; }
         public string estadoInscripcion { get; set; }
+        public int instructorID { get; set; }
+        public string nombreInscructor { get; set; }
     }
 }

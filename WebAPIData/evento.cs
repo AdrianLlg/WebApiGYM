@@ -27,12 +27,14 @@ namespace WebAPIData
         public int salaID { get; set; }
         public int aforoMax { get; set; }
         public int aforoMin { get; set; }
+        public int personaID { get; set; }
         public string estadoRegistro { get; set; }
     
         public virtual clase clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_persona> evento_persona { get; set; }
         public virtual horarioM horarioM { get; set; }
+        public virtual persona persona { get; set; }
         public virtual sala sala { get; set; }
     }
 }
