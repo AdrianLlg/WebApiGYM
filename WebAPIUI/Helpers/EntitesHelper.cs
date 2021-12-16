@@ -722,7 +722,9 @@ namespace WebAPIUI.Helpers
                     salaID = entity.salaID,
                     aforoMax = entity.aforoMax,
                     aforoMin = entity.aforoMin,
-                    estadoRegistro=entity.estadoRegistro
+                    estadoRegistro=entity.estadoRegistro,
+                    personaID=entity.personaID,
+                    nombreProfesor=entity.nombreProfesor
                 };
 
                 response.Add(item);
@@ -742,7 +744,9 @@ namespace WebAPIUI.Helpers
                 salaID = entity.salaID,
                 aforoMax = entity.aforoMax,
                 aforoMin = entity.aforoMin,
-                estadoRegistro=entity.estadoRegistro
+                estadoRegistro=entity.estadoRegistro,
+                personaID = entity.personaID,
+                nombreProfesor = entity.nombreProfesor
             };
 
             return response;
