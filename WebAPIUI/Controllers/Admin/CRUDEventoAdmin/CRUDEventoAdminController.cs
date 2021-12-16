@@ -39,7 +39,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo Evento en la BD
         /// </summary>
-        private bool InsertarNuevoEvento(string claseID,string horarioMID,string fecha,string salaID,string aforoMax,string aforoMin,string estadoRegistro)
+        private bool InsertarNuevoEvento(string claseID,string horarioMID,string fecha,string salaID,string aforoMax,string aforoMin,string estadoRegistro,int personaID)
         {
             EventoAdminBO bo = new EventoAdminBO();
             List<string> messages = new List<string>();
@@ -47,7 +47,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin,estadoRegistro);
+                response = bo.insertEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin,estadoRegistro,personaID);
             }
             catch (ValidationAndMessageException EventoAdminException)
             {
@@ -94,7 +94,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar Evento
         /// </summary>
-        private bool ModificarEvento(int eventoID,string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin)
+        private bool ModificarEvento(int eventoID,string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,int personaID)
         {
             EventoAdminBO bo = new EventoAdminBO();
             List<string> messages = new List<string>();
@@ -102,7 +102,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyEvento( eventoID, claseID,  horarioMID,fecha, salaID, aforoMax,aforoMin);
+                response = bo.modifyEvento( eventoID, claseID,  horarioMID,fecha, salaID, aforoMax,aforoMin,personaID);
             }
             catch (ValidationAndMessageException EventoAdminException)
             {
@@ -236,7 +236,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarNuevoEvento(dataRequest.claseID, dataRequest.horarioMID, dataRequest.fecha, dataRequest.salaID, dataRequest.aforoMax, dataRequest.aforoMin, dataRequest.estadoRegistro);
+                    bool resp = InsertarNuevoEvento(dataRequest.claseID, dataRequest.horarioMID, dataRequest.fecha, dataRequest.salaID, dataRequest.aforoMax, dataRequest.aforoMin, dataRequest.estadoRegistro,dataRequest.personaID);
 
 
                     if (resp)
@@ -255,7 +255,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarEvento(dataRequest.eventoID, dataRequest.claseID, dataRequest.horarioMID, dataRequest.fecha, dataRequest.salaID, dataRequest.aforoMax, dataRequest.aforoMin);
+                    bool resp = ModificarEvento(dataRequest.eventoID, dataRequest.claseID, dataRequest.horarioMID, dataRequest.fecha, dataRequest.salaID, dataRequest.aforoMax, dataRequest.aforoMin,dataRequest.personaID);
 
                     if (resp)
                     {
