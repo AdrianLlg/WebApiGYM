@@ -518,35 +518,14 @@ namespace WebAPIBusiness.BusinessCore
                             resp = insertPendingSol(personaID, membresiaID, membresiaPersonaPagoID, imagen);
                         }
                     }
-                    
-                    if(item==null)
+                    else
                     {
+                        resp = newSolMembership(personaID, membresiaID);
 
-                        resp = newMembership(personaID, membresiaID);
-                        
-                        if (resp == true)
+                        if (resp)
                         {
-
-                            using (var dbContext = new GYMDBEntities())
-                            {
-                                int ID = dbContext.membresia_persona_pago.OrderByDescending(x => x.membresia_persona_pagoID).FirstOrDefault().membresia_persona_pagoID;
-                                sol_membresiaPago query = new sol_membresiaPago()
-                                {
-                                    personaID = personaID,
-                                    membresiaID = membresiaID,
-                                    membresia_persona_pagoID =ID,
-                                    fechaRegistroSolicitud = DateTime.Now,
-                                    comprobante = Convert.FromBase64String(imagen),
-                                    estado = "A" 
-                                };
-
-                                dbContext.sol_membresiaPago.Add(query);
-                                dbContext.SaveChanges();
-                            }
-
-                            return true;
+                            resp = newMembership(personaID, membresiaID, imagen);
                         }
-
                     }
 
                     return resp;
@@ -612,7 +591,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private bool newMembership(int personaID, int membresiaID)
+        private bool newSolMembership(int personaID, int membresiaID)
         {
             try
             {
@@ -636,6 +615,38 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+        private bool newMembership(int personaID, int membresiaID, string imagen)
+        {
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    int ID = dbContext.membresia_persona_pago
+                            .OrderByDescending(x => x.membresia_persona_pagoID)
+                            .Select(x => x.membresia_persona_pagoID)
+                            .FirstOrDefault();
+
+                    sol_membresiaPago query = new sol_membresiaPago()
+                    {
+                        personaID = personaID,
+                        membresiaID = membresiaID,
+                        membresia_persona_pagoID = ID,
+                        fechaRegistroSolicitud = DateTime.Now,
+                        comprobante = Convert.FromBase64String(imagen),
+                        estado = "A"
+                    };
+
+                    dbContext.sol_membresiaPago.Add(query);
+                    dbContext.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.Message);
+            }
+        }
 
         private bool insertPendingDBRegister(int personaID, int membresiaID, DateTime datePreviousMembreship, int monthsToAddM, out int membresiaPersonaPagoID)
         {
