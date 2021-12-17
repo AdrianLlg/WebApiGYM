@@ -26,33 +26,40 @@ namespace WebAPIBusiness.BusinessCore
         {
             List<EventoAdminEntity> entities = new List<EventoAdminEntity>();
             List<evento> Eventos = new List<evento>();
+             
             try
             {
+            
                 using (var dbContext = new GYMDBEntities())
                 {
                     Eventos = dbContext.evento.ToList();
-                }
-
-                if (Eventos.Count > 0)
-                {
-                    foreach (var evt in Eventos)
+                    if (Eventos.Count > 0)
                     {
-                        EventoAdminEntity EventosEntity = new EventoAdminEntity()
+
+                        foreach (var evt in Eventos)
                         {
-                            eventoID = evt.eventoID,
-                            claseID = evt.claseID.ToString(),
-                            horarioMID = evt.horarioMID.ToString(),
-                            fecha = evt.fecha.ToString(),
-                            salaID = evt.salaID.ToString(),
-                            aforoMax = evt.aforoMax.ToString(),
-                            aforoMin = evt.aforoMin.ToString(),
-                            estadoRegistro=evt.estadoRegistro
 
-                        };
+                            EventoAdminEntity EventosEntity = new EventoAdminEntity()
+                            {
+                                eventoID = evt.eventoID,
+                                claseID = evt.claseID.ToString(),
+                                horarioMID = evt.horarioMID.ToString(),
+                                fecha = evt.fecha.ToString(),
+                                salaID = evt.salaID.ToString(),
+                                aforoMax = evt.aforoMax.ToString(),
+                                aforoMin = evt.aforoMin.ToString(),
+                                estadoRegistro = evt.estadoRegistro,
+                                personaID = evt.personaID,
+                                nombreProfesor = evt.persona.nombres + " " + evt.persona.apellidos
+                            };
 
-                        entities.Add(EventosEntity);
+                            entities.Add(EventosEntity);
+                        }
                     }
                 }
+
+
+               
 
                 return entities;
             }
@@ -62,13 +69,13 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro)
+        public bool insertEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro, int personaID)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin, estadoRegistro);
+                entity = insertDBEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin, estadoRegistro,personaID);
             }
             catch (Exception ex)
             {
@@ -78,7 +85,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro)
+        private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro,int personaID)
         {
             evento item = new evento();
 
@@ -95,7 +102,9 @@ namespace WebAPIBusiness.BusinessCore
                         salaID = int.Parse(salaID),
                         aforoMax = int.Parse(aforoMax),
                         aforoMin = int.Parse(aforoMin),
-                        estadoRegistro="A"
+                        estadoRegistro="A",
+                        personaID=personaID,
+                        
                     };
 
                     dbContext.evento.Add(item);
@@ -110,7 +119,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyEvento(int eventoID, string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin)
+        public bool modifyEvento(int eventoID, string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,int personaID)
         {
             bool entity = false;
 
@@ -123,7 +132,7 @@ namespace WebAPIBusiness.BusinessCore
                     throw new Exception("El ID de la persona no se ha especificado.");
                 }
 
-                entity = UpdateRecord(eventoID, claseID, horarioMID, fecha, salaID, aforoMax, aforoMin);
+                entity = UpdateRecord(eventoID, claseID, horarioMID, fecha, salaID, aforoMax, aforoMin,personaID);
             }
             catch (Exception ex)
             {
@@ -133,7 +142,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool UpdateRecord(int eventoID, string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin)
+        private bool UpdateRecord(int eventoID, string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin, int personaID)
         {
             bool resp = false;
             evento Evento = new evento();
@@ -169,6 +178,8 @@ namespace WebAPIBusiness.BusinessCore
                             Evento.aforoMin = int.Parse(aforoMin);
                         }
 
+                        Evento.personaID = personaID;
+                        Evento.fecha = Convert.ToDateTime(fecha) ;
                     }
                     else
                     {
@@ -197,6 +208,7 @@ namespace WebAPIBusiness.BusinessCore
         private EventoAdminEntity getSalaInfo(int eventoID)
         {
             evento Evento = new evento();
+            persona Persona = new persona();
             EventoAdminEntity resp = new EventoAdminEntity();
 
             try
@@ -204,22 +216,25 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     Evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
+                    if (Evento != null)
+                    {
+                        resp = new EventoAdminEntity()
+                        {
+                            eventoID = Evento.eventoID,
+                            claseID = Evento.claseID.ToString(),
+                            horarioMID = Evento.horarioMID.ToString(),
+                            fecha = Evento.fecha.ToString(),
+                            salaID = Evento.salaID.ToString(),
+                            aforoMax = Evento.aforoMax.ToString(),
+                            aforoMin = Evento.aforoMin.ToString(),
+                            estadoRegistro = Evento.estadoRegistro,
+                            personaID = Evento.personaID,
+                            nombreProfesor = Evento.persona.nombres + " " + Evento.persona.apellidos
+                        };
+                    }
+
                 }
 
-                if (Evento != null)
-                {
-                    resp = new EventoAdminEntity()
-                    {
-                        eventoID = Evento.eventoID,
-                        claseID = Evento.claseID.ToString(),
-                        horarioMID = Evento.horarioMID.ToString(),
-                        fecha = Evento.fecha.ToString(),
-                        salaID = Evento.salaID.ToString(),
-                        aforoMax = Evento.aforoMax.ToString(),
-                        aforoMin = Evento.aforoMin.ToString(),
-                        estadoRegistro=Evento.estadoRegistro
-                    };
-                }
 
                 return resp;
             }
@@ -567,7 +582,7 @@ namespace WebAPIBusiness.BusinessCore
                             evento.estadoRegistro = "I";
                         } else if (evento.estadoRegistro == "I") {
                             evento.estadoRegistro = "A";
-                        }
+                        } 
                         
                     }
                     else

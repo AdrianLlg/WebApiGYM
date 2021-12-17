@@ -23,7 +23,7 @@ namespace WebAPIBusiness.BusinessCore
         private List<EventoAdminEntity> getEventoDB()
         {
             List<EventoAdminEntity> entities = new List<EventoAdminEntity>();
-            List<evento> Eventos = new List<evento>();
+            List<evento> Eventos = new List<evento>();     
             try
             {
                 using (var dbContext = new GYMDBEntities())
@@ -44,8 +44,6 @@ namespace WebAPIBusiness.BusinessCore
                             salaID = evt.salaID.ToString(),
                             aforoMax = evt.aforoMax.ToString(),
                             aforoMin = evt.aforoMin.ToString(),
-
-
                         };
 
                         entities.Add(EventosEntity);
@@ -83,12 +81,19 @@ namespace WebAPIBusiness.BusinessCore
         {
             List<evento> items = new List<evento>();
             evento item = new evento();
+            evento eventoAux = new evento();
+            evento_recursoEspecial recurso = new evento_recursoEspecial();
+            List<salaRecursoEspecial> RecursosSala = new List<salaRecursoEspecial>();
+            
 
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
+
+                    RecursosSala = dbContext.salaRecursoEspecial.ToList();
+
                     for (int i = 0; i < listaEventos.Count; i++)
                     {
                         DateTime fechaF = Convert.ToDateTime(listaEventos[i].fecha);
@@ -100,11 +105,39 @@ namespace WebAPIBusiness.BusinessCore
                             salaID = int.Parse(listaEventos[i].salaID),
                             aforoMax = int.Parse(listaEventos[i].aforoMax),
                             aforoMin = int.Parse(listaEventos[i].aforoMin),
+                            personaID = listaEventos[i].personaID,
+                            estadoRegistro = listaEventos[i].estadoRegistro
                         };
 
                         dbContext.evento.Add(item);
                         dbContext.SaveChanges();
+
+                        var existeSala = RecursosSala.Where(x => x.salaID == item.salaID).FirstOrDefault();
+                        if (existeSala != null)
+                        {
+                            eventoAux = dbContext.evento.Where(x => 
+                            x.claseID == item.claseID 
+                            && x.horarioMID == item.horarioMID 
+                            && x.fecha == item.fecha 
+                            && x.salaID == item.salaID).FirstOrDefault();
+
+                            var RecursosInsert = RecursosSala.Where(x => x.salaID == item.salaID).ToList();
+                            foreach(var rs in RecursosInsert)
+                            {
+                                recurso = new evento_recursoEspecial()
+                                {
+                                    eventoID = eventoAux.eventoID,
+                                    recursoEspecialID = rs.recursoEspecialID,
+                                    personaID = 0
+                                };
+                                dbContext.evento_recursoEspecial.Add(recurso);
+                                dbContext.SaveChanges();
+                            }
+                        }
+                        
+                        
                     }
+                    
                 }
 
 

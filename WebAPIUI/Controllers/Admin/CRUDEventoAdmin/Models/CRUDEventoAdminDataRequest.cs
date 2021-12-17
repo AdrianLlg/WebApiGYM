@@ -16,5 +16,7 @@ namespace WebAPIUI.Controllers.CRUDEventoAdmin.Models
         public string aforoMax { get; set; }
         public string aforoMin { get; set; }
         public string estadoRegistro { get; set; }
+        public int personaID { get; set; }
+        
     }
 }
