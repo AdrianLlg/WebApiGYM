@@ -104,6 +104,7 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             confSistema.FechaFin = FechaFinDB;
                         }
+                        confSistema.Valor = Valor; 
                     }
                     else
                     {
