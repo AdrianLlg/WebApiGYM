@@ -60,6 +60,7 @@
           <Property Name="eventoID" Type="int" Nullable="false" />
           <Property Name="personaID" Type="int" Nullable="false" />
           <Property Name="asistencia" Type="int" Nullable="false" />
+          <Property Name="membresia_persona_disciplinaID" Type="int" Nullable="false" />
           <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
@@ -188,16 +189,6 @@
           <Property Name="fechaCreacion" Type="date" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
-        <EntityType Name="recurso">
-          <Key>
-            <PropertyRef Name="recursoID" />
-          </Key>
-          <Property Name="recursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
-          <Property Name="cantidadRecurso" Type="int" Nullable="false" />
-          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
-        </EntityType>
         <EntityType Name="recursoEspecial">
           <Key>
             <PropertyRef Name="recursoEspecialID" />
@@ -254,16 +245,6 @@
           <Property Name="fechaRegistroSolicitud" Type="datetime" Nullable="false" />
           <Property Name="comprobante" Type="varbinary(max)" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="5" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -391,6 +372,18 @@
             </Principal>
             <Dependent Role="membresia_persona_disciplina">
               <PropertyRef Name="membresia_disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="membresia_persona_disciplina_Id_fk">
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia_persona_disciplina">
+              <PropertyRef Name="membresia_persona_disciplinaID" />
+            </Principal>
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="membresia_persona_disciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -614,14 +607,12 @@
           <EntitySet Name="membresia_persona_pago" EntityType="Self.membresia_persona_pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="noticia" EntityType="Self.noticia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="recurso" EntityType="Self.recurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roleP" EntityType="Self.roleP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sala" EntityType="Self.sala" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salaRecurso" EntityType="Self.salaRecurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salaRecursoEspecial" EntityType="Self.salaRecursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sol_membresiaPago" EntityType="Self.sol_membresiaPago" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
             <End Role="disciplina" EntitySet="disciplina" />
@@ -662,6 +653,10 @@
           <AssociationSet Name="membresia_disciplinaIDfk" Association="Self.membresia_disciplinaIDfk">
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
             <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="membresia_persona_disciplina_Id_fk" Association="Self.membresia_persona_disciplina_Id_fk">
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
           <AssociationSet Name="membresia_persona_pagoID_fk" Association="Self.membresia_persona_pagoID_fk">
             <End Role="membresia_persona_pago" EntitySet="membresia_persona_pago" />
@@ -803,9 +798,11 @@
           <Property Name="eventoID" Type="Int32" Nullable="false" />
           <Property Name="personaID" Type="Int32" Nullable="false" />
           <Property Name="asistencia" Type="Int32" Nullable="false" />
+          <Property Name="membresia_persona_disciplinaID" Type="Int32" Nullable="false" />
           <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="evento" Relationship="Self.evento_persona_fk" FromRole="evento_persona" ToRole="evento" />
           <NavigationProperty Name="persona" Relationship="Self.evento_persona_Id_fk" FromRole="evento_persona" ToRole="persona" />
+          <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.membresia_persona_disciplina_Id_fk" FromRole="evento_persona" ToRole="membresia_persona_disciplina" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
@@ -902,6 +899,7 @@
           <Property Name="numClasesDisponibles" Type="Int32" Nullable="false" />
           <Property Name="numClasesTomadas" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="evento_persona" Relationship="Self.membresia_persona_disciplina_Id_fk" FromRole="membresia_persona_disciplina" ToRole="evento_persona" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia_disciplinaIDfk" FromRole="membresia_persona_disciplina" ToRole="membresia_disciplina" />
           <NavigationProperty Name="persona" Relationship="Self.PersonaIdMPD_fk" FromRole="membresia_persona_disciplina" ToRole="persona" />
         </EntityType>
@@ -960,16 +958,6 @@
           <NavigationProperty Name="sol_membresiaPago" Relationship="Self.PersonaIdSMP_fk" FromRole="persona" ToRole="sol_membresiaPago" />
           <NavigationProperty Name="roleP" Relationship="Self.rolePID_fk" FromRole="persona" ToRole="roleP" />
           <NavigationProperty Name="usuario" Relationship="Self.usuario_personaID_fk" FromRole="persona" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="recurso">
-          <Key>
-            <PropertyRef Name="recursoID" />
-          </Key>
-          <Property Name="recursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cantidadRecurso" Type="Int32" Nullable="false" />
-          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="recursoEspecial">
           <Key>
@@ -1039,16 +1027,6 @@
           <NavigationProperty Name="membresia" Relationship="Self.MembresiaIdSMP_fk" FromRole="sol_membresiaPago" ToRole="membresia" />
           <NavigationProperty Name="membresia_persona_pago" Relationship="Self.membresia_persona_pagoID_fk" FromRole="sol_membresiaPago" ToRole="membresia_persona_pago" />
           <NavigationProperty Name="persona" Relationship="Self.PersonaIdSMP_fk" FromRole="sol_membresiaPago" ToRole="persona" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -1177,6 +1155,18 @@
             </Principal>
             <Dependent Role="evento_persona">
               <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="membresia_persona_disciplina_Id_fk">
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="1" />
+          <End Role="evento_persona" Type="Self.evento_persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia_persona_disciplina">
+              <PropertyRef Name="membresia_persona_disciplinaID" />
+            </Principal>
+            <Dependent Role="evento_persona">
+              <PropertyRef Name="membresia_persona_disciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1400,14 +1390,12 @@
           <EntitySet Name="membresia_persona_pago" EntityType="Self.membresia_persona_pago" />
           <EntitySet Name="noticia" EntityType="Self.noticia" />
           <EntitySet Name="persona" EntityType="Self.persona" />
-          <EntitySet Name="recurso" EntityType="Self.recurso" />
           <EntitySet Name="recursoEspecial" EntityType="Self.recursoEspecial" />
           <EntitySet Name="roleP" EntityType="Self.roleP" />
           <EntitySet Name="sala" EntityType="Self.sala" />
           <EntitySet Name="salaRecurso" EntityType="Self.salaRecurso" />
           <EntitySet Name="salaRecursoEspecial" EntityType="Self.salaRecursoEspecial" />
           <EntitySet Name="sol_membresiaPago" EntityType="Self.sol_membresiaPago" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
           <AssociationSet Name="disciplina_clase_fk" Association="Self.disciplina_clase_fk">
             <End Role="disciplina" EntitySet="disciplina" />
@@ -1447,6 +1435,10 @@
           </AssociationSet>
           <AssociationSet Name="evento_persona_Id_fk" Association="Self.evento_persona_Id_fk">
             <End Role="persona" EntitySet="persona" />
+            <End Role="evento_persona" EntitySet="evento_persona" />
+          </AssociationSet>
+          <AssociationSet Name="membresia_persona_disciplina_Id_fk" Association="Self.membresia_persona_disciplina_Id_fk">
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
             <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
           <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
@@ -1582,6 +1574,7 @@
                 <ScalarProperty Name="eventoID" ColumnName="eventoID" />
                 <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="asistencia" ColumnName="asistencia" />
+                <ScalarProperty Name="membresia_persona_disciplinaID" ColumnName="membresia_persona_disciplinaID" />
                 <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1722,17 +1715,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="recurso">
-            <EntityTypeMapping TypeName="GYMDBModel.recurso">
-              <MappingFragment StoreEntitySet="recurso">
-                <ScalarProperty Name="recursoID" ColumnName="recursoID" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="cantidadRecurso" ColumnName="cantidadRecurso" />
-                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="recursoEspecial">
             <EntityTypeMapping TypeName="GYMDBModel.recursoEspecial">
               <MappingFragment StoreEntitySet="recursoEspecial">
@@ -1793,17 +1775,6 @@
                 <ScalarProperty Name="fechaRegistroSolicitud" ColumnName="fechaRegistroSolicitud" />
                 <ScalarProperty Name="comprobante" ColumnName="comprobante" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="GYMDBModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

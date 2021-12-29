@@ -114,9 +114,6 @@
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="recurso.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="recursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
@@ -133,9 +130,6 @@
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="sol_membresiaPago.cs">
-      <DependentUpon>GYMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">

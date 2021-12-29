@@ -19,7 +19,7 @@ namespace WebAPIBusiness.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ScriptsGYMDB {
@@ -90,6 +90,21 @@ namespace WebAPIBusiness.Resources {
         internal static string getClasesDisicplinaFecha {
             get {
                 return ResourceManager.GetString("getClasesDisicplinaFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///ds.disciplinaID
+        ///FROM disciplina ds
+        ///INNER JOIN clase cl ON cl.disciplinaID = ds.disciplinaID
+        ///INNER JOIN evento ev ON ev.claseID = cl.claseID
+        ///INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
+        ///WHERE evento_personaID = {0}.
+        /// </summary>
+        internal static string getDiciplinaIDEventoPersona {
+            get {
+                return ResourceManager.GetString("getDiciplinaIDEventoPersona", resourceCulture);
             }
         }
         

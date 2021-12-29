@@ -71,9 +71,19 @@ namespace WebAPIBusiness.BusinessCore
             DateTime FechaFinDB = new DateTime();
             try
             {
-                FechaDB = Convert.ToDateTime(Fecha);
-                FechaInicioDB = Convert.ToDateTime(FechaInicio);
-                FechaFinDB = Convert.ToDateTime(FechaFin);
+                if (Fecha != "")
+                {
+                    FechaDB = Convert.ToDateTime(Fecha);
+                }
+                if (Fecha != "")
+                {
+                    FechaInicioDB = Convert.ToDateTime(FechaInicio);
+                }
+                if (Fecha != "")
+                {
+                    FechaFinDB = Convert.ToDateTime(FechaFin);
+                }
+
             }
             catch (Exception ex)
             {

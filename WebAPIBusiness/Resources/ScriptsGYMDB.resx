@@ -142,6 +142,15 @@ AND CR.fecha = '2021-09-11'
 AND CLP.rolePID = 2</value>
     <comment>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA</comment>
   </data>
+  <data name="getDiciplinaIDEventoPersona" xml:space="preserve">
+    <value>SELECT 
+ds.disciplinaID
+FROM disciplina ds
+INNER JOIN clase cl ON cl.disciplinaID = ds.disciplinaID
+INNER JOIN evento ev ON ev.claseID = cl.claseID
+INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
+WHERE evento_personaID = {0}</value>
+  </data>
   <data name="getEventoClasePersona" xml:space="preserve">
     <value>SELECT
 EV.eventoID AS EventoID,

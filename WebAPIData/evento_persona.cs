@@ -18,9 +18,11 @@ namespace WebAPIData
         public int eventoID { get; set; }
         public int personaID { get; set; }
         public int asistencia { get; set; }
+        public int membresia_persona_disciplinaID { get; set; }
         public string estadoRegistro { get; set; }
     
         public virtual evento evento { get; set; }
         public virtual persona persona { get; set; }
+        public virtual membresia_persona_disciplina membresia_persona_disciplina { get; set; }
     }
 }
