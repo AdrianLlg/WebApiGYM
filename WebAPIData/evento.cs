@@ -17,8 +17,8 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public evento()
         {
-            this.evento_persona = new HashSet<evento_persona>();
             this.evento_recursoEspecial = new HashSet<evento_recursoEspecial>();
+            this.evento_persona = new HashSet<evento_persona>();
         }
     
         public int eventoID { get; set; }
@@ -33,11 +33,11 @@ namespace WebAPIData
     
         public virtual clase clase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<evento_persona> evento_persona { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_recursoEspecial> evento_recursoEspecial { get; set; }
         public virtual horarioM horarioM { get; set; }
         public virtual persona persona { get; set; }
         public virtual sala sala { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<evento_persona> evento_persona { get; set; }
     }
 }

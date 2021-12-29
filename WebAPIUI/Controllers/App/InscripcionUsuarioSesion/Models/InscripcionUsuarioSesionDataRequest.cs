@@ -13,5 +13,9 @@ namespace WebAPIUI.Controllers.App.InscripcionUsuarioSesion.Models
 
         public string estado { get; set; }
 
+        public int recursoAsignado { get; set; }
+
+        public bool recursosEvento { get; set; }
+
     }
 }

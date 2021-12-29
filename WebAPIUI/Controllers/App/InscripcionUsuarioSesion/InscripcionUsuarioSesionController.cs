@@ -30,7 +30,7 @@ namespace WebAPIUI.Controllers.App.InscripcionUsuarioSesion
         /// <summary>
         /// Inserta al usuario en el evento recibido
         /// </summary>
-        private bool InscripcionUsuario(int personaID, int eventoID, string estado) 
+        private bool InscripcionUsuario(int personaID, int eventoID, string estado, int recursoAsignadoID, bool recursosEvento) 
         { 
             EventoAdminBO bo = new EventoAdminBO();
             List<string> messages = new List<string>();
@@ -38,7 +38,7 @@ namespace WebAPIUI.Controllers.App.InscripcionUsuarioSesion
 
             try
             {
-                resp = bo.RegisterEventUser(personaID, eventoID, estado);
+                resp = bo.RegisterEventUser(personaID, eventoID, estado, recursoAsignadoID, recursosEvento);
             }
             catch (ValidationAndMessageException InscripcionUsuarioSesionException)
             {
@@ -73,7 +73,7 @@ namespace WebAPIUI.Controllers.App.InscripcionUsuarioSesion
 
                 ValidatePostRequest(dataRequest);
 
-                bool resp = InscripcionUsuario(dataRequest.personaID, dataRequest.eventoID, dataRequest.estado);
+                bool resp = InscripcionUsuario(dataRequest.personaID, dataRequest.eventoID, dataRequest.estado, dataRequest.recursoAsignado, dataRequest.recursosEvento);
 
                 if (resp)
                 {

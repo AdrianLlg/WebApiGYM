@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPIBusiness.Entities.EventoClasePersona;
 
 namespace WebAPIBusiness.Entities.App.ConsultaEventosDeportista
 {
@@ -16,9 +17,13 @@ namespace WebAPIBusiness.Entities.App.ConsultaEventosDeportista
         public string sala { get; set; }
         public int aforoMax { get; set; }
         public int aforoMin { get; set; }
-        public int asistencia { get; set; }
+        public int asistenciaEvento{ get; set; }
+        public int asistenciaPersona { get; set; }
         public string estadoInscripcion { get; set; }
         public int instructorID { get; set; }
-        public string nombreInscructor { get; set; }
+        public string nombreInstructor { get; set; }
+        public int intentosCancelar { get; set; }
+        public List<EventoClasePersonaRecursosEspecialesEntity> recursosEspeciales { get; set; }
+        public int recursoEspecialPersona { get; set; }
     }
 }
