@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.App.ConsultaEventosDeportista;
 using WebAPIBusiness.Entities.EventoAdmin;
+using WebAPIBusiness.Entities.EventoClasePersona;
 using WebAPIBusiness.Entities.SalaAdmin;
 using WebAPIData;
 
@@ -26,10 +28,10 @@ namespace WebAPIBusiness.BusinessCore
         {
             List<EventoAdminEntity> entities = new List<EventoAdminEntity>();
             List<evento> Eventos = new List<evento>();
-             
+
             try
             {
-            
+
                 using (var dbContext = new GYMDBEntities())
                 {
                     Eventos = dbContext.evento.ToList();
@@ -59,7 +61,7 @@ namespace WebAPIBusiness.BusinessCore
                 }
 
 
-               
+
 
                 return entities;
             }
@@ -69,13 +71,13 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool insertEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro, int personaID)
+        public bool insertEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin, string estadoRegistro, int personaID)
         {
             bool entity = false;
 
             try
             {
-                entity = insertDBEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin, estadoRegistro,personaID);
+                entity = insertDBEvento(claseID, horarioMID, fecha, salaID, aforoMax, aforoMin, estadoRegistro, personaID);
             }
             catch (Exception ex)
             {
@@ -85,7 +87,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,string estadoRegistro,int personaID)
+        private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin, string estadoRegistro, int personaID)
         {
             evento item = new evento();
 
@@ -102,9 +104,9 @@ namespace WebAPIBusiness.BusinessCore
                         salaID = int.Parse(salaID),
                         aforoMax = int.Parse(aforoMax),
                         aforoMin = int.Parse(aforoMin),
-                        estadoRegistro="A",
-                        personaID=personaID,
-                        
+                        estadoRegistro = "A",
+                        personaID = personaID,
+
                     };
 
                     dbContext.evento.Add(item);
@@ -119,7 +121,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        public bool modifyEvento(int eventoID, string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin,int personaID)
+        public bool modifyEvento(int eventoID, string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin, int personaID)
         {
             bool entity = false;
 
@@ -132,7 +134,7 @@ namespace WebAPIBusiness.BusinessCore
                     throw new Exception("El ID de la persona no se ha especificado.");
                 }
 
-                entity = UpdateRecord(eventoID, claseID, horarioMID, fecha, salaID, aforoMax, aforoMin,personaID);
+                entity = UpdateRecord(eventoID, claseID, horarioMID, fecha, salaID, aforoMax, aforoMin, personaID);
             }
             catch (Exception ex)
             {
@@ -179,7 +181,7 @@ namespace WebAPIBusiness.BusinessCore
                         }
 
                         Evento.personaID = personaID;
-                        Evento.fecha = Convert.ToDateTime(fecha) ;
+                        Evento.fecha = Convert.ToDateTime(fecha);
                     }
                     else
                     {
@@ -292,7 +294,7 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     var memberships = dbContext.membresia_persona_pago.Where(x => x.personaID == personaID && x.estado == "A").Select(x => x.membresiaID).ToList();
-                    
+
                     if (memberships.Count > 0)
                     {
                         resp = dbContext.membresia_disciplina.Where(x => memberships.Contains(x.membresiaID)).Select(x => x.disciplinaID).Distinct().ToList();
@@ -333,7 +335,8 @@ namespace WebAPIBusiness.BusinessCore
         private List<EventosDeportistaEntity> ObtainSchedulesDB(List<int> classes, DateTime fecha, int personaID)
         {
             List<EventosDeportistaEntity> resp = new List<EventosDeportistaEntity>();
-
+            List<EventoClasePersonaRecursosEspecialesEntity> recursosEspecialesList = new List<EventoClasePersonaRecursosEspecialesEntity>();
+            int recursoEspecialPersona = 0;
             try
             {
                 using (var dbContext = new GYMDBEntities())
@@ -346,29 +349,63 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         foreach (var item in query)
                         {
-                            var asistencia = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.asistencia == 1 && x.estadoRegistro == "A").Count();
+                            var asistenciaEvento = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.asistencia == 1 && x.estadoRegistro == "A").Count();
 
-                            var estadoInscripcion = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.personaID == personaID).Select(x => x.estadoRegistro).FirstOrDefault();
+                            var estadoPersona = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.personaID == personaID).FirstOrDefault();
 
-                            if (string.IsNullOrEmpty(estadoInscripcion))
+                            var recursosEspeciales = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID).ToList();
+
+                            if (estadoPersona == null)
                             {
-                                estadoInscripcion = string.Empty;
+                                estadoPersona = new evento_persona()
+                                {
+                                    asistencia = -1,
+                                    estadoRegistro = "N",
+                                    intentosCancelar = 0
+                                };
                             }
 
-                            resp.Add(new EventosDeportistaEntity() {
-                            
-                            eventoID = item.eventoID,
-                            instructorID = item.personaID,
-                            nombreInscructor = item.persona.nombres + " " + item.persona.apellidos,
-                            disciplina = item.clase.disciplina.nombre,
-                            horaInicioEvento = item.horarioM.horaInicio,
-                            horaFinEvento = item.horarioM.horaFin,
-                            sala = item.sala.nombre,
-                            fecha = item.fecha.ToString("yyyy-MM-dd"),
-                            aforoMax = item.aforoMax,
-                            aforoMin = item.aforoMin,
-                            asistencia = asistencia,
-                            estadoInscripcion = estadoInscripcion
+                            if (recursosEspeciales.Count > 0)
+                            {
+                                foreach (var i in recursosEspeciales)
+                                {
+                                    recursosEspecialesList.Add(new EventoClasePersonaRecursosEspecialesEntity
+                                    {
+                                        eventoRecursoID = i.evento_recursoEspecialID,
+                                        eventoID = i.eventoID,
+                                        personaID = i.personaID,
+                                        recursoEspecialID = i.recursoEspecialID,
+                                        nombreRecurso = i.recursoEspecial.nombre,
+                                        descripcionRecurso = i.recursoEspecial.descripcion
+                                    });
+                                }
+
+                                recursoEspecialPersona = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID && x.personaID == item.personaID).Select(x => x.evento_recursoEspecialID).FirstOrDefault();
+
+                            }
+                            else
+                            {
+                                recursosEspecialesList = null;
+                            }
+
+                            resp.Add(new EventosDeportistaEntity()
+                            {
+                                eventoID = item.eventoID,
+                                instructorID = item.personaID,
+                                nombreInstructor = item.persona.nombres + " " + item.persona.apellidos,
+                                disciplina = item.clase.disciplina.nombre,
+                                horaInicioEvento = item.horarioM.horaInicio,
+                                horaFinEvento = item.horarioM.horaFin,
+                                sala = item.sala.nombre,
+                                fecha = item.fecha.ToString("yyyy-MM-dd"),
+                                aforoMax = item.aforoMax,
+                                aforoMin = item.aforoMin,
+                                asistenciaEvento = asistenciaEvento,
+                                asistenciaPersona = estadoPersona.asistencia,
+                                estadoInscripcion = estadoPersona.estadoRegistro,
+                                intentosCancelar = estadoPersona.intentosCancelar,
+                                recursosEspeciales = recursosEspecialesList,
+                                recursoEspecialPersona = recursoEspecialPersona
                             });
                         }
 
@@ -390,54 +427,23 @@ namespace WebAPIBusiness.BusinessCore
         #endregion
 
         #region InscripcionUsuarioSesion
-        public bool RegisterEventUser(int personaID, int eventoID, string estado)
+        public bool RegisterEventUser(int personaID, int eventoID, string estado, int recursoAsignado, bool recursosEvento)
         {
-            bool resp = false;
+            bool insertData = false;
 
-            bool verifyPreviousRecord = VerifyPreviousEventPerson(personaID, eventoID);
-
-            if (verifyPreviousRecord == false)
-            {
-                resp = InsertNewEvent_Persona(personaID, eventoID);
-            }
-            else
-            {
-                resp = ChangeStateEvent_Persona(personaID, eventoID, estado);
-            }
-
-            return resp;
-        }
-
-        
-        private bool InsertNewEvent_Persona(int personaID, int eventoID)
-        {
             try
             {
-                using (var dbContext = new GYMDBEntities())
-                {
-                    dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
-
-                    evento_persona obj = new evento_persona
-                    {
-                        eventoID = eventoID,
-                        personaID = personaID,
-                        asistencia = 1,
-                        estadoRegistro = "A"
-                    };
-
-                    dbContext.evento_persona.Add(obj);
-                    dbContext.SaveChanges();
-
-                    return true;
-
-                }
+                insertData = InsertEventUser(personaID, eventoID, estado, recursoAsignado, recursosEvento);
             }
             catch (Exception ex)
             {
                 throw new ValidationAndMessageException(ex.Message);
             }
+
+            return insertData;
         }
-        private bool VerifyPreviousEventPerson(int personaID, int eventoID)
+
+        private bool InsertEventUser(int personaID, int eventoID, string estado, int recursoAsignadoID, bool recursosEvento)
         {
             try
             {
@@ -446,52 +452,114 @@ namespace WebAPIBusiness.BusinessCore
                     dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
                     var record = dbContext.evento_persona
-                                    .Where(x => x.personaID == personaID && x.eventoID == eventoID) 
-                                    .Count();
+                                    .Where(x => x.personaID == personaID && x.eventoID == eventoID)
+                                    .FirstOrDefault();
 
-                    if (record == 1)
+                    if (record == null)
                     {
+                        if (recursosEvento)
+                        {
+                            var recurso = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
+
+                            recurso.personaID = personaID;
+                        }
+
+                        evento_persona obj = new evento_persona
+                        {
+                            eventoID = eventoID,
+                            personaID = personaID,
+                            asistencia = 1,
+                            estadoRegistro = "A"
+                        };
+
+                        dbContext.evento_persona.Add(obj);
+                        dbContext.SaveChanges();
+
                         return true;
                     }
                     else
                     {
-                        return false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new ValidationAndMessageException(ex.Message);
-            }
-        }
+                        //Cancelacion de una inscripcion
+                        var canCancelDate = dbContext.configuraciones_Sistema.Where(x => x.NombreConfiguracion == "politicasCancelacion").Select(x => x.Valor).FirstOrDefault();
+                        var canCancelClasses = dbContext.configuraciones_Sistema.Where(x => x.NombreConfiguracion == "LimiteClasesCanceladas").Select(x => x.Valor).FirstOrDefault();
 
-        private bool ChangeStateEvent_Persona(int personaID, int eventoID, string estado)
-        {
-            try
-            {
-                using (var dbContext = new GYMDBEntities())
-                {
-                    dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+                        int val = int.Parse(canCancelDate);
+                        int canCancel = int.Parse(canCancelClasses);
 
-                    var obj = dbContext.evento_persona.Where(x => x.eventoID == eventoID && x.personaID == personaID).FirstOrDefault();
+                        if (estado == "C")
+                        {                           
+                            if (!string.IsNullOrEmpty(canCancelDate))
+                            {
+                                DateTime validation = DateTime.Now.AddHours(-val);
 
-                    if (obj != null)
-                    {
-                        if (estado == "A")
+                                if (DateTime.Now < validation)
+                                {                                  
+                                    if (record.intentosCancelar <= canCancel)
+                                    {
+                                        if (recursosEvento)
+                                        {
+                                            var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
+
+                                            recursoEspecial.personaID = 0;
+                                            record.estadoRegistro = "C";
+                                            record.intentosCancelar = record.intentosCancelar + 1;
+                                            record.asistencia = 0;
+                                            dbContext.SaveChanges();
+
+                                            return true;
+                                        }
+                                        else
+                                        {
+                                            record.estadoRegistro = "C";
+                                            record.intentosCancelar = record.intentosCancelar + 1;
+                                            record.asistencia = 0;
+                                            dbContext.SaveChanges();
+
+                                            return true;
+                                        }                                        
+                                    }
+                                    else
+                                    {
+                                        throw new ValidationAndMessageException("IntentosCancelar");
+                                    }
+                                }
+                                else
+                                {
+                                    throw new ValidationAndMessageException("HorarioCancelar");
+                                }
+                            }
+                            else
+                            {
+                                throw new ValidationAndMessageException("Ha ocurrido un error al consultar las politicas de cancelacion.");
+                            }
+                        }
+                        else if (estado == "A")
                         {
-                            obj.estadoRegistro = "I";
+                            if (record.intentosCancelar < canCancel)
+                            {
+                                if (recursosEvento)
+                                {
+                                    var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
+
+                                    recursoEspecial.personaID = personaID;
+                                }
+
+                                record.estadoRegistro = "A";
+                                record.asistencia = 1;
+                                dbContext.SaveChanges();
+
+                                return true;
+                            }
+                            else
+                            {
+                                throw new ValidationAndMessageException("IntentosCancelar");
+                            }                            
                         }
                         else
                         {
-                            obj.estadoRegistro = "A";
+                            throw new ValidationAndMessageException("El estado proporcionado no es valido.");
                         }
 
-                        dbContext.SaveChanges();
-                        return true;
-                    }
-                    else
-                    {
-                        throw new ValidationAndMessageException("Ocurrio un error en el manejo de la BDD.");
                     }
                 }
             }
@@ -527,10 +595,10 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     var evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
-                    
+
                     var eventoPersonaLS = dbContext.evento_persona.ToList();
                     bool hasEventoPersona = eventoPersonaLS.Any(x => x.eventoID == eventoID);
-                    
+
                     if (evento != null)
                     {
                         if (hasEventoPersona == false)
@@ -539,7 +607,7 @@ namespace WebAPIBusiness.BusinessCore
                             dbContext.SaveChanges();
                             return true;
                         }
-                        
+
                         return true;
                     }
                     else
@@ -578,12 +646,15 @@ namespace WebAPIBusiness.BusinessCore
 
                     if (evento != null)
                     {
-                        if (evento.estadoRegistro == "A") {
+                        if (evento.estadoRegistro == "A")
+                        {
                             evento.estadoRegistro = "I";
-                        } else if (evento.estadoRegistro == "I") {
+                        }
+                        else if (evento.estadoRegistro == "I")
+                        {
                             evento.estadoRegistro = "A";
-                        } 
-                        
+                        }
+
                     }
                     else
                     {

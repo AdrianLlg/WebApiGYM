@@ -92,6 +92,7 @@
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaPerfil\ConsultaPerfilEntity.cs" />
+    <Compile Include="Entities\EventoClasePersona\EventoClasePersonaRecursosEspecialesEntity.cs" />
     <Compile Include="Entities\EventoPersona\EventoPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaEntrenamientoEntity.cs" />
