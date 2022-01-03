@@ -19,7 +19,7 @@ namespace WebAPIBusiness.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ScriptsGYMDB {
@@ -105,6 +105,25 @@ namespace WebAPIBusiness.Resources {
         internal static string getDiciplinaIDEventoPersona {
             get {
                 return ResourceManager.GetString("getDiciplinaIDEventoPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+        ///((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, &apos;:&apos;)))
+        ///
+        ///as horario from evento_persona ep 
+        ///inner join persona p on p.personaID=ep.personaID
+        ///inner join evento evt on ep.eventoID=evt.eventoID
+        ///inner join horarioM h on evt.horarioMID=h.horarioMID
+        ///inner join clase c on evt.claseID=c.claseID
+        ///where ep.eventoID=&apos;{0}&apos;
+        ///
+        ///;.
+        /// </summary>
+        internal static string getEventMail {
+            get {
+                return ResourceManager.GetString("getEventMail", resourceCulture);
             }
         }
         

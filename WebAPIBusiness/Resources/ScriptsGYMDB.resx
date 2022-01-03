@@ -151,6 +151,19 @@ INNER JOIN evento ev ON ev.claseID = cl.claseID
 INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
 WHERE evento_personaID = {0}</value>
   </data>
+  <data name="getEventMail" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+
+as horario from evento_persona ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'
+
+;</value>
+  </data>
   <data name="getEventoClasePersona" xml:space="preserve">
     <value>SELECT
 EV.eventoID AS EventoID,
