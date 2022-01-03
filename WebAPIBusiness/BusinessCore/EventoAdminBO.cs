@@ -633,7 +633,7 @@ namespace WebAPIBusiness.BusinessCore
 
 
             resp = InactivarInfo(eventoID);
-            enviarCorreoCancelacion(eventoID);
+            
 
             return resp;
         }
@@ -654,6 +654,7 @@ namespace WebAPIBusiness.BusinessCore
                         if (evento.estadoRegistro == "A")
                         {
                             evento.estadoRegistro = "I";
+                            enviarCorreoCancelacion(eventoID);
                         }
                         else if (evento.estadoRegistro == "I")
                         {

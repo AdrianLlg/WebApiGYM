@@ -64,6 +64,16 @@
           <Property Name="membresia_persona_disciplinaID" Type="int" Nullable="false" />
           <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="evento_profesor">
+          <Key>
+            <PropertyRef Name="evento_profesorID" />
+          </Key>
+          <Property Name="evento_profesorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventoID" Type="int" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="asistencia" Type="int" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
             <PropertyRef Name="evento_recursoEspecialID" />
@@ -598,6 +608,7 @@
           <EntitySet Name="disciplina" EntityType="Self.disciplina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="evento" EntityType="Self.evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="evento_persona" EntityType="Self.evento_persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evento_profesor" EntityType="Self.evento_profesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="evento_recursoEspecial" EntityType="Self.evento_recursoEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fichaEntrenamiento" EntityType="Self.fichaEntrenamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fichaPersona" EntityType="Self.fichaPersona" Schema="dbo" store:Type="Tables" />
@@ -805,6 +816,16 @@
           <NavigationProperty Name="evento" Relationship="Self.evento_persona_fk" FromRole="evento_persona" ToRole="evento" />
           <NavigationProperty Name="persona" Relationship="Self.evento_persona_Id_fk" FromRole="evento_persona" ToRole="persona" />
           <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.membresia_persona_disciplinaID_fk" FromRole="evento_persona" ToRole="membresia_persona_disciplina" />
+        </EntityType>
+        <EntityType Name="evento_profesor">
+          <Key>
+            <PropertyRef Name="evento_profesorID" />
+          </Key>
+          <Property Name="evento_profesorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventoID" Type="Int32" Nullable="false" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="asistencia" Type="Int32" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
@@ -1382,6 +1403,7 @@
           <EntitySet Name="disciplina" EntityType="Self.disciplina" />
           <EntitySet Name="evento" EntityType="Self.evento" />
           <EntitySet Name="evento_persona" EntityType="Self.evento_persona" />
+          <EntitySet Name="evento_profesor" EntityType="Self.evento_profesor" />
           <EntitySet Name="evento_recursoEspecial" EntityType="Self.evento_recursoEspecial" />
           <EntitySet Name="fichaEntrenamiento" EntityType="Self.fichaEntrenamiento" />
           <EntitySet Name="fichaPersona" EntityType="Self.fichaPersona" />
@@ -1578,6 +1600,17 @@
                 <ScalarProperty Name="asistencia" ColumnName="asistencia" />
                 <ScalarProperty Name="intentosCancelar" ColumnName="intentosCancelar" />
                 <ScalarProperty Name="membresia_persona_disciplinaID" ColumnName="membresia_persona_disciplinaID" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evento_profesor">
+            <EntityTypeMapping TypeName="GYMDBModel.evento_profesor">
+              <MappingFragment StoreEntitySet="evento_profesor">
+                <ScalarProperty Name="evento_profesorID" ColumnName="evento_profesorID" />
+                <ScalarProperty Name="eventoID" ColumnName="eventoID" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
+                <ScalarProperty Name="asistencia" ColumnName="asistencia" />
                 <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>

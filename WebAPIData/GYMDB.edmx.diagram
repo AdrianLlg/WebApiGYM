@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bf5117e234fc4327889bfef99742a8bd" Name="Diagram1">
+      <Diagram DiagramId="79dbdb57ae8f4782b63e97f714af53bb" Name="Diagram1">
         <EntityTypeShape EntityType="GYMDBModel.clase" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.configuraciones_Sistema" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.disciplina" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.evento" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.evento_persona" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.evento_profesor" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.evento_recursoEspecial" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.fichaEntrenamiento" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.fichaPersona" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
@@ -18,7 +19,7 @@
         <EntityTypeShape EntityType="GYMDBModel.membresia_disciplina" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.membresia_persona_disciplina" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.membresia_persona_pago" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.noticia" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GYMDBModel.noticia" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.persona" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.recursoEspecial" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GYMDBModel.roleP" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
