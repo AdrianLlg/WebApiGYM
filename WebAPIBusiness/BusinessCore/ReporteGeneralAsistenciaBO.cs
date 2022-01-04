@@ -33,11 +33,25 @@ namespace WebAPIBusiness.BusinessCore
             DateTime FI = Convert.ToDateTime(fechaInicio);
             DateTime FF = Convert.ToDateTime(fechaFin);
             ReporteGeneralAsistenciaEntity item = new ReporteGeneralAsistenciaEntity();
+            persona personaDB = new persona();
+
+            
 
 
             using (var dbContext = new GYMDBEntities())
             {
-                string query = string.Format(ScriptsGYMDB.getReporteAsistenciaLog,personaID, fechaInicio, fechaFin);
+
+                personaDB = dbContext.persona.Where(x => x.personaID == personaID).FirstOrDefault();
+                string query = String.Empty;
+
+                if (personaDB.rolePID == 2)
+                {
+                    query = string.Format(ScriptsGYMDB.getReporteAsistenciaLogProf, personaID, fechaInicio, fechaFin);
+                }
+                else
+                {
+                    query = string.Format(ScriptsGYMDB.getReporteAsistenciaLog, personaID, fechaInicio, fechaFin);
+                }
 
 
                 consulta = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaEntity>(query).ToList();

@@ -142,6 +142,28 @@ AND CR.fecha = '2021-09-11'
 AND CLP.rolePID = 2</value>
     <comment>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA</comment>
   </data>
+  <data name="getDiciplinaIDEventoPersona" xml:space="preserve">
+    <value>SELECT 
+ds.disciplinaID
+FROM disciplina ds
+INNER JOIN clase cl ON cl.disciplinaID = ds.disciplinaID
+INNER JOIN evento ev ON ev.claseID = cl.claseID
+INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
+WHERE evento_personaID = {0}</value>
+  </data>
+  <data name="getEventMail" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+
+as horario from evento_persona ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'
+
+;</value>
+  </data>
   <data name="getEventoClasePersona" xml:space="preserve">
     <value>SELECT
 EV.eventoID AS EventoID,
@@ -289,6 +311,20 @@ HAVING COUNT(*) &gt; 0</value>
   Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'
 
 </value>
+  </data>
+  <data name="getReporteAsistenciaLogProf" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  evt.fecha as Fecha,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_profesor ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'</value>
   </data>
   <data name="getReporteGeneralAsistenciaCA" xml:space="preserve">
     <value>SELECT 

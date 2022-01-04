@@ -746,6 +746,7 @@ namespace WebAPIUI.Helpers
                     eventoID = entity.eventoID,
                     personaID = entity.personaID,
                     asistencia = entity.asistencia,
+                    membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
                     estadoRegistro= entity.estadoRegistro
 
                 };
@@ -764,7 +765,8 @@ namespace WebAPIUI.Helpers
                 eventoID = entity.eventoID,
                 personaID = entity.personaID,
                 asistencia = entity.asistencia,
-                estadoRegistro=entity.estadoRegistro
+                membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
+                estadoRegistro =entity.estadoRegistro
             };
 
             return response;

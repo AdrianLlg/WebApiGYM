@@ -19,7 +19,7 @@ namespace WebAPIBusiness.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ScriptsGYMDB {
@@ -90,6 +90,40 @@ namespace WebAPIBusiness.Resources {
         internal static string getClasesDisicplinaFecha {
             get {
                 return ResourceManager.GetString("getClasesDisicplinaFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///ds.disciplinaID
+        ///FROM disciplina ds
+        ///INNER JOIN clase cl ON cl.disciplinaID = ds.disciplinaID
+        ///INNER JOIN evento ev ON ev.claseID = cl.claseID
+        ///INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
+        ///WHERE evento_personaID = {0}.
+        /// </summary>
+        internal static string getDiciplinaIDEventoPersona {
+            get {
+                return ResourceManager.GetString("getDiciplinaIDEventoPersona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+        ///((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, &apos;:&apos;)))
+        ///
+        ///as horario from evento_persona ep 
+        ///inner join persona p on p.personaID=ep.personaID
+        ///inner join evento evt on ep.eventoID=evt.eventoID
+        ///inner join horarioM h on evt.horarioMID=h.horarioMID
+        ///inner join clase c on evt.claseID=c.claseID
+        ///where ep.eventoID=&apos;{0}&apos;
+        ///
+        ///;.
+        /// </summary>
+        internal static string getEventMail {
+            get {
+                return ResourceManager.GetString("getEventMail", resourceCulture);
             }
         }
         
@@ -282,6 +316,26 @@ namespace WebAPIBusiness.Resources {
         internal static string getReporteAsistenciaLog {
             get {
                 return ResourceManager.GetString("getReporteAsistenciaLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+        ///  cl.nombre as Clase,
+        ///  dsp.nombre as Disciplina,
+        ///  evt.fecha as Fecha,
+        ///  (SELECT CASE WHEN ep.asistencia = 1 THEN &apos;Si&apos; ELSE &apos;No&apos; END ) as Asistencia
+        ///  FROM evento evt
+        ///  INNER JOIN evento_profesor ep ON evt.eventoID=ep.eventoID 
+        ///  INNER JOIN persona p ON  ep.personaID=p.personaID
+        ///  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+        ///  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+        ///  Where p.personaID=&apos;{0}&apos; and evt.fecha&gt;=&apos;{1}&apos; and ev [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getReporteAsistenciaLogProf {
+            get {
+                return ResourceManager.GetString("getReporteAsistenciaLogProf", resourceCulture);
             }
         }
         

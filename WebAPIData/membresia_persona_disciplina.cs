@@ -14,6 +14,12 @@ namespace WebAPIData
     
     public partial class membresia_persona_disciplina
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public membresia_persona_disciplina()
+        {
+            this.evento_persona = new HashSet<evento_persona>();
+        }
+    
         public int membresia_persona_disciplinaID { get; set; }
         public int personaID { get; set; }
         public int membresia_disciplinaID { get; set; }
@@ -23,6 +29,8 @@ namespace WebAPIData
         public int numClasesTomadas { get; set; }
         public string estado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<evento_persona> evento_persona { get; set; }
         public virtual membresia_disciplina membresia_disciplina { get; set; }
         public virtual persona persona { get; set; }
     }

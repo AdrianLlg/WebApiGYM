@@ -39,6 +39,7 @@ namespace WebAPIBusiness.BusinessCore
                             eventoID = evtp.eventoID,
                             personaID = evtp.personaID,
                             asistencia = evtp.asistencia,
+                            membresia_persona_disciplinaID = evtp.membresia_persona_disciplinaID,
                             estadoRegistro=evtp.estadoRegistro
 
                         };
@@ -225,6 +226,12 @@ namespace WebAPIBusiness.BusinessCore
                     if (eventoPersona != null)
                     {
                         dbContext.evento_persona.Remove(eventoPersona);
+
+                        var membresiaPersonaDisciplinaDB = dbContext.membresia_persona_disciplina.Where(x => x.membresia_persona_disciplinaID == eventoPersona.membresia_persona_disciplinaID).FirstOrDefault();
+
+                        membresiaPersonaDisciplinaDB.numClasesDisponibles = membresiaPersonaDisciplinaDB.numClasesDisponibles + 1;
+                        membresiaPersonaDisciplinaDB.numClasesTomadas = membresiaPersonaDisciplinaDB.numClasesTomadas - 1;
+
                         dbContext.SaveChanges();
                         return true;
                     }
@@ -232,6 +239,7 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         return false;
                     }
+                   
                 }
 
 

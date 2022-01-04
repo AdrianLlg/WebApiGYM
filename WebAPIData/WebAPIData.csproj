@@ -68,6 +68,9 @@
     <Compile Include="evento_persona.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="evento_profesor.cs">
+      <DependentUpon>GYMDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="evento_recursoEspecial.cs">
       <DependentUpon>GYMDB.tt</DependentUpon>
     </Compile>

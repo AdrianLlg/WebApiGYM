@@ -12,6 +12,7 @@ namespace WebAPIBusiness.Entities.EventoPersona
         public int eventoID { get; set; }
         public int personaID { get; set; }
         public int asistencia { get; set; }
+        public int membresia_persona_disciplinaID { get; set; }
         public string estadoRegistro { get; set; }
     }
 }

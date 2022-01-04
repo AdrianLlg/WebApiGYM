@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.App.ConsultaEventosDeportista;
+using WebAPIBusiness.Entities.ConsultaMailCancelacion;
 using WebAPIBusiness.Entities.EventoAdmin;
 using WebAPIBusiness.Entities.EventoClasePersona;
 using WebAPIBusiness.Entities.SalaAdmin;
+using WebAPIBusiness.Resources;
 using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
@@ -487,7 +490,7 @@ namespace WebAPIBusiness.BusinessCore
                         int canCancel = int.Parse(canCancelClasses);
 
                         if (estado == "C")
-                        {                           
+                        {
                             if (!string.IsNullOrEmpty(canCancelDate))
                             {
                                 DateTime hoy = DateTime.Now;
@@ -522,7 +525,7 @@ namespace WebAPIBusiness.BusinessCore
                                             dbContext.SaveChanges();
 
                                             return true;
-                                        }                                        
+                                        }
                                     }
                                     else
                                     {
@@ -628,7 +631,9 @@ namespace WebAPIBusiness.BusinessCore
         {
             bool resp = false;
 
+
             resp = InactivarInfo(eventoID);
+            
 
             return resp;
         }
@@ -649,6 +654,7 @@ namespace WebAPIBusiness.BusinessCore
                         if (evento.estadoRegistro == "A")
                         {
                             evento.estadoRegistro = "I";
+                            enviarCorreoCancelacion(eventoID);
                         }
                         else if (evento.estadoRegistro == "I")
                         {
@@ -668,6 +674,53 @@ namespace WebAPIBusiness.BusinessCore
             {
                 return false;
             }
+        }
+         
+        private void enviarCorreoCancelacion(int eventoID)
+        {
+            List<ConsultaMailCancelacionEntity> consulta;
+            bool evtCheck= false;
+
+            using (var dbContext = new GYMDBEntities())
+            {
+                string query = string.Format(ScriptsGYMDB.getEventMail, eventoID);
+                consulta = dbContext.Database.SqlQuery<ConsultaMailCancelacionEntity>(query).ToList();
+                 evtCheck = dbContext.evento.Where(x=>x.eventoID==eventoID && x.estadoRegistro=="I").Any();
+            }
+            
+            foreach (var c in consulta) 
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+
+                    mail.From = new MailAddress("rootacc.2022@gmail.com"); mail.To.Add(c.email);
+                    mail.Subject = "Evento Cancelado: " + c.clase + "  " + c.horario;
+                    mail.Body =
+                        "<h1 style=\"color:#93E9BE\" > Evento Cancelado:</h1>" +
+                        "</br>" +
+                        "</br>"+
+                        "<p>Estimado " + c.nombres + ",</p>" +
+                        "</br>" +
+                        "<p>La clase de " + c.clase + " programada para el  " + c.fecha.ToShortDateString() + " en el horario de " + c.horario +
+                        " ha sido cancelada.Se le ha retornado esta clase.</p>" +
+                        "</br>" +
+                        "<p>Gracias por su comprensión</p>"
+                        ;
+
+                    mail.IsBodyHtml = true;
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new System.Net.NetworkCredential("rootacc.2022@gmail.com", "masteruser");
+                        smtp.EnableSsl = true; smtp.Send(mail);
+
+                    }
+                }
+
+
+            }
+
+
+
         }
     }
 }
