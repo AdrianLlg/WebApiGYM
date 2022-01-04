@@ -10,35 +10,41 @@ namespace WebAPIBusiness.BusinessCore
 {
     public class EventoClasePersonaBO { 
 
-        public List<EventoClasePersonaEntity> ConsultarHorario(string personaID,string fecha)
+        public List<EventoClasePersonaEntity> ConsultarHorario(int personaID)
         {
-            List<EventoClasePersonaEntity> eventosClasePersona = getConsultarHorarios(personaID,fecha);
+            List<EventoClasePersonaEntity> eventosClasePersona = getConsultarHorarios(personaID);
 
             return eventosClasePersona;
         }
 
-        private List<EventoClasePersonaEntity> getConsultarHorarios(string personaID,string fecha)
+        private List<EventoClasePersonaEntity> getConsultarHorarios(int personaID)
         {
             
             try
             {
                 DateTime hoy = DateTime.Now;
+                var recEspecial = string.Empty;
+
                 List<EventoClasePersonaEntity> eventosClasePersona = new List<EventoClasePersonaEntity>();
-
-                int personID = int.Parse(personaID);
-
 
                 using (var dbContext = new GYMDBEntities())
                 {
-                    var query = dbContext.evento_persona.Where(x => x.personaID == personID && x.estadoRegistro == "A").ToList();
+                    dbContext.Database.Log = log => System.Diagnostics.Debug.WriteLine(log);
 
+                    var query = dbContext.evento_persona.Where(x => x.personaID == personaID && x.estadoRegistro == "A" && x.evento.fecha > hoy).ToList();
 
                     if (query.Count > 0)
                     {
                         foreach (var item in query)
                         {
-
                             var asistentes = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.asistencia == 1 && x.estadoRegistro == "A").ToList().Count;
+
+                            var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.personaID == personaID && x.eventoID == item.eventoID).FirstOrDefault();
+
+                            if (recursoEspecial != null)
+                            {
+                                recEspecial = recursoEspecial.recursoEspecial.nombre + "-" + recursoEspecial.recursoEspecial.descripcion;
+                            }
 
                             eventosClasePersona.Add(new EventoClasePersonaEntity { 
                             
@@ -46,16 +52,19 @@ namespace WebAPIBusiness.BusinessCore
                                 NombreInstructor = item.evento.persona.nombres + " "+ item.evento.persona.apellidos,
                                 Sala = item.evento.sala.nombre,
                                 AforoMaximoClase = item.evento.aforoMax,
-                                fecha = item.evento.fecha,
+                                fecha = item.evento.fecha.ToString("yyyy-MM-dd"),
                                 Asistentes = asistentes,
-                                
-                            
+                                recursoEspecial = recEspecial,
+                                horaInicio = item.evento.horarioM.horaInicio,
+                                horaFin = item.evento.horarioM.horaFin,
+                                Disciplina = item.evento.clase.disciplina.nombre,
+                                AforoMinimoClase = item.evento.aforoMin                                
                             });
                         }
                     }
                     else
                     {
-                        throw new ValidationAndMessageException("NoAgendamientos");
+                       return eventosClasePersona = new List<EventoClasePersonaEntity>();
                     }
 
                 }

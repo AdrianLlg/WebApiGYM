@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WebAPIBusiness.Entities.EventoClasePersona;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
 using WebAPIUI.Models.EventoClasePersona;
 
@@ -19,7 +20,7 @@ namespace WebAPIUI.Controllers.EventoClasePersona.Models
         /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<EventoClasePersonaModel> Content { get; set; }
+        public List<EventoClasePersonaEntity> Content { get; set; }
 
     }
 }

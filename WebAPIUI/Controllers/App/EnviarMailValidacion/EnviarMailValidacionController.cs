@@ -53,7 +53,6 @@ namespace WebAPIUI.Controllers.App.EnviarMailValidacion
         }
 
 
-
         /// <summary>
         /// Modificar informacion personal del usuario
         /// </summary>

@@ -99,28 +99,7 @@ namespace WebAPIUI.Helpers
 
             List<EventoClasePersonaModel> response = new List<EventoClasePersonaModel>();
 
-            foreach (var entity in entities)
-            {
-                var item = new EventoClasePersonaModel
-                {
-                    EventoID = entity.EventoID,
-                    Clase = entity.Clase,
-                    Sala = entity.Sala,
-                    NombreInstructor = entity.NombreInstructor,
-                    Descripcion = entity.Descripcion,
-                    fecha = entity.fecha.ToString("yyyy-MM-dd"),
-                    horaInicio = entity.horaInicio,
-                    horaFin = entity.horaFin,
-                    Asistentes = entity.Asistentes,
-                    AforoMaximoClase = entity.AforoMaximoClase,
-                    AforoMinimoClase = entity.AforoMinimoClase,
-                    ClaseAgendada = entity.ClaseAgendada,
-                    recursosEspeciales = entity.recursosEspeciales
-                };
-
-
-                response.Add(item);
-            }
+            
             return response;
         }
         #endregion

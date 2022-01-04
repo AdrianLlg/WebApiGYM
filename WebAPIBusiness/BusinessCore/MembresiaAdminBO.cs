@@ -507,6 +507,13 @@ namespace WebAPIBusiness.BusinessCore
             {
                 if (personaID > 0 && membresiaID > 0)
                 {
+                    bool validationPreviousSol = validatePreviousRequest(personaID, membresiaID);
+
+                    if (validationPreviousSol)
+                    {
+                        throw new ValidationAndMessageException("SolicitudPrevia");
+                    }
+
                     MembresiaPersonaPagoEntity item = hasPreviousMembership(personaID, membresiaID, out monthsToAddM);
 
                     if (item != null)
@@ -540,6 +547,24 @@ namespace WebAPIBusiness.BusinessCore
                 throw new ValidationAndMessageException(ex.Message);
             }
 
+        }
+
+        private bool validatePreviousRequest(int personaID, int membresiaID)
+        {
+            bool response = false;
+
+
+            using (var dbContext = new GYMDBEntities())
+            {
+                var query = dbContext.sol_membresiaPago.Where(x => x.membresiaID == membresiaID && x.personaID == personaID).FirstOrDefault();
+
+                if (query != null)
+                {
+                    response = true;
+                }
+            }
+
+            return response;
         }
 
         private MembresiaPersonaPagoEntity hasPreviousMembership(int personaID, int membresiaID, out int daysToAdd)

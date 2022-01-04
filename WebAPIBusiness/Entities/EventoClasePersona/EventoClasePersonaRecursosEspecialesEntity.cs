@@ -9,14 +9,10 @@ namespace WebAPIBusiness.Entities.EventoClasePersona
     public class EventoClasePersonaRecursosEspecialesEntity
     {
         public int eventoRecursoID { get; set; }
-
         public int eventoID { get; set;}
-
         public int recursoEspecialID { get; set; }
         public string nombreRecurso { get; set; }
-
         public string descripcionRecurso { get; set; }
-
         public int? personaID { get; set; }
 
     }

@@ -353,7 +353,7 @@ namespace WebAPIBusiness.BusinessCore
 
                             var estadoPersona = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.personaID == personaID).FirstOrDefault();
 
-                            var recursosEspeciales = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID).ToList();
+                            var recursosEspeciales = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID && x.personaID == 0).ToList();
 
                             if (estadoPersona == null)
                             {
@@ -490,11 +490,17 @@ namespace WebAPIBusiness.BusinessCore
                         {                           
                             if (!string.IsNullOrEmpty(canCancelDate))
                             {
-                                DateTime validation = DateTime.Now.AddHours(-val);
+                                DateTime hoy = DateTime.Now;
 
-                                if (DateTime.Now < validation)
+                                var recordHoraI = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
+
+                                DateTime fechaInicio = DateTime.ParseExact(recordHoraI.fecha.ToString("yyyy-MM-dd") + " " + recordHoraI.horarioM.horaInicio, "yyyy-MM-dd HHmm", CultureInfo.InvariantCulture);
+
+                                fechaInicio = fechaInicio.AddHours(-val);
+
+                                if (hoy <= fechaInicio)
                                 {                                  
-                                    if (record.intentosCancelar <= canCancel)
+                                    if (record.intentosCancelar < canCancel)
                                     {
                                         if (recursosEvento)
                                         {
@@ -535,8 +541,7 @@ namespace WebAPIBusiness.BusinessCore
                         }
                         else if (estado == "A")
                         {
-                            if (record.intentosCancelar < canCancel)
-                            {
+                            
                                 if (recursosEvento)
                                 {
                                     var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
@@ -548,12 +553,7 @@ namespace WebAPIBusiness.BusinessCore
                                 record.asistencia = 1;
                                 dbContext.SaveChanges();
 
-                                return true;
-                            }
-                            else
-                            {
-                                throw new ValidationAndMessageException("IntentosCancelar");
-                            }                            
+                                return true;                           
                         }
                         else
                         {

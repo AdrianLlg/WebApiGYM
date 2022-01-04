@@ -30,7 +30,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Busca las eventoClasePersona de esa persona
         /// </summary>
-        private List<EventoClasePersonaEntity> horarioUser(string personaID,string fecha)
+        private List<EventoClasePersonaEntity> horarioUser(int personaID)
         {
             EventoClasePersonaBO bo = new EventoClasePersonaBO();
             List<string> messages = new List<string>();
@@ -38,7 +38,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                eventoClasePersona = bo.ConsultarHorario(personaID,fecha);
+                eventoClasePersona = bo.ConsultarHorario(personaID);
             }
             catch (ValidationAndMessageException ConsultaRepositorioImagenesException)
             {
@@ -72,14 +72,14 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                List<EventoClasePersonaEntity> eventoClasePersona = horarioUser(dataRequest.personaID,dataRequest.fechaEvento);
+                List<EventoClasePersonaEntity> eventoClasePersona = horarioUser(dataRequest.personaID);
 
                 if (eventoClasePersona.Count > 0)
                 {
-                    resp = EntitesHelper.EventoClasePersonaEntityToModel(eventoClasePersona);
+                    //resp = EntitesHelper.EventoClasePersonaEntityToModel(eventoClasePersona);
                     response.ResponseCode = EventoClasePersonaResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";
-                    response.Content = resp;
+                    response.Content = eventoClasePersona;
                 }
                 else
                 {
