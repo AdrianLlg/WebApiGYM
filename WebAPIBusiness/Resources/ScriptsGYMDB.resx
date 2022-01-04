@@ -312,6 +312,20 @@ HAVING COUNT(*) &gt; 0</value>
 
 </value>
   </data>
+  <data name="getReporteAsistenciaLogProf" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  evt.fecha as Fecha,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_profesor ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'</value>
+  </data>
   <data name="getReporteGeneralAsistenciaCA" xml:space="preserve">
     <value>SELECT 
   dsp.nombre as Disciplina,
