@@ -310,6 +310,10 @@ INNER JOIN membresia M on MD.membresiaID = M.membresiaID
 INNER JOIN disciplina D on MD.disciplinaID = D.disciplinaID
 WHERE MPD.personaID = {0}</value>
   </data>
+  <data name="getNoticiasApp" xml:space="preserve">
+    <value>SELECT* FROM noticia nt
+  where nt.fechaInicio&lt;=Convert(date, getdate()) and nt.fechaFin&gt;=Convert(date, getdate()) and nt.estadoRegistro='A'</value>
+  </data>
   <data name="getPerfil" xml:space="preserve">
     <value>SELECT u.usuarioID,p.personaID,rolePID,nombres,apellidos,identificacion,u.email,u.password,telefono,edad,sexo,fechaNacimiento,fechaCreacion,estado
   FROM persona p

@@ -61,6 +61,8 @@ using WebAPIBusiness.Entities.App.ConsultaFichaPersona;
 using WebAPIUI.Models.ConsultaFichaPersona;
 using WebAPIUI.Models.ConsultaFichaEntrenamiento;
 using WebAPIBusiness.Entities.App.ConsultaFichaEntrenamiento;
+using WebAPIBusiness.Entities.App.ConsultaNoticias;
+using WebAPIUI.Models.ConsultaNoticias;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -1241,9 +1243,51 @@ namespace WebAPIUI.Helpers
 
             return response;
         }
+        #endregion 
+
+        #region ConsultaNoticia
+        public static List<ConsultaNoticiasModel> ConsultaNoticiaEntityToModel(List<ConsultaNoticiaEntity> entities)
+        {
+
+            List<ConsultaNoticiasModel> response = new List<ConsultaNoticiasModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaNoticiasModel
+                {
+                    noticiaID = entity.noticiaID,
+                    titulo = entity.titulo,
+                    contenido = entity.contenido,
+                    imagen = entity.imagen,
+                    fechaInicio = entity.fechaInicio.ToString(),
+                    fechaFin = entity.fechaFin.ToString(),
+                    estadoRegistro = entity.estadoRegistro
+
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static ConsultaNoticiasModel NoticiaInfoEntityToModel(ConsultaNoticiaEntity entity)
+        {
+
+            ConsultaNoticiasModel response = new ConsultaNoticiasModel
+            {
+                noticiaID = entity.noticiaID,
+                titulo = entity.titulo,
+                contenido = entity.contenido,
+                imagen = entity.imagen,
+                fechaInicio = entity.fechaInicio.ToString(),
+                fechaFin = entity.fechaFin.ToString(),
+                estadoRegistro = entity.estadoRegistro
+
+            };
+
+            return response;
+        }
         #endregion
-
-
 
 
     }

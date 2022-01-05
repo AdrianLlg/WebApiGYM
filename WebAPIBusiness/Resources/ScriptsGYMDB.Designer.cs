@@ -312,6 +312,16 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT* FROM noticia nt
+        ///  where nt.fechaInicio&lt;=Convert(date, getdate()) and nt.fechaFin&gt;=Convert(date, getdate()) and nt.estadoRegistro=&apos;A&apos;.
+        /// </summary>
+        internal static string getNoticiasApp {
+            get {
+                return ResourceManager.GetString("getNoticiasApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT u.usuarioID,p.personaID,rolePID,nombres,apellidos,identificacion,u.email,u.password,telefono,edad,sexo,fechaNacimiento,fechaCreacion,estado
         ///  FROM persona p
         ///  INNER JOIN usuario u ON p.personaID=u.personaID

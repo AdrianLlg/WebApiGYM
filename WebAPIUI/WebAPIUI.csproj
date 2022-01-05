@@ -255,6 +255,9 @@
     <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataRequest.cs" />
     <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataResponse.cs" />
     <Compile Include="Controllers\App\ConsultaFichaPersona\ConsultaFichaPersonaController.cs" />
+    <Compile Include="Controllers\App\ConsultaNoticias\ConsultaNoticiasController.cs" />
+    <Compile Include="Controllers\App\ConsultaNoticias\Models\ConsultaNoticiasDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaNoticias\Models\ConsultaNoticiasDataResponse.cs" />
     <Compile Include="Controllers\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionController.cs" />
     <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataRequest.cs" />
     <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataResponse.cs" />
@@ -302,6 +305,7 @@
     <Compile Include="CustomExceptions\App\EnviarMailValidacion\EnviarMailValidacion.cs" />
     <Compile Include="CustomExceptions\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionException.cs" />
     <Compile Include="CustomExceptions\App\ModificacionDatosPersonales\ModificacionDatosPersonalesException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaNoticias\ConsultaNoticiasException.cs" />
     <Compile Include="CustomExceptions\ConsultaPerfil\ConsultaPerfilException.cs" />
     <Compile Include="CustomExceptions\EventoPersona\EventoPersonaException.cs" />
     <Compile Include="CustomExceptions\Fichas\FichaEntrenamientoException.cs" />
@@ -364,6 +368,7 @@
     <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
     <Compile Include="Models\MembresiasAdmin\NuevaMembresiaPersonaModel.cs" />
     <Compile Include="Models\Membresias\MembresiasModel.cs" />
+    <Compile Include="Models\ConsultaNoticias\ConsultaNoticiasModel.cs" />
     <Compile Include="Models\NoticiaAdmin\NoticiaAdminModel.cs" />
     <Compile Include="Models\RecursoEspecialAdmin\RecursoEspecialAdminModel.cs" />
     <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
