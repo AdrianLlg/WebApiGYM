@@ -81,6 +81,10 @@ using WebAPIUI.Controllers.CRUDSalaRecurso.Models;
 using WebAPIUI.Controllers.CRUDSalaAdmin.Models;
 using WebAPIUI.CustomExceptions.SalaRecursoEspecial;
 using WebAPIUI.Controllers.CRUDSalaRecursoEspecialEspecial.Models;
+using WebAPIUI.Controllers.ConsultaFichaPersona.Models;
+using WebAPIUI.CustomExceptions.ConsultaFichaPersona;
+using WebAPIUI.CustomExceptions.ConsultaFichaEntrenamiento;
+using WebAPIUI.Controllers.ConsultaFichaEntrenamiento.Models;
 #endregion
 
 namespace WebAPIUI.Controllers
@@ -1095,6 +1099,46 @@ namespace WebAPIUI.Controllers
             response.ResponseCode = code;
             response.ResponseMessage = message;
             response.Content = false;
+        }
+        #endregion
+
+        #region ConsultaFichaPersonaException Exceptions
+        internal static void ThrowHandledExceptionConsultaFichaPersonaException(ConsultaFichaPersonaResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaFichaPersonaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaFichaPersonaException(ConsultaFichaPersonaResponseType type, Exception ex)
+        {
+            throw new ConsultaFichaPersonaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaFichaPersonaException(ConsultaFichaPersonaResponseType code, ConsultaFichaPersonaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region ConsultaFichaEntrenamientoException Exceptions
+        internal static void ThrowHandledExceptionConsultaFichaEntrenamientoException(ConsultaFichaEntrenamientoResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaFichaEntrenamientoException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaFichaEntrenamientoException(ConsultaFichaEntrenamientoResponseType type, Exception ex)
+        {
+            throw new ConsultaFichaEntrenamientoException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaFichaEntrenamientoException(ConsultaFichaEntrenamientoResponseType code, ConsultaFichaEntrenamientoDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
         }
         #endregion
     }

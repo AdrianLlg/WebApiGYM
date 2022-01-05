@@ -179,7 +179,7 @@ namespace WebAPIBusiness.BusinessCore
                             rec.Observaciones = Observaciones;
                         }
 
-                        rec.fichaPersonaID = fichaPersonaID;
+                         
                         rec.ProfesorID = ProfesorID;
                         rec.DiciplinaID = DiciplinaID;
                         rec.Altura = Altura;

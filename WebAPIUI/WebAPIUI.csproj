@@ -249,6 +249,12 @@
     <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\RegistroMembresiaUsuarioController.cs" />
     <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataRequest.cs" />
     <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoController.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaEntrenamiento\Models\ConsultaFichaEntrenamientoDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaEntrenamiento\Models\ConsultaFichaEntrenamientoDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaPersona\ConsultaFichaPersonaController.cs" />
     <Compile Include="Controllers\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionController.cs" />
     <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataRequest.cs" />
     <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataResponse.cs" />
@@ -290,7 +296,9 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaFichaPersona\ConsultaFichaPersonaException.cs" />
     <Compile Include="CustomExceptions\App\EnviarMailValidacion\EnviarMailValidacion.cs" />
     <Compile Include="CustomExceptions\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionException.cs" />
     <Compile Include="CustomExceptions\App\ModificacionDatosPersonales\ModificacionDatosPersonalesException.cs" />
@@ -336,6 +344,8 @@
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
     <Compile Include="Models\ConfiguracionesSistema\ConfiguracionesSistemaModel.cs" />
+    <Compile Include="Models\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoModel.cs" />
+    <Compile Include="Models\ConsultaFichaPersona\ConsultaFichaPersonaModel.cs" />
     <Compile Include="Models\ConsultaPerfilModel\ConsultaPerfilModel.cs" />
     <Compile Include="Models\ConsultaPersonaEstado\ConsultaPersonaEstadoModel.cs" />
     <Compile Include="Models\ConsultaRepEventoSala\ConsultaRepEventoSalaModel.cs" />

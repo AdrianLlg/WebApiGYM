@@ -52,10 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessCore\App\PersonaUsuarioBO.cs" />
+    <Compile Include="BusinessCore\ConsultaFichasEntrenamientoAppBO .cs" />
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
     <Compile Include="BusinessCore\EventoPersonaBO.cs" />
     <Compile Include="BusinessCore\FichaEntrenamientoBO.cs" />
     <Compile Include="BusinessCore\FichaPersonaBO.cs" />
+    <Compile Include="BusinessCore\ConsultaFichasPersonaAppBO.cs" />
     <Compile Include="BusinessCore\ReporteGeneralAsistenciaBO.cs" />
     <Compile Include="BusinessCore\ReporteVentasMembresiasBO.cs" />
     <Compile Include="BusinessCore\SalaRecursoEspecialBO.cs" />
@@ -89,6 +91,9 @@
     <Compile Include="BusinessCore\SolicitudesMembresiasBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\App\ConsultaEventosDeportista\EventosDeportistaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoEntity.cs" />
+    <Compile Include="Entities\App\ConsultaFichaPersona\ConsultaFichaPersonaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaFIchas\ConsultaFichasEntity.cs" />
     <Compile Include="Entities\App\MembresiasPersona\MembresiasPersonaEntity.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
