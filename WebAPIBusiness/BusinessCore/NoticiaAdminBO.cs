@@ -29,7 +29,7 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    Noticias = dbContext.noticias.ToList();
+                    Noticias = dbContext.noticia.ToList();
                 }
 
                 if (Noticias.Count > 0)

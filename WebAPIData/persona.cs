@@ -21,10 +21,10 @@ namespace WebAPIData
             this.evento_persona = new HashSet<evento_persona>();
             this.fichaEntrenamiento = new HashSet<fichaEntrenamiento>();
             this.fichaPersona = new HashSet<fichaPersona>();
+            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
             this.membresia_persona_pago = new HashSet<membresia_persona_pago>();
             this.sol_membresiaPago = new HashSet<sol_membresiaPago>();
             this.usuario = new HashSet<usuario>();
-            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
         }
     
         public int personaID { get; set; }
@@ -49,13 +49,13 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<fichaPersona> fichaPersona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<membresia_persona_pago> membresia_persona_pago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sol_membresiaPago> sol_membresiaPago { get; set; }
         public virtual roleP roleP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuario> usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
     }
 }
