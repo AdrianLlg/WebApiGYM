@@ -79,8 +79,6 @@ namespace WebAPIUI.Controllers.App.ConsultaNoticias
                 ValidatePostRequest(dataRequest);
 
 
-
-
                 List<ConsultaNoticiaEntity> model = new List<ConsultaNoticiaEntity>();
                 model = consultarEventos(dataRequest);
 
