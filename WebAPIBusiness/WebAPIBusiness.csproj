@@ -89,6 +89,7 @@
     <Compile Include="BusinessCore\SolicitudesMembresiasBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\App\ConsultaEventosDeportista\EventosDeportistaEntity.cs" />
+    <Compile Include="Entities\App\MembresiasPersona\MembresiasPersonaEntity.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaMailCancelacion\ConsultaMailCancelacionEntity.cs" />

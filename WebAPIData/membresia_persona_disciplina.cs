@@ -21,6 +21,7 @@ namespace WebAPIData
         }
     
         public int membresia_persona_disciplinaID { get; set; }
+        public int membresia_persona_pagoID { get; set; }
         public int personaID { get; set; }
         public int membresia_disciplinaID { get; set; }
         public Nullable<System.DateTime> fechaInicio { get; set; }
@@ -32,6 +33,7 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_persona> evento_persona { get; set; }
         public virtual membresia_disciplina membresia_disciplina { get; set; }
+        public virtual membresia_persona_pago membresia_persona_pago { get; set; }
         public virtual persona persona { get; set; }
     }
 }
