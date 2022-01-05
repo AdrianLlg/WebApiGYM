@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.App.ConsultaEventosDeportista;
+using WebAPIBusiness.Entities.App.MembresiasPersona;
 using WebAPIBusiness.Entities.ConsultaMailCancelacion;
 using WebAPIBusiness.Entities.EventoAdmin;
 using WebAPIBusiness.Entities.EventoClasePersona;
@@ -370,6 +371,8 @@ namespace WebAPIBusiness.BusinessCore
 
                             if (recursosEspeciales.Count > 0)
                             {
+                                recursosEspecialesList = new List<EventoClasePersonaRecursosEspecialesEntity>();
+
                                 foreach (var i in recursosEspeciales)
                                 {
                                     recursosEspecialesList.Add(new EventoClasePersonaRecursosEspecialesEntity
@@ -433,10 +436,35 @@ namespace WebAPIBusiness.BusinessCore
         public bool RegisterEventUser(int personaID, int eventoID, string estado, int recursoAsignado, bool recursosEvento)
         {
             bool insertData = false;
-
+            int eventDiscipline = 0;
             try
             {
-                insertData = InsertEventUser(personaID, eventoID, estado, recursoAsignado, recursosEvento);
+                if (personaID > 0 && eventoID > 0)
+                {
+                    eventDiscipline = getEventDiscipline(eventoID);
+
+                    if (eventDiscipline > 0)
+                    {
+                        int membresiaPersonaDisciplina = PersonMemberships(personaID, eventDiscipline);
+
+                        if (membresiaPersonaDisciplina > 0)
+                        {
+                            insertData = InsertEventUser(personaID, eventoID, estado, recursoAsignado, recursosEvento, membresiaPersonaDisciplina);
+                        }
+                        else
+                        {
+                            throw new ValidationAndMessageException("No se encontró una membresia ligada al usuario para vincularlo con el evento.");
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    throw new ValidationAndMessageException("Los IDs proporcionados son incorrectos.");
+                }
             }
             catch (Exception ex)
             {
@@ -446,7 +474,7 @@ namespace WebAPIBusiness.BusinessCore
             return insertData;
         }
 
-        private bool InsertEventUser(int personaID, int eventoID, string estado, int recursoAsignadoID, bool recursosEvento)
+        private bool InsertEventUser(int personaID, int eventoID, string estado, int recursoAsignadoID, bool recursosEvento, int membresiaPersonaDisciplinaID)
         {
             try
             {
@@ -465,6 +493,7 @@ namespace WebAPIBusiness.BusinessCore
                             var recurso = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
 
                             recurso.personaID = personaID;
+                            dbContext.SaveChanges();
                         }
 
                         evento_persona obj = new evento_persona
@@ -472,10 +501,17 @@ namespace WebAPIBusiness.BusinessCore
                             eventoID = eventoID,
                             personaID = personaID,
                             asistencia = 1,
-                            estadoRegistro = "A"
+                            estadoRegistro = "A",
+                            membresia_persona_disciplinaID = membresiaPersonaDisciplinaID
                         };
 
                         dbContext.evento_persona.Add(obj);
+                        dbContext.SaveChanges();
+
+                        var membresiaPDObj = dbContext.membresia_persona_disciplina.Where(x => x.membresia_persona_disciplinaID == membresiaPersonaDisciplinaID).FirstOrDefault();
+
+                        membresiaPDObj.numClasesDisponibles = membresiaPDObj.numClasesDisponibles - 1;
+                        membresiaPDObj.numClasesTomadas = membresiaPDObj.numClasesTomadas + 1;
                         dbContext.SaveChanges();
 
                         return true;
@@ -718,9 +754,69 @@ namespace WebAPIBusiness.BusinessCore
 
 
             }
+        }
 
+        public int PersonMemberships(int personaID, int eventDiscipline)
+        {
+            try
+            {
+                int response = 0;
 
+                using (var dbContext = new GYMDBEntities())
+                {
+                    dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
+                    var items = dbContext.membresia_persona_pago.Where(x => x.personaID == personaID && x.estado == "A").OrderBy(x => x.membresia_persona_pagoID).ToList();
+
+                    if (items.Count > 0)
+                    {
+                        foreach (var item in items)
+                        {
+                            response = dbContext.membresia_persona_disciplina
+                                .Where(x => x.membresia_persona_pagoID == item.membresia_persona_pagoID 
+                                    && x.estado == "A" 
+                                    && x.membresia_disciplina.disciplinaID == eventDiscipline)
+                                .Select(x => x.membresia_persona_disciplinaID)
+                                .FirstOrDefault();
+                            
+                            if (response > 0)
+                            {
+                                return response;
+                            }
+                        }
+
+                        return response;
+                    }
+                    else
+                    {
+                        return response;
+                    }
+               }
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.Message);
+            }
+
+        }
+
+        public int getEventDiscipline(int eventoID)
+        {
+            int response = 0;
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    response = dbContext.evento.Where(x => x.eventoID == eventoID).Select(x => x.clase.disciplinaID).FirstOrDefault();
+
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
     }
 }

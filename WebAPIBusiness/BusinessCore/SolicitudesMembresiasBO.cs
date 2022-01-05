@@ -108,6 +108,7 @@ namespace WebAPIBusiness.BusinessCore
                                     membresia_persona_disciplina query = new membresia_persona_disciplina()
                                     {
                                         personaID = objmembresia_persona_pago.personaID,
+                                        membresia_persona_pagoID = objmembresia_persona_pago.membresia_persona_pagoID,
                                         membresia_disciplinaID = entity.membresia_disciplinaID,
                                         fechaInicio = objmembresia_persona_pago.fechaInicioMembresia,
                                         fechaFin = (DateTime)objmembresia_persona_pago.fechaFinMembresia,
@@ -129,7 +130,7 @@ namespace WebAPIBusiness.BusinessCore
 
                                 return true;
                             }
-                            //Eliminar Solicitu
+                            //Eliminar Solicitud
                             else
                             {
                                 dbContext.sol_membresiaPago.Remove(objectSol);

@@ -268,6 +268,7 @@ namespace WebAPIBusiness.BusinessCore
                 DateTime fechaTrans = Convert.ToDateTime(fechaTransaccion);
                 int monthsToAdd = 0;
                 bool verifyInsert = false;
+                int membershipID = 0;
 
                 if (personaID > 0 && membresiaID > 0)
                 {
@@ -279,11 +280,11 @@ namespace WebAPIBusiness.BusinessCore
 
                         if (disciplinas.Count > 0)
                         {
-                            resp = insertNewPersonMembershipDB(personaID, disciplinas, fechaIMembresia, monthsToAdd);
+                            membershipID = insertNewMembershipDB_Pago(personaID, membresiaID, fechaIMembresia, formaPago, fechaTrans, nroDocumento, tipoBanco, monthsToAdd);
 
-                            if (resp)
+                            if (membresiaID > 0)
                             {
-                                resp = insertNewMembershipDB_Pago(personaID, membresiaID, fechaIMembresia, formaPago, fechaTrans, nroDocumento, tipoBanco, monthsToAdd);
+                                resp = insertNewPersonMembershipDB(personaID, disciplinas, fechaIMembresia, monthsToAdd, membershipID);
                             }
                         }
                         else
@@ -383,7 +384,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private bool insertNewPersonMembershipDB(int personaID, List<MembresiaDisciplinaEntity> entities, DateTime fechaIMembresia, int monthsToAdd)
+        private bool insertNewPersonMembershipDB(int personaID, List<MembresiaDisciplinaEntity> entities, DateTime fechaIMembresia, int monthsToAdd, int membershipID)
         {
             membresia_persona_disciplina query = new membresia_persona_disciplina();
 
@@ -396,6 +397,7 @@ namespace WebAPIBusiness.BusinessCore
                         query = new membresia_persona_disciplina()
                         {
                             personaID = personaID,
+                            membresia_persona_pagoID = membershipID,
                             membresia_disciplinaID = entity.membresia_disciplinaID,
                             fechaInicio = fechaIMembresia,
                             fechaFin = fechaIMembresia.AddMonths(monthsToAdd),
@@ -416,7 +418,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private bool insertNewMembershipDB_Pago(int personaID, int membresiaID, DateTime fechaInicioMembresia, string formaPago, DateTime fechaTransaccion, string nroDocumento, string tipoBanco, int monthsToAdd)
+        private int insertNewMembershipDB_Pago(int personaID, int membresiaID, DateTime fechaInicioMembresia, string formaPago, DateTime fechaTransaccion, string nroDocumento, string tipoBanco, int monthsToAdd)
         {
             try
             {
@@ -439,7 +441,12 @@ namespace WebAPIBusiness.BusinessCore
                     dbContext.membresia_persona_pago.Add(query);
                     dbContext.SaveChanges();
 
-                    return true;
+
+                    int resp = dbContext.membresia_persona_pago
+                            .Where(x => x.formaPago == formaPago && x.fechaTransaccion == fechaTransaccion && x.nroDocumento == nroDocumento && x.Banco == tipoBanco)
+                            .Select(x => x.membresia_persona_pagoID).FirstOrDefault();
+
+                    return resp;
                 }
             }
             catch (Exception ex)
@@ -556,7 +563,7 @@ namespace WebAPIBusiness.BusinessCore
 
             using (var dbContext = new GYMDBEntities())
             {
-                var query = dbContext.sol_membresiaPago.Where(x => x.membresiaID == membresiaID && x.personaID == personaID).FirstOrDefault();
+                var query = dbContext.sol_membresiaPago.Where(x => x.membresiaID == membresiaID && x.personaID == personaID && x.estado == "A").FirstOrDefault();
 
                 if (query != null)
                 {

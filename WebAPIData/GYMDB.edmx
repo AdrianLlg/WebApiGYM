@@ -148,10 +148,11 @@
             <PropertyRef Name="membresia_persona_disciplinaID" />
           </Key>
           <Property Name="membresia_persona_disciplinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="membresia_persona_pagoID" Type="int" Nullable="false" />
           <Property Name="personaID" Type="int" Nullable="false" />
           <Property Name="membresia_disciplinaID" Type="int" Nullable="false" />
-          <Property Name="fechaInicio" Type="date" />
-          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="fechaInicio" Type="datetime" />
+          <Property Name="fechaFin" Type="datetime" Nullable="false" />
           <Property Name="numClasesDisponibles" Type="int" Nullable="false" />
           <Property Name="numClasesTomadas" Type="int" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="5" Nullable="false" />
@@ -446,6 +447,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="membresiaPPID_fk">
+          <End Role="membresia_persona_pago" Type="Self.membresia_persona_pago" Multiplicity="1" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia_persona_pago">
+              <PropertyRef Name="membresia_persona_pagoID" />
+            </Principal>
+            <Dependent Role="membresia_persona_disciplina">
+              <PropertyRef Name="membresia_persona_pagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="persona_fEntrenamiento_fk">
           <End Role="fichaPersona" Type="Self.fichaPersona" Multiplicity="1" />
           <End Role="fichaEntrenamiento" Type="Self.fichaEntrenamiento" Multiplicity="*" />
@@ -686,6 +699,10 @@
             <End Role="membresia" EntitySet="membresia" />
             <End Role="sol_membresiaPago" EntitySet="sol_membresiaPago" />
           </AssociationSet>
+          <AssociationSet Name="membresiaPPID_fk" Association="Self.membresiaPPID_fk">
+            <End Role="membresia_persona_pago" EntitySet="membresia_persona_pago" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
+          </AssociationSet>
           <AssociationSet Name="persona_fEntrenamiento_fk" Association="Self.persona_fEntrenamiento_fk">
             <End Role="fichaPersona" EntitySet="fichaPersona" />
             <End Role="fichaEntrenamiento" EntitySet="fichaEntrenamiento" />
@@ -915,15 +932,17 @@
             <PropertyRef Name="membresia_persona_disciplinaID" />
           </Key>
           <Property Name="membresia_persona_disciplinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="membresia_persona_pagoID" Type="Int32" Nullable="false" />
           <Property Name="personaID" Type="Int32" Nullable="false" />
           <Property Name="membresia_disciplinaID" Type="Int32" Nullable="false" />
-          <Property Name="fechaInicio" Type="DateTime" Precision="0" />
-          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="numClasesDisponibles" Type="Int32" Nullable="false" />
           <Property Name="numClasesTomadas" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="evento_persona" Relationship="Self.membresia_persona_disciplinaID_fk" FromRole="membresia_persona_disciplina" ToRole="evento_persona" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia_disciplinaIDfk" FromRole="membresia_persona_disciplina" ToRole="membresia_disciplina" />
+          <NavigationProperty Name="membresia_persona_pago" Relationship="Self.membresiaPPID_fk" FromRole="membresia_persona_disciplina" ToRole="membresia_persona_pago" />
           <NavigationProperty Name="persona" Relationship="Self.PersonaIdMPD_fk" FromRole="membresia_persona_disciplina" ToRole="persona" />
         </EntityType>
         <EntityType Name="membresia_persona_pago">
@@ -941,6 +960,7 @@
           <Property Name="Banco" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="membresia" Relationship="Self.MembresiaIdMPP_fk" FromRole="membresia_persona_pago" ToRole="membresia" />
+          <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.membresiaPPID_fk" FromRole="membresia_persona_pago" ToRole="membresia_persona_disciplina" />
           <NavigationProperty Name="sol_membresiaPago" Relationship="Self.membresia_persona_pagoID_fk" FromRole="membresia_persona_pago" ToRole="sol_membresiaPago" />
           <NavigationProperty Name="persona" Relationship="Self.PersonaIdMPP_fk" FromRole="membresia_persona_pago" ToRole="persona" />
         </EntityType>
@@ -1289,6 +1309,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="membresiaPPID_fk">
+          <End Role="membresia_persona_pago" Type="Self.membresia_persona_pago" Multiplicity="1" />
+          <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="membresia_persona_pago">
+              <PropertyRef Name="membresia_persona_pagoID" />
+            </Principal>
+            <Dependent Role="membresia_persona_disciplina">
+              <PropertyRef Name="membresia_persona_pagoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="PersonaIdMPD_fk">
           <End Role="persona" Type="Self.persona" Multiplicity="1" />
           <End Role="membresia_persona_disciplina" Type="Self.membresia_persona_disciplina" Multiplicity="*" />
@@ -1497,6 +1529,10 @@
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
             <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
           </AssociationSet>
+          <AssociationSet Name="membresiaPPID_fk" Association="Self.membresiaPPID_fk">
+            <End Role="membresia_persona_pago" EntitySet="membresia_persona_pago" />
+            <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
+          </AssociationSet>
           <AssociationSet Name="PersonaIdMPD_fk" Association="Self.PersonaIdMPD_fk">
             <End Role="persona" EntitySet="persona" />
             <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
@@ -1694,6 +1730,7 @@
             <EntityTypeMapping TypeName="GYMDBModel.membresia_persona_disciplina">
               <MappingFragment StoreEntitySet="membresia_persona_disciplina">
                 <ScalarProperty Name="membresia_persona_disciplinaID" ColumnName="membresia_persona_disciplinaID" />
+                <ScalarProperty Name="membresia_persona_pagoID" ColumnName="membresia_persona_pagoID" />
                 <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="membresia_disciplinaID" ColumnName="membresia_disciplinaID" />
                 <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />

@@ -17,6 +17,7 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public membresia_persona_pago()
         {
+            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
             this.sol_membresiaPago = new HashSet<sol_membresiaPago>();
         }
     
@@ -32,6 +33,8 @@ namespace WebAPIData
         public string estado { get; set; }
     
         public virtual membresia membresia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sol_membresiaPago> sol_membresiaPago { get; set; }
         public virtual persona persona { get; set; }
