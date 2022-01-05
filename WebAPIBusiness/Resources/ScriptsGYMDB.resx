@@ -215,6 +215,34 @@ HAVING COUNT(*) &gt; 0</value>
 HAVING COUNT(*) &gt; 0</value>
     <comment>--Query para sacar numero de eventos por disciplina</comment>
   </data>
+  <data name="getFichaPersonaApp" xml:space="preserve">
+    <value>SELECT
+ (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+ fp.PersonaID,
+ fp.MesoTipo,
+ fp.NivelActualActividadFisica,
+ fp.AntecendesMedicos,
+ fp.Alergias,
+ fp.Enfermedades              
+  FROM fichaPersona fp
+  INNER JOIN persona p on fp.PersonaID=p.personaID
+  Where p.personaID='{0}'</value>
+    <comment>Consulta ficha de cliente del app</comment>
+  </data>
+  <data name="getFichasEntrenamientoPersona" xml:space="preserve">
+    <value>SELECT
+fe.fichaEntrenamientoID,fe.FechaCreacion,fe.fichaPersonaID,(p.nombres+SPACE(1)+p.apellidos)as Profesor,ProfesorID,
+fe.DiciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
+fe.IndiceGrasaCorporal,fe.MedicionBrazos,fe.MedicionPecho,
+fe.MedicionEspalda,fe.MedicionPiernas,fe.MedicionCintura,
+fe.MedicionCuello,fe.Observaciones
+  FROM fichaEntrenamiento fe
+  INNER JOIN fichaPersona fp ON fe.fichaPersonaID=fp.fichaPersonaID
+  INNER JOIN persona p on fe.ProfesorID=p.personaID
+  INNER JOIN disciplina d on fe.DiciplinaID=d.disciplinaID
+  where fp.PersonaID='{0}'and fe.DiciplinaID='{1}'</value>
+    <comment>Sacar Fichas de entrenamiento por disciplina </comment>
+  </data>
   <data name="getHorariosFecha" xml:space="preserve">
     <value>SELECT 
 ev.fecha,

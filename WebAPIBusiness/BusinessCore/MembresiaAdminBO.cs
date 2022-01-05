@@ -57,7 +57,7 @@ namespace WebAPIBusiness.BusinessCore
                 return entities;
             }
         }
-
+         
         public bool insertMembership(string nombre, string descripcion, string precio, string periodicidad, List<DisciplinasMembresiaRequestEntity> disciplinas)
         {
             bool resp = false;

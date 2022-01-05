@@ -57,6 +57,10 @@ using WebAPIUI.Models.SalaRecurso;
 using WebAPIBusiness.Entities.SalaRecurso;
 using WebAPIUI.Models.SalaRecursoEspecial;
 using WebAPIBusiness.Entities.SalaRecursoEspecial;
+using WebAPIBusiness.Entities.App.ConsultaFichaPersona;
+using WebAPIUI.Models.ConsultaFichaPersona;
+using WebAPIUI.Models.ConsultaFichaEntrenamiento;
+using WebAPIBusiness.Entities.App.ConsultaFichaEntrenamiento;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -99,7 +103,7 @@ namespace WebAPIUI.Helpers
 
             List<EventoClasePersonaModel> response = new List<EventoClasePersonaModel>();
 
-            
+
             return response;
         }
         #endregion
@@ -288,7 +292,7 @@ namespace WebAPIUI.Helpers
                 salaID = entity.salaID,
                 nombre = entity.nombre,
                 descripcion = entity.descripcion,
-                estadoRegistro=entity.estadoRegistro 
+                estadoRegistro = entity.estadoRegistro
             };
 
             return response;
@@ -305,11 +309,11 @@ namespace WebAPIUI.Helpers
             {
                 var item = new SalaRecursoModel
                 {
-                    salaRecursoID=entity.salaRecursoID,   
+                    salaRecursoID = entity.salaRecursoID,
                     salaID = entity.salaID,
                     nombreRecurso = entity.nombreRecurso,
-                    cantidad= entity.cantidad,
-                    estadoRegistro=entity.estadoRegistro
+                    cantidad = entity.cantidad,
+                    estadoRegistro = entity.estadoRegistro
 
                 };
 
@@ -328,7 +332,7 @@ namespace WebAPIUI.Helpers
                 salaID = entity.salaID,
                 nombreRecurso = entity.nombreRecurso,
                 cantidad = entity.cantidad,
-                estadoRegistro=entity.estadoRegistro
+                estadoRegistro = entity.estadoRegistro
             };
 
             return response;
@@ -348,7 +352,7 @@ namespace WebAPIUI.Helpers
                     salaRecursoEspecialID = entity.salaRecursoEspecialID,
                     salaID = entity.salaID,
                     recursoEspecialID = entity.recursoEspecialID,
-                    estadoRegistro=entity.estadoRegistro
+                    estadoRegistro = entity.estadoRegistro
                 };
 
                 response.Add(item);
@@ -365,8 +369,8 @@ namespace WebAPIUI.Helpers
                 salaRecursoEspecialID = entity.salaRecursoEspecialID,
                 salaID = entity.salaID,
                 recursoEspecialID = entity.recursoEspecialID,
-                estadoRegistro=entity.estadoRegistro
-                
+                estadoRegistro = entity.estadoRegistro
+
             };
 
             return response;
@@ -386,7 +390,7 @@ namespace WebAPIUI.Helpers
                     disciplinaID = entity.disciplinaID,
                     nombre = entity.nombre,
                     descripcion = entity.descripcion,
-                    estadoRegistro=entity.estadoRegistro
+                    estadoRegistro = entity.estadoRegistro
                 };
 
                 response.Add(item);
@@ -461,7 +465,7 @@ namespace WebAPIUI.Helpers
                     recursoEspecialID = entity.recursoEspecialID,
                     nombre = entity.nombre,
                     descripcion = entity.descripcion,
-                    estadoRegistro=entity.estadoRegistro
+                    estadoRegistro = entity.estadoRegistro
 
                 };
 
@@ -478,7 +482,7 @@ namespace WebAPIUI.Helpers
                 recursoEspecialID = entity.recursoEspecialID,
                 nombre = entity.nombre,
                 descripcion = entity.descripcion,
-                estadoRegistro=entity.estadoRegistro 
+                estadoRegistro = entity.estadoRegistro
 
             };
 
@@ -571,7 +575,7 @@ namespace WebAPIUI.Helpers
                     disciplinaID = entity.disciplinaID,
                     nombre = entity.nombre,
                     descripcion = entity.descripcion,
-                    estadoRegistro=entity.estadoRegistro
+                    estadoRegistro = entity.estadoRegistro
                 };
 
                 response.Add(item);
@@ -588,10 +592,10 @@ namespace WebAPIUI.Helpers
                 disciplinaID = entity.disciplinaID,
                 nombre = entity.nombre,
                 descripcion = entity.descripcion,
-                estadoRegistro=entity.estadoRegistro
+                estadoRegistro = entity.estadoRegistro
             };
 
-            return response; 
+            return response;
         }
         #endregion
 
@@ -630,7 +634,7 @@ namespace WebAPIUI.Helpers
                     Fecha = entity.Fecha.ToString(),
                     FechaFin = entity.FechaFin.ToString(),
                     FechaInicio = entity.FechaInicio.ToString()
-                    
+
                 };
 
                 response.Add(model);
@@ -656,7 +660,7 @@ namespace WebAPIUI.Helpers
                     imagen = entity.imagen,
                     fechaInicio = entity.fechaInicio.ToString(),
                     fechaFin = entity.fechaFin.ToString(),
-                    estadoRegistro =entity.estadoRegistro
+                    estadoRegistro = entity.estadoRegistro
 
                 };
 
@@ -676,7 +680,7 @@ namespace WebAPIUI.Helpers
                 imagen = entity.imagen,
                 fechaInicio = entity.fechaInicio.ToString(),
                 fechaFin = entity.fechaFin.ToString(),
-                estadoRegistro=entity.estadoRegistro
+                estadoRegistro = entity.estadoRegistro
 
             };
 
@@ -701,9 +705,9 @@ namespace WebAPIUI.Helpers
                     salaID = entity.salaID,
                     aforoMax = entity.aforoMax,
                     aforoMin = entity.aforoMin,
-                    estadoRegistro=entity.estadoRegistro,
-                    personaID=entity.personaID,
-                    nombreProfesor=entity.nombreProfesor
+                    estadoRegistro = entity.estadoRegistro,
+                    personaID = entity.personaID,
+                    nombreProfesor = entity.nombreProfesor
                 };
 
                 response.Add(item);
@@ -723,7 +727,7 @@ namespace WebAPIUI.Helpers
                 salaID = entity.salaID,
                 aforoMax = entity.aforoMax,
                 aforoMin = entity.aforoMin,
-                estadoRegistro=entity.estadoRegistro,
+                estadoRegistro = entity.estadoRegistro,
                 personaID = entity.personaID,
                 nombreProfesor = entity.nombreProfesor
             };
@@ -747,7 +751,7 @@ namespace WebAPIUI.Helpers
                     personaID = entity.personaID,
                     asistencia = entity.asistencia,
                     membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
-                    estadoRegistro= entity.estadoRegistro
+                    estadoRegistro = entity.estadoRegistro
 
                 };
 
@@ -766,7 +770,7 @@ namespace WebAPIUI.Helpers
                 personaID = entity.personaID,
                 asistencia = entity.asistencia,
                 membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
-                estadoRegistro =entity.estadoRegistro
+                estadoRegistro = entity.estadoRegistro
             };
 
             return response;
@@ -1152,28 +1156,96 @@ namespace WebAPIUI.Helpers
         public static ConsultaPerfilModel EntityToModelConsultaPerfil(ConsultaPerfilEntity entity)
         {
 
-                ConsultaPerfilModel response = new ConsultaPerfilModel()
-                {
-                    //usuarioID = entity.usuarioID,
-                    personaID = entity.personaID,
-                    rolePID = entity.rolePID,
-                    nombres = entity.nombres,
-                    apellidos = entity.apellidos,
-                    identificacion = entity.identificacion,
-                    email = entity.email,
-                    //password = entity.password,
-                    telefono = entity.telefono,
-                    edad = entity.edad,
-                    sexo = entity.sexo,
-                    fechaNacimiento = entity.fechaNacimiento.ToString("dd-MM-yyyy"),
-                    estado = entity.estado
+            ConsultaPerfilModel response = new ConsultaPerfilModel()
+            {
+                //usuarioID = entity.usuarioID,
+                personaID = entity.personaID,
+                rolePID = entity.rolePID,
+                nombres = entity.nombres,
+                apellidos = entity.apellidos,
+                identificacion = entity.identificacion,
+                email = entity.email,
+                //password = entity.password,
+                telefono = entity.telefono,
+                edad = entity.edad,
+                sexo = entity.sexo,
+                fechaNacimiento = entity.fechaNacimiento.ToString("dd-MM-yyyy"),
+                estado = entity.estado
 
 
-                };
+            };
 
             return response;
         }
         #endregion
+
+        #region ConsultaFichaPersonaModel
+        public static List<ConsultaFichaPersonaModel> EntityToModelConsultaFichaPersona(List<ConsultaFichaPersonaEntity> entities)
+        {
+
+            List<ConsultaFichaPersonaModel> response = new List<ConsultaFichaPersonaModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaFichaPersonaModel model = new ConsultaFichaPersonaModel()
+                {
+                    Cliente = entity.Cliente,
+                    PersonaID = entity.PersonaID,
+                    MesoTipo = entity.MesoTipo,
+                    NivelActualActividadFisica = entity.NivelActualActividadFisica,
+                    AntecendesMedicos = entity.AntecendesMedicos,
+                    Alergias = entity.Alergias,
+                    Enfermedades = entity.Enfermedades
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
+
+
+        #region ConsultaFichaEntrenamientoModel
+        public static List<ConsultaFichaEntrenamientoModel> EntityToModelConsultaFichaEntrenamiento(List<ConsultaFichaEntrenamientoEntity> entities)
+        {
+
+            List<ConsultaFichaEntrenamientoModel> response = new List<ConsultaFichaEntrenamientoModel>();
+
+            foreach (var entity in entities)
+            {
+                ConsultaFichaEntrenamientoModel model = new ConsultaFichaEntrenamientoModel()
+                {
+                    fichaEntrenamientoID = entity.fichaEntrenamientoID,
+                    FechaCreacion = entity.FechaCreacion,
+                    fichaPersonaID = entity.fichaPersonaID,
+                    ProfesorID = entity.ProfesorID,
+                    DisciplinaID = entity.DisciplinaID,
+                    Peso = entity.Peso,
+                    Altura = entity.Altura,
+                    IndiceMasaMuscular = entity.IndiceMasaMuscular,
+                    IndiceGrasaCorporal = entity.IndiceGrasaCorporal,
+                    MedicionBrazos = entity.MedicionBrazos,
+                    MedicionPecho = entity.MedicionPecho,
+                    MedicionEspalda = entity.MedicionEspalda,
+                    MedicionPiernas = entity.MedicionPiernas,
+                    MedicionCintura = entity.MedicionCintura,
+                    MedicionCuello = entity.MedicionCuello,
+                    Observaciones = entity.Observaciones,
+                    Profesor = entity.Profesor,
+                    Disciplina = entity.Disciplina
+                };
+
+                response.Add(model);
+            };
+
+            return response;
+        }
+        #endregion
+
+
+
+
     }
 
 }

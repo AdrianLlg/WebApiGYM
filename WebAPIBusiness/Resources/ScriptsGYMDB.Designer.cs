@@ -19,7 +19,7 @@ namespace WebAPIBusiness.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ScriptsGYMDB {
@@ -184,6 +184,42 @@ namespace WebAPIBusiness.Resources {
         internal static string getEventosPorDisciplina {
             get {
                 return ResourceManager.GetString("getEventosPorDisciplina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        /// (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+        /// fp.PersonaID,
+        /// fp.MesoTipo,
+        /// fp.NivelActualActividadFisica,
+        /// fp.AntecendesMedicos,
+        /// fp.Alergias,
+        /// fp.Enfermedades              
+        ///  FROM fichaPersona fp
+        ///  INNER JOIN persona p on fp.PersonaID=p.personaID
+        ///  Where p.personaID=&apos;{0}&apos;.
+        /// </summary>
+        internal static string getFichaPersonaApp {
+            get {
+                return ResourceManager.GetString("getFichaPersonaApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///fe.fichaEntrenamientoID,fe.FechaCreacion,fe.fichaPersonaID,(p.nombres+SPACE(1)+p.apellidos)as Profesor,ProfesorID,
+        ///fe.DiciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
+        ///fe.IndiceGrasaCorporal,fe.MedicionBrazos,fe.MedicionPecho,
+        ///fe.MedicionEspalda,fe.MedicionPiernas,fe.MedicionCintura,
+        ///fe.MedicionCuello,fe.Observaciones
+        ///  FROM fichaEntrenamiento fe
+        ///  INNER JOIN fichaPersona fp ON fe.fichaPersonaID=fp.fichaPersonaID
+        ///  INNER JOIN persona p on fe.Profesor [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getFichasEntrenamientoPersona {
+            get {
+                return ResourceManager.GetString("getFichasEntrenamientoPersona", resourceCulture);
             }
         }
         
