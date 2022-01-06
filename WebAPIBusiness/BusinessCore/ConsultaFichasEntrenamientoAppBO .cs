@@ -33,6 +33,11 @@ namespace WebAPIBusiness.BusinessCore
 
             }
 
+            if (items.Count == 0)
+            {
+                return null;
+            }
+
             return items;
         }
 

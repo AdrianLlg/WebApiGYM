@@ -90,7 +90,8 @@ namespace WebAPIUI.Helpers
                     fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
                     fechaInicioMembresia = entity.fechaInicioMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     fechaFinMembresia = entity.fechaFinMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
-                    estado = entity.estado
+                    estado = entity.estado,
+                    disciplinasMemb = entity.disciplinasMemb
                 };
 
                 response.Add(item);

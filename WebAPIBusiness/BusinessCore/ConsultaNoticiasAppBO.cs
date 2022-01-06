@@ -47,8 +47,8 @@ namespace WebAPIBusiness.BusinessCore
                             contenido = n.contenido,
                             titulo = n.titulo,
                             imagen = Convert.ToBase64String(n.imagen),
-                            fechaInicio = n.fechaInicio,
-                            fechaFin = n.fechaFin,
+                            fechaInicio = n.fechaInicio.ToString("yyyy-MM-dd"),
+                            fechaFin = n.fechaFin.ToString("yyyy-MM-dd"),
                             estadoRegistro = n.estadoRegistro
 
                         };
@@ -99,8 +99,8 @@ namespace WebAPIBusiness.BusinessCore
                         titulo = nt.titulo,
                         contenido = nt.contenido,
                         imagen = Convert.ToBase64String(nt.imagen),
-                        fechaInicio = nt.fechaInicio,
-                        fechaFin = nt.fechaFin,
+                        fechaInicio = nt.fechaInicio.ToString("yyyy-MM-dd"),
+                        fechaFin = nt.fechaFin.ToString("yyyy-MM-dd"),
                         estadoRegistro = nt.estadoRegistro
                     };
                 }

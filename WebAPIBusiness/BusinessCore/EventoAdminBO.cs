@@ -386,7 +386,7 @@ namespace WebAPIBusiness.BusinessCore
                                     });
                                 }
 
-                                recursoEspecialPersona = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID && x.personaID == item.personaID).Select(x => x.evento_recursoEspecialID).FirstOrDefault();
+                                recursoEspecialPersona = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID && x.personaID == personaID).Select(x => x.evento_recursoEspecialID).FirstOrDefault();
 
                             }
                             else
@@ -548,6 +548,8 @@ namespace WebAPIBusiness.BusinessCore
                                             recursoEspecial.personaID = 0;
                                             record.estadoRegistro = "C";
                                             record.intentosCancelar = record.intentosCancelar + 1;
+                                            record.membresia_persona_disciplina.numClasesDisponibles = record.membresia_persona_disciplina.numClasesDisponibles + 1;
+                                            record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas - 1; 
                                             record.asistencia = 0;
                                             dbContext.SaveChanges();
 
@@ -557,6 +559,8 @@ namespace WebAPIBusiness.BusinessCore
                                         {
                                             record.estadoRegistro = "C";
                                             record.intentosCancelar = record.intentosCancelar + 1;
+                                            record.membresia_persona_disciplina.numClasesDisponibles = record.membresia_persona_disciplina.numClasesDisponibles + 1;
+                                            record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas - 1;
                                             record.asistencia = 0;
                                             dbContext.SaveChanges();
 
@@ -586,8 +590,11 @@ namespace WebAPIBusiness.BusinessCore
                                     var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
 
                                     recursoEspecial.personaID = personaID;
-                                }
+                                    dbContext.SaveChanges();
+                            }
 
+                                record.membresia_persona_disciplina.numClasesDisponibles = record.membresia_persona_disciplina.numClasesDisponibles - 1;
+                                record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas + 1;
                                 record.estadoRegistro = "A";
                                 record.asistencia = 1;
                                 dbContext.SaveChanges();

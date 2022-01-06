@@ -13,8 +13,8 @@ namespace WebAPIBusiness.Entities.App.ConsultaNoticias
         public string titulo { get; set; }
         public string contenido { get; set; }
         public string imagen { get; set; }
-        public DateTime fechaInicio{ get; set; } 
-        public DateTime fechaFin { get; set; }
+        public string fechaInicio{ get; set; } 
+        public string fechaFin { get; set; }
         public string estadoRegistro { get; set; } 
     }
 }

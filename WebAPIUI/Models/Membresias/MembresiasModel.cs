@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebAPIBusiness.Entities.App.MembresiasPersona;
 
 namespace WebAPIUI.Models.Membresias
 {
@@ -20,6 +21,7 @@ namespace WebAPIUI.Models.Membresias
         public string fechaPago { get; set; }
         public string fechaLimite { get; set; }
         public string estado { get; set; }
+        public List<DisciplinasMembresiasPersonaEntity> disciplinasMemb { get; set; }
 
     }
 }
