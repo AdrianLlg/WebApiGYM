@@ -94,6 +94,24 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///c.disciplinaID,	
+        ///c.claseID	,
+        ///c.nombre AS Clase	,
+        ///c.descripcion AS DescripcionClase,	
+        ///d.nombre as Disciplina	,
+        ///d.descripcion as DescripcionDisciplina	
+        ///FROM clase c
+        ///INNER JOIN disciplina d ON  C.disciplinaID=d.disciplinaID
+        ///order by disciplinaID.
+        /// </summary>
+        internal static string getConsultaDisciplinasDeportistaApp {
+            get {
+                return ResourceManager.GetString("getConsultaDisciplinasDeportistaApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT 
         ///ds.disciplinaID
         ///FROM disciplina ds

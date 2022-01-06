@@ -67,6 +67,8 @@ using WebAPIUI.Models.ConsultaListaAsistencia;
 using WebAPIBusiness.Entities.App.ConsultaListaAsistencia;
 using WebAPIUI.Models.ConsultaHistorialAsitenciaCliente;
 using WebAPIBusiness.Entities.App.ConsultaHistorialAsistenciaCliente;
+using WebAPIUI.Models.ConsultaDisciplinasDeportista;
+using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -1381,7 +1383,46 @@ namespace WebAPIUI.Helpers
         #endregion
 
 
+        #region ConsultaDisciplinasDeportista
+        public static List<ConsultaDisciplinasDeportistaModel> ConsultaDisciplinasDeportistaEntityToModel(List<ConsultaDisciplinasDeportistaEntity> entities)
+        {
 
+            List<ConsultaDisciplinasDeportistaModel> response = new List<ConsultaDisciplinasDeportistaModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaDisciplinasDeportistaModel
+                {
+                    disciplinaID = entity.disciplinaID,
+                    claseID = entity.claseID,
+                    Clase = entity.Clase,
+                    DescripcionClase = entity.DescripcionClase,
+                    Disciplina = entity.Disciplina,
+                    DescripcionDisciplina = entity.Disciplina,
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+         
+        public static ConsultaDisciplinasDeportistaModel ConsultaDisciplinasDeportistaInfoEntityToModel(ConsultaDisciplinasDeportistaEntity entity)
+        {
+
+            ConsultaDisciplinasDeportistaModel response = new ConsultaDisciplinasDeportistaModel
+            {
+                disciplinaID = entity.disciplinaID,
+                claseID = entity.claseID,
+                Clase = entity.Clase,
+                DescripcionClase = entity.DescripcionClase,
+                Disciplina = entity.Disciplina,
+                DescripcionDisciplina = entity.Disciplina,
+
+            };
+
+            return response;
+        }
+        #endregion
 
     }
 

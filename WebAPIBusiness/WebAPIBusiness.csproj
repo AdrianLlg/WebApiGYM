@@ -54,6 +54,7 @@
     <Compile Include="BusinessCore\App\PersonaUsuarioBO.cs" />
     <Compile Include="BusinessCore\ConsultaFichasEntrenamientoAppBO .cs" />
     <Compile Include="BusinessCore\ConsultaHistorialAsistenciaClienteBO.cs" />
+    <Compile Include="BusinessCore\ConsultaDisciplinasDeportistaBO.cs" />
     <Compile Include="BusinessCore\ConsultaListaAsistenciaBO.cs" />
     <Compile Include="BusinessCore\ConsultaNoticiasAppBO.cs" />
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="BusinessCore\RolAdminBO.cs" />
     <Compile Include="BusinessCore\SolicitudesMembresiasBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
+    <Compile Include="Entities\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaEntity.cs" />
     <Compile Include="Entities\App\ConsultaEventosDeportista\EventosDeportistaEntity.cs" />
     <Compile Include="Entities\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoEntity.cs" />
     <Compile Include="Entities\App\ConsultaFichaPersona\ConsultaFichaPersonaEntity.cs" />

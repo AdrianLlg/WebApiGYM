@@ -142,6 +142,18 @@ AND CR.fecha = '2021-09-11'
 AND CLP.rolePID = 2</value>
     <comment>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA</comment>
   </data>
+  <data name="getConsultaDisciplinasDeportistaApp" xml:space="preserve">
+    <value>SELECT
+c.disciplinaID,	
+c.claseID	,
+c.nombre AS Clase	,
+c.descripcion AS DescripcionClase,	
+d.nombre as Disciplina	,
+d.descripcion as DescripcionDisciplina	
+FROM clase c
+INNER JOIN disciplina d ON  C.disciplinaID=d.disciplinaID
+order by disciplinaID</value>
+  </data>
   <data name="getDiciplinaIDEventoPersona" xml:space="preserve">
     <value>SELECT 
 ds.disciplinaID
