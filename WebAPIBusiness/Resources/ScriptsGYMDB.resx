@@ -283,6 +283,18 @@ SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = {0} AND 
 AND CR.fecha = '2021-09-11'
 AND p.rolePID=2</value>
   </data>
+  <data name="getListaAsistenciaApp" xml:space="preserve">
+    <value>SELECT
+    ep.evento_personaID as eventoPersonaID,
+	ep.personaID,
+	ep.asistencia,
+    (p.nombres+SPACE(1)+p.apellidos)as nombre,
+	p.identificacion	
+	FROM evento_persona ep
+	INNER JOIN evento e ON e.eventoID=ep.eventoID 
+	INNER JOIN persona p ON p.personaID=ep.personaID 
+	WHERE e.eventoID='{0}'</value>
+  </data>
   <data name="getMembresiasUsuario" xml:space="preserve">
     <value>SELECT 
 D.disciplinaID,
@@ -399,5 +411,8 @@ HAVING count(*) &gt;0</value>
   GROUP BY membresia.nombre,membresia.precio
   HAVING COUNT(*)&gt;0)as S1</value>
     <comment>--Calcula el total de ventas por tipo de membresia</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>

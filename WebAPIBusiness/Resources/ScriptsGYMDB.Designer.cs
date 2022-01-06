@@ -273,6 +273,24 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///    ep.evento_personaID as eventoPersonaID,
+        ///	ep.personaID,
+        ///	ep.asistencia,
+        ///    (p.nombres+SPACE(1)+p.apellidos)as nombre,
+        ///	p.identificacion	
+        ///	FROM evento_persona ep
+        ///	INNER JOIN evento e ON e.eventoID=ep.eventoID 
+        ///	INNER JOIN persona p ON p.personaID=ep.personaID 
+        ///	WHERE e.eventoID=&apos;{0}&apos;.
+        /// </summary>
+        internal static string getListaAsistenciaApp {
+            get {
+                return ResourceManager.GetString("getListaAsistenciaApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT 
         ///D.disciplinaID,
         ///D.nombre as nombreDisciplina,
@@ -447,6 +465,15 @@ namespace WebAPIBusiness.Resources {
         internal static string getVentasMembresias {
             get {
                 return ResourceManager.GetString("getVentasMembresias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }
