@@ -255,6 +255,15 @@
     <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataRequest.cs" />
     <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataResponse.cs" />
     <Compile Include="Controllers\App\ConsultaFichaPersona\ConsultaFichaPersonaController.cs" />
+    <Compile Include="Controllers\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteController.cs" />
+    <Compile Include="Controllers\App\ConsultaHistorialAsistenciaCliente\Models\ConsultaHistorialAsistenciaClienteDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaHistorialAsistenciaCliente\Models\ConsultaHistorialAsistenciaClienteDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaController.cs" />
+    <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaDisciplinasDeportistaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaListaAsistenciaDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaListaAsistencia\ConsultaListaAsistenciaController.cs" />
+    <Compile Include="Controllers\App\ConsultaListaAsistencia\Models\ConsultaListaAsistenciaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaListaAsistencia\Models\ConsultaListaAsistenciaDataResponse.cs" />
     <Compile Include="Controllers\App\ConsultaNoticias\ConsultaNoticiasController.cs" />
     <Compile Include="Controllers\App\ConsultaNoticias\Models\ConsultaNoticiasDataRequest.cs" />
     <Compile Include="Controllers\App\ConsultaNoticias\Models\ConsultaNoticiasDataResponse.cs" />
@@ -300,6 +309,9 @@
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
     <Compile Include="CustomExceptions\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaListaAsistencia\ConsultaListaAsistenciaException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaFichaPersona\ConsultaFichaPersonaException.cs" />
     <Compile Include="CustomExceptions\App\EnviarMailValidacion\EnviarMailValidacion.cs" />
@@ -348,8 +360,11 @@
     </Compile>
     <Compile Include="Helpers\EntitesHelper.cs" />
     <Compile Include="Models\ConfiguracionesSistema\ConfiguracionesSistemaModel.cs" />
+    <Compile Include="Models\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaModel.cs" />
     <Compile Include="Models\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoModel.cs" />
     <Compile Include="Models\ConsultaFichaPersona\ConsultaFichaPersonaModel.cs" />
+    <Compile Include="Models\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteModel.cs" />
+    <Compile Include="Models\ConsultaListaAsistencia\ConsultaListaAsistenciaModel.cs" />
     <Compile Include="Models\ConsultaPerfilModel\ConsultaPerfilModel.cs" />
     <Compile Include="Models\ConsultaPersonaEstado\ConsultaPersonaEstadoModel.cs" />
     <Compile Include="Models\ConsultaRepEventoSala\ConsultaRepEventoSalaModel.cs" />

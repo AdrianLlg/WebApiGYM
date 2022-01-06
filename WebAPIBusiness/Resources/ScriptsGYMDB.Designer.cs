@@ -94,6 +94,24 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///c.disciplinaID,	
+        ///c.claseID	,
+        ///c.nombre AS Clase	,
+        ///c.descripcion AS DescripcionClase,	
+        ///d.nombre as Disciplina	,
+        ///d.descripcion as DescripcionDisciplina	
+        ///FROM clase c
+        ///INNER JOIN disciplina d ON  C.disciplinaID=d.disciplinaID
+        ///order by disciplinaID.
+        /// </summary>
+        internal static string getConsultaDisciplinasDeportistaApp {
+            get {
+                return ResourceManager.GetString("getConsultaDisciplinasDeportistaApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT 
         ///ds.disciplinaID
         ///FROM disciplina ds
@@ -225,6 +243,26 @@ namespace WebAPIBusiness.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT 
+        ///  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+        ///  cl.nombre as Clase,
+        ///  dsp.nombre as Disciplina,
+        ///  (pro.nombres+SPACE(1)+pro.apellidos)as Profesor,
+        ///  ((SELECT STUFF( CAST(hm.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(hm.horaFin AS varchar), 3, 0, &apos;:&apos;)))as Horario , 
+        ///  evt.fecha as Fecha,
+        ///  sl.nombre as Sala,
+        ///  (SELECT CASE WHEN ep.asistencia = 1 THEN &apos;Si&apos; ELSE &apos;No&apos; END ) as Asistencia
+        ///  FROM evento evt
+        ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getHistorialAsistenciaClienteApp {
+            get {
+                return ResourceManager.GetString("getHistorialAsistenciaClienteApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
         ///ev.fecha,
         ///hm.horarioMID,
         ///ev.salaID
@@ -269,6 +307,24 @@ namespace WebAPIBusiness.Resources {
         internal static string getHorasFechaDisciplina {
             get {
                 return ResourceManager.GetString("getHorasFechaDisciplina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///    ep.evento_personaID as eventoPersonaID,
+        ///	ep.personaID,
+        ///	ep.asistencia,
+        ///    (p.nombres+SPACE(1)+p.apellidos)as nombre,
+        ///	p.identificacion	
+        ///	FROM evento_persona ep
+        ///	INNER JOIN evento e ON e.eventoID=ep.eventoID 
+        ///	INNER JOIN persona p ON p.personaID=ep.personaID 
+        ///	WHERE e.eventoID=&apos;{0}&apos;.
+        /// </summary>
+        internal static string getListaAsistenciaApp {
+            get {
+                return ResourceManager.GetString("getListaAsistenciaApp", resourceCulture);
             }
         }
         

@@ -63,6 +63,12 @@ using WebAPIUI.Models.ConsultaFichaEntrenamiento;
 using WebAPIBusiness.Entities.App.ConsultaFichaEntrenamiento;
 using WebAPIBusiness.Entities.App.ConsultaNoticias;
 using WebAPIUI.Models.ConsultaNoticias;
+using WebAPIUI.Models.ConsultaListaAsistencia;
+using WebAPIBusiness.Entities.App.ConsultaListaAsistencia;
+using WebAPIUI.Models.ConsultaHistorialAsitenciaCliente;
+using WebAPIBusiness.Entities.App.ConsultaHistorialAsistenciaCliente;
+using WebAPIUI.Models.ConsultaDisciplinasDeportista;
+using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -1290,6 +1296,134 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
+        #region ConsultaListaAsistencia
+        public static List<ConsultaListaAsistenciaModel> ConsultaListaAsistenciaEntityToModel(List<ConsultaListaAsistenciaEntity> entities)
+        {
+
+            List<ConsultaListaAsistenciaModel> response = new List<ConsultaListaAsistenciaModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaListaAsistenciaModel
+                {
+                    eventoPersonaID = entity.eventoPersonaID, 
+                    personaID = entity.personaID,
+                    asistencia = entity.asistencia,
+                    nombre = entity.nombre,
+                    identificacion = entity.identificacion
+
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+         
+        public static ConsultaListaAsistenciaModel NoticiaInfoEntityToModel(ConsultaListaAsistenciaEntity entity)
+        {
+
+            ConsultaListaAsistenciaModel response = new ConsultaListaAsistenciaModel
+            {
+                eventoPersonaID = entity.eventoPersonaID,
+                personaID = entity.personaID,
+                asistencia = entity.asistencia, 
+                nombre = entity.nombre,
+                identificacion = entity.identificacion
+
+            };
+
+            return response;
+        }
+        #endregion
+
+
+        #region ConsultaHistorialAsitenciaCliente
+        public static List<ConsultaHistorialAsistenciaClienteModel> ConsultaHistorialAsitenciaClienteEntityToModel(List<ConsultaHistorialAsistenciaClienteEntity> entities)
+        {
+
+            List<ConsultaHistorialAsistenciaClienteModel> response = new List<ConsultaHistorialAsistenciaClienteModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaHistorialAsistenciaClienteModel
+                {
+
+                    Cliente = entity.Cliente,
+                    Clase = entity.Clase,
+                    Disciplina = entity.Disciplina,
+                    Profesor = entity.Profesor,
+                    Horario = entity.Horario,
+                    Fecha = entity.Fecha,
+                    Sala = entity.Sala,
+                    Asistencia = entity.Asistencia
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static ConsultaHistorialAsistenciaClienteModel NoticiaInfoEntityToModel(ConsultaHistorialAsistenciaClienteEntity entity)
+        {
+
+            ConsultaHistorialAsistenciaClienteModel response = new ConsultaHistorialAsistenciaClienteModel
+            {
+                Cliente = entity.Cliente,
+                Clase = entity.Clase,
+                Disciplina = entity.Disciplina,
+                Profesor = entity.Profesor,
+                Horario = entity.Horario,
+                Fecha = entity.Fecha,
+                Sala = entity.Sala,
+                Asistencia = entity.Asistencia
+
+            }; 
+
+            return response;
+        }
+        #endregion
+
+
+        #region ConsultaDisciplinasDeportista
+        public static List<ConsultaDisciplinasDeportistaModel> ConsultaDisciplinasDeportistaEntityToModel(List<ConsultaDisciplinasDeportistaEntity> entities)
+        {
+
+            List<ConsultaDisciplinasDeportistaModel> response = new List<ConsultaDisciplinasDeportistaModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaDisciplinasDeportistaModel
+                {
+                    disciplinaID = entity.disciplinaID,
+                    claseID = entity.claseID,
+                    Clase = entity.Clase,
+                    DescripcionClase = entity.DescripcionClase,
+                    Disciplina = entity.Disciplina,
+                    DescripcionDisciplina = entity.Disciplina,
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+         
+        public static ConsultaDisciplinasDeportistaModel ConsultaDisciplinasDeportistaInfoEntityToModel(ConsultaDisciplinasDeportistaEntity entity)
+        {
+
+            ConsultaDisciplinasDeportistaModel response = new ConsultaDisciplinasDeportistaModel
+            {
+                disciplinaID = entity.disciplinaID,
+                claseID = entity.claseID,
+                Clase = entity.Clase,
+                DescripcionClase = entity.DescripcionClase,
+                Disciplina = entity.Disciplina,
+                DescripcionDisciplina = entity.Disciplina,
+
+            };
+
+            return response;
+        }
+        #endregion
 
     }
 

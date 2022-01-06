@@ -87,6 +87,12 @@ using WebAPIUI.CustomExceptions.ConsultaFichaEntrenamiento;
 using WebAPIUI.Controllers.ConsultaFichaEntrenamiento.Models;
 using WebAPIUI.CustomExceptions.ConsultaNoticias;
 using WebAPIUI.Controllers.App.ConsultaNoticias.Models;
+using WebAPIUI.CustomExceptions.ConsultaListaAsistencia;
+using WebAPIUI.Controllers.App.ConsultaListaAsistencia.Models;
+using WebAPIUI.CustomExceptions.ConsultaHistorialAsistenciaCliente;
+using WebAPIUI.Controllers.App.ConsultaHistorialAsistenciaCliente.Models;
+using WebAPIUI.CustomExceptions.ConsultaDisciplinasDeportista;
+using WebAPIUI.Controllers.App.ConsultaDisciplinasDeportista.Models;
 #endregion
 
 namespace WebAPIUI.Controllers
@@ -1163,5 +1169,65 @@ namespace WebAPIUI.Controllers
             response.ContentIndex = null;
         }
         #endregion
+
+        #region ConsultaListaAsistenciaException Exceptions
+        internal static void ThrowHandledExceptionConsultaListaAsistenciaException(ConsultaListaAsistenciaResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaListaAsistenciaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaListaAsistenciaException(ConsultaListaAsistenciaResponseType type, Exception ex)
+        {
+            throw new ConsultaListaAsistenciaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaListaAsistenciaException(ConsultaListaAsistenciaResponseType code, ConsultaListaAsistenciaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region ConsultaHistorialAsitenciaClienteException Exceptions
+        internal static void ThrowHandledExceptionConsultaHistorialAsitenciaClienteException(ConsultaHistorialAsistenciaClienteResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaHistorialAsistenciaClienteException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaHistorialAsitenciaClienteException(ConsultaHistorialAsistenciaClienteResponseType type, Exception ex)
+        {
+            throw new ConsultaHistorialAsistenciaClienteException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaHistorialAsitenciaClienteException(ConsultaHistorialAsistenciaClienteResponseType code, ConsultaHistorialAsistenciaClienteDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region ConsultaDisciplinasDeportistaException Exceptions
+        internal static void ThrowHandledExceptionConsultaDisciplinasDeportistaException(ConsultaDisciplinasDeportistaResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaDisciplinasDeportistaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaDisciplinasDeportistaException(ConsultaDisciplinasDeportistaResponseType type, Exception ex)
+        {
+            throw new ConsultaDisciplinasDeportistaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaDisciplinasDeportistaException(ConsultaDisciplinasDeportistaResponseType code, ConsultaDisciplinasDeportistaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion 
     }
 }

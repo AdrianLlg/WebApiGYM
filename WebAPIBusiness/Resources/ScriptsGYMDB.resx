@@ -142,6 +142,18 @@ AND CR.fecha = '2021-09-11'
 AND CLP.rolePID = 2</value>
     <comment>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA</comment>
   </data>
+  <data name="getConsultaDisciplinasDeportistaApp" xml:space="preserve">
+    <value>SELECT
+c.disciplinaID,	
+c.claseID	,
+c.nombre AS Clase	,
+c.descripcion AS DescripcionClase,	
+d.nombre as Disciplina	,
+d.descripcion as DescripcionDisciplina	
+FROM clase c
+INNER JOIN disciplina d ON  C.disciplinaID=d.disciplinaID
+order by disciplinaID</value>
+  </data>
   <data name="getDiciplinaIDEventoPersona" xml:space="preserve">
     <value>SELECT 
 ds.disciplinaID
@@ -243,6 +255,26 @@ fe.MedicionCuello,fe.Observaciones
   where fp.PersonaID='{0}'and fe.DiciplinaID='{1}'</value>
     <comment>Sacar Fichas de entrenamiento por disciplina </comment>
   </data>
+  <data name="getHistorialAsistenciaClienteApp" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  (pro.nombres+SPACE(1)+pro.apellidos)as Profesor,
+  ((SELECT STUFF( CAST(hm.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(hm.horaFin AS varchar), 3, 0, ':')))as Horario , 
+  evt.fecha as Fecha,
+  sl.nombre as Sala,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN horarioM hm ON evt.horarioMID=hm.horarioMID
+  INNER JOIN sala sl ON evt.salaID=sl.salaID
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  INNER JOIN persona pro ON pro.personaID=evt.personaID
+  Where ep.personaID='{0}'</value>
+  </data>
   <data name="getHorariosFecha" xml:space="preserve">
     <value>SELECT 
 ev.fecha,
@@ -282,6 +314,18 @@ SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = {0} AND 
 )
 AND CR.fecha = '2021-09-11'
 AND p.rolePID=2</value>
+  </data>
+  <data name="getListaAsistenciaApp" xml:space="preserve">
+    <value>SELECT
+    ep.evento_personaID as eventoPersonaID,
+	ep.personaID,
+	ep.asistencia,
+    (p.nombres+SPACE(1)+p.apellidos)as nombre,
+	p.identificacion	
+	FROM evento_persona ep
+	INNER JOIN evento e ON e.eventoID=ep.eventoID 
+	INNER JOIN persona p ON p.personaID=ep.personaID 
+	WHERE e.eventoID='{0}'</value>
   </data>
   <data name="getMembresiasUsuario" xml:space="preserve">
     <value>SELECT 
