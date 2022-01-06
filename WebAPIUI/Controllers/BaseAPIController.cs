@@ -89,6 +89,8 @@ using WebAPIUI.CustomExceptions.ConsultaNoticias;
 using WebAPIUI.Controllers.App.ConsultaNoticias.Models;
 using WebAPIUI.CustomExceptions.ConsultaListaAsistencia;
 using WebAPIUI.Controllers.App.ConsultaListaAsistencia.Models;
+using WebAPIUI.CustomExceptions.ConsultaHistorialAsistenciaCliente;
+using WebAPIUI.Controllers.App.ConsultaHistorialAsistenciaCliente.Models;
 #endregion
 
 namespace WebAPIUI.Controllers
@@ -1179,6 +1181,26 @@ namespace WebAPIUI.Controllers
         }
 
         internal void SetResponseAsExceptionConsultaListaAsistenciaException(ConsultaListaAsistenciaResponseType code, ConsultaListaAsistenciaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
+        #region ConsultaHistorialAsitenciaClienteException Exceptions
+        internal static void ThrowHandledExceptionConsultaHistorialAsitenciaClienteException(ConsultaHistorialAsistenciaClienteResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaHistorialAsistenciaClienteException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionConsultaHistorialAsitenciaClienteException(ConsultaHistorialAsistenciaClienteResponseType type, Exception ex)
+        {
+            throw new ConsultaHistorialAsistenciaClienteException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaHistorialAsitenciaClienteException(ConsultaHistorialAsistenciaClienteResponseType code, ConsultaHistorialAsistenciaClienteDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;

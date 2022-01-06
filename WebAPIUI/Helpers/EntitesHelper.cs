@@ -65,6 +65,8 @@ using WebAPIBusiness.Entities.App.ConsultaNoticias;
 using WebAPIUI.Models.ConsultaNoticias;
 using WebAPIUI.Models.ConsultaListaAsistencia;
 using WebAPIBusiness.Entities.App.ConsultaListaAsistencia;
+using WebAPIUI.Models.ConsultaHistorialAsitenciaCliente;
+using WebAPIBusiness.Entities.App.ConsultaHistorialAsistenciaCliente;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -1330,6 +1332,55 @@ namespace WebAPIUI.Helpers
             return response;
         }
         #endregion
+
+
+        #region ConsultaHistorialAsitenciaCliente
+        public static List<ConsultaHistorialAsistenciaClienteModel> ConsultaHistorialAsitenciaClienteEntityToModel(List<ConsultaHistorialAsistenciaClienteEntity> entities)
+        {
+
+            List<ConsultaHistorialAsistenciaClienteModel> response = new List<ConsultaHistorialAsistenciaClienteModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaHistorialAsistenciaClienteModel
+                {
+
+                    Cliente = entity.Cliente,
+                    Clase = entity.Clase,
+                    Disciplina = entity.Disciplina,
+                    Profesor = entity.Profesor,
+                    Horario = entity.Horario,
+                    Fecha = entity.Fecha,
+                    Sala = entity.Sala,
+                    Asistencia = entity.Asistencia
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+        public static ConsultaHistorialAsistenciaClienteModel NoticiaInfoEntityToModel(ConsultaHistorialAsistenciaClienteEntity entity)
+        {
+
+            ConsultaHistorialAsistenciaClienteModel response = new ConsultaHistorialAsistenciaClienteModel
+            {
+                Cliente = entity.Cliente,
+                Clase = entity.Clase,
+                Disciplina = entity.Disciplina,
+                Profesor = entity.Profesor,
+                Horario = entity.Horario,
+                Fecha = entity.Fecha,
+                Sala = entity.Sala,
+                Asistencia = entity.Asistencia
+
+            }; 
+
+            return response;
+        }
+        #endregion
+
+
 
 
     }

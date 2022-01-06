@@ -225,6 +225,26 @@ namespace WebAPIBusiness.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT 
+        ///  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+        ///  cl.nombre as Clase,
+        ///  dsp.nombre as Disciplina,
+        ///  (pro.nombres+SPACE(1)+pro.apellidos)as Profesor,
+        ///  ((SELECT STUFF( CAST(hm.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(hm.horaFin AS varchar), 3, 0, &apos;:&apos;)))as Horario , 
+        ///  evt.fecha as Fecha,
+        ///  sl.nombre as Sala,
+        ///  (SELECT CASE WHEN ep.asistencia = 1 THEN &apos;Si&apos; ELSE &apos;No&apos; END ) as Asistencia
+        ///  FROM evento evt
+        ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getHistorialAsistenciaClienteApp {
+            get {
+                return ResourceManager.GetString("getHistorialAsistenciaClienteApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
         ///ev.fecha,
         ///hm.horarioMID,
         ///ev.salaID
@@ -465,15 +485,6 @@ namespace WebAPIBusiness.Resources {
         internal static string getVentasMembresias {
             get {
                 return ResourceManager.GetString("getVentasMembresias", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

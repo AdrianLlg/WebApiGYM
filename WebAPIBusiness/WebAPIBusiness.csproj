@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BusinessCore\App\PersonaUsuarioBO.cs" />
     <Compile Include="BusinessCore\ConsultaFichasEntrenamientoAppBO .cs" />
+    <Compile Include="BusinessCore\ConsultaHistorialAsistenciaClienteBO.cs" />
     <Compile Include="BusinessCore\ConsultaListaAsistenciaBO.cs" />
     <Compile Include="BusinessCore\ConsultaNoticiasAppBO.cs" />
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Entities\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoEntity.cs" />
     <Compile Include="Entities\App\ConsultaFichaPersona\ConsultaFichaPersonaEntity.cs" />
     <Compile Include="Entities\App\ConsultaFIchas\ConsultaFichasEntity.cs" />
+    <Compile Include="Entities\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteEntity.cs" />
     <Compile Include="Entities\App\ConsultaListaAsistencia\ConsultaListaAsistenciaEntity.cs" />
     <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntity.cs" />
     <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntityHelper.cs" />

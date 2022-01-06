@@ -243,6 +243,26 @@ fe.MedicionCuello,fe.Observaciones
   where fp.PersonaID='{0}'and fe.DiciplinaID='{1}'</value>
     <comment>Sacar Fichas de entrenamiento por disciplina </comment>
   </data>
+  <data name="getHistorialAsistenciaClienteApp" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  (pro.nombres+SPACE(1)+pro.apellidos)as Profesor,
+  ((SELECT STUFF( CAST(hm.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(hm.horaFin AS varchar), 3, 0, ':')))as Horario , 
+  evt.fecha as Fecha,
+  sl.nombre as Sala,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN horarioM hm ON evt.horarioMID=hm.horarioMID
+  INNER JOIN sala sl ON evt.salaID=sl.salaID
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  INNER JOIN persona pro ON pro.personaID=evt.personaID
+  Where ep.personaID='{0}'</value>
+  </data>
   <data name="getHorariosFecha" xml:space="preserve">
     <value>SELECT 
 ev.fecha,
@@ -411,8 +431,5 @@ HAVING count(*) &gt;0</value>
   GROUP BY membresia.nombre,membresia.precio
   HAVING COUNT(*)&gt;0)as S1</value>
     <comment>--Calcula el total de ventas por tipo de membresia</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
 </root>
