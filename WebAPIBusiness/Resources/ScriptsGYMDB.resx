@@ -181,6 +181,26 @@ FROM clase c
 INNER JOIN disciplina d ON  C.disciplinaID=d.disciplinaID
 order by disciplinaID</value>
   </data>
+  <data name="getConsultaMailCancelacionAlumnos" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+as horario from evento_persona ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'</value>
+  </data>
+  <data name="getConsultaMailCancelacionProfesor" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+as horario from evento_profesor ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'</value>
+  </data>
   <data name="getDiciplinaIDEventoPersona" xml:space="preserve">
     <value>SELECT 
 ds.disciplinaID

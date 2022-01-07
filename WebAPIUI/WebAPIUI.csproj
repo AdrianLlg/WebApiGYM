@@ -264,6 +264,9 @@
     <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaController.cs" />
     <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaDisciplinasDeportistaDataRequest.cs" />
     <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaListaAsistenciaDataResponse.cs" />
+    <Compile Include="Controllers\App\CancelarEventoApp\CancelarEventoAppController.cs" />
+    <Compile Include="Controllers\App\CancelarEventoApp\Models\CancelarEventoAppDataRequest.cs" />
+    <Compile Include="Controllers\App\CancelarEventoApp\Models\CancelarEventoAppDataResponse.cs" />
     <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataRequest.cs" />
     <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataResponse.cs" />
     <Compile Include="Controllers\App\GenerarQRInstructor\GenerarQRInstructorController.cs" />
@@ -323,6 +326,7 @@
     <Compile Include="Controllers\Registro\RegistroController.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\App\CancelarEventoApp\CancelarEventoAppException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorException.cs" />

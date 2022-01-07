@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\App\CancelarEventoAppBO.cs" />
     <Compile Include="BusinessCore\App\ConsultaClasesPendientesInstructorBO.cs" />
     <Compile Include="BusinessCore\App\RegistrarAsistenciaManualBO.cs" />
     <Compile Include="BusinessCore\App\PersonaUsuarioBO.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Entities\App\ConsultaFIchas\ConsultaFichasEntity.cs" />
     <Compile Include="Entities\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteEntity.cs" />
     <Compile Include="Entities\App\ConsultaListaAsistencia\ConsultaListaAsistenciaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaMailCancelacionApp\ConsultaMailCancelacionAppEntity.cs" />
     <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntity.cs" />
     <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntityHelper.cs" />
     <Compile Include="Entities\App\ListaAsitenciaManual\ListaAsitenciaManualEntity.cs" />

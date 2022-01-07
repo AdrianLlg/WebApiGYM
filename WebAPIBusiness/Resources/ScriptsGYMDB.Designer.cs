@@ -139,6 +139,38 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+        ///((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, &apos;:&apos;)))
+        ///as horario from evento_persona ep 
+        ///inner join persona p on p.personaID=ep.personaID
+        ///inner join evento evt on ep.eventoID=evt.eventoID
+        ///inner join horarioM h on evt.horarioMID=h.horarioMID
+        ///inner join clase c on evt.claseID=c.claseID
+        ///where ep.eventoID=&apos;{0}&apos;.
+        /// </summary>
+        internal static string getConsultaMailCancelacionAlumnos {
+            get {
+                return ResourceManager.GetString("getConsultaMailCancelacionAlumnos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+        ///((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, &apos;:&apos;)))
+        ///as horario from evento_profesor ep 
+        ///inner join persona p on p.personaID=ep.personaID
+        ///inner join evento evt on ep.eventoID=evt.eventoID
+        ///inner join horarioM h on evt.horarioMID=h.horarioMID
+        ///inner join clase c on evt.claseID=c.claseID
+        ///where ep.eventoID=&apos;{0}&apos;.
+        /// </summary>
+        internal static string getConsultaMailCancelacionProfesor {
+            get {
+                return ResourceManager.GetString("getConsultaMailCancelacionProfesor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT 
         ///ds.disciplinaID
         ///FROM disciplina ds
