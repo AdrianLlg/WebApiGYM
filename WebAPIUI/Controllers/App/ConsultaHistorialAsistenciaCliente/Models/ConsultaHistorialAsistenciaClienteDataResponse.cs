@@ -17,14 +17,9 @@ namespace WebAPIUI.Controllers.App.ConsultaHistorialAsistenciaCliente.Models
         public string ResponseMessage { get; set; }
 
         /// <summary>
-        /// Conteo de resultados
-        /// </summary>
-        public int count { get; set; } 
-
-        /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<ConsultaHistorialAsistenciaClienteModel> ContentIndex { get; set; }
+        public List<ConsultaHistorialAsistenciaClienteModel> Content { get; set; }
         
 
     }

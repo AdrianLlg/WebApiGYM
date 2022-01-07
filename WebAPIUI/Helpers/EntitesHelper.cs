@@ -71,6 +71,7 @@ using WebAPIUI.Models.ConsultaDisciplinasDeportista;
 using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
 using WebAPIUI.Models.ConsultaClasesPendientesInstructor;
 using WebAPIBusiness.Entities.App.ConsultaClasesPendientesInstructor;
+using System.Linq;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -1356,14 +1357,16 @@ namespace WebAPIUI.Helpers
                     Disciplina = entity.Disciplina,
                     Profesor = entity.Profesor,
                     Horario = entity.Horario,
-                    Fecha = entity.Fecha,
+                    Fecha = entity.Fecha.ToString("yyyy-MM-dd"),
                     Sala = entity.Sala,
-                    Asistencia = entity.Asistencia
+                    Asistencia = entity.Asistencia,
+                    Estado = entity.Estado
                 };
 
                 response.Add(item);
             }
-            return response;
+
+            return response.OrderBy(x => x.Fecha).ToList();
         }
 
         public static ConsultaHistorialAsistenciaClienteModel NoticiaInfoEntityToModel(ConsultaHistorialAsistenciaClienteEntity entity)
@@ -1376,7 +1379,7 @@ namespace WebAPIUI.Helpers
                 Disciplina = entity.Disciplina,
                 Profesor = entity.Profesor,
                 Horario = entity.Horario,
-                Fecha = entity.Fecha,
+                Fecha = entity.Fecha.ToString("yyyy-MM-dd"),
                 Sala = entity.Sala,
                 Asistencia = entity.Asistencia
 

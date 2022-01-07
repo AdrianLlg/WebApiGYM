@@ -16,6 +16,7 @@ namespace WebAPIBusiness.Entities.App.ConsultaHistorialAsistenciaCliente
         public DateTime Fecha { get; set; } 
         public string Sala { get; set; }
         public string Asistencia { get; set; }
+        public string Estado { get; set;  }
 
     }
 }

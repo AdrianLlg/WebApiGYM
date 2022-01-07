@@ -89,13 +89,13 @@ namespace WebAPIUI.Controllers
                         model = EntitesHelper.ConsultaHistorialAsitenciaClienteEntityToModel(items);
                         response.ResponseCode = ConsultaHistorialAsistenciaClienteResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
-                        response.ContentIndex = model;
+                        response.Content = model;
                     }
                     else
                     {
                         response.ResponseCode = ConsultaHistorialAsistenciaClienteResponseType.InvalidParameters;
                         response.ResponseMessage = "Fallo en la ejecución.";
-                        response.ContentIndex = null;
+                        response.Content = null;
                     }
                 
             }

@@ -13,9 +13,10 @@ namespace WebAPIUI.Models.ConsultaHistorialAsitenciaCliente
         public string Disciplina { get; set; }
         public string Profesor { get; set; }
         public string Horario { get; set; }
-        public DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
         public string Sala { get; set; } 
         public string Asistencia { get; set; }
+        public string Estado { get; set; }
 
     }
 }

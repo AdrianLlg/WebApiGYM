@@ -278,10 +278,10 @@ namespace WebAPIBusiness.Resources {
         ///  ((SELECT STUFF( CAST(hm.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(hm.horaFin AS varchar), 3, 0, &apos;:&apos;)))as Horario , 
         ///  evt.fecha as Fecha,
         ///  sl.nombre as Sala,
-        ///  (SELECT CASE WHEN ep.asistencia = 1 THEN &apos;Si&apos; ELSE &apos;No&apos; END ) as Asistencia
+        ///  (SELECT CASE WHEN ep.asistencia = 1 THEN &apos;Si&apos; ELSE &apos;No&apos; END ) as Asistencia,
+        ///  ep.estadoRegistro as Estado
         ///  FROM evento evt
-        ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
-        ///  INNER  [rest of string was truncated]&quot;;.
+        ///  INNER JOIN evento_persona  ep ON evt [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string getHistorialAsistenciaClienteApp {
             get {
