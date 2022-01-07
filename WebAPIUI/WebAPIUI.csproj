@@ -261,6 +261,12 @@
     <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaController.cs" />
     <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaDisciplinasDeportistaDataRequest.cs" />
     <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaListaAsistenciaDataResponse.cs" />
+    <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataRequest.cs" />
+    <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataResponse.cs" />
+    <Compile Include="Controllers\App\GenerarQRInstructor\GenerarQRInstructorController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoPersona\RegistrarAsistenciaEventoPersonaController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoPersona\Models\RegistrarAsistenciaEventoPersonaDataRequest.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoPersona\Models\RegistrarAsistenciaEventoPersonaDataResponse.cs" />
     <Compile Include="Controllers\App\ConsultaListaAsistencia\ConsultaListaAsistenciaController.cs" />
     <Compile Include="Controllers\App\ConsultaListaAsistencia\Models\ConsultaListaAsistenciaDataRequest.cs" />
     <Compile Include="Controllers\App\ConsultaListaAsistencia\Models\ConsultaListaAsistenciaDataResponse.cs" />
@@ -310,6 +316,8 @@
     <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
     <Compile Include="CustomExceptions\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaException.cs" />
+    <Compile Include="CustomExceptions\App\GenerarQRInstructor\GenerarQRInstructorException.cs" />
+    <Compile Include="CustomExceptions\App\RegistrarAsistenciaEventoPersona\RegistrarAsistenciaEventoPersonaException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaListaAsistencia\ConsultaListaAsistenciaException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaException.cs" />

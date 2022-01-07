@@ -93,6 +93,10 @@ using WebAPIUI.CustomExceptions.ConsultaHistorialAsistenciaCliente;
 using WebAPIUI.Controllers.App.ConsultaHistorialAsistenciaCliente.Models;
 using WebAPIUI.CustomExceptions.ConsultaDisciplinasDeportista;
 using WebAPIUI.Controllers.App.ConsultaDisciplinasDeportista.Models;
+using WebAPIUI.CustomExceptions.RegistrarAsistenciaEventoPersona;
+using WebAPIUI.Controllers.App.RegistrarAsistenciaEventoPersona.Models;
+using WebAPIUI.CustomExceptions.GenerarQRInstructor;
+using WebAPIUI.Controllers.App.GenerarQRInstructor.Models;
 #endregion
 
 namespace WebAPIUI.Controllers
@@ -1227,6 +1231,47 @@ namespace WebAPIUI.Controllers
             response.ResponseCode = code;
             response.ResponseMessage = message;
             response.ContentIndex = null;
+        }
+        #endregion
+
+
+        #region RegistrarAsistenciaEventoPersonaException Exceptions
+        internal static void ThrowHandledExceptionRegistrarAsistenciaEventoPersonaException(RegistrarAsistenciaEventoPersonaResponseType type, IList<string> messages)
+        {
+            var newException = new RegistrarAsistenciaEventoPersonaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRegistrarAsistenciaEventoPersonaException(RegistrarAsistenciaEventoPersonaResponseType type, Exception ex)
+        {
+            throw new RegistrarAsistenciaEventoPersonaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRegistrarAsistenciaEventoPersonaException(RegistrarAsistenciaEventoPersonaResponseType code, RegistrarAsistenciaEventoPersonaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            
+        }
+        #endregion
+
+        #region GenerarQRInstructorException Exceptions
+        internal static void ThrowHandledExceptionGenerarQRInstructorException(GenerarQRInstructorResponseType type, IList<string> messages)
+        {
+            var newException = new GenerarQRInstructorException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionGenerarQRInstructorException(GenerarQRInstructorResponseType type, Exception ex)
+        {
+            throw new GenerarQRInstructorException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionGenerarQRInstructorException(GenerarQRInstructorResponseType code, GenerarQRInstructorDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.content = false;
         }
         #endregion 
     }

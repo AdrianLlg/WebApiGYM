@@ -11,7 +11,7 @@ using WebAPIUI.CustomExceptions.EventoPersona;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.EventoPersona;
 
-namespace WebAPIUI.ContEventolers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Eventos.

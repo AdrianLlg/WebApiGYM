@@ -58,6 +58,7 @@
     <Compile Include="BusinessCore\ConsultaListaAsistenciaBO.cs" />
     <Compile Include="BusinessCore\ConsultaNoticiasAppBO.cs" />
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
+    <Compile Include="BusinessCore\RegistrarAsistenciaEventoPersonaBO.cs" />
     <Compile Include="BusinessCore\EventoPersonaBO.cs" />
     <Compile Include="BusinessCore\FichaEntrenamientoBO.cs" />
     <Compile Include="BusinessCore\FichaPersonaBO.cs" />

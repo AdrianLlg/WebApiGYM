@@ -10,7 +10,7 @@ using WebAPIUI.CustomExceptions.ConsultaHistorialAsistenciaCliente;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.ConsultaHistorialAsitenciaCliente;
 
-namespace WebAPIUI.ContEventolers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Eventos.
