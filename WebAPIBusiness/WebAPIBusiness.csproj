@@ -104,7 +104,7 @@
     <Compile Include="Entities\App\ConsultaListaAsistencia\ConsultaListaAsistenciaEntity.cs" />
     <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntity.cs" />
     <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntityHelper.cs" />
-    <Compile Include="Entities\App\MembresiasPersona\MembresiasPersonaEntity.cs" />
+    <Compile Include="Entities\App\MembresiasPersona\DisciplinasMembresiasPersonaEntity.cs" />
     <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaMailCancelacion\ConsultaMailCancelacionEntity.cs" />

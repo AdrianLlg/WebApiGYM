@@ -31,7 +31,7 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     dbContext.Database.Log = log => System.Diagnostics.Debug.WriteLine(log);
 
-                    var query = dbContext.evento_persona.Where(x => x.personaID == personaID && x.estadoRegistro == "A" && x.evento.fecha > hoy).ToList();
+                    var query = dbContext.evento_persona.Where(x => x.personaID == personaID && x.estadoRegistro == "A" && x.evento.fecha >= hoy.Date).ToList();
 
                     if (query.Count > 0)
                     {

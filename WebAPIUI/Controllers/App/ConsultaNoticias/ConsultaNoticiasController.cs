@@ -57,10 +57,6 @@ namespace WebAPIUI.Controllers.App.ConsultaNoticias
             return response;
         }
 
-
-
-
-
         /// <summary>
         /// CRUD de Salas para Admin
         /// </summary>

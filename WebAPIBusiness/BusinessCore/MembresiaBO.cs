@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using WebAPIBusiness.Entities.App.MembresiasPersona;
 using WebAPIBusiness.Entities.Membresia;
 using WebAPIBusiness.Resources;
 using WebAPIData;
@@ -32,7 +33,31 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         foreach (var item in items1)
                         {
-                            //var items2 = dbContext.membresia_persona_disciplina.Where(x => x.personaID == personID && x.fechaInicio == item.fechaInicioMembresia.Date).ToList();
+                            List<DisciplinasMembresiasPersonaEntity> disciplinas = new List<DisciplinasMembresiasPersonaEntity>();
+
+                            if (item.estado.Equals("A"))
+                            {
+                                var discipl = dbContext.membresia_persona_disciplina
+                                    .Where(x => x.membresia_persona_pagoID == item.membresia_persona_pagoID)
+                                    .ToList();
+
+                                foreach (var discip in discipl)
+                                {
+                                    DisciplinasMembresiasPersonaEntity disciplina = new DisciplinasMembresiasPersonaEntity()
+                                    {
+                                        disciplinaID = discip.membresia_disciplina.disciplinaID,
+                                        nombreDisciplina = discip.membresia_disciplina.disciplina.nombre,
+                                        numClases = discip.numClasesDisponibles,
+                                        numClasesTomadas = discip.numClasesTomadas                                        
+                                    };
+
+                                    disciplinas.Add(disciplina);
+                                }                                
+                            }
+                            else
+                            {
+                                disciplinas = null;
+                            }
 
                             MembresiaEntity entity = new MembresiaEntity()
                             {
@@ -47,14 +72,14 @@ namespace WebAPIBusiness.BusinessCore
                                 fechaPago = Convert.ToDateTime(item.fechaTransaccion),
                                 fechaLimite = (DateTime)item.fechaFinMembresia,
                                 fechaInicioMembresia = (DateTime)item.fechaInicioMembresia,
-                                fechaFinMembresia = (DateTime)item.fechaFinMembresia, 
-                                estado = item.estado                                
-                                //disciplinasmembresia = items2
+                                fechaFinMembresia = (DateTime)item.fechaFinMembresia,
+                                estado = item.estado,
+                                disciplinasMemb = disciplinas
                             };
 
                             membresias.Add(entity);
                         }
-                    }                    
+                    }
                 }
 
                 return membresias;
@@ -84,7 +109,7 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     var record = dbContext.membresia_persona_pago.Where(x => x.membresia_persona_pagoID == membresia_persona_pagoID).FirstOrDefault();
-                    
+
                     if (record != null)
                     {
                         record.fechaInicioMembresia = fechaInicio;
