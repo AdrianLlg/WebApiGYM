@@ -139,12 +139,15 @@ namespace WebAPIBusiness.BusinessCore
                             }
                         }
 
-                        evento_profesor_Item = new evento_profesor() 
+                        evento_profesor_Item = new evento_profesor()
                         {
                             eventoID = eventoAux.eventoID,
                             personaID = eventoAux.personaID,
                             asistencia = 0,
-                            estadoRegistro = "A"
+                            estadoRegistro = "A",
+                            motivo = string.Empty ,
+                            posibleHorarioRecuperacion=string.Empty
+
                         };
                         dbContext.evento_profesor.Add(evento_profesor_Item);
                         dbContext.SaveChanges();

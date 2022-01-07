@@ -493,6 +493,25 @@ namespace WebAPIBusiness.Resources {
         /// <summary>
         ///   Looks up a localized string similar to SELECT 
         ///  dsp.nombre as Disciplina,
+        ///   COUNT(*)as ClasesAsistidas
+        ///  FROM evento evt
+        ///  INNER JOIN evento_profesor  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER JOIN persona p ON  ep.personaID=p.personaID
+        ///  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+        ///  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+        ///  Where p.personaID=&apos;{0}&apos; and evt.fecha&gt;=&apos;{1}&apos; and evt.fecha&lt;=&apos;{2}&apos; and ep.asistencia=1
+        ///  GROUP BY dsp.nombre,ep.asistencia
+        ///  HAVING COUNT(*) &gt; 0.
+        /// </summary>
+        internal static string getReporteGeneralAsistenciaCAProf {
+            get {
+                return ResourceManager.GetString("getReporteGeneralAsistenciaCAProf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///  dsp.nombre as Disciplina,
         ///   COUNT(*)as ClasesNoAsistidas
         ///  FROM evento evt
         ///  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
@@ -506,6 +525,25 @@ namespace WebAPIBusiness.Resources {
         internal static string getReporteGeneralAsistenciaCNA {
             get {
                 return ResourceManager.GetString("getReporteGeneralAsistenciaCNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///  dsp.nombre as Disciplina,
+        ///   COUNT(*)as ClasesNoAsistidas
+        ///  FROM evento evt
+        ///  INNER JOIN evento_profesor  ep ON evt.eventoID=ep.eventoID 
+        ///  INNER JOIN persona p ON  ep.personaID=p.personaID
+        ///  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+        ///  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+        ///  Where p.personaID=&apos;{0}&apos; and evt.fecha&gt;=&apos;{1}&apos; and evt.fecha&lt;=&apos;{2}&apos; and ep.asistencia=0
+        ///  GROUP BY dsp.nombre,ep.asistencia
+        ///  HAVING COUNT(*) &gt; 0.
+        /// </summary>
+        internal static string getReporteGeneralAsistenciaCNAProf {
+            get {
+                return ResourceManager.GetString("getReporteGeneralAsistenciaCNAProf", resourceCulture);
             }
         }
         

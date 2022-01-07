@@ -115,6 +115,24 @@ namespace WebAPIBusiness.BusinessCore
 
                     dbContext.evento.Add(item);
                     dbContext.SaveChanges();
+                    var eventoAux = dbContext.evento.Where(x =>
+                           x.claseID == item.claseID
+                           && x.horarioMID == item.horarioMID
+                           && x.fecha == item.fecha
+                           && x.salaID == item.salaID).FirstOrDefault();
+
+                    var evento_profesor_Item = new evento_profesor()
+                    {
+                        eventoID = eventoAux.eventoID,
+                        personaID = eventoAux.personaID,
+                        asistencia = 0,
+                        estadoRegistro = "A",
+                        motivo = string.Empty,
+                        posibleHorarioRecuperacion = string.Empty
+
+                    };
+                    dbContext.evento_profesor.Add(evento_profesor_Item);
+                    dbContext.SaveChanges();
                 }
 
                 return true;

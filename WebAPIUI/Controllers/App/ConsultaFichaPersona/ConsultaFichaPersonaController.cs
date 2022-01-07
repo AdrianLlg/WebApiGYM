@@ -99,4 +99,4 @@ namespace WebAPIUI.Controllers.App.ConsultaFichaPersona
             return response;
         }
     }
-}
+} 
