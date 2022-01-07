@@ -1236,7 +1236,7 @@ namespace WebAPIUI.Controllers
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;
-            response.ContentIndex = null;
+            response.Content = null;
         }
         #endregion
 

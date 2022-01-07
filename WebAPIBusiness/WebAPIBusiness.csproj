@@ -99,6 +99,7 @@
     <Compile Include="BusinessCore\SolicitudesMembresiasBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
     <Compile Include="Entities\App\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorEntity.cs" />
+    <Compile Include="Entities\App\ConsultaDisciplinasDeportista\ClaseDisciplinaEntity.cs" />
     <Compile Include="Entities\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaEntity.cs" />
     <Compile Include="Entities\App\ConsultaEventosDeportista\EventosDeportistaEntity.cs" />
     <Compile Include="Entities\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoEntity.cs" />
