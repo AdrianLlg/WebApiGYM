@@ -234,6 +234,7 @@ namespace WebAPIBusiness.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT
+        ///fp.fichaPersonaID,
         /// (p.nombres+SPACE(1)+p.apellidos)as Cliente,
         /// fp.PersonaID,
         /// fp.MesoTipo,
@@ -347,7 +348,7 @@ namespace WebAPIBusiness.Resources {
         ///	FROM evento_persona ep
         ///	INNER JOIN evento e ON e.eventoID=ep.eventoID 
         ///	INNER JOIN persona p ON p.personaID=ep.personaID 
-        ///	WHERE e.eventoID=&apos;{0}&apos;.
+        ///	WHERE e.eventoID=&apos;{0}&apos; AND e.estadoRegistro=&apos;A&apos; AND ep.estadoRegistro=&apos;A&apos;.
         /// </summary>
         internal static string getListaAsistenciaApp {
             get {

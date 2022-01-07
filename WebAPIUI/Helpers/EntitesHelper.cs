@@ -1200,6 +1200,7 @@ namespace WebAPIUI.Helpers
             {
                 ConsultaFichaPersonaModel model = new ConsultaFichaPersonaModel()
                 {
+                    fichaPersonaID=entity.fichaPersonaID,
                     Cliente = entity.Cliente,
                     PersonaID = entity.PersonaID,
                     MesoTipo = entity.MesoTipo,

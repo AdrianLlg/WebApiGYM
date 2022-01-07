@@ -256,6 +256,7 @@ HAVING COUNT(*) &gt; 0</value>
   </data>
   <data name="getFichaPersonaApp" xml:space="preserve">
     <value>SELECT
+fp.fichaPersonaID,
  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
  fp.PersonaID,
  fp.MesoTipo,
@@ -352,7 +353,7 @@ AND p.rolePID=2</value>
 	FROM evento_persona ep
 	INNER JOIN evento e ON e.eventoID=ep.eventoID 
 	INNER JOIN persona p ON p.personaID=ep.personaID 
-	WHERE e.eventoID='{0}'</value>
+	WHERE e.eventoID='{0}' AND e.estadoRegistro='A' AND ep.estadoRegistro='A'</value>
   </data>
   <data name="getMembresiasUsuario" xml:space="preserve">
     <value>SELECT 
