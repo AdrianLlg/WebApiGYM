@@ -73,6 +73,8 @@
           <Property Name="personaID" Type="int" Nullable="false" />
           <Property Name="asistencia" Type="int" Nullable="false" />
           <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="posibleHorarioRecuperacion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
@@ -843,6 +845,8 @@
           <Property Name="personaID" Type="Int32" Nullable="false" />
           <Property Name="asistencia" Type="Int32" Nullable="false" />
           <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="posibleHorarioRecuperacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
@@ -1648,6 +1652,8 @@
                 <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="asistencia" ColumnName="asistencia" />
                 <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="posibleHorarioRecuperacion" ColumnName="posibleHorarioRecuperacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
