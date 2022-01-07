@@ -27,7 +27,7 @@ namespace WebAPIBusiness.BusinessCore
 
         private List<ReporteGeneralAsistenciaEntity> getAsistenciaDB(int personaID,string fechaInicio, string fechaFin)
         {
-
+             
 
 
             DateTime FI = Convert.ToDateTime(fechaInicio);
@@ -64,10 +64,19 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    string query2 = string.Format(ScriptsGYMDB.getReporteGeneralAsistenciaCA, personaID, fechaInicio, fechaFin);
-                    string query3 = string.Format(ScriptsGYMDB.getReporteGeneralAsistenciaCNA, personaID, fechaInicio, fechaFin);
-                    CA = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaCAEntity>(query2).ToList();
-                    CNA = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaCNAEntity>(query3).ToList();
+                    if (personaDB.rolePID == 2)
+                    {
+                        string query2 = string.Format(ScriptsGYMDB.getReporteGeneralAsistenciaCAProf, personaID, fechaInicio, fechaFin);
+                        string query3 = string.Format(ScriptsGYMDB.getReporteGeneralAsistenciaCNAProf, personaID, fechaInicio, fechaFin);
+                        CA = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaCAEntity>(query2).ToList();
+                        CNA = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaCNAEntity>(query3).ToList();
+                    }
+                    else {
+                        string query2 = string.Format(ScriptsGYMDB.getReporteGeneralAsistenciaCA, personaID, fechaInicio, fechaFin);
+                        string query3 = string.Format(ScriptsGYMDB.getReporteGeneralAsistenciaCNA, personaID, fechaInicio, fechaFin);
+                        CA = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaCAEntity>(query2).ToList();
+                        CNA = dbContext.Database.SqlQuery<ReporteGeneralAsistenciaCNAEntity>(query3).ToList();
+                    }
 
                 }
             }

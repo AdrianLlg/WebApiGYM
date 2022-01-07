@@ -446,12 +446,38 @@ HAVING COUNT(*) &gt; 0</value>
   
   </value>
   </data>
+  <data name="getReporteGeneralAsistenciaCAProf" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesAsistidas
+  FROM evento evt
+  INNER JOIN evento_profesor  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0</value>
+  </data>
   <data name="getReporteGeneralAsistenciaCNA" xml:space="preserve">
     <value>SELECT 
   dsp.nombre as Disciplina,
    COUNT(*)as ClasesNoAsistidas
   FROM evento evt
   INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0</value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCNAProf" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesNoAsistidas
+  FROM evento evt
+  INNER JOIN evento_profesor  ep ON evt.eventoID=ep.eventoID 
   INNER JOIN persona p ON  ep.personaID=p.personaID
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
