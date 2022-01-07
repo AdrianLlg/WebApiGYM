@@ -80,23 +80,20 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-               
-                    List<ConsultaDisciplinasDeportistaModel> model = new List<ConsultaDisciplinasDeportistaModel>();
                     List<ConsultaDisciplinasDeportistaEntity> items = ConsultaDisciplinasDeportista(dataRequest.flujoID);
 
                 if (dataRequest.flujoID==0) {
                     if (items.Count > 0)
                     {
-                        model = EntitesHelper.ConsultaDisciplinasDeportistaEntityToModel(items);
                         response.ResponseCode = ConsultaDisciplinasDeportistaResponseType.Ok;
                         response.ResponseMessage = "Método ejecutado con éxito.";
-                        response.ContentIndex = model;
+                        response.Content = items;
                     }
                     else
                     {
                         response.ResponseCode = ConsultaDisciplinasDeportistaResponseType.InvalidParameters;
                         response.ResponseMessage = "Fallo en la ejecución.";
-                        response.ContentIndex = null;
+                        response.Content = null;
                     }
                 }
                 

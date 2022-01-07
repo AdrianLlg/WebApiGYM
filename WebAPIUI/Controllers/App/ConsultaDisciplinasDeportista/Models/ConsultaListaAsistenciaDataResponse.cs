@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
 using WebAPIUI.CustomExceptions.ConsultaDisciplinasDeportista;
 using WebAPIUI.Models.ConsultaDisciplinasDeportista;
 
@@ -17,14 +18,9 @@ namespace WebAPIUI.Controllers.App.ConsultaDisciplinasDeportista.Models
         public string ResponseMessage { get; set; }
 
         /// <summary>
-        /// Conteo de resultados
-        /// </summary>
-        public int count { get; set; } 
-
-        /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        public List<ConsultaDisciplinasDeportistaModel> ContentIndex { get; set; }
+        public List<ConsultaDisciplinasDeportistaEntity> Content { get; set; }
        
 
     }

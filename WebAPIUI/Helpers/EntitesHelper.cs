@@ -1398,35 +1398,18 @@ namespace WebAPIUI.Helpers
 
             foreach (var entity in entities)
             {
-                var item = new ConsultaDisciplinasDeportistaModel
-                {
-                    disciplinaID = entity.disciplinaID,
-                    claseID = entity.claseID,
-                    Clase = entity.Clase,
-                    DescripcionClase = entity.DescripcionClase,
-                    Disciplina = entity.Disciplina,
-                    DescripcionDisciplina = entity.Disciplina,
-                };
+                //var item = new ConsultaDisciplinasDeportistaModel
+                //{
+                //    disciplinaID = entity.disciplinaID,
+                //    claseID = entity.claseID,
+                //    Clase = entity.Clase,
+                //    DescripcionClase = entity.DescripcionClase,
+                //    Disciplina = entity.Disciplina,
+                //    DescripcionDisciplina = entity.Disciplina,
+                //};
 
-                response.Add(item);
+                //response.Add(item);
             }
-            return response;
-        }
-
-        public static ConsultaDisciplinasDeportistaModel ConsultaDisciplinasDeportistaInfoEntityToModel(ConsultaDisciplinasDeportistaEntity entity)
-        {
-
-            ConsultaDisciplinasDeportistaModel response = new ConsultaDisciplinasDeportistaModel
-            {
-                disciplinaID = entity.disciplinaID,
-                claseID = entity.claseID,
-                Clase = entity.Clase,
-                DescripcionClase = entity.DescripcionClase,
-                Disciplina = entity.Disciplina,
-                DescripcionDisciplina = entity.Disciplina,
-
-            };
-
             return response;
         }
         #endregion
