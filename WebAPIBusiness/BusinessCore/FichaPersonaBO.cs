@@ -113,12 +113,16 @@ namespace WebAPIBusiness.BusinessCore
             {
                 string validation = fichaPersonaID.ToString();
 
-                if (string.IsNullOrEmpty(validation))
+                if (fichaPersonaID > 0)
                 {
-                    throw new Exception("El ID del fichaPersona no se ha especificado.");
+                    entity = UpdateRecord(fichaPersonaID, PersonaID, MesoTipo, NivelActualActividadFisica, AntecendesMedicos, Alergias, Enfermedades);
+                }
+                else
+                {
+                    throw new Exception("El ID de fichaPersona no es el correcto.");
                 }
 
-                entity = UpdateRecord(fichaPersonaID, PersonaID,  MesoTipo,NivelActualActividadFisica, AntecendesMedicos, Alergias, Enfermedades);
+                
             }
             catch (Exception ex)
             {
@@ -144,10 +148,7 @@ namespace WebAPIBusiness.BusinessCore
 
                         rec.fichaPersonaID = fichaPersonaID;
                         
-                        
-                        
-                        
-                        
+
                         if (!string.IsNullOrEmpty(MesoTipo))
                         {
                             rec.MesoTipo = MesoTipo;
@@ -170,13 +171,14 @@ namespace WebAPIBusiness.BusinessCore
                             rec.Enfermedades = Enfermedades;
                         }
                         #endregion
+                        dbContext.SaveChanges();
+                        return true;
                     }
                     else
                     {
                         return false;
                     }
-                    dbContext.SaveChanges();
-                    return true;
+                    
                 }
             }
             catch (Exception ex)

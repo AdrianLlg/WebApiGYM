@@ -71,11 +71,6 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-
-
-
-
-
         public bool insertFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
         {
             bool entity = false;
