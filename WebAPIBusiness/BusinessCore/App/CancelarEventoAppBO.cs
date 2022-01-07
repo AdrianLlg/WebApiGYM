@@ -12,6 +12,16 @@ namespace WebAPIBusiness.BusinessCore.App
 {
     public class CancelarEventoAppBO
     {
+        public bool inactivarEvento(int eventoID, int personaID, string motivo, string posibleHorarioRecuperacion)
+        {
+            bool resp = false;
+
+
+            resp = InactivarInfo(eventoID, personaID, motivo, posibleHorarioRecuperacion);
+
+
+            return resp;
+        }
         private bool InactivarInfo(int eventoID, int personaID, string motivo, string posibleHorarioRecuperacion)
         {
 
@@ -65,8 +75,8 @@ namespace WebAPIBusiness.BusinessCore.App
             {
                 string query = string.Format(ScriptsGYMDB.getConsultaMailCancelacionProfesor, eventoID);
                 string query2 = string.Format(ScriptsGYMDB.getConsultaMailCancelacionAlumnos, eventoID);
-                consulta = dbContext.Database.SqlQuery<ConsultaMailCancelacionAppEntity>(query).ToList();
                 profesor = dbContext.Database.SqlQuery<ConsultaMailCancelacionAppEntity>(query).FirstOrDefault();
+                consulta = dbContext.Database.SqlQuery<ConsultaMailCancelacionAppEntity>(query2).ToList();
                 administradores = dbContext.persona.Where(x => x.rolePID == 1).ToList();
                 evtCheck = dbContext.evento.Where(x => x.eventoID == eventoID && x.estadoRegistro == "I").Any();
             }
@@ -76,24 +86,27 @@ namespace WebAPIBusiness.BusinessCore.App
             {
                 using (MailMessage mail = new MailMessage())
                 {
-
+                     
                     mail.From = new MailAddress("rootacc.2022@gmail.com"); mail.To.Add(c.email);
                     mail.Subject = "Evento Cancelado: " + c.clase + "  " + c.horario;
                     mail.Body =
-                        "<h1 style=\"color:#93E9BE\" > Evento Cancelado:</h1>" +
-                        "</br>" +
-                        "</br>" +
-                        "<p>Estimado " + c.nombres + ",</p>" +
-                        "</br>" +
-                        "<p>La clase de " + c.clase + " programada para el  " + c.fecha.ToShortDateString() + " en el horario de " + c.horario +
-                        " ha sido cancelada por el siguiente motivo: " +
-                        "</br>" +
-                        motivo +
-                        "</br>" +
-                        "La clase se  le ha sido retornada.</p>" +
-                        "</br>" +
-                        "<p>Gracias por su comprensión</p>"
-                        ;
+                    " <div style=\"border: 1px solid #c3c3c3;border-radius: 10px;padding: 20px;\">" +
+                    "     <h1 style=\"color: dodgerblue\">Evento Cancelado</h1>" +
+                    "     <hr>" +
+                    "     <p><span style=\"font-weight: bold; color: dodgerblue; \">Estimado "+c.nombres+",</span></p>" +
+                    "     <p>La clase de <span style=\"font-weight: bold; color: dodgerblue; \">"+c.clase+"</span> programada para el día   " +
+                    "     <span style=\"font-weight: bold; color: dodgerblue; \">"+c.fecha.ToShortDateString()+"</span> en el horario de" +
+                    "     <span style=\"font-weight: bold; color: dodgerblue;\"> "+c.horario+"</span> ha sido cancelada por el siguiente motivo:</p>" +
+                    "     <p>"+motivo+"</p>" +
+                    "     <hr>" +
+                    "     <p><span style=\"font-weight: bold; color: dodgerblue; \">La clase se le ha sido retornada.</span></p>" +
+                    "     <hr>" +
+                    "     <p>Gracias por su comprensión.</p>" +
+                    "     <p style=\"color: dodgerblue; font-weight:bold\">© GymAdmin</p>" +
+                    " </div>";
+                    ;
+
+
 
                     mail.IsBodyHtml = true;
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
@@ -114,22 +127,25 @@ namespace WebAPIBusiness.BusinessCore.App
                 mail.From = new MailAddress("rootacc.2022@gmail.com"); mail.To.Add(profesor.email);
                 mail.Subject = "Evento Cancelado: " + profesor.clase + "  " + profesor.horario;
                 mail.Body =
-                    "<h1 style=\"color:#93E9BE\" > Evento Cancelado:</h1>" +
-                    "</br>" +
-                    "</br>" +
-                    "<p>Estimado Instructor" + profesor.nombres + ",</p>" +
-                    "</br>" +
-                    "<p>Su clase de " + profesor.clase + " programada para el  " + profesor.fecha.ToShortDateString() + " en el horario de " + profesor.horario +
-                    " ha sido cancelada por el siguiente motivo: " +
-                    "</br>" +
-                    motivo +
-                    "</br>" +
-                    "Se ha enviado el posible horario de recuperación al administrador:</p>" +
-                    "</br>" +
-                    posibleHorarioRecuperacion +
-                    "</br>" +
-                    "<p> Si tiene dudas por favor contacte al adminsitrador,gracias por su comprensión</p>"
-                    ;
+                    "<div style=\"border: 1px solid #c3c3c3;border-radius: 10px; padding: 20px; \">" +
+                    "<h1 style=\"color: dodgerblue; font - weight: bold\">Evento Cancelado</h1>" +
+                    "<hr>" +
+                    "<p style=\"font-weight: bold;color:dodgerblue\">Estimado Instructor " + profesor.nombres + ",</p>" +
+                    "<p>Su clase de " + "<span style=\"color: dodgerblue; font-weight: bold; \">" + 
+                    profesor.clase + "</span>" +
+                    " programada para el día   <span style=\"color: dodgerblue; font-weight: bold\">" 
+                    + profesor.fecha.ToShortDateString() + "</span> en el horario de " +
+                    "<span style=\"color: dodgerblue; font-weight: bold\">" + profesor.horario + "</span> ha sido cancelada por el siguiente motivo: </p>  " +
+                    "<p>" + motivo + "</p>" +
+                    "<hr>" +
+                    "<p>Se ha enviado el posible horario de recuperación al administrador: " +
+                    "<span style=\"color: dodgerblue; font-weight: bold; \">" + posibleHorarioRecuperacion + "</span>" +
+                    "</p>" +
+                    "<hr>" +
+                    "<p>Si tiene dudas por favor contacte al adminsitrador.</p>" +
+                    "<p>Gracias por su comprensión</p>" +
+                    "<p style=\"color:dodgerblue;;font-weight:bold\">© GymAdmin</p>"
+                    +"</div>"; 
 
                 mail.IsBodyHtml = true;
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
@@ -140,33 +156,32 @@ namespace WebAPIBusiness.BusinessCore.App
                 }
             }
 
-             
+
             //Enviar correo a los administradores
             foreach (var c in administradores)
             {
                 using (MailMessage mail = new MailMessage())
-                {
+                { 
 
                     mail.From = new MailAddress("rootacc.2022@gmail.com"); mail.To.Add(c.email);
                     mail.Subject = "Evento Cancelado: " + profesor.clase + "  " + profesor.horario;
                     mail.Body =
-                        "<h1 style=\"color:#93E9BE\" > Evento Cancelado:</h1>" +
-                        "</br>" +
-                        "</br>" +
-                        "<p>Estimado administrador" + c.nombres + ",</p>" +
-                        "</br>" +
-                        "<p>La clase de " + profesor.clase + " programada para el  " + profesor.fecha.ToShortDateString() + " en el horario de " + profesor.horario +
-                        " ha sido cancelada por el siguiente motivo: " +
-                        "</br>" +
-                        motivo +
-                        "</br>" + 
-                        "Se ha solicitado agendar una clase de recuperación en el siguiente hhorario </p>" +
-                    "</br>" +
-                    posibleHorarioRecuperacion +
-                    "</br>" +
-                        "<p>Gracias por su atención.</p>"
-                        ;
-
+                        "<div style=\"border: 1px solid #c3c3c3;border-radius:10px ; padding: 20px;\">"+
+                        "<h1 style=\"color: dodgerblue\">Evento Cancelado</h1>" +
+                        "<hr>" +
+                        "<p><span style=\"color: dodgerblue; font-weight: bold; \">Estimado Administrador "+profesor.nombres+ ",</span></p>" +
+                        "<p>La clase de <span style=\"color: dodgerblue; font-weight: bold; \">"+profesor.clase+"</span> programada para el día   " + 
+                        "<span style=\"color: dodgerblue; font-weight: bold; \">"+profesor.fecha.ToShortDateString()+"</span> en el horario de " +
+                        "<span style=\"color: dodgerblue; font-weight: bold; \">"+profesor.horario+"</span> ha sido cancelada por el siguiente motivo: </p>" +
+                        "<p>"+motivo+"</p>" +
+                        "<hr>" +
+                        "<p>Se ha solicitado agendar una clase de recuperación en el siguiente horario: " +
+                        "<span style=\"color: dodgerblue; font-weight: bold; \">"+posibleHorarioRecuperacion+"</span> </p>" +
+                        "<hr>" +
+                        "<p>Gracias por su atención.</p>" +
+                        "<p style=\"color: dodgerblue; font-weight:bold\">© GymAdmin</p>" +
+                        "</div>"; 
+                     
                     mail.IsBodyHtml = true;
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {

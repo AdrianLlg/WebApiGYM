@@ -8,6 +8,7 @@ namespace WebAPIUI.Controllers.CancelarEventoApp.Models
     public class CancelarEventoAppDataRequest
     {
         public int eventoID { get; set; }
+        public int personaID { get; set; } 
         public string motivo { get; set; }
         public string posibleHorarioRecuperacion { get; set; }
 

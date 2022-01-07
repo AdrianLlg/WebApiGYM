@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using WebAPIBusiness.BusinessCore;
+using WebAPIBusiness.BusinessCore.App;
 using WebAPIBusiness.CustomExceptions;
-using WebAPIBusiness.Entities.EventoAdmin;
 using WebAPIUI.Controllers.CancelarEventoApp.Models;
-using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
-using WebAPIUI.CustomExceptions.EventoAdmin;
-using WebAPIUI.Helpers;
-using WebAPIUI.Models.EventoAdmin;
+using WebAPIUI.Controllers.CRUDRCancelarEventoApp.Models;
+using WebAPIUI.CustomExceptions.CancelarEventoApp;
 
 namespace WebAPIUI.Controllers.App
 {
@@ -25,7 +22,7 @@ namespace WebAPIUI.Controllers.App
             if (dataRequest == null)
             {
                 messages.Add("No se han especificado datos de ingreso.");
-                ThrowHandledExceptionEventoAdmin(EventoAdminResponseType.InvalidParameters, messages);
+                ThrowHandledExceptionCancelarEventoAppException(CancelarEventoAppResponseType.InvalidParameters, messages);
             }
 
             //if (string.IsNullOrEmpty(dataRequest.nombres))
@@ -36,25 +33,25 @@ namespace WebAPIUI.Controllers.App
         }
 
 
-        private bool InactivarEvento(int eventoID)
+        private bool InactivarEvento(int eventoID, int personaID, string motivo, string posibleHorarioRecuperacion)
         {
-            EventoAdminBO bo = new EventoAdminBO();
+            CancelarEventoAppBO bo = new CancelarEventoAppBO();
             List<string> messages = new List<string>();
             bool response = false;
 
             try
             {
-                response = bo.inactivarEvento(eventoID);
+                response = bo.inactivarEvento(eventoID, personaID, motivo, posibleHorarioRecuperacion);
             }
-            catch (ValidationAndMessageException EventoAdminException)
+            catch (ValidationAndMessageException CancelarEventoAppException)
             {
-                messages.Add(EventoAdminException.Message);
-                ThrowHandledExceptionEventoAdmin(EventoAdminResponseType.Error, messages);
+                messages.Add(CancelarEventoAppException.Message);
+                ThrowHandledExceptionCancelarEventoAppException(CancelarEventoAppResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledExceptionEventoAdmin(EventoAdminResponseType.Error, ex);
+                ThrowUnHandledExceptionCancelarEventoAppException(CancelarEventoAppResponseType.Error, ex);
             }
 
             return response;
@@ -70,9 +67,9 @@ namespace WebAPIUI.Controllers.App
         /// <param name="dataRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        public EventoAdminDataResponse Post(CancelarEventoAppDataRequest dataRequest)
+        public CancelarEventoAppDataResponse Post(CancelarEventoAppDataRequest dataRequest)
         {
-            EventoAdminDataResponse response = new EventoAdminDataResponse();
+            CancelarEventoAppDataResponse response = new CancelarEventoAppDataResponse();
 
             try
             {
@@ -83,35 +80,35 @@ namespace WebAPIUI.Controllers.App
 
 
                 bool resp = false;
-                EventoAdminModel model = new EventoAdminModel();
+                
 
-                resp = InactivarEvento(dataRequest.eventoID);
+                resp = InactivarEvento(dataRequest.eventoID, dataRequest.personaID, dataRequest. motivo, dataRequest. posibleHorarioRecuperacion);
 
                 if (resp == true)
                 {
 
-                    response.ResponseCode = EventoAdminResponseType.Ok;
+                    response.ResponseCode = CancelarEventoAppResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";
-                    response.ContentDetail = model;
+                    response.Estado =resp ;
                 }
                 else
                 {
-                    response.ResponseCode = EventoAdminResponseType.Error;
+                    response.ResponseCode = CancelarEventoAppResponseType.Error;
                     response.ResponseMessage = "Fallo en la ejecución.";
-                    response.ContentDetail = null;
+                    response.Estado = resp;
                 }
 
 
 
             }
-            catch (EventoAdminException EventoAdminException)
+            catch (CancelarEventoAppException CancelarEventoAppException)
             {
-                SetResponseAsExceptionEventoAdmin(EventoAdminException.Type, response, EventoAdminException.Message);
+                SetResponseAsExceptionCancelarEventoAppException(CancelarEventoAppException.Type, response, CancelarEventoAppException.Message);
             }
             catch (Exception ex)
             {
                 string message = "Se ha produccido un error al invocar CancelarEventoApp.";
-                SetResponseAsExceptionEventoAdmin(EventoAdminResponseType.Error, response, message);
+                SetResponseAsExceptionCancelarEventoAppException(CancelarEventoAppResponseType.Error, response, message);
             }
 
             return response;

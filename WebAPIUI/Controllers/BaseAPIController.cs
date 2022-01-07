@@ -27,6 +27,7 @@ using WebAPIUI.Controllers.CRUDFichaEntrenamiento.Models;
 using WebAPIUI.Controllers.CRUDFichaPersona.Models;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
 using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
+using WebAPIUI.Controllers.CRUDRCancelarEventoApp.Models;
 using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
 using WebAPIUI.Controllers.CRUDRConsultaHorarios.Models;
 using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
@@ -58,6 +59,7 @@ using WebAPIUI.CustomExceptions.App.ConsultaHorariosDeportista;
 using WebAPIUI.CustomExceptions.App.EnviarMailValidacion;
 using WebAPIUI.CustomExceptions.App.InscripcionUsuarioSesion;
 using WebAPIUI.CustomExceptions.App.ModificacionDatosPersonales;
+using WebAPIUI.CustomExceptions.CancelarEventoApp;
 using WebAPIUI.CustomExceptions.ClasesAdmin;
 using WebAPIUI.CustomExceptions.ConfiguracionesSistema;
 using WebAPIUI.CustomExceptions.ConsultaClasesPendientesInstructor;
@@ -1342,7 +1344,26 @@ namespace WebAPIUI.Controllers
 
         }
         #endregion
- 
+
+        #region CancelarEventoAppException Exceptions
+        internal static void ThrowHandledExceptionCancelarEventoAppException(CancelarEventoAppResponseType type, IList<string> messages)
+        {
+            var newException = new CancelarEventoAppException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionCancelarEventoAppException(CancelarEventoAppResponseType type, Exception ex)
+        {
+            throw new CancelarEventoAppException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionCancelarEventoAppException(CancelarEventoAppResponseType code, CancelarEventoAppDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+
+        }
+        #endregion
 
     }
 }

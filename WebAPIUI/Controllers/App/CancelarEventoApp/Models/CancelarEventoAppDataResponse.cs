@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using WebAPIUI.CustomExceptions.CancelarEventoApp;
-using WebAPIUI.Models.CancelarEventoApp;
+﻿using WebAPIUI.CustomExceptions.CancelarEventoApp;
 
 namespace WebAPIUI.Controllers.CRUDRCancelarEventoApp.Models
 {
