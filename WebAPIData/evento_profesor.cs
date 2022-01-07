@@ -19,5 +19,7 @@ namespace WebAPIData
         public int personaID { get; set; }
         public int asistencia { get; set; }
         public string estadoRegistro { get; set; }
+        public string motivo { get; set; }
+        public string posibleHorarioRecuperacion { get; set; }
     }
 }

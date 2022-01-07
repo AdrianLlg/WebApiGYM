@@ -142,6 +142,33 @@ AND CR.fecha = '2021-09-11'
 AND CLP.rolePID = 2</value>
     <comment>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA</comment>
   </data>
+  <data name="getClasesPendientesInstructor" xml:space="preserve">
+    <value>SELECT
+e.eventoID,
+e.fecha,
+e.horarioMID,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))as horario,
+e.claseID,
+c.nombre as nombreClase,      
+c.disciplinaID,
+d.nombre as nombreDisciplina,
+e.salaID,
+sl.nombre as nombreSala,
+e.aforoMax,
+e.aforoMin,
+e.personaID,
+e.estadoRegistro
+FROM evento e
+INNER JOIN clase c ON e.claseID=c.claseID
+INNER JOIN horarioM h ON e.horarioMID=h.horarioMID
+INNER JOIN sala sl ON E.salaID=sl.salaID
+INNER JOIN disciplina d ON d.disciplinaID=c.disciplinaID
+where e.estadoRegistro='A' 
+AND e.fecha&gt;=Convert(date, getdate())  
+AND FORMAT(GETDATE(),'hhmm')&lt;=h.horaFin
+and e.personaID='{0}'</value>
+    <comment>Consulta  las clases que debe impartir el instructor basado en la hora y fecha actual</comment>
+  </data>
   <data name="getConsultaDisciplinasDeportistaApp" xml:space="preserve">
     <value>SELECT
 c.disciplinaID,	
@@ -229,6 +256,7 @@ HAVING COUNT(*) &gt; 0</value>
   </data>
   <data name="getFichaPersonaApp" xml:space="preserve">
     <value>SELECT
+fp.fichaPersonaID,
  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
  fp.PersonaID,
  fp.MesoTipo,
@@ -326,7 +354,7 @@ AND p.rolePID=2</value>
 	FROM evento_persona ep
 	INNER JOIN evento e ON e.eventoID=ep.eventoID 
 	INNER JOIN persona p ON p.personaID=ep.personaID 
-	WHERE e.eventoID='{0}'</value>
+	WHERE e.eventoID='{0}' AND e.estadoRegistro='A' AND ep.estadoRegistro='A'</value>
   </data>
   <data name="getMembresiasUsuario" xml:space="preserve">
     <value>SELECT 

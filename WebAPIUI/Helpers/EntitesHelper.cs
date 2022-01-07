@@ -69,6 +69,8 @@ using WebAPIUI.Models.ConsultaHistorialAsitenciaCliente;
 using WebAPIBusiness.Entities.App.ConsultaHistorialAsistenciaCliente;
 using WebAPIUI.Models.ConsultaDisciplinasDeportista;
 using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
+using WebAPIUI.Models.ConsultaClasesPendientesInstructor;
+using WebAPIBusiness.Entities.App.ConsultaClasesPendientesInstructor;
 using System.Linq;
 #endregion
 namespace WebAPIUI.Helpers
@@ -1199,6 +1201,7 @@ namespace WebAPIUI.Helpers
             {
                 ConsultaFichaPersonaModel model = new ConsultaFichaPersonaModel()
                 {
+                    fichaPersonaID=entity.fichaPersonaID,
                     Cliente = entity.Cliente,
                     PersonaID = entity.PersonaID,
                     MesoTipo = entity.MesoTipo,
@@ -1307,7 +1310,7 @@ namespace WebAPIUI.Helpers
             {
                 var item = new ConsultaListaAsistenciaModel
                 {
-                    eventoPersonaID = entity.eventoPersonaID, 
+                    eventoPersonaID = entity.eventoPersonaID,
                     personaID = entity.personaID,
                     asistencia = entity.asistencia,
                     nombre = entity.nombre,
@@ -1319,7 +1322,7 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
-         
+
         public static ConsultaListaAsistenciaModel NoticiaInfoEntityToModel(ConsultaListaAsistenciaEntity entity)
         {
 
@@ -1327,7 +1330,7 @@ namespace WebAPIUI.Helpers
             {
                 eventoPersonaID = entity.eventoPersonaID,
                 personaID = entity.personaID,
-                asistencia = entity.asistencia, 
+                asistencia = entity.asistencia,
                 nombre = entity.nombre,
                 identificacion = entity.identificacion
 
@@ -1380,7 +1383,7 @@ namespace WebAPIUI.Helpers
                 Sala = entity.Sala,
                 Asistencia = entity.Asistencia
 
-            }; 
+            };
 
             return response;
         }
@@ -1409,7 +1412,7 @@ namespace WebAPIUI.Helpers
             }
             return response;
         }
-         
+
         public static ConsultaDisciplinasDeportistaModel ConsultaDisciplinasDeportistaInfoEntityToModel(ConsultaDisciplinasDeportistaEntity entity)
         {
 
@@ -1427,6 +1430,41 @@ namespace WebAPIUI.Helpers
             return response;
         }
         #endregion
+
+        #region ConsultaClasesPendientesInstructor Helper
+        public static List<ConsultaClasesPendientesInstructorModel> ConsultaClasesPendientesEntityToModel(List<ConsultaClasesPendientesInstructorEntity> entities)
+        {
+
+            List<ConsultaClasesPendientesInstructorModel> response = new List<ConsultaClasesPendientesInstructorModel>();
+
+            foreach (var entity in entities)
+            {
+                var item = new ConsultaClasesPendientesInstructorModel
+                {
+                    eventoID = entity.eventoID,
+                    fecha = entity.fecha.ToString(),
+                    horarioMID = entity.horarioMID,
+                    horario = entity.horario,
+                    claseID = entity.claseID,
+                    nombreClase = entity.nombreClase,
+                    disciplinaID = entity.disciplinaID,
+                    nombreDisciplina = entity.nombreDisciplina,
+                    salaID = entity.salaID,
+                    nombreSala = entity.nombreSala,
+                    aforoMax = entity.aforoMax,
+                    aforoMin = entity.aforoMin,
+                    personaID = entity.personaID,
+                    estadoRegistro = entity.estadoRegistro,
+                };
+
+                response.Add(item);
+            }
+            return response;
+        }
+
+
+        #endregion
+
 
     }
 

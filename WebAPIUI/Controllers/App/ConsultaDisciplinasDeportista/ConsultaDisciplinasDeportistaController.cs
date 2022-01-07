@@ -10,7 +10,7 @@ using WebAPIUI.CustomExceptions.ConsultaDisciplinasDeportista;
 using WebAPIUI.Helpers;
 using WebAPIUI.Models.ConsultaDisciplinasDeportista;
 
-namespace WebAPIUI.ContEventolers
+namespace WebAPIUI.Controllers
 {
     /// <summary>
     /// API que permite el manejo de Crear, Modificar y Consultar información de Eventos.

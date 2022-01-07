@@ -2,97 +2,105 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using WebAPIUI.Controllers.App.ConsultaClasesPendientesInstructor.Models;
+using WebAPIUI.Controllers.App.ConsultaDisciplinasDeportista.Models;
+using WebAPIUI.Controllers.App.ConsultaHistorialAsistenciaCliente.Models;
+using WebAPIUI.Controllers.App.ConsultaHorariosDeportista.Models;
+using WebAPIUI.Controllers.App.ConsultaListaAsistencia.Models;
+using WebAPIUI.Controllers.App.ConsultaNoticias.Models;
+using WebAPIUI.Controllers.App.EnviarMailValidacion.Models;
+using WebAPIUI.Controllers.App.GenerarQRInstructor.Models;
+using WebAPIUI.Controllers.App.InscripcionUsuarioSesion.Models;
+using WebAPIUI.Controllers.App.ModificacionDatosPersonales.Models;
+using WebAPIUI.Controllers.App.RegistrarAsistenciaEventoPersona.Models;
+using WebAPIUI.Controllers.App.RegistrarAsistenciaEventoProfesor.Models;
+using WebAPIUI.Controllers.ConfiguracionesSistema.Models;
+using WebAPIUI.Controllers.ConsultaFichaEntrenamiento.Models;
+using WebAPIUI.Controllers.ConsultaFichaPersona.Models;
+using WebAPIUI.Controllers.ConsultaPerfil.Models;
+using WebAPIUI.Controllers.ConsultaPersonaEstado.Models;
+using WebAPIUI.Controllers.ConsultaRepEventoDisciplina.Models;
+using WebAPIUI.Controllers.ConsultaRepEventoSala.Models;
+using WebAPIUI.Controllers.ConsultaVentasMembresias.Models;
+using WebAPIUI.Controllers.CRUDFichaEntrenamiento.Models;
+using WebAPIUI.Controllers.CRUDFichaPersona.Models;
 using WebAPIUI.Controllers.CRUDMembresiaAdmin.Models;
+using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
+using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
+using WebAPIUI.Controllers.CRUDRConsultaHorarios.Models;
+using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
 using WebAPIUI.Controllers.CRUDRecursoAdmin.Models;
+using WebAPIUI.Controllers.CRUDRecursoEspecialAdmin.Models;
 using WebAPIUI.Controllers.CRUDRegistroAdmin.Models;
+using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
+using WebAPIUI.Controllers.CRUDREventoPersona.Models;
+using WebAPIUI.Controllers.CRUDRHorarioAdmin.Models;
+using WebAPIUI.Controllers.CRUDRHorarioMAdmin.Models;
 using WebAPIUI.Controllers.CRUDRolAdmin.Models;
+using WebAPIUI.Controllers.CRUDSalaAdmin.Models;
+using WebAPIUI.Controllers.CRUDSalaRecurso.Models;
+using WebAPIUI.Controllers.CRUDSalaRecursoEspecialEspecial.Models;
 using WebAPIUI.Controllers.EventoClasePersona.Models;
 using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
+using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.Controllers.HorasDisciplina.Models;
 using WebAPIUI.Controllers.Login.Models;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
+using WebAPIUI.Controllers.ModificarMembresiaUsuario.Models;
 using WebAPIUI.Controllers.Registro.Models;
-using WebAPIUI.Controllers.CRUDRHorarioAdmin.Models;
+using WebAPIUI.Controllers.RegistroMembresiaUsuario.Models;
+using WebAPIUI.Controllers.RenovacionMembresiaUsuario.Models;
+using WebAPIUI.Controllers.ReporteGeneralAsistencia.Models;
+using WebAPIUI.Controllers.SolicitudesMembresias.Models;
+using WebAPIUI.Controllers.TransaccionesAnuales.Models;
+using WebAPIUI.CustomExceptions.App.ConsultaHorariosDeportista;
+using WebAPIUI.CustomExceptions.App.EnviarMailValidacion;
+using WebAPIUI.CustomExceptions.App.InscripcionUsuarioSesion;
+using WebAPIUI.CustomExceptions.App.ModificacionDatosPersonales;
+using WebAPIUI.CustomExceptions.ClasesAdmin;
+using WebAPIUI.CustomExceptions.ConfiguracionesSistema;
+using WebAPIUI.CustomExceptions.ConsultaClasesPendientesInstructor;
+using WebAPIUI.CustomExceptions.ConsultaDisciplinasDeportista;
+using WebAPIUI.CustomExceptions.ConsultaFichaEntrenamiento;
+using WebAPIUI.CustomExceptions.ConsultaFichaPersona;
+using WebAPIUI.CustomExceptions.ConsultaHistorialAsistenciaCliente;
+using WebAPIUI.CustomExceptions.ConsultaHorarios;
+using WebAPIUI.CustomExceptions.ConsultaListaAsistencia;
+using WebAPIUI.CustomExceptions.ConsultaNoticias;
+using WebAPIUI.CustomExceptions.ConsultaPerfil;
+using WebAPIUI.CustomExceptions.ConsultaPersonaEstado;
+using WebAPIUI.CustomExceptions.ConsultaRepEventoDisciplina;
+using WebAPIUI.CustomExceptions.ConsultaRepEventoSala;
+using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
+using WebAPIUI.CustomExceptions.EventoAdmin;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
+using WebAPIUI.CustomExceptions.EventoPersona;
 using WebAPIUI.CustomExceptions.EventoRecursoEspecial;
+using WebAPIUI.CustomExceptions.EventosSerializados;
+using WebAPIUI.CustomExceptions.FichaEntrenamiento;
+using WebAPIUI.CustomExceptions.FichaPersona;
+using WebAPIUI.CustomExceptions.GenerarQRInstructor;
+using WebAPIUI.CustomExceptions.HorarioAdmin;
+using WebAPIUI.CustomExceptions.HorarioMAdmin;
 using WebAPIUI.CustomExceptions.HorasDisciplina;
 using WebAPIUI.CustomExceptions.Login;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
+using WebAPIUI.CustomExceptions.NoticiaAdmin;
 using WebAPIUI.CustomExceptions.RecursoAdmin;
+using WebAPIUI.CustomExceptions.RecursoEspecialAdmin;
 using WebAPIUI.CustomExceptions.RegisterPerson;
+using WebAPIUI.CustomExceptions.RegistrarAsistenciaEventoPersona;
+using WebAPIUI.CustomExceptions.RegistrarAsistenciaEventoProfesor;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
+using WebAPIUI.CustomExceptions.ReporteGeneralAsistencia;
 using WebAPIUI.CustomExceptions.RolAdmin;
 using WebAPIUI.CustomExceptions.SalaAdmin;
-using WebAPIUI.CustomExceptions.HorarioAdmin;
-using WebAPIUI.CustomExceptions.HorarioMAdmin;
-using WebAPIUI.Controllers.CRUDRHorarioMAdmin.Models;
-using WebAPIUI.Controllers.RegistroMembresiaUsuario.Models;
-using WebAPIUI.CustomExceptions.ConfiguracionesSistema;
-using WebAPIUI.Controllers.ConfiguracionesSistema.Models;
-using WebAPIUI.CustomExceptions.RecursoEspecialAdmin;
-using WebAPIUI.Controllers.CRUDRecursoEspecialAdmin.Models;
-using WebAPIUI.CustomExceptions.ClasesAdmin;
-using WebAPIUI.Controllers.CRUDRClaseAdmin.Models;
-using WebAPIUI.CustomExceptions.EventoAdmin;
-using WebAPIUI.Controllers.CRUDREventoAdmin.Models;
-using WebAPIUI.Controllers.CRUDRDisciplinaAdmin.Models;
-using WebAPIUI.CustomExceptions.NoticiaAdmin;
-using WebAPIUI.Controllers.CRUDNoticiaAdmin.Models;
-using WebAPIUI.CustomExceptions.ConsultaHorarios;
-using WebAPIUI.Controllers.CRUDRConsultaHorarios.Models;
-using WebAPIUI.CustomExceptions.EventosSerializados;
-using WebAPIUI.Controllers.EventosSerializados.Models;
-using WebAPIUI.CustomExceptions.SolicitudesMembresias;
-using WebAPIUI.Controllers.SolicitudesMembresias.Models;
-using WebAPIUI.Controllers.RenovacionMembresiaUsuario.Models;
-using WebAPIUI.CustomExceptions.ConsultaRepEventoDisciplina;
-using WebAPIUI.Controllers.ConsultaRepEventoDisciplina.Models;
-using WebAPIUI.CustomExceptions.ConsultaPersonaEstado;
-using WebAPIUI.Controllers.ConsultaPersonaEstado.Models;
-using WebAPIUI.CustomExceptions.ConsultaRepEventoSala;
-using WebAPIUI.Controllers.ConsultaRepEventoSala.Models;
-using WebAPIUI.CustomExceptions.TransaccionesAnuales;
-using WebAPIUI.Controllers.TransaccionesAnuales.Models;
-using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
-using WebAPIUI.Controllers.ConsultaVentasMembresias.Models;
-using WebAPIUI.Controllers.ModificarMembresiaUsuario.Models;
-using WebAPIUI.CustomExceptions.ReporteGeneralAsistencia;
-using WebAPIUI.Controllers.ReporteGeneralAsistencia.Models;
-using WebAPIUI.CustomExceptions.FichaPersona;
-using WebAPIUI.Controllers.CRUDFichaPersona.Models;
-using WebAPIUI.CustomExceptions.FichaEntrenamiento;
-using WebAPIUI.Controllers.CRUDFichaEntrenamiento.Models;
-using WebAPIUI.CustomExceptions.ConsultaPerfil;
-using WebAPIUI.Controllers.ConsultaPerfil.Models;
-using WebAPIUI.CustomExceptions.App.ModificacionDatosPersonales;
-using WebAPIUI.Controllers.App.ModificacionDatosPersonales.Models;
-using WebAPIUI.CustomExceptions.App.EnviarMailValidacion;
-using WebAPIUI.Controllers.App.EnviarMailValidacion.Models;
-using WebAPIUI.CustomExceptions.App.ConsultaHorariosDeportista;
-using WebAPIUI.Controllers.App.ConsultaHorariosDeportista.Models;
-using WebAPIUI.CustomExceptions.App.InscripcionUsuarioSesion;
-using WebAPIUI.Controllers.App.InscripcionUsuarioSesion.Models;
-using WebAPIUI.CustomExceptions.EventoPersona;
-using WebAPIUI.Controllers.CRUDREventoPersona.Models;
 using WebAPIUI.CustomExceptions.SalaRecurso;
-using WebAPIUI.Controllers.CRUDSalaRecurso.Models;
-using WebAPIUI.Controllers.CRUDSalaAdmin.Models;
 using WebAPIUI.CustomExceptions.SalaRecursoEspecial;
-using WebAPIUI.Controllers.CRUDSalaRecursoEspecialEspecial.Models;
-using WebAPIUI.Controllers.ConsultaFichaPersona.Models;
-using WebAPIUI.CustomExceptions.ConsultaFichaPersona;
-using WebAPIUI.CustomExceptions.ConsultaFichaEntrenamiento;
-using WebAPIUI.Controllers.ConsultaFichaEntrenamiento.Models;
-using WebAPIUI.CustomExceptions.ConsultaNoticias;
-using WebAPIUI.Controllers.App.ConsultaNoticias.Models;
-using WebAPIUI.CustomExceptions.ConsultaListaAsistencia;
-using WebAPIUI.Controllers.App.ConsultaListaAsistencia.Models;
-using WebAPIUI.CustomExceptions.ConsultaHistorialAsistenciaCliente;
-using WebAPIUI.Controllers.App.ConsultaHistorialAsistenciaCliente.Models;
-using WebAPIUI.CustomExceptions.ConsultaDisciplinasDeportista;
-using WebAPIUI.Controllers.App.ConsultaDisciplinasDeportista.Models;
+using WebAPIUI.CustomExceptions.SolicitudesMembresias;
+using WebAPIUI.CustomExceptions.TransaccionesAnuales;
 #endregion
 
 namespace WebAPIUI.Controllers
@@ -1228,6 +1236,90 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.ContentIndex = null;
         }
-        #endregion 
+        #endregion
+
+
+        #region RegistrarAsistenciaEventoPersonaException Exceptions
+        internal static void ThrowHandledExceptionRegistrarAsistenciaEventoPersonaException(RegistrarAsistenciaEventoPersonaResponseType type, IList<string> messages)
+        {
+            var newException = new RegistrarAsistenciaEventoPersonaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRegistrarAsistenciaEventoPersonaException(RegistrarAsistenciaEventoPersonaResponseType type, Exception ex)
+        {
+            throw new RegistrarAsistenciaEventoPersonaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRegistrarAsistenciaEventoPersonaException(RegistrarAsistenciaEventoPersonaResponseType code, RegistrarAsistenciaEventoPersonaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            
+        }
+        #endregion
+
+        #region GenerarQRInstructorException Exceptions
+        internal static void ThrowHandledExceptionGenerarQRInstructorException(GenerarQRInstructorResponseType type, IList<string> messages)
+        {
+            var newException = new GenerarQRInstructorException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionGenerarQRInstructorException(GenerarQRInstructorResponseType type, Exception ex)
+        {
+            throw new GenerarQRInstructorException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionGenerarQRInstructorException(GenerarQRInstructorResponseType code, GenerarQRInstructorDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.content = false;
+        }
+        #endregion
+
+
+        #region RegistrarAsistenciaEventoProfesorException Exceptions
+        internal static void ThrowHandledExceptionRegistrarAsistenciaEventoProfesorException(RegistrarAsistenciaEventoProfesorResponseType type, IList<string> messages)
+        {
+            var newException = new RegistrarAsistenciaEventoProfesorException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRegistrarAsistenciaEventoProfesorException(RegistrarAsistenciaEventoProfesorResponseType type, Exception ex)
+        {
+            throw new RegistrarAsistenciaEventoProfesorException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRegistrarAsistenciaEventoProfesorException(RegistrarAsistenciaEventoProfesorResponseType code, RegistrarAsistenciaEventoProfesorDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+
+        }
+        #endregion
+
+
+        #region ConsultaClasesPendientesInstructorException Exceptions
+        internal static void ThrowHandledExceptionConsultaClasesPendientesInstructorException(ConsultaClasesPendientesInstructorResponseType type, IList<string> messages)
+        {
+            var newException = new ConsultaClasesPendientesInstructorException(type, messages);
+            throw newException;
+        }  
+
+        internal static void ThrowUnHandledExceptionConsultaClasesPendientesInstructorException(ConsultaClasesPendientesInstructorResponseType type, Exception ex)
+        {
+            throw new ConsultaClasesPendientesInstructorException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionConsultaClasesPendientesInstructorException(ConsultaClasesPendientesInstructorResponseType code, ConsultaClasesPendientesInstructorDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+        }
+        #endregion
+
     }
 }

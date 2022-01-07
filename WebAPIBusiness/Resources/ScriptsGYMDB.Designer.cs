@@ -95,6 +95,33 @@ namespace WebAPIBusiness.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT
+        ///e.eventoID,
+        ///e.fecha,
+        ///e.horarioMID,
+        ///((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, &apos;:&apos;))+&apos; - &apos;+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, &apos;:&apos;)))as horario,
+        ///e.claseID,
+        ///c.nombre as nombreClase,      
+        ///c.disciplinaID,
+        ///d.nombre as nombreDisciplina,
+        ///e.salaID,
+        ///sl.nombre as nombreSala,
+        ///e.aforoMax,
+        ///e.aforoMin,
+        ///e.personaID,
+        ///e.estadoRegistro
+        ///FROM evento e
+        ///INNER JOIN clase c ON e.claseID=c.claseID
+        ///INNER JOIN horarioM h ON e.horarioMID=h.horarioMID
+        ///INNER JOIN sala sl ON E.salaID=sl.sa [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string getClasesPendientesInstructor {
+            get {
+                return ResourceManager.GetString("getClasesPendientesInstructor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
         ///c.disciplinaID,	
         ///c.claseID	,
         ///c.nombre AS Clase	,
@@ -207,6 +234,7 @@ namespace WebAPIBusiness.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT
+        ///fp.fichaPersonaID,
         /// (p.nombres+SPACE(1)+p.apellidos)as Cliente,
         /// fp.PersonaID,
         /// fp.MesoTipo,
@@ -320,7 +348,7 @@ namespace WebAPIBusiness.Resources {
         ///	FROM evento_persona ep
         ///	INNER JOIN evento e ON e.eventoID=ep.eventoID 
         ///	INNER JOIN persona p ON p.personaID=ep.personaID 
-        ///	WHERE e.eventoID=&apos;{0}&apos;.
+        ///	WHERE e.eventoID=&apos;{0}&apos; AND e.estadoRegistro=&apos;A&apos; AND ep.estadoRegistro=&apos;A&apos;.
         /// </summary>
         internal static string getListaAsistenciaApp {
             get {

@@ -7,6 +7,7 @@ namespace WebAPIUI.Models.ConsultaFichaPersona
 {
     public class ConsultaFichaPersonaModel
     {
+        public int fichaPersonaID { get; set; }
         public string Cliente { get; set; }
         public int PersonaID { get; set; }
         public string MesoTipo { get; set; }
