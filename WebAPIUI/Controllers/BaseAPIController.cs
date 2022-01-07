@@ -14,6 +14,7 @@ using WebAPIUI.Controllers.App.InscripcionUsuarioSesion.Models;
 using WebAPIUI.Controllers.App.ModificacionDatosPersonales.Models;
 using WebAPIUI.Controllers.App.RegistrarAsistenciaEventoPersona.Models;
 using WebAPIUI.Controllers.App.RegistrarAsistenciaEventoProfesor.Models;
+using WebAPIUI.Controllers.App.RegistrarAsistenciaManual.Models;
 using WebAPIUI.Controllers.ConfiguracionesSistema.Models;
 using WebAPIUI.Controllers.ConsultaFichaEntrenamiento.Models;
 using WebAPIUI.Controllers.ConsultaFichaPersona.Models;
@@ -93,6 +94,7 @@ using WebAPIUI.CustomExceptions.RecursoEspecialAdmin;
 using WebAPIUI.CustomExceptions.RegisterPerson;
 using WebAPIUI.CustomExceptions.RegistrarAsistenciaEventoPersona;
 using WebAPIUI.CustomExceptions.RegistrarAsistenciaEventoProfesor;
+using WebAPIUI.CustomExceptions.RegistrarAsistenciaManual;
 using WebAPIUI.CustomExceptions.RegistroAdmin;
 using WebAPIUI.CustomExceptions.ReporteGeneralAsistencia;
 using WebAPIUI.CustomExceptions.RolAdmin;
@@ -1320,6 +1322,27 @@ namespace WebAPIUI.Controllers
             response.ContentIndex = null;
         }
         #endregion
+
+        #region RegistrarAsistenciaManualException Exceptions
+        internal static void ThrowHandledExceptionRegistrarAsistenciaManualException(RegistrarAsistenciaManualResponseType type, IList<string> messages)
+        {
+            var newException = new RegistrarAsistenciaManualException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionRegistrarAsistenciaManualException(RegistrarAsistenciaManualResponseType type, Exception ex)
+        {
+            throw new RegistrarAsistenciaManualException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionRegistrarAsistenciaManualException(RegistrarAsistenciaManualResponseType code, RegistrarAsistenciaManualDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+
+        }
+        #endregion
+ 
 
     }
 }

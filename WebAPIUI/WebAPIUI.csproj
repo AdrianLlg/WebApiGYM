@@ -267,6 +267,9 @@
     <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataRequest.cs" />
     <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataResponse.cs" />
     <Compile Include="Controllers\App\GenerarQRInstructor\GenerarQRInstructorController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaManual\Models\RegistrarAsistenciaManualDataRequest.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaManual\Models\RegistrarAsistenciaManualDataResponse.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaManual\RegistrarAsistenciaManualController.cs" />
     <Compile Include="Controllers\App\RegistrarAsistenciaEventoProfesor\Models\RegistrarAsistenciaEventoProfesorDataRequest.cs" />
     <Compile Include="Controllers\App\RegistrarAsistenciaEventoProfesor\Models\RegistrarAsistenciaEventoProfesorDataResponse.cs" />
     <Compile Include="Controllers\App\RegistrarAsistenciaEventoProfesor\RegistrarAsistenciaEventoProfesorController.cs" />
@@ -323,6 +326,7 @@
     <Compile Include="CustomExceptions\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaException.cs" />
     <Compile Include="CustomExceptions\App\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorException.cs" />
+    <Compile Include="CustomExceptions\App\RegistrarAsistenciaManual\RegistrarAsistenciaManualException.cs" />
     <Compile Include="CustomExceptions\App\GenerarQRInstructor\GenerarQRInstructorException.cs" />
     <Compile Include="CustomExceptions\App\RegistrarAsistenciaEventoProfesor\RegistrarAsistenciaEventoProfesorException.cs" />
     <Compile Include="CustomExceptions\App\RegistrarAsistenciaEventoPersona\RegistrarAsistenciaEventoPersonaException.cs" />
