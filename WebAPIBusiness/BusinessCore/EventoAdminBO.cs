@@ -375,7 +375,7 @@ namespace WebAPIBusiness.BusinessCore
 
                             var estadoPersona = dbContext.evento_persona.Where(x => x.eventoID == item.eventoID && x.personaID == personaID).FirstOrDefault();
 
-                            var recursosEspeciales = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID && x.personaID == 0).ToList();
+                            var recursosEspeciales = dbContext.evento_recursoEspecial.Where(x => x.eventoID == item.eventoID).ToList();
 
                             if (estadoPersona == null)
                             {
