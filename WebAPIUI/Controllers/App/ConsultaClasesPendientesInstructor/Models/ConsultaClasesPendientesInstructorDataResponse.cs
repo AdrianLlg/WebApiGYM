@@ -18,11 +18,6 @@ namespace WebAPIUI.Controllers.App.ConsultaClasesPendientesInstructor.Models
         public string ResponseMessage { get; set; }
 
         /// <summary>
-        /// Conteo de resultados
-        /// </summary>
-        public int count { get; set; } 
-
-        /// <summary>
         /// Contenido de respuesta
         /// </summary>
         public List<ConsultaClasesPendientesInstructorModel> ContentIndex { get; set; }

@@ -43,14 +43,11 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    eventoPersonaAux = dbContext.evento_persona.ToList();
                     foreach (var itemLA in listaAsistencia)
                     {
                         item = dbContext.evento_persona.Where(x => x.evento_personaID == itemLA.evento_personaID).FirstOrDefault();
                         item.asistencia = itemLA.asistencia;
                         dbContext.SaveChanges();
-                         
-
                     }
                 }
                 return true;

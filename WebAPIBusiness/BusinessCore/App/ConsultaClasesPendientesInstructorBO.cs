@@ -34,7 +34,7 @@ namespace WebAPIBusiness.BusinessCore.App
                 }
                 return listaClasesPendientes;
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             { 
                 return listaClasesPendientes ;
             } 

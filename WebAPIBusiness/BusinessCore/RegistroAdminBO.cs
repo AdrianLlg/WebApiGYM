@@ -73,7 +73,7 @@ namespace WebAPIBusiness.BusinessCore
 
                 int edad = calculateAge(fechaNacimient);
 
-                UsuariosRegistradosEntity person = validationPerson(identificacion);
+                UsuariosRegistradosEntity person = validationPerson(identificacion, email);
 
                 if (person.personaID >= 0)
                 {
@@ -308,7 +308,7 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private UsuariosRegistradosEntity validationPerson(string cedula)
+        private UsuariosRegistradosEntity validationPerson(string cedula, string correo)
         {
             persona pers = new persona();
             UsuariosRegistradosEntity resp = new UsuariosRegistradosEntity();
@@ -317,7 +317,7 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    pers = dbContext.persona.Where(x => x.identificacion == cedula).FirstOrDefault();
+                    pers = dbContext.persona.Where(x => x.identificacion == cedula || x.email == correo).FirstOrDefault();
                 }
 
                 if (pers != null)

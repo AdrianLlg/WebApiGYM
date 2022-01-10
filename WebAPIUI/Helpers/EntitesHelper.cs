@@ -1425,7 +1425,7 @@ namespace WebAPIUI.Helpers
                 var item = new ConsultaClasesPendientesInstructorModel
                 {
                     eventoID = entity.eventoID,
-                    fecha = entity.fecha.ToString(),
+                    fecha = entity.fecha.ToString("yyyy-MM-dd HH:mm:ss"),
                     horarioMID = entity.horarioMID,
                     horario = entity.horario,
                     claseID = entity.claseID,
