@@ -165,8 +165,6 @@ INNER JOIN sala sl ON E.salaID=sl.salaID
 INNER JOIN disciplina d ON d.disciplinaID=c.disciplinaID
 where e.estadoRegistro='A' 
 AND e.fecha&gt;=Convert(date, getdate())  
-AND
-CAST(REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':','') AS int)&lt;=h.horaFin
 and e.personaID='{0}'</value>
     <comment>Consulta  las clases que debe impartir el instructor basado en la hora y fecha actual</comment>
   </data>

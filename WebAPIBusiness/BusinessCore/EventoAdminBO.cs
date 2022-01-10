@@ -170,47 +170,60 @@ namespace WebAPIBusiness.BusinessCore
         {
             bool resp = false;
             evento Evento = new evento();
-
+            evento check = new evento();
+            int auxSala = int.Parse(salaID);
+            int auxHorario =int.Parse(horarioMID);
+            DateTime auxFecha= Convert.ToDateTime(fecha);
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
+
                     Evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
-
-                    if (Evento != null)
-                    {
-                        if (!string.IsNullOrEmpty(claseID))
-                        {
-                            Evento.claseID = int.Parse(claseID);
-                        }
-
-                        if (!string.IsNullOrEmpty(horarioMID))
-                        {
-                            Evento.horarioMID = int.Parse(horarioMID);
-                        }
-
-                        if (!string.IsNullOrEmpty(salaID))
-                        {
-                            Evento.salaID = int.Parse(salaID);
-                        }
-                        if (!string.IsNullOrEmpty(aforoMax))
-                        {
-                            Evento.aforoMax = int.Parse(aforoMax);
-                        }
-                        if (!string.IsNullOrEmpty(aforoMin))
-                        {
-                            Evento.aforoMin = int.Parse(aforoMin);
-                        }
-
-                        Evento.personaID = personaID;
-                        Evento.fecha = Convert.ToDateTime(fecha);
+                    check = dbContext.evento.Where(x=>x.eventoID!=eventoID && x.salaID ==auxSala  && x.horarioMID ==auxHorario && x.fecha==auxFecha).FirstOrDefault() ;
+                      
+                    if (check!=null) {
+                        return false; 
                     }
-                    else
-                    {
-                        return false;
+                    else {
+                        if (Evento != null)
+                        {
+                            if (!string.IsNullOrEmpty(claseID))
+                            {
+                                Evento.claseID = int.Parse(claseID);
+                            }
+
+                            if (!string.IsNullOrEmpty(horarioMID))
+                            {
+                                Evento.horarioMID = int.Parse(horarioMID);
+                            }
+
+                            if (!string.IsNullOrEmpty(salaID))
+                            {
+                                Evento.salaID = int.Parse(salaID);
+                            }
+                            if (!string.IsNullOrEmpty(aforoMax))
+                            {
+                                Evento.aforoMax = int.Parse(aforoMax);
+                            }
+                            if (!string.IsNullOrEmpty(aforoMin))
+                            {
+                                Evento.aforoMin = int.Parse(aforoMin);
+                            }
+
+                            Evento.personaID = personaID;
+                            Evento.fecha = Convert.ToDateTime(fecha);
+                            dbContext.SaveChanges();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                      
                     }
-                    dbContext.SaveChanges();
-                    return true;
+                    
+                   
                 }
             }
             catch (Exception ex)
@@ -703,24 +716,49 @@ namespace WebAPIBusiness.BusinessCore
         {
 
             evento evento = new evento();
+            evento_profesor eventoProfesor = new evento_profesor();
+            List<evento_persona> asistentes = new List<evento_persona>();
 
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
                     evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
+                    eventoProfesor = dbContext.evento_profesor.Where(x => x.personaID == evento.personaID && x.eventoID == eventoID).FirstOrDefault();
+                    asistentes = dbContext.evento_persona.Where(x => x.eventoID == eventoID).ToList();
 
                     if (evento != null)
                     {
                         if (evento.estadoRegistro == "A")
                         {
+                            eventoProfesor.estadoRegistro = "I";
+                            eventoProfesor.motivo = "Cancelado por la administración";
+                            eventoProfesor.posibleHorarioRecuperacion = string.Empty;
                             evento.estadoRegistro = "I";
+                            foreach (var a in asistentes)
+                            {
+                                a.estadoRegistro = "I";
+                                a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles + 1;
+                                a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas - 1;
+                                a.asistencia = 0;
+                            }
                             enviarCorreoCancelacion(eventoID);
                         }
                         else if (evento.estadoRegistro == "I")
                         {
+                            eventoProfesor.estadoRegistro = "A";
+                            eventoProfesor.motivo = "Reactivado por la administración";
+                            eventoProfesor.posibleHorarioRecuperacion = string.Empty;
                             evento.estadoRegistro = "A";
-                        }
+                            foreach (var a in asistentes) 
+                            {
+                                a.estadoRegistro = "A";
+                                a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles - 1;
+                                a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas + 1;
+                                a.asistencia = 0; 
+                            }
+                            enviarCorreoReactivacion(eventoID);
+                        } 
 
                     }
                     else
@@ -781,6 +819,49 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+        private void enviarCorreoReactivacion(int eventoID)
+        {
+            List<ConsultaMailCancelacionEntity> consulta;
+            bool evtCheck = false;
+
+            using (var dbContext = new GYMDBEntities())
+            {
+                string query = string.Format(ScriptsGYMDB.getEventMail, eventoID);
+                consulta = dbContext.Database.SqlQuery<ConsultaMailCancelacionEntity>(query).ToList();
+                evtCheck = dbContext.evento.Where(x => x.eventoID == eventoID && x.estadoRegistro == "I").Any();
+            }
+
+            foreach (var c in consulta)
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+
+                    mail.From = new MailAddress("rootacc.2022@gmail.com"); mail.To.Add(c.email);
+                    mail.Subject = "Evento Reactivado: " + c.clase + "  " + c.horario;
+                    mail.Body =
+                        "<h1 style=\"color:#93E9BE\" > Evento Reactivado:</h1>" +
+                        "</br>" +
+                        "</br>" +
+                        "<p>Estimado " + c.nombres + ",</p>" +
+                        "</br>" +
+                        "<p>La clase cancelada de " + c.clase + " programada para el  " + c.fecha.ToShortDateString() + " en el horario de " + c.horario +
+                        " ha sido reactivada.Ha sido inscrito de nuevo en la clase esta clase, se le descontara una clase.</p>" +
+                        "</br>" +
+                        "<p>Gracias por su comprensión</p>"
+                        ;
+
+                    mail.IsBodyHtml = true;
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new System.Net.NetworkCredential("rootacc.2022@gmail.com", "masteruser");
+                        smtp.EnableSsl = true; smtp.Send(mail);
+
+                    }
+                }
+
+
+            }
+        }
         public int PersonMemberships(int personaID, int eventDiscipline)
         {
             try

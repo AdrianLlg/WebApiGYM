@@ -27,6 +27,7 @@ namespace WebAPIBusiness.BusinessCore.App
 
             evento evento = new evento();
             evento_profesor eventoProfesor = new evento_profesor();
+            List<evento_persona> asistentes = new List<evento_persona>();
 
             try
             {
@@ -34,6 +35,8 @@ namespace WebAPIBusiness.BusinessCore.App
                 {
                     evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
                     eventoProfesor = dbContext.evento_profesor.Where(x => x.personaID == personaID && x.eventoID == eventoID).FirstOrDefault();
+                    asistentes = dbContext.evento_persona.Where(x=>x.eventoID == eventoID).ToList();
+                   
                     if (evento != null)
                     {
                         if (evento.estadoRegistro == "A")
@@ -42,12 +45,15 @@ namespace WebAPIBusiness.BusinessCore.App
                             eventoProfesor.motivo = motivo;
                             eventoProfesor.posibleHorarioRecuperacion = posibleHorarioRecuperacion;
                             evento.estadoRegistro = "I";
+                            foreach (var a in asistentes) {
+                                a.estadoRegistro = "I";
+                                a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles + 1;
+                                a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas - 1;
+                                a.asistencia = 0;
+                            }
                             enviarCorreoCancelacion(eventoID, motivo, posibleHorarioRecuperacion);
                         }
-                        else if (evento.estadoRegistro == "I")
-                        {
-                            evento.estadoRegistro = "A";
-                        }
+                      
 
                     }
                     else
