@@ -1168,7 +1168,7 @@ namespace WebAPIUI.Helpers
         public static ConsultaPerfilModel EntityToModelConsultaPerfil(ConsultaPerfilEntity entity)
         {
 
-            ConsultaPerfilModel response = new ConsultaPerfilModel()
+            ConsultaPerfilModel response = new ConsultaPerfilModel() 
             {
                 //usuarioID = entity.usuarioID,
                 personaID = entity.personaID,
