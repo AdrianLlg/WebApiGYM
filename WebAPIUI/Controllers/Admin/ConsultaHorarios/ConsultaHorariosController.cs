@@ -39,7 +39,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.getHorarios(dataRequest.fechaInicio,dataRequest.fechaFin,dataRequest.Salas);
+                response = bo.getHorarios(dataRequest.fechaInicio,dataRequest.fechaFin,dataRequest.Salas,dataRequest.personaID);
             }
             catch (ValidationAndMessageException ConsultaHorariosException)
             {

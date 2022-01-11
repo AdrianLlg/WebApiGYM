@@ -10,6 +10,7 @@ namespace WebAPIBusiness.Entities.ConsultaHorarios
         public DateTime fecha { get; set; }
         public int horarioMID { get; set; }
         public int salaID { get; set; }
+        public int personaID { get; set; }
     }
 }
 

@@ -10,16 +10,16 @@ namespace WebAPIBusiness.BusinessCore
 {
     public class ConsultaHorariosBO
     {
-        public List<ConsultaHorariosModel> getHorarios(string fechaInicio,string fechaFin, List<SalaEntity> salas)
+        public List<ConsultaHorariosModel> getHorarios(string fechaInicio,string fechaFin, List<SalaEntity> salas, int personaID)
         {
             List<ConsultaHorariosModel> entities = new List<ConsultaHorariosModel>();
 
-            entities = getHorariosDB(fechaInicio,fechaFin,salas);
+            entities = getHorariosDB(fechaInicio,fechaFin,salas,personaID);
 
             return entities;
         }
 
-        private List<ConsultaHorariosModel> getHorariosDB(string fechaInicio, string fechaFin, List<SalaEntity> salas)
+        private List<ConsultaHorariosModel> getHorariosDB(string fechaInicio, string fechaFin, List<SalaEntity> salas, int personaID)
         {
            
             List<ConsultaHorariosModel> horariosConsultados= new List<ConsultaHorariosModel>();
@@ -34,7 +34,7 @@ namespace WebAPIBusiness.BusinessCore
                 DateTime fechaFinDB = Convert.ToDateTime(fechaFin);
                 using (var dbContext = new GYMDBEntities())
                 { 
-                    string query = string.Format(ScriptsGYMDB.getHorariosFecha, fechaInicio,fechaFin );
+                    string query = string.Format(ScriptsGYMDB.getHorariosFecha, fechaInicio,fechaFin);
                     horariosConsultados = dbContext.Database.SqlQuery<ConsultaHorariosModel>(query).ToList();
                     HorariosM = dbContext.horarioM.ToList();
                 }
@@ -45,7 +45,7 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         foreach (horarioM horariodb in HorariosM)
                         {
-                            horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID).FirstOrDefault();
+                            horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID && x.personaID == personaID).FirstOrDefault();
                             if(horarioaux == null)
                             {
                                 horarioaux = new ConsultaHorariosModel()

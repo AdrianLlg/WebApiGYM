@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using WebAPIBusiness.Entities.EventoPersona;
 using WebAPIData;
@@ -20,7 +21,7 @@ namespace WebAPIBusiness.BusinessCore
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un erro al ejecutar el proceso"); 
+                throw new Exception("Ocurrió un erro al ejecutar el proceso");
             }
             return check;
 
@@ -86,15 +87,15 @@ namespace WebAPIBusiness.BusinessCore
             evento eventoDB = new evento();
             horarioM horarioM = new horarioM();
             DateTime Hoy = DateTime.Now;
-            int horaInicio = 0;
-            int horaFin = 0;
-            int horaActual = int.Parse(string.Concat(Hoy.Hour.ToString(), Hoy.Minute.ToString()));
-
+            DateTime fechaInicio;
+            DateTime fechaFin;
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
                     eventoDB = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
+                    fechaInicio = DateTime.ParseExact(eventoDB.fecha.ToString("yyyy-MM-dd") + " " + eventoDB.horarioM.horaInicio, "yyyy-MM-dd HHmm", CultureInfo.InvariantCulture);
+                    fechaFin = DateTime.ParseExact(eventoDB.fecha.ToString("yyyy-MM-dd") + " " + eventoDB.horarioM.horaFin, "yyyy-MM-dd HHmm", CultureInfo.InvariantCulture);
 
                     if (eventoDB == null)
                     {
@@ -103,11 +104,9 @@ namespace WebAPIBusiness.BusinessCore
                     }
                     else
                     {
-                        horarioM = dbContext.horarioM.Where(x => x.horarioMID == eventoDB.horarioMID).FirstOrDefault();
-                        horaInicio = int.Parse(horarioM.horaInicio);
-                        horaFin = int.Parse(horarioM.horaFin);
+                        
 
-                        if (horaActual >= horaInicio && horaActual <= horaFin && eventoDB.fecha.Date == Hoy.Date)
+                        if (Hoy >= fechaInicio && Hoy<= fechaFin && eventoDB.fecha.Date == Hoy.Date)
                         {
                             valido = true;
                             return valido;
