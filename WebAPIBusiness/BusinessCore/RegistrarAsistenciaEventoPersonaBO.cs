@@ -52,7 +52,7 @@ namespace WebAPIBusiness.BusinessCore
                     var resultado = dbContext.evento_persona.Where(x => x.eventoID == eventoID && x.personaID == personaID).FirstOrDefault();
                     if (resultado == null)
                     {
-                        mensaje = "Usted no está registrado en este evento";
+                        mensaje = "NoInscritoEnElEvento";
                         return mensaje;
                     }
                     else
@@ -61,12 +61,12 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             resultado.asistencia = 1;
                             dbContext.SaveChanges();
-                            mensaje = "Usted ha sido registrado en este evento !!!";
+                            mensaje = "RegistroExitoso";
                             return mensaje;
                         }
                         else
                         {
-                            mensaje = "El horario para registrar su asistencia no es valido";
+                            mensaje = "HorarioNoValido";
                             return mensaje;
                         }
                     }
@@ -76,7 +76,6 @@ namespace WebAPIBusiness.BusinessCore
             }
             catch (Exception ex)
             {
-                return mensaje;
                 throw new Exception("Ocurrió un error al registrar asistencia");
             }
         }

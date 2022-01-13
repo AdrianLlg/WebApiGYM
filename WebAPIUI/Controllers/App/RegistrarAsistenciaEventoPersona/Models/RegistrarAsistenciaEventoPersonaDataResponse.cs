@@ -14,12 +14,5 @@ namespace WebAPIUI.Controllers.App.RegistrarAsistenciaEventoPersona.Models
         /// </summary>
         public string ResponseMessage { get; set; }
 
-      
-        
-
-        
-        
-       
-
     }
 }
