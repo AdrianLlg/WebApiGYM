@@ -11,5 +11,7 @@ namespace WebAPIUI.Controllers.ConsultaHorarios.Models
         public string fechaInicio { get; set; }
         public string fechaFin { get; set; }
         public List<SalaEntity> Salas { get; set; }
+
+        public int personaID { get; set; }
     }
 } 

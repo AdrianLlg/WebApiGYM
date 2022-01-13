@@ -326,7 +326,8 @@ namespace WebAPIBusiness.Resources {
         ///   Looks up a localized string similar to SELECT 
         ///ev.fecha,
         ///hm.horarioMID,
-        ///ev.salaID
+        ///ev.salaID,
+        ///ev.personaID
         ///FROM evento ev
         ///INNER JOIN horarioM hm ON hm.horarioMID = ev.horarioMID 
         ///WHERE 
