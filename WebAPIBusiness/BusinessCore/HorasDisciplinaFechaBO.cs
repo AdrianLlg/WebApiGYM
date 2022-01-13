@@ -11,14 +11,14 @@ namespace WebAPIBusiness.BusinessCore
 {
     public class HorasDisciplinaFechaBO
     {
-        public List<HorasDisciplinaFechaEntity> horasDiscplinaFecha(string personaID)
+        public List<HorasDisciplinaFechaEntity> horasdisciplinaFecha(string personaID)
         {
-            List<HorasDisciplinaFechaEntity> horasDisciplinaFecha = getHorasDiscplinaFecha(personaID);
+            List<HorasDisciplinaFechaEntity> horasDisciplinaFecha = getHorasdisciplinaFecha(personaID);
 
             return horasDisciplinaFecha;
         }
 
-        private List<HorasDisciplinaFechaEntity> getHorasDiscplinaFecha(string personaID)
+        private List<HorasDisciplinaFechaEntity> getHorasdisciplinaFecha(string personaID)
         {
             int ID = Convert.ToInt16(personaID);
             List<HorasDisciplinaFechaEntity> horasDisciplinaFecha = new List<HorasDisciplinaFechaEntity>();

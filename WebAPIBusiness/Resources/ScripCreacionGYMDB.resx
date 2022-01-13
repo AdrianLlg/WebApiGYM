@@ -288,9 +288,9 @@ membresia_disciplinaID INTEGER IDENTITY (1,1) NOT NULL,
 membresiaID INT NOT NULL,
 disciplinaID INT NOT NULL,
 numClasesDisponibles [int] NOT NULL
-CONSTRAINT membresia_discplinaID_pk PRIMARY KEY (membresia_disciplinaID),
+CONSTRAINT membresia_disciplinaID_pk PRIMARY KEY (membresia_disciplinaID),
 CONSTRAINT membresia1_fk FOREIGN KEY (membresiaID) REFERENCES membresia (membresiaID),
-CONSTRAINT discplina1_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina (disciplinaID)
+CONSTRAINT disciplina1_fk FOREIGN KEY (disciplinaID) REFERENCES disciplina (disciplinaID)
 )
 
 
@@ -687,12 +687,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[membresia_disciplina](
-	[membresia_discplinaID] [int] IDENTITY(1,1) NOT NULL,
+	[membresia_disciplinaID] [int] IDENTITY(1,1) NOT NULL,
 	[membresiaID] [int] NOT NULL,
 	[disciplinaID] [int] NOT NULL,
- CONSTRAINT [membresia_discplinaID_pk] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [membresia_disciplinaID_pk] PRIMARY KEY CLUSTERED 
 (
-	[membresia_discplinaID] ASC
+	[membresia_disciplinaID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -843,9 +843,9 @@ SET IDENTITY_INSERT [dbo].[membresia] OFF
 GO
 SET IDENTITY_INSERT [dbo].[membresia_disciplina] ON 
 
-INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID]) VALUES (1, 3, 1)
-INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID]) VALUES (2, 3, 2)
-INSERT [dbo].[membresia_disciplina] ([membresia_discplinaID], [membresiaID], [disciplinaID]) VALUES (3, 3, 3)
+INSERT [dbo].[membresia_disciplina] ([membresia_disciplinaID], [membresiaID], [disciplinaID]) VALUES (1, 3, 1)
+INSERT [dbo].[membresia_disciplina] ([membresia_disciplinaID], [membresiaID], [disciplinaID]) VALUES (2, 3, 2)
+INSERT [dbo].[membresia_disciplina] ([membresia_disciplinaID], [membresiaID], [disciplinaID]) VALUES (3, 3, 3)
 SET IDENTITY_INSERT [dbo].[membresia_disciplina] OFF
 GO
 SET IDENTITY_INSERT [dbo].[membresia_persona_disciplina] ON 
@@ -889,10 +889,10 @@ INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (3, N'SALA-3', N'
 INSERT [dbo].[sala] ([salaID], [nombre], [descripcion]) VALUES (4, N'SALA-4', N'Descripcion SALA-4')
 SET IDENTITY_INSERT [dbo].[sala] OFF
 GO
-ALTER TABLE [dbo].[clase]  WITH CHECK ADD  CONSTRAINT [discplina_clase_fk] FOREIGN KEY([disciplinaID])
+ALTER TABLE [dbo].[clase]  WITH CHECK ADD  CONSTRAINT [disciplina_clase_fk] FOREIGN KEY([disciplinaID])
 REFERENCES [dbo].[disciplina] ([disciplinaID])
 GO
-ALTER TABLE [dbo].[clase] CHECK CONSTRAINT [discplina_clase_fk]
+ALTER TABLE [dbo].[clase] CHECK CONSTRAINT [disciplina_clase_fk]
 GO
 ALTER TABLE [dbo].[clase_persona]  WITH CHECK ADD  CONSTRAINT [clase_persona_fk] FOREIGN KEY([claseID])
 REFERENCES [dbo].[clase] ([claseID])
@@ -934,10 +934,10 @@ REFERENCES [dbo].[sala] ([salaID])
 GO
 ALTER TABLE [dbo].[cronograma] CHECK CONSTRAINT [sala_cronoID_fk]
 GO
-ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [discplina1_fk] FOREIGN KEY([disciplinaID])
+ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [disciplina1_fk] FOREIGN KEY([disciplinaID])
 REFERENCES [dbo].[disciplina] ([disciplinaID])
 GO
-ALTER TABLE [dbo].[membresia_disciplina] CHECK CONSTRAINT [discplina1_fk]
+ALTER TABLE [dbo].[membresia_disciplina] CHECK CONSTRAINT [disciplina1_fk]
 GO
 ALTER TABLE [dbo].[membresia_disciplina]  WITH CHECK ADD  CONSTRAINT [membresia1_fk] FOREIGN KEY([membresiaID])
 REFERENCES [dbo].[membresia] ([membresiaID])
