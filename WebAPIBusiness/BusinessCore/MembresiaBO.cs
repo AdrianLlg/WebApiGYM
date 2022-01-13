@@ -21,6 +21,7 @@ namespace WebAPIBusiness.BusinessCore
         private List<MembresiaEntity> getMembresiasUser(string personaID)
         {
             List<MembresiaEntity> membresias = new List<MembresiaEntity>();
+            MembresiaEntity entity = new MembresiaEntity();
             try
             {
                 int personID = int.Parse(personaID);
@@ -48,18 +49,18 @@ namespace WebAPIBusiness.BusinessCore
                                         disciplinaID = discip.membresia_disciplina.disciplinaID,
                                         nombreDisciplina = discip.membresia_disciplina.disciplina.nombre,
                                         numClases = discip.numClasesDisponibles,
-                                        numClasesTomadas = discip.numClasesTomadas                                        
+                                        numClasesTomadas = discip.numClasesTomadas
                                     };
 
                                     disciplinas.Add(disciplina);
-                                }                                
+                                }
                             }
                             else
                             {
                                 disciplinas = null;
                             }
 
-                            MembresiaEntity entity = new MembresiaEntity()
+                            entity = new MembresiaEntity()
                             {
                                 membresia_persona_pagoID = item.membresia_persona_pagoID,
                                 membresiaID = item.membresiaID,
@@ -69,7 +70,7 @@ namespace WebAPIBusiness.BusinessCore
                                 formaPago = item.formaPago,
                                 nroDocumento = item.nroDocumento,
                                 Banco = item.Banco,
-                                fechaPago = Convert.ToDateTime(item.fechaTransaccion),
+                                fechaPago = (DateTime)item.fechaTransaccion,
                                 fechaLimite = (DateTime)item.fechaFinMembresia,
                                 fechaInicioMembresia = (DateTime)item.fechaInicioMembresia,
                                 fechaFinMembresia = (DateTime)item.fechaFinMembresia,

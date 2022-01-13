@@ -22,7 +22,7 @@ namespace WebAPIBusiness.Entities.App.ConsultaClasesPendientesInstructor
         public int aforoMin { get; set; }
         public int personaID { get; set; }
         public string estadoRegistro { get; set; }
-
-
+        public string horaInicioFormat { get; set; }
+        public string horaFinFormat { get; set; }
     }
 }

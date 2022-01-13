@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.DisciplinaAdmin;
@@ -30,25 +31,51 @@ namespace WebAPIBusiness.BusinessCore
                 using (var dbContext = new GYMDBEntities())
                 {
                     membresias = dbContext.membresia.ToList();
-                }
 
-                if (membresias.Count > 0)
-                {
-                    foreach (var m in membresias)
+                    if (membresias.Count > 0)
                     {
-                        MembresiaAdminEntity MembresiasEntity = new MembresiaAdminEntity()
+                        foreach (var m in membresias)
                         {
-                            membresiaID = m.membresiaID,
-                            descripcion = m.descripcion,
-                            nombre = m.nombre,
-                            precio = m.precio,
-                            periodicidad = m.periodicidad
+                            var disciplinas = dbContext.membresia_disciplina.Where(x => x.membresiaID == m.membresiaID).ToList();
 
-                        };
+                            List<Membresia_Disciplina_NumClasesEntity> listDisciplines = new List<Membresia_Disciplina_NumClasesEntity>();
 
-                        entities.Add(MembresiasEntity);
+                            if (disciplinas.Count > 0)
+                            {
+                                foreach (var discipl in disciplinas)
+                                {
+                                    Membresia_Disciplina_NumClasesEntity disciplina = new Membresia_Disciplina_NumClasesEntity()
+                                    {
+
+                                        disciplinaID = discipl.disciplinaID,
+                                        descripcion = discipl.disciplina.descripcion,
+                                        nombre = discipl.disciplina.nombre,
+                                        numClasesDisponibles = discipl.numClasesDisponibles
+                                    };
+
+                                    listDisciplines.Add(disciplina);
+                                }
+                            }
+                            else
+                            {
+                                listDisciplines = null;
+                            }                           
+
+                            MembresiaAdminEntity MembresiasEntity = new MembresiaAdminEntity()
+                            {
+                                membresiaID = m.membresiaID,
+                                descripcion = m.descripcion,
+                                nombre = m.nombre,
+                                precio = m.precio,
+                                periodicidad = m.periodicidad,
+                                disciplinas = listDisciplines
+                            };
+
+                            entities.Add(MembresiasEntity);
+                        }
                     }
                 }
+
 
                 return entities;
             }
@@ -625,6 +652,10 @@ namespace WebAPIBusiness.BusinessCore
 
         private bool newSolMembership(int personaID, int membresiaID)
         {
+            //Fecha default para identificar que es una membresia ingresada como solicitud.
+            string dateDefault = "2000-12-12";
+            DateTime dateDefault2 = DateTime.ParseExact(dateDefault, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
             try
             {
                 using (var dbContext = new GYMDBEntities())
@@ -633,6 +664,8 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         personaID = personaID,
                         membresiaID = membresiaID,
+                        fechaInicioMembresia = dateDefault2,
+                        fechaFinMembresia = dateDefault2,                        
                         estado = "I"
                     };
                     dbContext.membresia_persona_pago.Add(query);

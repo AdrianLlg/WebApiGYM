@@ -17,9 +17,7 @@ namespace WebAPIUI.Controllers.CRUDRCancelarEventoApp.Models
         /// <summary>
         /// Contenido de respuesta
         /// </summary>
-        
-
-        public bool Estado{ get; set; }
+        public bool Content{ get; set; }
 
         
 

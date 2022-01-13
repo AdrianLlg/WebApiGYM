@@ -108,11 +108,12 @@ namespace WebAPIBusiness.Resources {
         ///e.aforoMax,
         ///e.aforoMin,
         ///e.personaID,
-        ///e.estadoRegistro
+        ///e.estadoRegistro,
+        ///h.horaInicio as horaInicioFormat,
+        ///h.horaFin as horaFinFormat
         ///FROM evento e
         ///INNER JOIN clase c ON e.claseID=c.claseID
-        ///INNER JOIN horarioM h ON e.horarioMID=h.horarioMID
-        ///INNER JOIN sala sl ON E.salaID=sl.sa [rest of string was truncated]&quot;;.
+        ///INNER JOIN horarioM h ON [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string getClasesPendientesInstructor {
             get {

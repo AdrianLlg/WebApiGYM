@@ -172,20 +172,22 @@ namespace WebAPIBusiness.BusinessCore
             evento Evento = new evento();
             evento check = new evento();
             int auxSala = int.Parse(salaID);
-            int auxHorario =int.Parse(horarioMID);
-            DateTime auxFecha= Convert.ToDateTime(fecha);
+            int auxHorario = int.Parse(horarioMID);
+            DateTime auxFecha = Convert.ToDateTime(fecha);
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
 
                     Evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
-                    check = dbContext.evento.Where(x=>x.eventoID!=eventoID && x.salaID ==auxSala  && x.horarioMID ==auxHorario && x.fecha==auxFecha).FirstOrDefault() ;
-                      
-                    if (check!=null) {
-                        return false; 
+                    check = dbContext.evento.Where(x => x.eventoID != eventoID && x.salaID == auxSala && x.horarioMID == auxHorario && x.fecha == auxFecha).FirstOrDefault();
+
+                    if (check != null)
+                    {
+                        return false;
                     }
-                    else {
+                    else
+                    {
                         if (Evento != null)
                         {
                             if (!string.IsNullOrEmpty(claseID))
@@ -220,10 +222,10 @@ namespace WebAPIBusiness.BusinessCore
                         {
                             return false;
                         }
-                      
+
                     }
-                    
-                   
+
+
                 }
             }
             catch (Exception ex)
@@ -476,21 +478,33 @@ namespace WebAPIBusiness.BusinessCore
 
                     if (eventDiscipline > 0)
                     {
-                        int membresiaPersonaDisciplina = PersonMemberships(personaID, eventDiscipline);
+                        int membresiaPersonaDisciplinaID = PersonMemberships(personaID, eventDiscipline);
 
-                        if (membresiaPersonaDisciplina > 0)
+                        if (membresiaPersonaDisciplinaID > 0 )
                         {
-                            insertData = InsertEventUser(personaID, eventoID, estado, recursoAsignado, recursosEvento, membresiaPersonaDisciplina);
+                            bool verificationClasses = verifyRemainingClassesUser(membresiaPersonaDisciplinaID);
+
+                            if (verificationClasses)
+                            {
+                                insertData = InsertEventUser(personaID, eventoID, estado, recursoAsignado, recursosEvento, membresiaPersonaDisciplinaID);
+                            }
+                            else
+                            {
+                                throw new ValidationAndMessageException("NoRemainingClasses");
+                            }
                         }
                         else
                         {
                             throw new ValidationAndMessageException("No se encontró una membresia ligada al usuario para vincularlo con el evento.");
+                            
                         }
                     }
                     else
                     {
                         return false;
                     }
+
+
                 }
                 else
                 {
@@ -569,7 +583,7 @@ namespace WebAPIBusiness.BusinessCore
                                 fechaInicio = fechaInicio.AddHours(-val);
 
                                 if (hoy <= fechaInicio)
-                                {                                  
+                                {
                                     if (record.intentosCancelar < canCancel)
                                     {
                                         if (recursosEvento)
@@ -580,7 +594,7 @@ namespace WebAPIBusiness.BusinessCore
                                             record.estadoRegistro = "C";
                                             record.intentosCancelar = record.intentosCancelar + 1;
                                             record.membresia_persona_disciplina.numClasesDisponibles = record.membresia_persona_disciplina.numClasesDisponibles + 1;
-                                            record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas - 1; 
+                                            record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas - 1;
                                             record.asistencia = 0;
                                             dbContext.SaveChanges();
 
@@ -615,22 +629,22 @@ namespace WebAPIBusiness.BusinessCore
                         }
                         else if (estado == "A")
                         {
-                            
-                                if (recursosEvento)
-                                {
-                                    var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
 
-                                    recursoEspecial.personaID = personaID;
-                                    dbContext.SaveChanges();
+                            if (recursosEvento)
+                            {
+                                var recursoEspecial = dbContext.evento_recursoEspecial.Where(x => x.evento_recursoEspecialID == recursoAsignadoID).FirstOrDefault();
+
+                                recursoEspecial.personaID = personaID;
+                                dbContext.SaveChanges();
                             }
 
-                                record.membresia_persona_disciplina.numClasesDisponibles = record.membresia_persona_disciplina.numClasesDisponibles - 1;
-                                record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas + 1;
-                                record.estadoRegistro = "A";
-                                record.asistencia = 1;
-                                dbContext.SaveChanges();
+                            record.membresia_persona_disciplina.numClasesDisponibles = record.membresia_persona_disciplina.numClasesDisponibles - 1;
+                            record.membresia_persona_disciplina.numClasesTomadas = record.membresia_persona_disciplina.numClasesTomadas + 1;
+                            record.estadoRegistro = "A";
+                            record.asistencia = 1;
+                            dbContext.SaveChanges();
 
-                                return true;                           
+                            return true;
                         }
                         else
                         {
@@ -707,7 +721,7 @@ namespace WebAPIBusiness.BusinessCore
 
 
             resp = InactivarInfo(eventoID);
-            
+
 
             return resp;
         }
@@ -750,15 +764,15 @@ namespace WebAPIBusiness.BusinessCore
                             eventoProfesor.motivo = "Reactivado por la administración";
                             eventoProfesor.posibleHorarioRecuperacion = string.Empty;
                             evento.estadoRegistro = "A";
-                            foreach (var a in asistentes) 
+                            foreach (var a in asistentes)
                             {
                                 a.estadoRegistro = "A";
                                 a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles - 1;
                                 a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas + 1;
-                                a.asistencia = 0; 
+                                a.asistencia = 0;
                             }
                             enviarCorreoReactivacion(eventoID);
-                        } 
+                        }
 
                     }
                     else
@@ -774,20 +788,20 @@ namespace WebAPIBusiness.BusinessCore
                 return false;
             }
         }
-         
+
         private void enviarCorreoCancelacion(int eventoID)
         {
             List<ConsultaMailCancelacionEntity> consulta;
-            bool evtCheck= false;
+            bool evtCheck = false;
 
             using (var dbContext = new GYMDBEntities())
             {
                 string query = string.Format(ScriptsGYMDB.getEventMail, eventoID);
                 consulta = dbContext.Database.SqlQuery<ConsultaMailCancelacionEntity>(query).ToList();
-                 evtCheck = dbContext.evento.Where(x=>x.eventoID==eventoID && x.estadoRegistro=="I").Any();
+                evtCheck = dbContext.evento.Where(x => x.eventoID == eventoID && x.estadoRegistro == "I").Any();
             }
-            
-            foreach (var c in consulta) 
+
+            foreach (var c in consulta)
             {
                 using (MailMessage mail = new MailMessage())
                 {
@@ -797,7 +811,7 @@ namespace WebAPIBusiness.BusinessCore
                     mail.Body =
                         "<h1 style=\"color:#93E9BE\" > Evento Cancelado:</h1>" +
                         "</br>" +
-                        "</br>"+
+                        "</br>" +
                         "<p>Estimado " + c.nombres + ",</p>" +
                         "</br>" +
                         "<p>La clase de " + c.clase + " programada para el  " + c.fecha.ToShortDateString() + " en el horario de " + c.horario +
@@ -879,12 +893,12 @@ namespace WebAPIBusiness.BusinessCore
                         foreach (var item in items)
                         {
                             response = dbContext.membresia_persona_disciplina
-                                .Where(x => x.membresia_persona_pagoID == item.membresia_persona_pagoID 
-                                    && x.estado == "A" 
+                                .Where(x => x.membresia_persona_pagoID == item.membresia_persona_pagoID
+                                    && x.estado == "A"
                                     && x.membresia_disciplina.disciplinaID == eventDiscipline)
                                 .Select(x => x.membresia_persona_disciplinaID)
                                 .FirstOrDefault();
-                            
+
                             if (response > 0)
                             {
                                 return response;
@@ -897,7 +911,7 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         return response;
                     }
-               }
+                }
             }
             catch (Exception ex)
             {
@@ -923,6 +937,38 @@ namespace WebAPIBusiness.BusinessCore
             {
                 return 0;
             }
+        }
+
+        public bool verifyRemainingClassesUser(int membresiaPersonaDisciplinaID)
+        {
+            int response = -1;
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    response = dbContext.membresia_persona_disciplina
+                            .Where(x => x.membresia_persona_disciplinaID == membresiaPersonaDisciplinaID)
+                            .Select(x => x.numClasesDisponibles)
+                            .FirstOrDefault();
+                }
+
+                if (response == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
         }
     }
 }

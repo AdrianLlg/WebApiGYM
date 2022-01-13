@@ -71,7 +71,7 @@ namespace WebAPIBusiness.BusinessCore
             bool resp = false;
 
             try
-            { 
+            {
                 resp = declineOrAcceptRequestDB(solicitud_membresiaPagoID, membresia_persona_pagoID, IdentificadorAceptarEliminar, formaPago, fechaTransaccion, nroDocumento, Banco);
             }
             catch (Exception ex)
@@ -85,8 +85,10 @@ namespace WebAPIBusiness.BusinessCore
         private bool declineOrAcceptRequestDB(int solicitud_membresiaPagoID, int membresia_persona_pagoID, int IdentificadorAceptarEliminar, string formaPago, string fechaTransaccion, string nroDocumento, string Banco)
         {
             MembresiaAdminBO bo = new MembresiaAdminBO();
+            membresia_persona_disciplina query = new membresia_persona_disciplina();
+            DateTime hoy = DateTime.Now;
             try
-            {               
+            {
                 using (var dbContext = new GYMDBEntities())
                 {
                     var objectSol = dbContext.sol_membresiaPago.Where(x => x.sol_membresiaPagoID == solicitud_membresiaPagoID).FirstOrDefault();
@@ -103,22 +105,49 @@ namespace WebAPIBusiness.BusinessCore
                             {
                                 var disciplinas = bo.consultarDisciplinasdeMembresia(objmembresia_persona_pago.membresiaID);
 
+                                var periodicidad = bo.calculateMonthsOfPeriodTime(objmembresia_persona_pago.membresia.periodicidad);
+
                                 foreach (var entity in disciplinas)
                                 {
-                                    membresia_persona_disciplina query = new membresia_persona_disciplina()
+                                    //2000 -> Identificador que proviene de una solicitud nueva (No es renovacion, es nueva)
+                                    if (objmembresia_persona_pago.fechaInicioMembresia.Year == 2000)
                                     {
-                                        personaID = objmembresia_persona_pago.personaID,
-                                        membresia_persona_pagoID = objmembresia_persona_pago.membresia_persona_pagoID,
-                                        membresia_disciplinaID = entity.membresia_disciplinaID,
-                                        fechaInicio = objmembresia_persona_pago.fechaInicioMembresia,
-                                        fechaFin = (DateTime)objmembresia_persona_pago.fechaFinMembresia,
-                                        numClasesDisponibles = entity.numClasesDisponibles,
-                                        estado = "A"
-                                    };
+                                        query = new membresia_persona_disciplina()
+                                        {
+                                            personaID = objmembresia_persona_pago.personaID,
+                                            membresia_persona_pagoID = objmembresia_persona_pago.membresia_persona_pagoID,
+                                            membresia_disciplinaID = entity.membresia_disciplinaID,
+                                            fechaInicio = hoy,
+                                            fechaFin = hoy.AddMonths(periodicidad),
+                                            numClasesDisponibles = entity.numClasesDisponibles,
+                                            estado = "A"
+                                        };
+
+                                    }
+                                    else
+                                    {
+                                        query = new membresia_persona_disciplina()
+                                        {
+                                            personaID = objmembresia_persona_pago.personaID,
+                                            membresia_persona_pagoID = objmembresia_persona_pago.membresia_persona_pagoID,
+                                            membresia_disciplinaID = entity.membresia_disciplinaID,
+                                            fechaInicio = objmembresia_persona_pago.fechaInicioMembresia,
+                                            fechaFin = (DateTime)objmembresia_persona_pago.fechaFinMembresia,
+                                            numClasesDisponibles = entity.numClasesDisponibles,
+                                            estado = "A"
+                                        };
+                                    }
 
                                     dbContext.membresia_persona_disciplina.Add(query);
                                     dbContext.SaveChanges();
                                 }
+
+                                //2000 -> Identificador que proviene de una solicitud nueva (No es renovacion, es nueva)
+                                if (objmembresia_persona_pago.fechaInicioMembresia.Year == 2000)
+                                {
+                                    objmembresia_persona_pago.fechaInicioMembresia = hoy;
+                                    objmembresia_persona_pago.fechaFinMembresia = hoy.AddMonths(periodicidad);
+                                }                              
 
                                 objmembresia_persona_pago.estado = "A";
                                 objmembresia_persona_pago.formaPago = formaPago;
@@ -143,7 +172,7 @@ namespace WebAPIBusiness.BusinessCore
                         else
                         {
                             throw new Exception("No se encontró el registro de pago ligado a la solicitud");
-                        }                        
+                        }
                     }
                     else
                     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPIBusiness.Entities.DisciplinaAdmin;
 
 namespace WebAPIBusiness.Entities.MembresiaAdmin
 {
@@ -14,5 +15,6 @@ namespace WebAPIBusiness.Entities.MembresiaAdmin
         public decimal precio { get; set; }
         public string periodicidad { get; set; }
 
+        public List<Membresia_Disciplina_NumClasesEntity> disciplinas { get; set; }
     }
 }

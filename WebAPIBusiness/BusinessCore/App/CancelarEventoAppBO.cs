@@ -34,35 +34,39 @@ namespace WebAPIBusiness.BusinessCore.App
                 using (var dbContext = new GYMDBEntities())
                 {
                     evento = dbContext.evento.Where(x => x.eventoID == eventoID).FirstOrDefault();
-                    eventoProfesor = dbContext.evento_profesor.Where(x => x.personaID == personaID && x.eventoID == eventoID).FirstOrDefault();
-                    asistentes = dbContext.evento_persona.Where(x=>x.eventoID == eventoID).ToList();
-                   
+
                     if (evento != null)
                     {
+                        eventoProfesor = dbContext.evento_profesor.Where(x => x.personaID == personaID && x.eventoID == eventoID).FirstOrDefault();
+                        asistentes = dbContext.evento_persona.Where(x => x.eventoID == eventoID).ToList();
+
                         if (evento.estadoRegistro == "A")
                         {
                             eventoProfesor.estadoRegistro = "I";
                             eventoProfesor.motivo = motivo;
                             eventoProfesor.posibleHorarioRecuperacion = posibleHorarioRecuperacion;
                             evento.estadoRegistro = "I";
-                            foreach (var a in asistentes) {
+
+                            foreach (var a in asistentes)
+                            {
                                 a.estadoRegistro = "I";
                                 a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles + 1;
                                 a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas - 1;
                                 a.asistencia = 0;
+                                dbContext.SaveChanges();
                             }
-                            enviarCorreoCancelacion(eventoID, motivo, posibleHorarioRecuperacion);
                         }
-                      
-
                     }
                     else
                     {
-                        return false;
+                        throw new Exception("El evento no existe.");
                     }
-                    dbContext.SaveChanges();
-                    return true;
+
                 }
+
+                enviarCorreoCancelacion(eventoID, motivo, posibleHorarioRecuperacion);               
+
+                return true;
             }
             catch (Exception ex)
             {

@@ -22,7 +22,7 @@ namespace WebAPIUI.Models.ConsultaClasesPendientesInstructor
         public int aforoMin { get; set; }
         public int personaID { get; set; }
         public string estadoRegistro { get; set; }
-
-
+        public string horaInicio { get; set; }
+        public string horaFin { get; set; }
     }
 }

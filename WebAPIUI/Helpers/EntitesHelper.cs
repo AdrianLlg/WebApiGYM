@@ -1425,7 +1425,7 @@ namespace WebAPIUI.Helpers
                 var item = new ConsultaClasesPendientesInstructorModel
                 {
                     eventoID = entity.eventoID,
-                    fecha = entity.fecha.ToString("yyyy-MM-dd HH:mm:ss"),
+                    fecha = entity.fecha.ToString("yyyy-MM-dd"),
                     horarioMID = entity.horarioMID,
                     horario = entity.horario,
                     claseID = entity.claseID,
@@ -1438,6 +1438,8 @@ namespace WebAPIUI.Helpers
                     aforoMin = entity.aforoMin,
                     personaID = entity.personaID,
                     estadoRegistro = entity.estadoRegistro,
+                    horaInicio = entity.horaInicioFormat,
+                    horaFin = entity.horaFinFormat
                 };
 
                 response.Add(item);

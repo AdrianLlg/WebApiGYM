@@ -157,7 +157,9 @@ sl.nombre as nombreSala,
 e.aforoMax,
 e.aforoMin,
 e.personaID,
-e.estadoRegistro
+e.estadoRegistro,
+h.horaInicio as horaInicioFormat,
+h.horaFin as horaFinFormat
 FROM evento e
 INNER JOIN clase c ON e.claseID=c.claseID
 INNER JOIN horarioM h ON e.horarioMID=h.horarioMID

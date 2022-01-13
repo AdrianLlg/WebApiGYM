@@ -84,18 +84,18 @@ namespace WebAPIUI.Controllers.App
 
                 resp = InactivarEvento(dataRequest.eventoID, dataRequest.personaID, dataRequest. motivo, dataRequest. posibleHorarioRecuperacion);
 
-                if (resp == true)
+                if (resp)
                 {
 
                     response.ResponseCode = CancelarEventoAppResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";
-                    response.Estado =resp ;
+                    response.Content = resp;
                 }
                 else
                 {
                     response.ResponseCode = CancelarEventoAppResponseType.Error;
                     response.ResponseMessage = "Fallo en la ejecución.";
-                    response.Estado = resp;
+                    response.Content = resp;
                 }
 
 
