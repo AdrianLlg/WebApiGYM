@@ -214,7 +214,8 @@ namespace WebAPIUI.Helpers
                     Nombre = entity.nombre,
                     Descripcion = entity.descripcion,
                     Precio = entity.precio,
-                    Periodicidad = entity.periodicidad
+                    Periodicidad = entity.periodicidad,
+                    membresiaDisciplinas = entity.disciplinas
                 };
 
                 response.Add(item);
