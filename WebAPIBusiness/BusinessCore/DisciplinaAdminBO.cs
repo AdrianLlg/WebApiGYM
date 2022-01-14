@@ -120,7 +120,7 @@ namespace WebAPIBusiness.BusinessCore
             return entity;
         }
 
-        private bool UpdateRecord(int discplinaID, string nombre, string descripcion)
+        private bool UpdateRecord(int disciplinaID, string nombre, string descripcion)
         {
             bool resp = false;
             disciplina disciplina = new disciplina();
@@ -129,7 +129,7 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    disciplina = dbContext.disciplina.Where(x => x.disciplinaID == discplinaID).FirstOrDefault();
+                    disciplina = dbContext.disciplina.Where(x => x.disciplinaID == disciplinaID).FirstOrDefault();
 
                     if (disciplina != null)
                     {

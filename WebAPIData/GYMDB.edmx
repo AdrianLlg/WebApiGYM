@@ -293,7 +293,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="discplina1_fk">
+        <Association Name="disciplina1_fk">
           <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
           <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
@@ -649,7 +649,7 @@
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="fichaEntrenamiento" EntitySet="fichaEntrenamiento" />
           </AssociationSet>
-          <AssociationSet Name="discplina1_fk" Association="Self.discplina1_fk">
+          <AssociationSet Name="disciplina1_fk" Association="Self.disciplina1_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>
@@ -799,7 +799,7 @@
           <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="clase" Relationship="Self.disciplina_clase_fk" FromRole="disciplina" ToRole="clase" />
           <NavigationProperty Name="fichaEntrenamiento" Relationship="Self.disciplina_fEntrenamiento_fk" FromRole="disciplina" ToRole="fichaEntrenamiento" />
-          <NavigationProperty Name="membresia_disciplina" Relationship="Self.discplina1_fk" FromRole="disciplina" ToRole="membresia_disciplina" />
+          <NavigationProperty Name="membresia_disciplina" Relationship="Self.disciplina1_fk" FromRole="disciplina" ToRole="membresia_disciplina" />
         </EntityType>
         <EntityType Name="evento">
           <Key>
@@ -927,7 +927,7 @@
           <Property Name="membresiaID" Type="Int32" Nullable="false" />
           <Property Name="disciplinaID" Type="Int32" Nullable="false" />
           <Property Name="numClasesDisponibles" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="disciplina" Relationship="Self.discplina1_fk" FromRole="membresia_disciplina" ToRole="disciplina" />
+          <NavigationProperty Name="disciplina" Relationship="Self.disciplina1_fk" FromRole="membresia_disciplina" ToRole="disciplina" />
           <NavigationProperty Name="membresia" Relationship="Self.membresia1_fk" FromRole="membresia_disciplina" ToRole="membresia" />
           <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.membresia_disciplinaIDfk" FromRole="membresia_disciplina" ToRole="membresia_persona_disciplina" />
         </EntityType>
@@ -1121,7 +1121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="discplina1_fk">
+        <Association Name="disciplina1_fk">
           <End Role="disciplina" Type="Self.disciplina" Multiplicity="1" />
           <End Role="membresia_disciplina" Type="Self.membresia_disciplina" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1469,7 +1469,7 @@
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="fichaEntrenamiento" EntitySet="fichaEntrenamiento" />
           </AssociationSet>
-          <AssociationSet Name="discplina1_fk" Association="Self.discplina1_fk">
+          <AssociationSet Name="disciplina1_fk" Association="Self.disciplina1_fk">
             <End Role="disciplina" EntitySet="disciplina" />
             <End Role="membresia_disciplina" EntitySet="membresia_disciplina" />
           </AssociationSet>

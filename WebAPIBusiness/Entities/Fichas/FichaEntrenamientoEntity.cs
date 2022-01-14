@@ -23,6 +23,6 @@ namespace WebAPIBusiness.Entities.Fichas
         public decimal MedicionPiernas { get; set; }
         public decimal MedicionCintura { get; set; }
         public decimal MedicionCuello { get; set; }
-        public string Observaciones { get; set; } 
+        public string Observaciones { get; set; }     
     }
 }
