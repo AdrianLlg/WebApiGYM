@@ -320,7 +320,7 @@ namespace WebAPIBusiness.BusinessCore
                     pers = dbContext.persona.Where(x => x.identificacion == cedula || x.email == correo).FirstOrDefault();
                 }
 
-                if (pers != null)
+                if (pers == null)
                 {
                     resp = new UsuariosRegistradosEntity()
                     {

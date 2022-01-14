@@ -76,9 +76,13 @@ namespace WebAPIUI.Controllers.App.RegistrarAsistenciaEventoProfesor
             {
                 List<string> messages = new List<string>();
                 string message = string.Empty;
+
                 ValidatePostRequest(dataRequest);  
+
                 bool resultado = RegistrarAsistenciaEventoProfesor(dataRequest.eventoID, dataRequest.personaID);
-                if (resultado) {
+
+                if (resultado) 
+                {
                     response.ResponseCode = RegistrarAsistenciaEventoProfesorResponseType.Ok;
                     response.ResponseMessage = "La asistencia del instructor ha sido registrada";
                     response.content = resultado;

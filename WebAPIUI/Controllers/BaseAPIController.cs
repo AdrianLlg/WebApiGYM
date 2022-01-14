@@ -47,7 +47,6 @@ using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
 using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.Controllers.HorasDisciplina.Models;
 using WebAPIUI.Controllers.Login.Models;
-using WebAPIUI.Controllers.MembresiaPersonaDisciplina.Models;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
 using WebAPIUI.Controllers.ModificarMembresiaUsuario.Models;
 using WebAPIUI.Controllers.Registro.Models;
@@ -77,6 +76,7 @@ using WebAPIUI.CustomExceptions.ConsultaRepEventoDisciplina;
 using WebAPIUI.CustomExceptions.ConsultaRepEventoSala;
 using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
+using WebAPIUI.CustomExceptions.DisciplinasMembresiaPersonaPago;
 using WebAPIUI.CustomExceptions.EventoAdmin;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
 using WebAPIUI.CustomExceptions.EventoPersona;
@@ -89,8 +89,6 @@ using WebAPIUI.CustomExceptions.HorarioAdmin;
 using WebAPIUI.CustomExceptions.HorarioMAdmin;
 using WebAPIUI.CustomExceptions.HorasDisciplina;
 using WebAPIUI.CustomExceptions.Login;
-using WebAPIUI.CustomExceptions.MembresiaPersonaDisciplina;
-using WebAPIUI.CustomExceptions.MembresiaPersonaDisciplinaAdmin;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIUI.CustomExceptions.NoticiaAdmin;
@@ -1369,29 +1367,29 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
-
-        #region MembresiaPersonaDisciplina Expections
-        internal static void ThrowHandledExceptionMembresiaPersonaDisciplina(MembresiaPersonaDisciplinaResponseType type, IList<string> messages)
+        #region DisciplinasMembresiaPersonaPago Exceptions
+        internal static void ThrowHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType type, IList<string> messages)
         {
-            var newException = new MembresiaPersonaDisciplinaException(type, messages);
+            var newException = new DisciplinasMembresiaPersonaPagoException(type, messages);
             throw newException;
         }
 
-        internal static void ThrowUnHandledExceptionMembresiaPersonaDisciplina(MembresiaPersonaDisciplinaResponseType type, Exception ex)
+        internal static void ThrowUnHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType type, Exception ex)
         {
-            throw new MembresiaPersonaDisciplinaException(type, ex.Message);
+            throw new DisciplinasMembresiaPersonaPagoException(type, ex.Message);
         }
 
-        internal void SetResponseAsExceptionMembresiaPersonaDisciplina(MembresiaPersonaDisciplinaResponseType code, MembresiaPersonaDisciplinaDataResponse response, string message)
+        internal void SetResponseAsExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType code, DisciplinasMembresiaPersonaPagoDataResponse response, string message)
         {
             response.ResponseCode = code;
             response.ResponseMessage = message;
-            response.ContentIndex = null;
-            response.ContentCreate = false;
-            response.ContentModify = false;
-            response.ContentDetail = null;
+            response.Content = null;
+
         }
         #endregion
 
+
+
+        
     }
 }

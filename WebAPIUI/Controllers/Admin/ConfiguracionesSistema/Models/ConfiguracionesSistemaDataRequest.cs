@@ -9,6 +9,8 @@ namespace WebAPIUI.Controllers.ConfiguracionesSistema.Models
     {
         public int flujoID { get; set; }
         public int ConfiguracionSistemaID { get; set; }
+
+        public string nombreConfiguracion { get; set; }
         public string Valor { get; set; }
         public string Fecha { get; set; }
         public string FechaInicio { get; set; }

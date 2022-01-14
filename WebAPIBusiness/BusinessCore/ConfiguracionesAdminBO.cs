@@ -173,8 +173,56 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+        public List<ConfiguracionesAdminEntity> getConfiguration(string nombreConfiguracion)
+        {
+            List<ConfiguracionesAdminEntity> resp = new List<ConfiguracionesAdminEntity>();
 
+            resp = getConfigSetting(nombreConfiguracion);
 
+            return resp;
+        }
 
+        private List<ConfiguracionesAdminEntity> getConfigSetting(string nombreConfig)
+        {
+            List<ConfiguracionesAdminEntity> configEntities = new List<ConfiguracionesAdminEntity>();
+            List<configuraciones_Sistema> configResp = new List<configuraciones_Sistema>();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    configResp = dbContext.configuraciones_Sistema.Where(x => x.NombreConfiguracion.Equals(nombreConfig)).ToList();
+                }
+
+                if (configResp.Count > 0)
+                {
+                    foreach (var entity in configResp)
+                    {
+                        ConfiguracionesAdminEntity item = new ConfiguracionesAdminEntity
+                        {
+
+                            ConfiguracionSistemaID = entity.ConfiguracionSistemaID,
+                            TipoConfiguracion = entity.TipoConfiguracion,
+                            NombreConfiguracion = entity.NombreConfiguracion,
+                            DescripcionConfiguracion = entity.DescripcionConfiguracion,
+                            Valor = entity.Valor,
+                            Estado = entity.Estado,
+                            Fecha = entity.Fecha,
+                            FechaFin = entity.FechaFin,
+                            FechaInicio = entity.FechaInicio
+
+                        };
+
+                        configEntities.Add(item);
+                    }
+                }
+
+                return configEntities;
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException("Ocurrió un error en el manejo de datos en la BD.");
+            }
+        }
     }
 }
