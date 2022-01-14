@@ -76,6 +76,7 @@ using WebAPIUI.CustomExceptions.ConsultaRepEventoDisciplina;
 using WebAPIUI.CustomExceptions.ConsultaRepEventoSala;
 using WebAPIUI.CustomExceptions.ConsultaVentasMembresias;
 using WebAPIUI.CustomExceptions.DisciplinaAdmin;
+using WebAPIUI.CustomExceptions.DisciplinasMembresiaPersonaPago;
 using WebAPIUI.CustomExceptions.EventoAdmin;
 using WebAPIUI.CustomExceptions.EventoClasePersona;
 using WebAPIUI.CustomExceptions.EventoPersona;
@@ -1366,5 +1367,29 @@ namespace WebAPIUI.Controllers
         }
         #endregion
 
+        #region DisciplinasMembresiaPersonaPago Exceptions
+        internal static void ThrowHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType type, IList<string> messages)
+        {
+            var newException = new DisciplinasMembresiaPersonaPagoException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType type, Exception ex)
+        {
+            throw new DisciplinasMembresiaPersonaPagoException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType code, DisciplinasMembresiaPersonaPagoDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.Content = null;
+
+        }
+        #endregion
+
+
+
+        
     }
 }

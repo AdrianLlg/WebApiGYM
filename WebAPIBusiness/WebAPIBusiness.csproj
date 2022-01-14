@@ -62,6 +62,7 @@
     <Compile Include="BusinessCore\ConsultaListaAsistenciaBO.cs" />
     <Compile Include="BusinessCore\ConsultaNoticiasAppBO.cs" />
     <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
+    <Compile Include="BusinessCore\DisciplinasMembresiaPersonaPagoBO.cs" />
     <Compile Include="BusinessCore\RegistrarAsistenciaEventoPersonaBO.cs" />
     <Compile Include="BusinessCore\EventoPersonaBO.cs" />
     <Compile Include="BusinessCore\FichaEntrenamientoBO.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
     <Compile Include="Entities\ConsultaMailCancelacion\ConsultaMailCancelacionEntity.cs" />
     <Compile Include="Entities\ConsultaPerfil\ConsultaPerfilEntity.cs" />
+    <Compile Include="Entities\DisciplinasMembresiaPersonaPago\DisciplinasMembresiaPersonaPagoEntity.cs" />
     <Compile Include="Entities\EventoClasePersona\EventoClasePersonaRecursosEspecialesEntity.cs" />
     <Compile Include="Entities\EventoPersona\EventoPersonaEntity.cs" />
     <Compile Include="Entities\Fichas\FichaPersonaEntity.cs" />

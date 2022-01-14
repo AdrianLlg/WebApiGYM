@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPIUI.Models.MembresiaPersonaDisciplina
+namespace WebAPIUI.Models.DisciplinasMembresiaPersonaPago
 {
-    public class MembresiaPersonaDisciplinaModel
+    public class DisciplinasMembresiaPersonaPagoModel
     {
         public int membresia_persona_disciplinaID { get; set; }
         public int personaID { get; set; }
