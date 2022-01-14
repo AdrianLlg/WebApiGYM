@@ -47,6 +47,7 @@ using WebAPIUI.Controllers.EventosRecursoEspecial.Models;
 using WebAPIUI.Controllers.EventosSerializados.Models;
 using WebAPIUI.Controllers.HorasDisciplina.Models;
 using WebAPIUI.Controllers.Login.Models;
+using WebAPIUI.Controllers.MembresiaPersonaDisciplina.Models;
 using WebAPIUI.Controllers.MembresiasUsuario.Models;
 using WebAPIUI.Controllers.ModificarMembresiaUsuario.Models;
 using WebAPIUI.Controllers.Registro.Models;
@@ -88,6 +89,8 @@ using WebAPIUI.CustomExceptions.HorarioAdmin;
 using WebAPIUI.CustomExceptions.HorarioMAdmin;
 using WebAPIUI.CustomExceptions.HorasDisciplina;
 using WebAPIUI.CustomExceptions.Login;
+using WebAPIUI.CustomExceptions.MembresiaPersonaDisciplina;
+using WebAPIUI.CustomExceptions.MembresiaPersonaDisciplinaAdmin;
 using WebAPIUI.CustomExceptions.MembresiasAdmin;
 using WebAPIUI.CustomExceptions.MembresiasUsuario;
 using WebAPIUI.CustomExceptions.NoticiaAdmin;
@@ -1363,6 +1366,30 @@ namespace WebAPIUI.Controllers
             response.ResponseMessage = message;
             response.Content = false;
 
+        }
+        #endregion
+
+
+        #region MembresiaPersonaDisciplina Expections
+        internal static void ThrowHandledExceptionMembresiaPersonaDisciplina(MembresiaPersonaDisciplinaResponseType type, IList<string> messages)
+        {
+            var newException = new MembresiaPersonaDisciplinaException(type, messages);
+            throw newException;
+        }
+
+        internal static void ThrowUnHandledExceptionMembresiaPersonaDisciplina(MembresiaPersonaDisciplinaResponseType type, Exception ex)
+        {
+            throw new MembresiaPersonaDisciplinaException(type, ex.Message);
+        }
+
+        internal void SetResponseAsExceptionMembresiaPersonaDisciplina(MembresiaPersonaDisciplinaResponseType code, MembresiaPersonaDisciplinaDataResponse response, string message)
+        {
+            response.ResponseCode = code;
+            response.ResponseMessage = message;
+            response.ContentIndex = null;
+            response.ContentCreate = false;
+            response.ContentModify = false;
+            response.ContentDetail = null;
         }
         #endregion
 

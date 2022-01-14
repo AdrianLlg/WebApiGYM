@@ -21,7 +21,7 @@ namespace WebAPIBusiness.BusinessCore
 
             return entities;
         }
-
+         
         private List<MembresiaAdminEntity> getMemberships()
         {
             List<MembresiaAdminEntity> entities = new List<MembresiaAdminEntity>();
@@ -205,10 +205,10 @@ namespace WebAPIBusiness.BusinessCore
         private bool UpdateRecord(int membresiaID, string nombre, string descripcion, string precio)
         {
             membresia memb = new membresia();
-
+             
             try
             {
-                int precioC = int.Parse(precio);
+                decimal precioC = decimal.Parse(precio);
 
                 using (var dbContext = new GYMDBEntities())
                 {

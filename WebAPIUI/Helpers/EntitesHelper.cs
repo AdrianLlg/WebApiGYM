@@ -72,6 +72,7 @@ using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
 using WebAPIUI.Models.ConsultaClasesPendientesInstructor;
 using WebAPIBusiness.Entities.App.ConsultaClasesPendientesInstructor;
 using System.Linq;
+using WebAPIUI.Models.MembresiaPersonaDisciplina;
 #endregion
 namespace WebAPIUI.Helpers
 {
@@ -611,21 +612,7 @@ namespace WebAPIUI.Helpers
         }
         #endregion
 
-        //public static NuevaMembresiaPersonaModel NuevaMembresiaEntityToModel(MembresiaPersonaDisciplinaEntity entity)
-        //{
 
-        //    NuevaMembresiaPersonaModel response = new NuevaMembresiaPersonaModel
-        //    {
-        //      membresia_persona_disciplinaID = entity.membresia_persona_disciplinaID,
-        //      membresiaID = entity.membresiaID,
-        //      personaID = entity.personaID,
-        //      statusMembresia = entity.statusMembresia,
-        //      fechaPago = entity.fechaPago.ToString(),
-        //      fechaLimite = entity.fechaLimite.ToString()
-        //    };
-
-        //    return response;
-        //}
 
         #region Configuraciones Helper
         public static List<ConfiguracionesSistemaModel> EntityToModelConfiguracionesSistema(List<ConfiguracionesAdminEntity> entities)
@@ -1168,7 +1155,7 @@ namespace WebAPIUI.Helpers
         public static ConsultaPerfilModel EntityToModelConsultaPerfil(ConsultaPerfilEntity entity)
         {
 
-            ConsultaPerfilModel response = new ConsultaPerfilModel() 
+            ConsultaPerfilModel response = new ConsultaPerfilModel()
             {
                 //usuarioID = entity.usuarioID,
                 personaID = entity.personaID,
@@ -1201,7 +1188,7 @@ namespace WebAPIUI.Helpers
             {
                 ConsultaFichaPersonaModel model = new ConsultaFichaPersonaModel()
                 {
-                    fichaPersonaID=entity.fichaPersonaID,
+                    fichaPersonaID = entity.fichaPersonaID,
                     Cliente = entity.Cliente,
                     PersonaID = entity.PersonaID,
                     MesoTipo = entity.MesoTipo,
@@ -1451,6 +1438,7 @@ namespace WebAPIUI.Helpers
         #endregion
 
 
+     
     }
 
 }
