@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebAPIBusiness.CustomExceptions;
 using WebAPIBusiness.Entities.EventoPersona;
 using WebAPIData;
 
@@ -9,23 +10,43 @@ namespace WebAPIBusiness.BusinessCore
     public class RegistrarAsistenciaEventoProfesorBO
     {
         //Método  para verificar si el instructor puede gnerar el codigo QR
-        public bool RegistrarEventoProfesor(int eventoID,int personaID){
+        public bool RegistrarEventoProfesor(int eventoID, int personaID)
+        {
             bool respuesta = false;
-            if (GenerarQRInstructor(eventoID))
+
+            respuesta = registrarAsistenciaProfesor(eventoID, personaID);
+
+            return respuesta;
+        }
+
+        private bool registrarAsistenciaProfesor(int eventoID, int personaID)
+        {
+            try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
                     var evento_profesor = dbContext.evento_profesor.Where(x => x.eventoID == eventoID && x.personaID == personaID).FirstOrDefault();
-                    evento_profesor.asistencia = 1;
-                    dbContext.SaveChanges();
+
+                    if (evento_profesor != null)
+                    {
+                        evento_profesor.asistencia = 1;
+                        dbContext.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }                    
                 }
-                respuesta = true;
+
             }
-            else {
-                respuesta = false; 
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.Message);
             }
-            return respuesta;
         }
+
         public bool GenerarQRInstructor(int eventoID)
         {
             bool check = false;

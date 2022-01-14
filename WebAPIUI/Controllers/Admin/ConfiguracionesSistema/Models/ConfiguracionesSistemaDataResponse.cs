@@ -35,5 +35,10 @@ namespace WebAPIUI.Controllers.ConfiguracionesSistema.Models
         /// </summary>
         public bool ContentModify { get; set; }
 
+        /// <summary>
+        /// Configuracion por nombre
+        /// </summary>
+        public List<ConfiguracionesAdminEntity> ContentParametro { get; set; }
+
     }
 }

@@ -31,7 +31,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Consulta las configuraciones
         /// </summary>
-        private List<ConfiguracionesAdminEntity> ConsultaConfiguracion()
+        private List<ConfiguracionesAdminEntity> ConsultaConfiguraciones()
         {
             ConfiguracionesAdminBO bo = new ConfiguracionesAdminBO();
             List<string> messages = new List<string>();
@@ -40,6 +40,33 @@ namespace WebAPIUI.Controllers
             try
             {
                 entities = bo.getConfigurations();
+            }
+            catch (ValidationAndMessageException ConfiguracionesSistemaException)
+            {
+                messages.Add(ConfiguracionesSistemaException.Message);
+                ThrowHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionConfiguracionesSistema(ConfiguracionesSistemaResponseType.Error, ex);
+            }
+
+            return entities;
+        }
+
+        /// <summary>
+        /// Consulta las configuraciones
+        /// </summary>
+        private List<ConfiguracionesAdminEntity> ConsultaConfiguracion(string nombreConfiguracion)
+        {
+            ConfiguracionesAdminBO bo = new ConfiguracionesAdminBO();
+            List<string> messages = new List<string>();
+            List<ConfiguracionesAdminEntity> entities = new List<ConfiguracionesAdminEntity>();
+
+            try
+            {
+                entities = bo.getConfiguration(nombreConfiguracion);
             }
             catch (ValidationAndMessageException ConfiguracionesSistemaException)
             {
@@ -115,7 +142,7 @@ namespace WebAPIUI.Controllers
 
                 if (dataRequest.flujoID == 0)
                 {
-                    List<ConfiguracionesAdminEntity> entities = ConsultaConfiguracion();
+                    List<ConfiguracionesAdminEntity> entities = ConsultaConfiguraciones();
                     if (entities.Count > 0)
                     {
                         model = EntitesHelper.EntityToModelConfiguracionesSistema(entities);
@@ -129,6 +156,26 @@ namespace WebAPIUI.Controllers
                         response.ResponseMessage = "No existen registros.";
                         response.Content = null;
                     }
+                }
+                //Consultar configuraciones a partir del nombre de la configuracion
+                else if (dataRequest.flujoID == 3)
+                {
+                    List<ConfiguracionesAdminEntity> entities = ConsultaConfiguracion(dataRequest.nombreConfiguracion);
+
+                    if (entities.Count > 0)
+                    {
+                        response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentParametro = entities;
+                    }
+                    else
+                    {
+                        response.ResponseCode = ConfiguracionesSistemaResponseType.Ok;
+                        response.ResponseMessage = "No existen registros.";
+                        response.ContentParametro = null;
+                    }
+
+
                 }
                 else if (dataRequest.flujoID == 2)
                 {
