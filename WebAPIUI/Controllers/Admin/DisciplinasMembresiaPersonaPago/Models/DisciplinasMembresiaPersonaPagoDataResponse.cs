@@ -22,5 +22,10 @@ namespace WebAPIUI.Controllers.ConfiguracionesSistema.Models
         /// Contenido de respuesta
         /// </summary>
         public List<DisciplinasMembresiaPersonaPagoEntity> Content { get; set; }
+
+        /// <summary>
+        /// Contenido de respuesta modify
+        /// </summary>
+        public bool ContentModify { get; set; }
     }
 }

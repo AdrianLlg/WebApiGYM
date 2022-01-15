@@ -55,34 +55,31 @@ namespace WebAPIUI.Controllers
             return entities;
         }
 
-       
+        private bool EditarClasesTomadas(int membresia_persona_disciplinaID, int numClasesDisponibles)
+        {
+            DisciplinasMembresiaPersonaPagoBO bo = new DisciplinasMembresiaPersonaPagoBO();
+            List<string> messages = new List<string>();
+            bool response = false;
+
+            try
+            {
+                response = bo.modifyDisciplinesInfo(membresia_persona_disciplinaID, numClasesDisponibles);
+            }
+            catch (ValidationAndMessageException DisciplinasMembresiaPersonaPagoException)
+            {
+                messages.Add(DisciplinasMembresiaPersonaPagoException.Message);
+                ThrowHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType.Error, ex);
+            }
+
+            return response;
+        }
 
 
-        //private bool EditarConfiguracion(int ConfiguracionSistemaID, string Valor, string Fecha, string FechaInicio, string FechaFin)
-        //{
-        //    ConfiguracionesAdminBO bo = new ConfiguracionesAdminBO();
-        //    List<string> messages = new List<string>();
-        //    bool response = false;
-
-        //    try
-        //    {
-        //        response = bo.editarConfigurations(ConfiguracionSistemaID, Valor, Fecha, FechaInicio, FechaFin);
-        //    }
-        //    catch (ValidationAndMessageException DisciplinasMembresiaPersonaPagoException)
-        //    {
-        //        messages.Add(DisciplinasMembresiaPersonaPagoException.Message);
-        //        ThrowHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType.Error, messages);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        messages.Add("Ocurrió un error al ejecutar el proceso.");
-        //        ThrowUnHandledExceptionDisciplinasMembresiaPersonaPago(DisciplinasMembresiaPersonaPagoResponseType.Error, ex);
-        //    }
-
-        //    return response;
-        //}
-
-       
 
         /// <summary>
         /// Flujo que muestra y permite modificar la información de membresiaPersonaDisciplina
@@ -122,31 +119,21 @@ namespace WebAPIUI.Controllers
                 }
                 else if (dataRequest.flujoID == 1)
                 {
-                    //bool resp = EditarConfiguracion(
-                    //   dataRequest.ConfiguracionSistemaID,
-                    //   dataRequest.Valor,
-                    //   dataRequest.Fecha,
-                    //   dataRequest.FechaInicio,
-                    //   dataRequest.FechaFin
-                    //    );
+                    bool resp = EditarClasesTomadas(dataRequest.membresia_persona_disciplinaID, dataRequest.numClasesDisponibles);
 
-                    //if (resp)
-                    //{
-                    //    response.ResponseCode = DisciplinasMembresiaPersonaPagoResponseType.Ok;
-                    //    response.ResponseMessage = "Método ejecutado con éxito.";
-                    //    response.ContentModify = true;
-                    //}
-                    //else
-                    //{
-                    //    response.ResponseCode = DisciplinasMembresiaPersonaPagoResponseType.Error;
-                    //    response.ResponseMessage = "Fallo en la ejecución.";
-                    //    response.ContentModify = false;
-                    //}
+                    if (resp)
+                    {
+                        response.ResponseCode = DisciplinasMembresiaPersonaPagoResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentModify = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = DisciplinasMembresiaPersonaPagoResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentModify = false;
+                    }
                 }
-
-
-
-
             }
             catch (DisciplinasMembresiaPersonaPagoException DisciplinasMembresiaPersonaPagoException)
             {

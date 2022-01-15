@@ -21,8 +21,6 @@ namespace WebAPIBusiness.BusinessCore
 
         }
 
-
-
         private List<DisciplinasMembresiaPersonaPagoEntity> getDisciplinesDB(int membresia_persona_pagoID)
         {
             List<DisciplinasMembresiaPersonaPagoEntity> resp = new List<DisciplinasMembresiaPersonaPagoEntity>();
@@ -61,5 +59,50 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
+        public bool modifyDisciplinesInfo(int membresia_persona_disciplinaID, int numClasesDisponibles)
+        {
+            bool response = false;
+
+            if (membresia_persona_disciplinaID > 0)
+            {
+                response = modifyDisciplinesDB(membresia_persona_disciplinaID, numClasesDisponibles);
+            }
+            else
+            {
+                return false;
+            }
+
+            return response;
+
+        }
+
+        private bool modifyDisciplinesDB(int membresia_persona_disciplinaID, int numClasesDisponibles)
+        {
+            List<DisciplinasMembresiaPersonaPagoEntity> resp = new List<DisciplinasMembresiaPersonaPagoEntity>();
+
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var query = dbContext.membresia_persona_disciplina.Where(x => x.membresia_persona_disciplinaID == membresia_persona_disciplinaID).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        query.numClasesDisponibles = numClasesDisponibles;
+                        dbContext.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationAndMessageException(ex.InnerException.Message);
+            }
+        }
     }
 }
