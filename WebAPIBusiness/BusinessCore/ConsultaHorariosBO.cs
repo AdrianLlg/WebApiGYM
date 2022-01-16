@@ -24,7 +24,10 @@ namespace WebAPIBusiness.BusinessCore
            
             List<ConsultaHorariosModel> horariosConsultados= new List<ConsultaHorariosModel>();
             List<ConsultaHorariosModel> horariosDisponibles = new List<ConsultaHorariosModel>();
-            ConsultaHorariosModel horarioaux = new ConsultaHorariosModel();
+            ConsultaHorariosModel horarioaux = new ConsultaHorariosModel(); 
+            ConsultaHorariosModel horarioProf = new ConsultaHorariosModel();
+
+
             List<horarioM> HorariosM = new List<horarioM>();
 
 
@@ -45,8 +48,9 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         foreach (horarioM horariodb in HorariosM)
                         {
-                            horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID && x.personaID == personaID).FirstOrDefault();
-                            if(horarioaux == null)
+                            horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID).FirstOrDefault();
+                            horarioProf = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.personaID == personaID).FirstOrDefault();
+                            if (horarioaux == null && horarioProf == null)
                             {
                                 horarioaux = new ConsultaHorariosModel()
                                 {

@@ -206,7 +206,7 @@ namespace WebAPIBusiness.BusinessCore.App
                         "<div style=\"border: 1px solid #c3c3c3;border-radius:10px ; padding: 20px;\">" +
                         "<h1 style=\"color: dodgerblue\">Evento Cancelado</h1>" +
                         "<hr>" +
-                        "<p><span style=\"color: dodgerblue; font-weight: bold; \">Estimado Administrador " + profesor.nombres + ",</span></p>" +
+                        "<p><span style=\"color: dodgerblue; font-weight: bold; \">Estimado Administrador " + c.nombres + ",</span></p>" +
                         "<p>La clase de <span style=\"color: dodgerblue; font-weight: bold; \">" + profesor.clase + "</span> programada para el día   " +
                         "<span style=\"color: dodgerblue; font-weight: bold; \">" + profesor.fecha.ToShortDateString() + "</span> en el horario de " +
                         "<span style=\"color: dodgerblue; font-weight: bold; \">" + profesor.horario + "</span> ha sido cancelada por el siguiente motivo: </p>" +

@@ -72,7 +72,6 @@ using WebAPIBusiness.Entities.App.ConsultaDisciplinasDeportista;
 using WebAPIUI.Models.ConsultaClasesPendientesInstructor;
 using WebAPIBusiness.Entities.App.ConsultaClasesPendientesInstructor;
 using System.Linq;
-using WebAPIUI.Models.MembresiaPersonaDisciplina;
 #endregion
 namespace WebAPIUI.Helpers
 {
