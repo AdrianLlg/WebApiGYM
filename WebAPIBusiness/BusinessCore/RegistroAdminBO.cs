@@ -73,9 +73,9 @@ namespace WebAPIBusiness.BusinessCore
 
                 int edad = calculateAge(fechaNacimient);
 
-                UsuariosRegistradosEntity person = validationPerson(identificacion, email);
+                int validationPers = validationPerson(identificacion, email);
 
-                if (person.personaID >= 0)
+                if (validationPers == 0)
                 {
                     entity = insertDBUser(rolePID, nombres, apellidos, identificacion, email, telefono, sexo, fechaNacimient, edad);
                 }
@@ -308,10 +308,9 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-        private UsuariosRegistradosEntity validationPerson(string cedula, string correo)
+        private int validationPerson(string cedula, string correo)
         {
             persona pers = new persona();
-            UsuariosRegistradosEntity resp = new UsuariosRegistradosEntity();
 
             try
             {
@@ -320,30 +319,20 @@ namespace WebAPIBusiness.BusinessCore
                     pers = dbContext.persona.Where(x => x.identificacion == cedula || x.email == correo).FirstOrDefault();
                 }
 
-                if (pers == null)
+                //Ya existe esa persona
+                if (pers != null)
                 {
-                    resp = new UsuariosRegistradosEntity()
-                    {
-                        personaID = pers.personaID,
-                        rolePID = pers.rolePID,
-                        identificacion = pers.identificacion,
-                        nombres = pers.nombres,
-                        apellidos = pers.apellidos,
-                        email = pers.email,
-                        edad = pers.edad,
-                        sexo = pers.sexo,
-                        telefono = pers.telefono,
-                        estado = pers.estado,
-                        fechaNacimiento = pers.fechaNacimiento,
-                        fechaCreacion = pers.fechaCreacion
-                    };
+                    return 1;
                 }
-
-                return resp;
+                //No existe esa persona
+                else
+                {
+                    return 0;
+                }
             }
             catch (Exception ex)
             {
-                return resp;
+                return 0;
             }
         }
     }
