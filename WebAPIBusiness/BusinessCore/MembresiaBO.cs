@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using WebAPIBusiness.Entities.App.MembresiasPersona;
 using WebAPIBusiness.Entities.Membresia;
@@ -70,7 +71,7 @@ namespace WebAPIBusiness.BusinessCore
                                 formaPago = item.formaPago,
                                 nroDocumento = item.nroDocumento,
                                 Banco = item.Banco,
-                                fechaPago = (DateTime)item.fechaTransaccion,
+                                fechaPago = (DateTime?)item.fechaTransaccion,
                                 fechaLimite = (DateTime)item.fechaFinMembresia,
                                 fechaInicioMembresia = (DateTime)item.fechaInicioMembresia,
                                 fechaFinMembresia = (DateTime)item.fechaFinMembresia,

@@ -95,7 +95,7 @@ namespace WebAPIUI.Helpers
                     formaPago = entity.formaPago,
                     nroDocumento = entity.nroDocumento,
                     Banco = entity.Banco,
-                    fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
+                    fechaPago = entity.fechaPago.ToString(),
                     fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
                     fechaInicioMembresia = entity.fechaInicioMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     fechaFinMembresia = entity.fechaFinMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
