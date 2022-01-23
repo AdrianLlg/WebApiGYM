@@ -100,6 +100,7 @@ namespace WebAPIUI.Helpers
                     fechaInicioMembresia = entity.fechaInicioMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     fechaFinMembresia = entity.fechaFinMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     estado = entity.estado,
+                    estadoMembresia = entity.estadoMembresia,
                     disciplinasMemb = entity.disciplinasMemb
                 };
 
@@ -215,7 +216,8 @@ namespace WebAPIUI.Helpers
                     Descripcion = entity.descripcion,
                     Precio = entity.precio,
                     Periodicidad = entity.periodicidad,
-                    membresiaDisciplinas = entity.disciplinas
+                    membresiaDisciplinas = entity.disciplinas,
+                    estadoRegistro = entity.estadoRegistro
                 };
 
                 response.Add(item);

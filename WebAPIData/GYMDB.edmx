@@ -94,16 +94,16 @@
           <Property Name="fichaPersonaID" Type="int" Nullable="false" />
           <Property Name="ProfesorID" Type="int" Nullable="false" />
           <Property Name="DiciplinaID" Type="int" Nullable="false" />
-          <Property Name="Peso" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Altura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceMasaMuscular" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceGrasaCorporal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionBrazos" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPecho" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionEspalda" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPiernas" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCintura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCuello" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceMasaMuscular" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceGrasaCorporal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionBrazos" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPecho" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionEspalda" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPiernas" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCintura" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCuello" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="fichaPersona">
@@ -135,6 +135,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="300" />
           <Property Name="precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="periodicidad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="membresia_disciplina">
           <Key>
@@ -868,16 +869,16 @@
           <Property Name="fichaPersonaID" Type="Int32" Nullable="false" />
           <Property Name="ProfesorID" Type="Int32" Nullable="false" />
           <Property Name="DiciplinaID" Type="Int32" Nullable="false" />
-          <Property Name="Peso" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Altura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceMasaMuscular" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceGrasaCorporal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionBrazos" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPecho" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionEspalda" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPiernas" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCintura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCuello" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Peso" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceMasaMuscular" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceGrasaCorporal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionBrazos" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPecho" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionEspalda" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPiernas" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCintura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCuello" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="disciplina" Relationship="Self.disciplina_fEntrenamiento_fk" FromRole="fichaEntrenamiento" ToRole="disciplina" />
           <NavigationProperty Name="fichaPersona" Relationship="Self.persona_fEntrenamiento_fk" FromRole="fichaEntrenamiento" ToRole="fichaPersona" />
@@ -915,6 +916,7 @@
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="periodicidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia1_fk" FromRole="membresia" ToRole="membresia_disciplina" />
           <NavigationProperty Name="membresia_persona_pago" Relationship="Self.MembresiaIdMPP_fk" FromRole="membresia" ToRole="membresia_persona_pago" />
           <NavigationProperty Name="sol_membresiaPago" Relationship="Self.MembresiaIdSMP_fk" FromRole="membresia" ToRole="sol_membresiaPago" />
@@ -1719,6 +1721,7 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="periodicidad" ColumnName="periodicidad" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

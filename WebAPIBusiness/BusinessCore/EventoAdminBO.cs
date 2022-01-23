@@ -94,12 +94,19 @@ namespace WebAPIBusiness.BusinessCore
         private bool insertDBEvento(string claseID, string horarioMID, string fecha, string salaID, string aforoMax, string aforoMin, string estadoRegistro, int personaID)
         {
             evento item = new evento();
+            List<salaRecursoEspecial> RecursosSala = new List<salaRecursoEspecial>();
+            
+            evento_recursoEspecial recurso = new evento_recursoEspecial();
+
+
 
             DateTime fechaF = Convert.ToDateTime(fecha);
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
+                    RecursosSala = dbContext.salaRecursoEspecial.ToList();
+
                     item = new evento()
                     {
                         claseID = int.Parse(claseID),
@@ -115,11 +122,30 @@ namespace WebAPIBusiness.BusinessCore
 
                     dbContext.evento.Add(item);
                     dbContext.SaveChanges();
+
+                    var existeSala = RecursosSala.Where(x => x.salaID == item.salaID).FirstOrDefault();
                     var eventoAux = dbContext.evento.Where(x =>
                            x.claseID == item.claseID
                            && x.horarioMID == item.horarioMID
                            && x.fecha == item.fecha
                            && x.salaID == item.salaID).FirstOrDefault();
+
+
+                    if (existeSala != null)
+                    {
+                        var RecursosInsert = RecursosSala.Where(x => x.salaID == item.salaID).ToList();
+                        foreach (var rs in RecursosInsert)
+                        {
+                            recurso = new evento_recursoEspecial()
+                            {
+                                eventoID = eventoAux.eventoID,
+                                recursoEspecialID = rs.recursoEspecialID,
+                                personaID = 0
+                            };
+                            dbContext.evento_recursoEspecial.Add(recurso);
+                            dbContext.SaveChanges();
+                        }
+                    }
 
                     var evento_profesor_Item = new evento_profesor()
                     {

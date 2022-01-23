@@ -9,7 +9,7 @@ using WebAPIData;
 
 namespace WebAPIBusiness.BusinessCore
 {
-    public class DisciplinasMembresiaPersonaPagoBO
+    public class DisciplinasMembresiaPersonaPagoBO 
     {
         public List<DisciplinasMembresiaPersonaPagoEntity> getDisciplinesInfo(int membresia_persona_pagoID)
         {
@@ -20,7 +20,7 @@ namespace WebAPIBusiness.BusinessCore
             return response;
 
         }
-
+         
         private List<DisciplinasMembresiaPersonaPagoEntity> getDisciplinesDB(int membresia_persona_pagoID)
         {
             List<DisciplinasMembresiaPersonaPagoEntity> resp = new List<DisciplinasMembresiaPersonaPagoEntity>();
