@@ -93,7 +93,7 @@
           <Property Name="FechaCreacion" Type="date" Nullable="false" />
           <Property Name="fichaPersonaID" Type="int" Nullable="false" />
           <Property Name="ProfesorID" Type="int" Nullable="false" />
-          <Property Name="DiciplinaID" Type="int" Nullable="false" />
+          <Property Name="DisciplinaID" Type="int" Nullable="false" />
           <Property Name="Peso" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Altura" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IndiceMasaMuscular" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -290,7 +290,7 @@
               <PropertyRef Name="disciplinaID" />
             </Principal>
             <Dependent Role="fichaEntrenamiento">
-              <PropertyRef Name="DiciplinaID" />
+              <PropertyRef Name="DisciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -868,7 +868,7 @@
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fichaPersonaID" Type="Int32" Nullable="false" />
           <Property Name="ProfesorID" Type="Int32" Nullable="false" />
-          <Property Name="DiciplinaID" Type="Int32" Nullable="false" />
+          <Property Name="DisciplinaID" Type="Int32" Nullable="false" />
           <Property Name="Peso" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Altura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IndiceMasaMuscular" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -1119,7 +1119,7 @@
               <PropertyRef Name="disciplinaID" />
             </Principal>
             <Dependent Role="fichaEntrenamiento">
-              <PropertyRef Name="DiciplinaID" />
+              <PropertyRef Name="DisciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1676,7 +1676,7 @@
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="fichaPersonaID" ColumnName="fichaPersonaID" />
                 <ScalarProperty Name="ProfesorID" ColumnName="ProfesorID" />
-                <ScalarProperty Name="DiciplinaID" ColumnName="DiciplinaID" />
+                <ScalarProperty Name="DisciplinaID" ColumnName="DisciplinaID" />
                 <ScalarProperty Name="Peso" ColumnName="Peso" />
                 <ScalarProperty Name="Altura" ColumnName="Altura" />
                 <ScalarProperty Name="IndiceMasaMuscular" ColumnName="IndiceMasaMuscular" />

@@ -37,7 +37,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Insertar un nuevo FichaEntrenamiento en la BD
         /// </summary>
-        private bool InsertarFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
+        private bool InsertarFichaEntrenamiento(string FechaCreacion, int fichaPersonaID, int ProfesorID, int DisciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
         {
             FichaEntrenamientoBO bo = new FichaEntrenamientoBO();
             List<string> messages = new List<string>();
@@ -45,7 +45,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.insertFichaEntrenamiento(FechaCreacion, fichaPersonaID, ProfesorID, DiciplinaID, Altura, Peso, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho, MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, Observaciones);
+                response = bo.insertFichaEntrenamiento(FechaCreacion, fichaPersonaID, ProfesorID, DisciplinaID, Altura, Peso, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho, MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, Observaciones);
             }
             catch (ValidationAndMessageException FichaEntrenamientoException)
             {
@@ -92,7 +92,7 @@ namespace WebAPIUI.Controllers
         /// <summary>
         /// Modificar FichaEntrenamiento
         /// </summary>
-        private bool ModificarFichaEntrenamiento(int fichaEntrenamientoID, string FechaCreacion, int fichaPersonaID, int ProfesorID, int DiciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
+        private bool ModificarFichaEntrenamiento(int fichaEntrenamientoID, string FechaCreacion, int fichaPersonaID, int ProfesorID, int DisciplinaID, decimal Altura, decimal Peso, decimal IndiceMasaMuscular, decimal IndiceGrasaCorporal, decimal MedicionBrazos, decimal MedicionPecho, decimal MedicionEspalda, decimal MedicionPiernas, decimal MedicionCintura, decimal MedicionCuello, string Observaciones)
         {
             FichaEntrenamientoBO bo = new FichaEntrenamientoBO();
             List<string> messages = new List<string>();
@@ -100,7 +100,7 @@ namespace WebAPIUI.Controllers
 
             try
             {
-                response = bo.modifyFichaEntrenamiento(fichaEntrenamientoID,FechaCreacion, fichaPersonaID, ProfesorID, DiciplinaID, Altura, Peso, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho, MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, Observaciones);
+                response = bo.modifyFichaEntrenamiento(fichaEntrenamientoID,FechaCreacion, fichaPersonaID, ProfesorID, DisciplinaID, Altura, Peso, IndiceMasaMuscular, IndiceGrasaCorporal, MedicionBrazos, MedicionPecho, MedicionEspalda, MedicionPiernas, MedicionCintura, MedicionCuello, Observaciones);
             }
             catch (ValidationAndMessageException FichaEntrenamientoException)
             {
@@ -183,7 +183,7 @@ namespace WebAPIUI.Controllers
                 //Crear
                 else if (dataRequest.flujoID == 1)
                 {
-                    bool resp = InsertarFichaEntrenamiento(dataRequest.FechaCreacion, dataRequest.fichaPersonaID, dataRequest.ProfesorID, dataRequest.DiciplinaID, dataRequest.Altura, dataRequest.Peso, dataRequest.IndiceMasaMuscular, dataRequest.IndiceGrasaCorporal, dataRequest.MedicionBrazos, dataRequest.MedicionPecho, dataRequest.MedicionEspalda, dataRequest.MedicionPiernas, dataRequest.MedicionCintura, dataRequest.MedicionCuello, dataRequest.Observaciones);
+                    bool resp = InsertarFichaEntrenamiento(dataRequest.FechaCreacion, dataRequest.fichaPersonaID, dataRequest.ProfesorID, dataRequest.DisciplinaID, dataRequest.Altura, dataRequest.Peso, dataRequest.IndiceMasaMuscular, dataRequest.IndiceGrasaCorporal, dataRequest.MedicionBrazos, dataRequest.MedicionPecho, dataRequest.MedicionEspalda, dataRequest.MedicionPiernas, dataRequest.MedicionCintura, dataRequest.MedicionCuello, dataRequest.Observaciones);
 
                     if (resp)
                     {
@@ -201,7 +201,7 @@ namespace WebAPIUI.Controllers
                 //Modificar
                 else if (dataRequest.flujoID == 2)
                 {
-                    bool resp = ModificarFichaEntrenamiento(dataRequest.fichaEntrenamientoID, dataRequest.FechaCreacion, dataRequest.fichaPersonaID, dataRequest.ProfesorID, dataRequest.DiciplinaID, dataRequest.Altura, dataRequest.Peso, dataRequest.IndiceMasaMuscular, dataRequest.IndiceGrasaCorporal, dataRequest.MedicionBrazos, dataRequest.MedicionPecho, dataRequest.MedicionEspalda, dataRequest.MedicionPiernas, dataRequest.MedicionCintura, dataRequest.MedicionCuello, dataRequest.Observaciones);
+                    bool resp = ModificarFichaEntrenamiento(dataRequest.fichaEntrenamientoID, dataRequest.FechaCreacion, dataRequest.fichaPersonaID, dataRequest.ProfesorID, dataRequest.DisciplinaID, dataRequest.Altura, dataRequest.Peso, dataRequest.IndiceMasaMuscular, dataRequest.IndiceGrasaCorporal, dataRequest.MedicionBrazos, dataRequest.MedicionPecho, dataRequest.MedicionEspalda, dataRequest.MedicionPiernas, dataRequest.MedicionCintura, dataRequest.MedicionCuello, dataRequest.Observaciones);
 
                     if (resp)
                     {

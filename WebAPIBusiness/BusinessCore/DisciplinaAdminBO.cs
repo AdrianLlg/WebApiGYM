@@ -226,7 +226,7 @@ namespace WebAPIBusiness.BusinessCore
                     var fichaentrenamientoLS = dbContext.fichaEntrenamiento.ToList();
                     var membresia_disciplinaLS = dbContext.membresia_disciplina.ToList();
                     bool hasClases = clasesLS.Any(x => x.disciplinaID == disciplinaID);
-                    bool hasFichaentrenamiento = fichaentrenamientoLS.Any(x => x.DiciplinaID == disciplinaID);
+                    bool hasFichaentrenamiento = fichaentrenamientoLS.Any(x => x.DisciplinaID == disciplinaID);
                     bool hasMembresia_disciplina = membresia_disciplinaLS.Any(x => x.disciplinaID == disciplinaID);
                     if (dsp != null)
                     {
