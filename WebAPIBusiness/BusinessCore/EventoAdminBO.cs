@@ -380,7 +380,7 @@ namespace WebAPIBusiness.BusinessCore
                 {
                     dbContext.Database.Log = log => System.Diagnostics.Debug.WriteLine(log);
 
-                    var query = dbContext.evento.Where(x => x.fecha == fecha && classes.Contains(x.claseID)).ToList();
+                    var query = dbContext.evento.Where(x => x.fecha == fecha && classes.Contains(x.claseID) && x.estadoRegistro == "A").ToList();
 
                     if (query.Count > 0)
                     {
