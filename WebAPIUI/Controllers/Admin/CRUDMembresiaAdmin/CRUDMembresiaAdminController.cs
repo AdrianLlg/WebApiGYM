@@ -194,7 +194,32 @@ namespace WebAPIUI.Controllers
 
             return response;
         }
+        /// <summary>
+        /// Inactivar Membresias
+        /// </summary>
+        private bool InactivarMembresia(int membresiaID)
+        {
+            MembresiaAdminBO bo = new MembresiaAdminBO();
+            List<string> messages = new List<string>();
+            bool response = false;
 
+            try
+            {
+                response = bo.inactivarMembresia(membresiaID);
+            }
+            catch (ValidationAndMessageException MembresiaAdminException)
+            {
+                messages.Add(MembresiaAdminException.Message);
+                ThrowHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, messages);
+            }
+            catch (Exception ex)
+            {
+                messages.Add("Ocurrió un error al ejecutar el proceso.");
+                ThrowUnHandledExceptionMembresiaAdmin(MembresiaAdminResponseType.Error, ex);
+            }
+
+            return response;
+        }
 
         /// <summary>
         /// CRUD para el Admin para Registro Personas
@@ -293,6 +318,28 @@ namespace WebAPIUI.Controllers
                     }
 
                 }
+                //Inactivar Membresia
+                else if (dataRequest.flujoID == 4)
+                {
+                    bool resp = false;
+
+                    resp = InactivarMembresia(dataRequest.membresiaID);
+
+                    if (resp)
+                    {
+                        response.ResponseCode = MembresiaAdminResponseType.Ok;
+                        response.ResponseMessage = "Método ejecutado con éxito.";
+                        response.ContentModify = true;
+                    }
+                    else
+                    {
+                        response.ResponseCode = MembresiaAdminResponseType.Error;
+                        response.ResponseMessage = "Fallo en la ejecución.";
+                        response.ContentModify = false;
+                    }
+
+                }
+
 
             }
             catch (MembresiaAdminException MembresiaAdminException)

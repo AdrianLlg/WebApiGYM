@@ -14,7 +14,7 @@ namespace WebAPIBusiness.Entities.MembresiaAdmin
         public string descripcion { get; set; }
         public decimal precio { get; set; }
         public string periodicidad { get; set; }
-
+        public string estadoRegistro { get; set; }
         public List<Membresia_Disciplina_NumClasesEntity> disciplinas { get; set; }
     }
 }

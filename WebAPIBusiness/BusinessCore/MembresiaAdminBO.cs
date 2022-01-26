@@ -68,6 +68,7 @@ namespace WebAPIBusiness.BusinessCore
                                 nombre = m.nombre,
                                 precio = m.precio,
                                 periodicidad = m.periodicidad,
+                                estadoRegistro = m.estadoRegistro,
                                 disciplinas = listDisciplines
                             };
 
@@ -131,7 +132,8 @@ namespace WebAPIBusiness.BusinessCore
                         nombre = nombre,
                         precio = precio,
                         descripcion = descripcion,
-                        periodicidad = periodicidad
+                        periodicidad = periodicidad,
+                        estadoRegistro = "A"
                     };
 
                     dbContext.membresia.Add(item);
@@ -599,7 +601,7 @@ namespace WebAPIBusiness.BusinessCore
             }
 
             return response;
-        }
+        } 
 
         private MembresiaPersonaPagoEntity hasPreviousMembership(int personaID, int membresiaID, out int daysToAdd)
         {
@@ -755,9 +757,6 @@ namespace WebAPIBusiness.BusinessCore
             }
         }
 
-
-
-
         public int calculateMonthsOfPeriodTime(string Periodicidad)
         {
             int val = 0;
@@ -813,5 +812,50 @@ namespace WebAPIBusiness.BusinessCore
                 throw new ValidationAndMessageException(ex.Message);
             }
         }
+
+        public bool inactivarMembresia(int membresiaID)
+        {
+            bool resp = false;
+
+            resp = InactivarMemb(membresiaID);
+
+            return resp;
+        }
+
+        private bool InactivarMemb(int membresiaID)
+        {
+            try
+            {
+                using (var dbContext = new GYMDBEntities())
+                {
+                    var memb = dbContext.membresia.Where(x => x.membresiaID == membresiaID).FirstOrDefault();
+
+                    if (memb != null)
+                    {
+                        if (memb.estadoRegistro == "A")
+                        {
+                            memb.estadoRegistro = "I";
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    dbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

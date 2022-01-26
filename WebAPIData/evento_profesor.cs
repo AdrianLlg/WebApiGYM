@@ -21,5 +21,7 @@ namespace WebAPIData
         public string estadoRegistro { get; set; }
         public string motivo { get; set; }
         public string posibleHorarioRecuperacion { get; set; }
+    
+        public virtual persona persona { get; set; }
     }
 }

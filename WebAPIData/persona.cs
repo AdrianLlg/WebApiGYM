@@ -19,6 +19,7 @@ namespace WebAPIData
         {
             this.evento = new HashSet<evento>();
             this.evento_persona = new HashSet<evento_persona>();
+            this.evento_profesor = new HashSet<evento_profesor>();
             this.fichaEntrenamiento = new HashSet<fichaEntrenamiento>();
             this.fichaPersona = new HashSet<fichaPersona>();
             this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
@@ -44,6 +45,8 @@ namespace WebAPIData
         public virtual ICollection<evento> evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evento_persona> evento_persona { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<evento_profesor> evento_profesor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<fichaEntrenamiento> fichaEntrenamiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

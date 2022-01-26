@@ -76,6 +76,7 @@ namespace WebAPIBusiness.BusinessCore
                                 fechaInicioMembresia = (DateTime)item.fechaInicioMembresia,
                                 fechaFinMembresia = (DateTime)item.fechaFinMembresia,
                                 estado = item.estado,
+                                estadoMembresia = item.membresia.estadoRegistro,
                                 disciplinasMemb = disciplinas
                             };
 
