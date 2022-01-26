@@ -342,6 +342,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="evento_profesor_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_profesor" Type="Self.evento_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="evento_profesor">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="eventoID_fk2">
           <End Role="evento" Type="Self.evento" Multiplicity="1" />
           <End Role="evento_recursoEspecial" Type="Self.evento_recursoEspecial" Multiplicity="*" />
@@ -666,6 +678,10 @@
             <End Role="persona" EntitySet="persona" />
             <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
+          <AssociationSet Name="evento_profesor_Id_fk" Association="Self.evento_profesor_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_profesor" EntitySet="evento_profesor" />
+          </AssociationSet>
           <AssociationSet Name="eventoID_fk2" Association="Self.eventoID_fk2">
             <End Role="evento" EntitySet="evento" />
             <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
@@ -848,6 +864,7 @@
           <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="posibleHorarioRecuperacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.evento_profesor_Id_fk" FromRole="evento_profesor" ToRole="persona" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
@@ -1000,6 +1017,7 @@
           <Property Name="estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="evento" Relationship="Self.instructorEvento_fk" FromRole="persona" ToRole="evento" />
           <NavigationProperty Name="evento_persona" Relationship="Self.evento_persona_Id_fk" FromRole="persona" ToRole="evento_persona" />
+          <NavigationProperty Name="evento_profesor" Relationship="Self.evento_profesor_Id_fk" FromRole="persona" ToRole="evento_profesor" />
           <NavigationProperty Name="fichaEntrenamiento" Relationship="Self.profesor_fEntrenamiento_fk" FromRole="persona" ToRole="fichaEntrenamiento" />
           <NavigationProperty Name="fichaPersona" Relationship="Self.persona_ficha_fk" FromRole="persona" ToRole="fichaPersona" />
           <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.PersonaIdMPD_fk" FromRole="persona" ToRole="membresia_persona_disciplina" />
@@ -1216,6 +1234,18 @@
             </Principal>
             <Dependent Role="evento_persona">
               <PropertyRef Name="membresia_persona_disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evento_profesor_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_profesor" Type="Self.evento_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="evento_profesor">
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1502,6 +1532,10 @@
           <AssociationSet Name="membresia_persona_disciplinaID_fk" Association="Self.membresia_persona_disciplinaID_fk">
             <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
             <End Role="evento_persona" EntitySet="evento_persona" />
+          </AssociationSet>
+          <AssociationSet Name="evento_profesor_Id_fk" Association="Self.evento_profesor_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_profesor" EntitySet="evento_profesor" />
           </AssociationSet>
           <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
             <End Role="recursoEspecial" EntitySet="recursoEspecial" />
