@@ -202,7 +202,7 @@ inner join horarioM h on evt.horarioMID=h.horarioMID
 inner join clase c on evt.claseID=c.claseID
 where ep.eventoID='{0}'</value>
   </data>
-  <data name="getDiciplinaIDEventoPersona" xml:space="preserve">
+  <data name="getDisciplinaIDEventoPersona" xml:space="preserve">
     <value>SELECT 
 ds.disciplinaID
 FROM disciplina ds
@@ -293,15 +293,15 @@ fp.fichaPersonaID,
   <data name="getFichasEntrenamientoPersona" xml:space="preserve">
     <value>SELECT
 fe.fichaEntrenamientoID,fe.FechaCreacion,fe.fichaPersonaID,(p.nombres+SPACE(1)+p.apellidos)as Profesor,ProfesorID,
-fe.DiciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
+fe.DisciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
 fe.IndiceGrasaCorporal,fe.MedicionBrazos,fe.MedicionPecho,
 fe.MedicionEspalda,fe.MedicionPiernas,fe.MedicionCintura,
 fe.MedicionCuello,fe.Observaciones
   FROM fichaEntrenamiento fe
   INNER JOIN fichaPersona fp ON fe.fichaPersonaID=fp.fichaPersonaID
   INNER JOIN persona p on fe.ProfesorID=p.personaID
-  INNER JOIN disciplina d on fe.DiciplinaID=d.disciplinaID
-  where fp.PersonaID='{0}'and fe.DiciplinaID='{1}'</value>
+  INNER JOIN disciplina d on fe.DisciplinaID=d.disciplinaID
+  where fp.PersonaID='{0}'and fe.DisciplinaID='{1}'</value>
     <comment>Sacar Fichas de entrenamiento por disciplina </comment>
   </data>
   <data name="getHistorialAsistenciaClienteApp" xml:space="preserve">

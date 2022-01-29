@@ -180,9 +180,9 @@ namespace WebAPIBusiness.Resources {
         ///INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
         ///WHERE evento_personaID = {0}.
         /// </summary>
-        internal static string getDiciplinaIDEventoPersona {
+        internal static string getDisciplinaIDEventoPersona {
             get {
-                return ResourceManager.GetString("getDiciplinaIDEventoPersona", resourceCulture);
+                return ResourceManager.GetString("getDisciplinaIDEventoPersona", resourceCulture);
             }
         }
         
@@ -288,13 +288,13 @@ namespace WebAPIBusiness.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a SELECT
         ///fe.fichaEntrenamientoID,fe.FechaCreacion,fe.fichaPersonaID,(p.nombres+SPACE(1)+p.apellidos)as Profesor,ProfesorID,
-        ///fe.DiciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
+        ///fe.DisciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
         ///fe.IndiceGrasaCorporal,fe.MedicionBrazos,fe.MedicionPecho,
         ///fe.MedicionEspalda,fe.MedicionPiernas,fe.MedicionCintura,
         ///fe.MedicionCuello,fe.Observaciones
         ///  FROM fichaEntrenamiento fe
         ///  INNER JOIN fichaPersona fp ON fe.fichaPersonaID=fp.fichaPersonaID
-        ///  INNER JOIN persona p on fe.Profesor [resto de la cadena truncado]&quot;;.
+        ///  INNER JOIN persona p on fe.Profeso [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string getFichasEntrenamientoPersona {
             get {

@@ -93,17 +93,17 @@
           <Property Name="FechaCreacion" Type="date" Nullable="false" />
           <Property Name="fichaPersonaID" Type="int" Nullable="false" />
           <Property Name="ProfesorID" Type="int" Nullable="false" />
-          <Property Name="DiciplinaID" Type="int" Nullable="false" />
-          <Property Name="Peso" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Altura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceMasaMuscular" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceGrasaCorporal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionBrazos" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPecho" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionEspalda" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPiernas" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCintura" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCuello" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DisciplinaID" Type="int" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceMasaMuscular" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceGrasaCorporal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionBrazos" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPecho" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionEspalda" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPiernas" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCintura" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCuello" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="fichaPersona">
@@ -135,6 +135,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="300" />
           <Property Name="precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="periodicidad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estadoRegistro" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="membresia_disciplina">
           <Key>
@@ -289,7 +290,7 @@
               <PropertyRef Name="disciplinaID" />
             </Principal>
             <Dependent Role="fichaEntrenamiento">
-              <PropertyRef Name="DiciplinaID" />
+              <PropertyRef Name="DisciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -337,6 +338,18 @@
               <PropertyRef Name="personaID" />
             </Principal>
             <Dependent Role="evento_persona">
+              <PropertyRef Name="personaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evento_profesor_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_profesor" Type="Self.evento_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="evento_profesor">
               <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
@@ -665,6 +678,10 @@
             <End Role="persona" EntitySet="persona" />
             <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
+          <AssociationSet Name="evento_profesor_Id_fk" Association="Self.evento_profesor_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_profesor" EntitySet="evento_profesor" />
+          </AssociationSet>
           <AssociationSet Name="eventoID_fk2" Association="Self.eventoID_fk2">
             <End Role="evento" EntitySet="evento" />
             <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
@@ -847,6 +864,7 @@
           <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="posibleHorarioRecuperacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.evento_profesor_Id_fk" FromRole="evento_profesor" ToRole="persona" />
         </EntityType>
         <EntityType Name="evento_recursoEspecial">
           <Key>
@@ -867,17 +885,17 @@
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fichaPersonaID" Type="Int32" Nullable="false" />
           <Property Name="ProfesorID" Type="Int32" Nullable="false" />
-          <Property Name="DiciplinaID" Type="Int32" Nullable="false" />
-          <Property Name="Peso" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Altura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceMasaMuscular" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IndiceGrasaCorporal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionBrazos" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPecho" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionEspalda" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionPiernas" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCintura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MedicionCuello" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DisciplinaID" Type="Int32" Nullable="false" />
+          <Property Name="Peso" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceMasaMuscular" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IndiceGrasaCorporal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionBrazos" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPecho" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionEspalda" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionPiernas" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCintura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MedicionCuello" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="disciplina" Relationship="Self.disciplina_fEntrenamiento_fk" FromRole="fichaEntrenamiento" ToRole="disciplina" />
           <NavigationProperty Name="fichaPersona" Relationship="Self.persona_fEntrenamiento_fk" FromRole="fichaEntrenamiento" ToRole="fichaPersona" />
@@ -915,6 +933,7 @@
           <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="periodicidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRegistro" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="membresia_disciplina" Relationship="Self.membresia1_fk" FromRole="membresia" ToRole="membresia_disciplina" />
           <NavigationProperty Name="membresia_persona_pago" Relationship="Self.MembresiaIdMPP_fk" FromRole="membresia" ToRole="membresia_persona_pago" />
           <NavigationProperty Name="sol_membresiaPago" Relationship="Self.MembresiaIdSMP_fk" FromRole="membresia" ToRole="sol_membresiaPago" />
@@ -998,6 +1017,7 @@
           <Property Name="estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="evento" Relationship="Self.instructorEvento_fk" FromRole="persona" ToRole="evento" />
           <NavigationProperty Name="evento_persona" Relationship="Self.evento_persona_Id_fk" FromRole="persona" ToRole="evento_persona" />
+          <NavigationProperty Name="evento_profesor" Relationship="Self.evento_profesor_Id_fk" FromRole="persona" ToRole="evento_profesor" />
           <NavigationProperty Name="fichaEntrenamiento" Relationship="Self.profesor_fEntrenamiento_fk" FromRole="persona" ToRole="fichaEntrenamiento" />
           <NavigationProperty Name="fichaPersona" Relationship="Self.persona_ficha_fk" FromRole="persona" ToRole="fichaPersona" />
           <NavigationProperty Name="membresia_persona_disciplina" Relationship="Self.PersonaIdMPD_fk" FromRole="persona" ToRole="membresia_persona_disciplina" />
@@ -1117,7 +1137,7 @@
               <PropertyRef Name="disciplinaID" />
             </Principal>
             <Dependent Role="fichaEntrenamiento">
-              <PropertyRef Name="DiciplinaID" />
+              <PropertyRef Name="DisciplinaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1214,6 +1234,18 @@
             </Principal>
             <Dependent Role="evento_persona">
               <PropertyRef Name="membresia_persona_disciplinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evento_profesor_Id_fk">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="evento_profesor" Type="Self.evento_profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="personaID" />
+            </Principal>
+            <Dependent Role="evento_profesor">
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1501,6 +1533,10 @@
             <End Role="membresia_persona_disciplina" EntitySet="membresia_persona_disciplina" />
             <End Role="evento_persona" EntitySet="evento_persona" />
           </AssociationSet>
+          <AssociationSet Name="evento_profesor_Id_fk" Association="Self.evento_profesor_Id_fk">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="evento_profesor" EntitySet="evento_profesor" />
+          </AssociationSet>
           <AssociationSet Name="recursEspecialoID_fk" Association="Self.recursEspecialoID_fk">
             <End Role="recursoEspecial" EntitySet="recursoEspecial" />
             <End Role="evento_recursoEspecial" EntitySet="evento_recursoEspecial" />
@@ -1674,7 +1710,7 @@
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="fichaPersonaID" ColumnName="fichaPersonaID" />
                 <ScalarProperty Name="ProfesorID" ColumnName="ProfesorID" />
-                <ScalarProperty Name="DiciplinaID" ColumnName="DiciplinaID" />
+                <ScalarProperty Name="DisciplinaID" ColumnName="DisciplinaID" />
                 <ScalarProperty Name="Peso" ColumnName="Peso" />
                 <ScalarProperty Name="Altura" ColumnName="Altura" />
                 <ScalarProperty Name="IndiceMasaMuscular" ColumnName="IndiceMasaMuscular" />
@@ -1719,6 +1755,7 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="periodicidad" ColumnName="periodicidad" />
+                <ScalarProperty Name="estadoRegistro" ColumnName="estadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

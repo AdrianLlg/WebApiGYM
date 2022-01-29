@@ -14,7 +14,7 @@ namespace WebAPIUI.Controllers.CRUDMembresiaAdmin.Models
         public string descripcion { get; set; }
         public string precio { get; set; }
         public string periodicidad { get; set; }
-        
+        public string estadoRegistro { get; set; }
         public List<DisciplinasMembresiaModel> disciplinas { get; set; }
     }
 }

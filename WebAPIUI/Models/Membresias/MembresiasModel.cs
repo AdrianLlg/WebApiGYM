@@ -21,6 +21,7 @@ namespace WebAPIUI.Models.Membresias
         public string fechaPago { get; set; }
         public string fechaLimite { get; set; }
         public string estado { get; set; }
+        public string estadoMembresia { get; set; }
         public List<DisciplinasMembresiasPersonaEntity> disciplinasMemb { get; set; }
 
     }

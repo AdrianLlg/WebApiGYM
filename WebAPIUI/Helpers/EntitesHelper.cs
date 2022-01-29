@@ -95,11 +95,12 @@ namespace WebAPIUI.Helpers
                     formaPago = entity.formaPago,
                     nroDocumento = entity.nroDocumento,
                     Banco = entity.Banco,
-                    fechaPago = entity.fechaPago.ToString("yyyy-MM-dd"),
+                    fechaPago = entity.fechaPago.ToString(),
                     fechaLimite = entity.fechaLimite.ToString("yyyy-MM-dd"),
                     fechaInicioMembresia = entity.fechaInicioMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     fechaFinMembresia = entity.fechaFinMembresia.ToString("yyyy-MM-dd HH:mm:ss tt"),
                     estado = entity.estado,
+                    estadoMembresia = entity.estadoMembresia,
                     disciplinasMemb = entity.disciplinasMemb
                 };
 
@@ -215,7 +216,8 @@ namespace WebAPIUI.Helpers
                     Descripcion = entity.descripcion,
                     Precio = entity.precio,
                     Periodicidad = entity.periodicidad,
-                    membresiaDisciplinas = entity.disciplinas
+                    membresiaDisciplinas = entity.disciplinas,
+                    estadoRegistro = entity.estadoRegistro
                 };
 
                 response.Add(item);
@@ -1101,7 +1103,7 @@ namespace WebAPIUI.Helpers
                     FechaCreacion = entity.FechaCreacion,
                     fichaPersonaID = entity.fichaPersonaID,
                     ProfesorID = entity.ProfesorID,
-                    DiciplinaID = entity.DiciplinaID,
+                    DisciplinaID = entity.DisciplinaID,
                     Altura = entity.Altura,
                     Peso = entity.Peso,
                     IndiceMasaMuscular = entity.IndiceMasaMuscular,
@@ -1131,7 +1133,7 @@ namespace WebAPIUI.Helpers
                 FechaCreacion = entity.FechaCreacion,
                 fichaPersonaID = entity.fichaPersonaID,
                 ProfesorID = entity.ProfesorID,
-                DiciplinaID = entity.DiciplinaID,
+                DisciplinaID = entity.DisciplinaID,
                 Altura = entity.Altura,
                 Peso = entity.Peso,
                 IndiceMasaMuscular = entity.IndiceMasaMuscular,
