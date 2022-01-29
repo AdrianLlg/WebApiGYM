@@ -263,16 +263,16 @@ WHERE ERE.eventoID = {1}/*Parametro*/</value>
   </data>
   <data name="getEventoSala" xml:space="preserve">
     <value>SELECT nombre as Sala ,COUNT(*)as cantidadEventos FROM evento
-  INNER JOIN Sala ON evento.salaID=sala.salaID WHERE evento.fecha between '{0}' and '{1}'
+  INNER JOIN Sala ON evento.salaID=sala.salaID WHERE evento.fecha between '{0}' and '{1}'  and evento.estadoRegistro= 'I'
   GROUP BY nombre
 HAVING COUNT(*) &gt; 0</value>
     <comment>--Cantidad de veces que una sala se ha usado en eventos en un rango de fecha</comment>
   </data>
   <data name="getEventosPorDisciplina" xml:space="preserve">
     <value>SELECT nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
-  INNER JOIN clase ON evento.claseID=clase.claseID WHERE evento.fecha between '{0}' and '{1}'
+  INNER JOIN clase ON evento.claseID=clase.claseID WHERE evento.fecha between '2022-01-19 20:00:02.433' and '2022-01-28 20:00:02.433' and evento.estadoRegistro= 'I'
   GROUP BY nombre
-HAVING COUNT(*) &gt; 0</value>
+  HAVING COUNT(*) &gt; 0</value>
     <comment>--Query para sacar numero de eventos por disciplina</comment>
   </data>
   <data name="getFichaPersonaApp" xml:space="preserve">
@@ -436,7 +436,7 @@ HAVING COUNT(*) &gt; 0</value>
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
   Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'
-
+  and evt.estadoRegistro = 'I'
 </value>
   </data>
   <data name="getReporteAsistenciaLogProf" xml:space="preserve">
@@ -451,7 +451,8 @@ HAVING COUNT(*) &gt; 0</value>
   INNER JOIN persona p ON  ep.personaID=p.personaID
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
-  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'</value>
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'
+ and evt.estadoRegistro = 'I'</value>
   </data>
   <data name="getReporteGeneralAsistenciaCA" xml:space="preserve">
     <value>SELECT 

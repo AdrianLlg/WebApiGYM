@@ -745,7 +745,7 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         if (evento.estadoRegistro == "A")
                         {
-                            eventoProfesor.estadoRegistro = "I";
+                            eventoProfesor.estadoRegistro = "C";
                             eventoProfesor.motivo = "Cancelado por la administración";
                             eventoProfesor.posibleHorarioRecuperacion = string.Empty;
                             evento.estadoRegistro = "I";
@@ -758,7 +758,7 @@ namespace WebAPIBusiness.BusinessCore
                             }
                             enviarCorreoCancelacion(eventoID);
                         }
-                        else if (evento.estadoRegistro == "I")
+                        else if (evento.estadoRegistro == "C")
                         {
                             eventoProfesor.estadoRegistro = "A";
                             eventoProfesor.motivo = "Reactivado por la administración";
