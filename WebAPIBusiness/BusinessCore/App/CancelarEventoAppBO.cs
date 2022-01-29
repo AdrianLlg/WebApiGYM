@@ -69,14 +69,14 @@ namespace WebAPIBusiness.BusinessCore.App
 
                         if (evento.estadoRegistro == "A")
                         {
-                            eventoProfesor.estadoRegistro = "I";
+                            eventoProfesor.estadoRegistro = "C";
                             eventoProfesor.motivo = motivo;
                             eventoProfesor.posibleHorarioRecuperacion = posibleHorarioRecuperacion;
                             evento.estadoRegistro = "I";
 
                             foreach (var a in asistentes)
                             {
-                                a.estadoRegistro = "I";
+                                a.estadoRegistro = "C";
                                 a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles + 1;
                                 a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas - 1;
                                 a.asistencia = 0;
