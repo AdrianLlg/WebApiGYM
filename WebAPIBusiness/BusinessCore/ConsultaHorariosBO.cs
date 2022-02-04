@@ -35,6 +35,9 @@ namespace WebAPIBusiness.BusinessCore
             {
                 DateTime fechaDB = Convert.ToDateTime(fechaInicio);
                 DateTime fechaFinDB = Convert.ToDateTime(fechaFin);
+                DateTime fechaHoy = Convert.ToDateTime(DateTime.Now.ToString("MM/dd/yyyy"));
+                int horaHoy = int.Parse($"{DateTime.Now.ToString("HH")}{DateTime.Now.ToString("mm")}");
+                int horario = 0;
                 using (var dbContext = new GYMDBEntities())
                 { 
                     string query = string.Format(ScriptsGYMDB.getHorariosFecha, fechaInicio,fechaFin);
@@ -48,18 +51,41 @@ namespace WebAPIBusiness.BusinessCore
                     {
                         foreach (horarioM horariodb in HorariosM)
                         {
-                            horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID).FirstOrDefault();
-                            horarioProf = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.personaID == personaID).FirstOrDefault();
-                            if (horarioaux == null && horarioProf == null)
+                            if(fechaDB == fechaHoy)
                             {
-                                horarioaux = new ConsultaHorariosModel()
+                                horario = int.Parse(horariodb.horaInicio);
+                                if(horaHoy < horario)
                                 {
-                                    fecha = fechaDB,
-                                    horarioMID = horariodb.horarioMID,
-                                    salaID = saladb.salaID
-                                };
-                                horariosDisponibles.Add(horarioaux);
+                                    horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID).FirstOrDefault();
+                                    horarioProf = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.personaID == personaID).FirstOrDefault();
+                                    if (horarioaux == null && horarioProf == null)
+                                    {
+                                        horarioaux = new ConsultaHorariosModel()
+                                        {
+                                            fecha = fechaDB,
+                                            horarioMID = horariodb.horarioMID,
+                                            salaID = saladb.salaID
+                                        };
+                                        horariosDisponibles.Add(horarioaux);
+                                    }
+                                }
                             }
+                            else
+                            {
+                                horarioaux = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.salaID == saladb.salaID).FirstOrDefault();
+                                horarioProf = horariosConsultados.Where(x => x.fecha == fechaDB && x.horarioMID == horariodb.horarioMID && x.personaID == personaID).FirstOrDefault();
+                                if (horarioaux == null && horarioProf == null)
+                                {
+                                    horarioaux = new ConsultaHorariosModel()
+                                    {
+                                        fecha = fechaDB,
+                                        horarioMID = horariodb.horarioMID,
+                                        salaID = saladb.salaID
+                                    };
+                                    horariosDisponibles.Add(horarioaux);
+                                }
+                            }
+                            
 
                         }
                     }
