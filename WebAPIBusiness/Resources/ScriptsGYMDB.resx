@@ -334,7 +334,8 @@ ev.personaID
 FROM evento ev
 INNER JOIN horarioM hm ON hm.horarioMID = ev.horarioMID 
 WHERE 
-fecha &gt;= '{0}' and fecha &lt;= '{1}'</value>
+fecha &gt;= '{0}' and fecha &lt;= '{1}' 
+and ev.estadoRegistro = 'A'</value>
   </data>
   <data name="getHorasDisciplina" xml:space="preserve">
     <value>SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
@@ -463,7 +464,7 @@ HAVING COUNT(*) &gt; 0</value>
   INNER JOIN persona p ON  ep.personaID=p.personaID
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
-  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1 and evt.estadoRegistro = 'I'
   GROUP BY dsp.nombre,ep.asistencia
   HAVING COUNT(*) &gt; 0 
   
@@ -478,7 +479,7 @@ HAVING COUNT(*) &gt; 0</value>
   INNER JOIN persona p ON  ep.personaID=p.personaID
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
-  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1 and evt.estadoRegistro = 'I'
   GROUP BY dsp.nombre,ep.asistencia
   HAVING COUNT(*) &gt; 0</value>
   </data>
@@ -491,7 +492,7 @@ HAVING COUNT(*) &gt; 0</value>
   INNER JOIN persona p ON  ep.personaID=p.personaID
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
-  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0 and evt.estadoRegistro = 'I'
   GROUP BY dsp.nombre,ep.asistencia
   HAVING COUNT(*) &gt; 0</value>
   </data>
@@ -504,7 +505,7 @@ HAVING COUNT(*) &gt; 0</value>
   INNER JOIN persona p ON  ep.personaID=p.personaID
   INNER JOIN clase cl ON evt.claseID=cl.claseID 
   INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
-  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0 and evt.estadoRegistro = 'I'
   GROUP BY dsp.nombre,ep.asistencia
   HAVING COUNT(*) &gt; 0</value>
   </data>

@@ -121,7 +121,8 @@ namespace WebAPIBusiness.BusinessCore
                            x.claseID == item.claseID
                            && x.horarioMID == item.horarioMID
                            && x.fecha == item.fecha
-                           && x.salaID == item.salaID).FirstOrDefault();
+                           && x.salaID == item.salaID
+                           && x.estadoRegistro == "A").FirstOrDefault();
 
                         if (existeSala != null)
                         {

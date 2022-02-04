@@ -774,10 +774,10 @@ namespace WebAPIBusiness.BusinessCore
                             eventoProfesor.estadoRegistro = "C";
                             eventoProfesor.motivo = "Cancelado por la administración";
                             eventoProfesor.posibleHorarioRecuperacion = string.Empty;
-                            evento.estadoRegistro = "I";
+                            evento.estadoRegistro = "C";
                             foreach (var a in asistentes)
                             {
-                                a.estadoRegistro = "I";
+                                a.estadoRegistro = "C";
                                 a.membresia_persona_disciplina.numClasesDisponibles = a.membresia_persona_disciplina.numClasesDisponibles + 1;
                                 a.membresia_persona_disciplina.numClasesTomadas = a.membresia_persona_disciplina.numClasesTomadas - 1;
                                 a.asistencia = 0;

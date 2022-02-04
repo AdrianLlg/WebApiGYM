@@ -72,7 +72,7 @@ namespace WebAPIBusiness.BusinessCore.App
                             eventoProfesor.estadoRegistro = "C";
                             eventoProfesor.motivo = motivo;
                             eventoProfesor.posibleHorarioRecuperacion = posibleHorarioRecuperacion;
-                            evento.estadoRegistro = "I";
+                            evento.estadoRegistro = "C";
 
                             foreach (var a in asistentes)
                             {
