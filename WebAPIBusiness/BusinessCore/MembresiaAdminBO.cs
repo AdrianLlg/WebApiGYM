@@ -727,6 +727,7 @@ namespace WebAPIBusiness.BusinessCore
             {
                 using (var dbContext = new GYMDBEntities())
                 {
+                    dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
                     membresia_persona_pago query = new membresia_persona_pago()
                     {
@@ -742,9 +743,8 @@ namespace WebAPIBusiness.BusinessCore
 
                     membresiaPersonaPagoID = dbContext.membresia_persona_pago.Where(x => x.personaID == personaID
                                                                         && x.membresiaID == membresiaID
-                                                                        && x.fechaInicioMembresia == newTimeMembership
-                                                                        && x.fechaFinMembresia == endTimeMembership
                                                                         && x.estado == "I")
+                                                                        .OrderBy(x => x.membresia_persona_pagoID)
                                                                         .Select(x => x.membresia_persona_pagoID)
                                                                         .FirstOrDefault();
                 }

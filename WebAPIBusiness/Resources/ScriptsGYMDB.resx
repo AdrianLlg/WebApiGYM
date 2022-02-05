@@ -269,9 +269,11 @@ HAVING COUNT(*) &gt; 0</value>
     <comment>--Cantidad de veces que una sala se ha usado en eventos en un rango de fecha</comment>
   </data>
   <data name="getEventosPorDisciplina" xml:space="preserve">
-    <value>SELECT nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
-  INNER JOIN clase ON evento.claseID=clase.claseID WHERE evento.fecha between '2022-01-19 20:00:02.433' and '2022-01-28 20:00:02.433' and evento.estadoRegistro= 'I'
-  GROUP BY nombre
+    <value>SELECT d.nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
+  INNER JOIN clase ON evento.claseID=clase.claseID 
+  INNER JOIN disciplina d ON clase.disciplinaID= d.disciplinaID
+  WHERE evento.fecha between '{0}' and '{1}' and evento.estadoRegistro= 'I'
+  GROUP BY d.nombre
   HAVING COUNT(*) &gt; 0</value>
     <comment>--Query para sacar numero de eventos por disciplina</comment>
   </data>

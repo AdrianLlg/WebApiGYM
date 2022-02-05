@@ -254,9 +254,11 @@ namespace WebAPIBusiness.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
-        ///  INNER JOIN clase ON evento.claseID=clase.claseID WHERE evento.fecha between &apos;2022-01-19 20:00:02.433&apos; and &apos;2022-01-28 20:00:02.433&apos; and evento.estadoRegistro= &apos;I&apos;
-        ///  GROUP BY nombre
+        ///   Looks up a localized string similar to SELECT d.nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
+        ///  INNER JOIN clase ON evento.claseID=clase.claseID 
+        ///  INNER JOIN disciplina d ON clase.disciplinaID= d.disciplinaID
+        ///  WHERE evento.fecha between &apos;{0}&apos; and &apos;{1}&apos; and evento.estadoRegistro= &apos;I&apos;
+        ///  GROUP BY d.nombre
         ///  HAVING COUNT(*) &gt; 0.
         /// </summary>
         internal static string getEventosPorDisciplina {
