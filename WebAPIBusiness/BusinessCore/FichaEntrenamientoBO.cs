@@ -67,7 +67,7 @@ namespace WebAPIBusiness.BusinessCore
             }
             catch (Exception ex)
             {
-                return null;
+                return entities;
             }
         }
 
