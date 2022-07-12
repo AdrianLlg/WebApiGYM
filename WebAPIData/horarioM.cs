@@ -17,7 +17,7 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public horarioM()
         {
-            this.cronograma = new HashSet<cronograma>();
+            this.evento = new HashSet<evento>();
         }
     
         public int horarioMID { get; set; }
@@ -25,6 +25,6 @@ namespace WebAPIData
         public string horaFin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cronograma> cronograma { get; set; }
+        public virtual ICollection<evento> evento { get; set; }
     }
 }

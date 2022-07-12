@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,10 +52,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -125,11 +129,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -162,16 +161,274 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Admin\Agendamiento\AgendamientoController.cs" />
+    <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\Agendamiento\Models\AgendamientoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\DisciplinasMembresiaPersonaPago\DisciplinasMembresiaPersonaPagoController.cs" />
+    <Compile Include="Controllers\Admin\DisciplinasMembresiaPersonaPago\Models\DisciplinasMembresiaPersonaPagoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\DisciplinasMembresiaPersonaPago\Models\DisciplinasMembresiaPersonaPagoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaPersonaEstado\ConsultaPersonaEstadoController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaPersonaEstado\Models\ConsultaPersonaEstadoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaPersonaEstado\Models\ConsultaPersonaEstadoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoPersona\EventoPersonaController.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoPersona\Models\EventoPersonaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoPersona\Models\EventoPersonaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDFichaEntrenamiento\FichaEntrenamientoController.cs" />
+    <Compile Include="Controllers\Admin\CRUDFichaEntrenamiento\Models\FichaEntrenamientoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDFichaEntrenamiento\Models\FichaEntrenamientoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDFichaPersona\FichaPersonaController.cs" />
+    <Compile Include="Controllers\Admin\CRUDFichaPersona\Models\FichaPersonaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDFichaPersona\Models\FichaPersonaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecursoEspecial\CRUDSalaRecursoEspecialController.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecursoEspecial\Models\CRUDSalaRecursoEspecialDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecursoEspecial\Models\CRUDSalaRecursoEspecialDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecurso\CRUDSalaRecursoController.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecurso\Models\CRUDSalaRecursoDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaRecurso\Models\CRUDSalaRecursoDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ReporteGeneralAsistencia\ReporteGeneralAsistenciaController.cs" />
+    <Compile Include="Controllers\Admin\ReporteGeneralAsistencia\Models\ReporteGeneralAsistenciaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ReporteGeneralAsistencia\Models\ReporteGeneralAsistenciaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaVentasMembresias\ConsultaVentasMembresiasController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaVentasMembresias\Models\ConsultaVentasMembresiasDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaVentasMembresias\Models\ConsultaVentasMembresiasDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ModificarMembresiaUsuario\ModificarMembresiaUsuarioController.cs" />
+    <Compile Include="Controllers\Admin\ModificarMembresiaUsuario\Models\ModificarMembresiaUsuarioDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ModificarMembresiaUsuario\Models\ModificarMembresiaUsuarioDataResponse.cs" />
+    <Compile Include="Controllers\Admin\TransaccionesAnuales\TransaccionesAnualesController.cs" />
+    <Compile Include="Controllers\Admin\TransaccionesAnuales\Models\TransaccionesAnualesDataRequest.cs" />
+    <Compile Include="Controllers\Admin\TransaccionesAnuales\Models\TransaccionesAnualesDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoSala\ConsultaRepEventoSalaController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoSala\Models\ConsultaRepEventoSalaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoSala\Models\ConsultaRepEventoSalaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoDisciplina\Models\ConsultaRepEventoDisciplinaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaRepEventoDisciplina\Models\ConsultaRepEventoDisciplinaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\EventosSerializados\EventosSerializadosController.cs" />
+    <Compile Include="Controllers\Admin\EventosSerializados\Models\EventosSerializadosDataRequest.cs" />
+    <Compile Include="Controllers\Admin\EventosSerializados\Models\EventoAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\SolicitudesMembresias\SolicitudesMembresiasController.cs" />
+    <Compile Include="Controllers\Admin\SolicitudesMembresias\Models\SolicitudesMembresiasDataRequest.cs" />
+    <Compile Include="Controllers\Admin\SolicitudesMembresias\Models\SolicitudesMembresiasDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoAdmin\CRUDEventoAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\EventoAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDEventoAdmin\Models\CRUDEventoAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\Models\DisciplinasMembresiaModel.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\CRUDRecursoEspecialAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\Models\CRUDRecursoEspecialAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoEspecialAdmin\Models\RecursoEspecialAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoAdmin\CRUDRecursoAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoAdmin\Models\CRUDRecursoAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDRecursoAdmin\Models\RecursoAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioAdmin\CRUDHorarioAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioAdmin\Models\CRUDHorarioAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioAdmin\Models\HorarioAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioMAdmin\CRUDHorarioMAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioMAdmin\Models\CRUDHorarioMAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDHorarioMAdmin\Models\HorarioMAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDClaseAdmin\CRUDClaseAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDClaseAdmin\Models\CRUDClaseAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDClaseAdmin\Models\ClaseAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\CRUDDisciplinaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\CRUDDisciplinaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDDisciplinaAdmin\Models\DisciplinaAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\CRUDNoticiaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\Models\CRUDNoticiaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDNoticiasAdmin\Models\CRUDNoticiaAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConsultaHorarios\ConsultaHorariosController.cs" />
+    <Compile Include="Controllers\Admin\ConsultaHorarios\Models\ConsultaHorariosDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConsultaHorarios\Models\ConsultaHorariosDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaAdmin\CRUDSalaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\CRUDSalaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDSalaAdmin\Models\SalaAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDRolAdmin\CRUDRolAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\CRUDRolAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDRolAdmin\Models\RolAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionesSistema\Models\ConfiguracionesSistemaDataRequest.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionesSistema\Models\ConfiguracionesSistemaDataResponse.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionesSistema\ConfiguracionesSistemaController.cs" />
+    <Compile Include="Controllers\Admin\RenovacionMembresiaUsuario\Models\RenovacionMembresiaUsuarioDataRequest.cs" />
+    <Compile Include="Controllers\Admin\RenovacionMembresiaUsuario\Models\RenovacionMembresiaUsuarioDataResponse.cs" />
+    <Compile Include="Controllers\Admin\RenovacionMembresiaUsuario\RenovacionMembresiaUsuarioController.cs" />
+    <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\RegistroMembresiaUsuarioController.cs" />
+    <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataRequest.cs" />
+    <Compile Include="Controllers\Admin\RegistroMembresiaUsuario\Models\RegistroMembresiaUsuarioDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoController.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaEntrenamiento\Models\ConsultaFichaEntrenamientoDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaEntrenamiento\Models\ConsultaFichaEntrenamientoDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaPersona\Models\ConsultaFichaPersonaDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaFichaPersona\ConsultaFichaPersonaController.cs" />
+    <Compile Include="Controllers\App\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorController.cs" />
+    <Compile Include="Controllers\App\ConsultaClasesPendientesInstructor\Models\ConsultaClasesPendientesInstructorDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaClasesPendientesInstructor\Models\ConsultaClasesPendientesInstructorDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteController.cs" />
+    <Compile Include="Controllers\App\ConsultaHistorialAsistenciaCliente\Models\ConsultaHistorialAsistenciaClienteDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaHistorialAsistenciaCliente\Models\ConsultaHistorialAsistenciaClienteDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaController.cs" />
+    <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaDisciplinasDeportistaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaDisciplinasDeportista\Models\ConsultaListaAsistenciaDataResponse.cs" />
+    <Compile Include="Controllers\App\CancelarEventoApp\CancelarEventoAppController.cs" />
+    <Compile Include="Controllers\App\CancelarEventoApp\Models\CancelarEventoAppDataRequest.cs" />
+    <Compile Include="Controllers\App\CancelarEventoApp\Models\CancelarEventoAppDataResponse.cs" />
+    <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataRequest.cs" />
+    <Compile Include="Controllers\App\GenerarQRInstructor\Models\GenerarQRInstructorDataResponse.cs" />
+    <Compile Include="Controllers\App\GenerarQRInstructor\GenerarQRInstructorController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaManual\Models\RegistrarAsistenciaManualDataRequest.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaManual\Models\RegistrarAsistenciaManualDataResponse.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaManual\RegistrarAsistenciaManualController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoProfesor\Models\RegistrarAsistenciaEventoProfesorDataRequest.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoProfesor\Models\RegistrarAsistenciaEventoProfesorDataResponse.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoProfesor\RegistrarAsistenciaEventoProfesorController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoPersona\RegistrarAsistenciaEventoPersonaController.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoPersona\Models\RegistrarAsistenciaEventoPersonaDataRequest.cs" />
+    <Compile Include="Controllers\App\RegistrarAsistenciaEventoPersona\Models\RegistrarAsistenciaEventoPersonaDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaListaAsistencia\ConsultaListaAsistenciaController.cs" />
+    <Compile Include="Controllers\App\ConsultaListaAsistencia\Models\ConsultaListaAsistenciaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaListaAsistencia\Models\ConsultaListaAsistenciaDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaNoticias\ConsultaNoticiasController.cs" />
+    <Compile Include="Controllers\App\ConsultaNoticias\Models\ConsultaNoticiasDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaNoticias\Models\ConsultaNoticiasDataResponse.cs" />
+    <Compile Include="Controllers\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionController.cs" />
+    <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataRequest.cs" />
+    <Compile Include="Controllers\App\InscripcionUsuarioSesion\Models\InscripcionUsuarioSesionDataResponse.cs" />
+    <Compile Include="Controllers\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaController.cs" />
+    <Compile Include="Controllers\App\ConsultaHorariosDeportista\Models\ConsultaHorariosDeportistaDataRequest.cs" />
+    <Compile Include="Controllers\App\ConsultaHorariosDeportista\Models\ConsultaHorariosDeportistaDataResponse.cs" />
+    <Compile Include="Controllers\App\EnviarMailValidacion\Models\EnviarMailValidacionDataRequest.cs" />
+    <Compile Include="Controllers\App\EnviarMailValidacion\Models\EnviarMailValidacionDataResponse.cs" />
+    <Compile Include="Controllers\App\EnviarMailValidacion\EnviarMailValidacionController.cs" />
+    <Compile Include="Controllers\App\ModificacionDatosPersonales\ModificacionDatosPersonalesController.cs" />
+    <Compile Include="Controllers\App\ModificacionDatosPersonales\Models\ModificacionDatosPersonalesDataRequest.cs" />
+    <Compile Include="Controllers\App\ModificacionDatosPersonales\Models\ModificacionDatosPersonalesDataResponse.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
+    <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\CRUDMembresiaAdminController.cs" />
+    <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\Models\CRUDMembresiaAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDMembresiaAdmin\Models\MembresiasAdminDataResponse.cs" />
+    <Compile Include="Controllers\ConsultaPerfil\ConsultaPerfilController.cs" />
+    <Compile Include="Controllers\ConsultaPerfil\Models\ConsultaPerfilDataRequest.cs" />
+    <Compile Include="Controllers\ConsultaPerfil\Models\ConsultaPerfilDataResponse.cs" />
+    <Compile Include="Controllers\EventoRecursoEspecial\EventoRecursoEspecialController.cs" />
+    <Compile Include="Controllers\EventoRecursoEspecial\Models\EventoRecursoEspecialRequest.cs" />
+    <Compile Include="Controllers\EventoRecursoEspecial\Models\EventoRecursoEspecialResponse.cs" />
+    <Compile Include="Controllers\EventoClasePersona\EventoClasePersonaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasDisciplina\HorasDisciplinaController.cs" />
+    <Compile Include="Controllers\HorasDisciplina\Models\HorasDisciplinaRequest.cs" />
+    <Compile Include="Controllers\HorasDisciplina\Models\HorasDisciplinaResponse.cs" />
+    <Compile Include="Controllers\MembresiasUsuario\MembresiasUsuarioController.cs" />
+    <Compile Include="Controllers\MembresiasUsuario\Models\MembresiasUsuarioDataRequest.cs" />
+    <Compile Include="Controllers\MembresiasUsuario\Models\MembresiasUsuarioDataResponse.cs" />
+    <Compile Include="Controllers\Login\Models\LoginDataRequest.cs" />
+    <Compile Include="Controllers\Login\Models\LoginDataResponse.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
-    <Compile Include="Controllers\Login\Models\RegisterPersonDataRequest.cs" />
-    <Compile Include="Controllers\Login\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="Controllers\EventoClasePersona\Models\EventoClasePersonaRequest.cs" />
+    <Compile Include="Controllers\EventoClasePersona\Models\EventoClasePersonaResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDRegistroAdmin\Models\CRUDRegistroAdminDataRequest.cs" />
+    <Compile Include="Controllers\Admin\CRUDRegistroAdmin\Models\RegistroAdminDataResponse.cs" />
+    <Compile Include="Controllers\Admin\CRUDRegistroAdmin\CRUDRegistroAdminController.cs" />
+    <Compile Include="Controllers\Registro\RegistroController.cs" />
+    <Compile Include="Controllers\Registro\Models\RegisterPersonDataRequest.cs" />
+    <Compile Include="Controllers\Registro\Models\RegisterPersonDataResponse.cs" />
+    <Compile Include="CustomExceptions\App\CancelarEventoApp\CancelarEventoAppException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorException.cs" />
+    <Compile Include="CustomExceptions\App\RegistrarAsistenciaManual\RegistrarAsistenciaManualException.cs" />
+    <Compile Include="CustomExceptions\App\GenerarQRInstructor\GenerarQRInstructorException.cs" />
+    <Compile Include="CustomExceptions\App\RegistrarAsistenciaEventoProfesor\RegistrarAsistenciaEventoProfesorException.cs" />
+    <Compile Include="CustomExceptions\App\RegistrarAsistenciaEventoPersona\RegistrarAsistenciaEventoPersonaException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaListaAsistencia\ConsultaListaAsistenciaException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaHorariosDeportista\ConsultaHorariosDeportistaException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaFichaPersona\ConsultaFichaPersonaException.cs" />
+    <Compile Include="CustomExceptions\App\EnviarMailValidacion\EnviarMailValidacion.cs" />
+    <Compile Include="CustomExceptions\App\InscripcionUsuarioSesion\InscripcionUsuarioSesionException.cs" />
+    <Compile Include="CustomExceptions\App\ModificacionDatosPersonales\ModificacionDatosPersonalesException.cs" />
+    <Compile Include="CustomExceptions\App\ConsultaNoticias\ConsultaNoticiasException.cs" />
+    <Compile Include="CustomExceptions\ConsultaPerfil\ConsultaPerfilException.cs" />
+    <Compile Include="CustomExceptions\DisciplinasMembresiaPersonaPago\DisciplinasMembresiaPersonaPagoException.cs" />
+    <Compile Include="CustomExceptions\EventoPersona\EventoPersonaException.cs" />
+    <Compile Include="CustomExceptions\Fichas\FichaEntrenamientoException.cs" />
+    <Compile Include="CustomExceptions\Fichas\FichaPersonaException.cs" />
+    <Compile Include="CustomExceptions\ReporteGeneralAsistencia\ReporteGeneralAsistenciaException.cs" />
+    <Compile Include="CustomExceptions\ConsultaVentasMembresias\ConsultaVentasMembresiasException.cs" />
+    <Compile Include="CustomExceptions\MembresiasUsuario\ModificarMembresiaUsuarioException.cs" />
+    <Compile Include="CustomExceptions\SalaRecursoEspecial\SalaRecursoEspecialException.cs" />
+    <Compile Include="CustomExceptions\SalaRecurso\SalaRecursoException.cs" />
+    <Compile Include="CustomExceptions\TransaccionesAnuales\TransaccionesAnualesException.cs" />
+    <Compile Include="CustomExceptions\ConsultaPersonaEstado\ConsultaPersonaEstadoException.cs" />
+    <Compile Include="CustomExceptions\ConsultaRepEventoSala\ConsultaRepEventoSalaException.cs" />
+    <Compile Include="CustomExceptions\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaException.cs" />
+    <Compile Include="CustomExceptions\ConsultaHorarios\ConsultaHorariosException.cs" />
+    <Compile Include="CustomExceptions\EventosSerializados\EventosSerializadosException.cs" />
+    <Compile Include="CustomExceptions\EventoAdmin\EventoAdminException.cs" />
+    <Compile Include="CustomExceptions\ClasesAdmin\ClasesAdminException.cs" />
+    <Compile Include="CustomExceptions\ConfiguracionesSistema\ConfiguracionesSistemaException.cs" />
+    <Compile Include="CustomExceptions\HorarioAdmin\HorarioAdminException.cs" />
+    <Compile Include="CustomExceptions\DisciplinaAdmin\DisciplinaAdminException.cs" />
+    <Compile Include="CustomExceptions\EventoRecursoEspecial\EventoRecursoEspecialException.cs" />
+    <Compile Include="CustomExceptions\HorasDisciplina\HorasDisciplinaException.cs" />
+    <Compile Include="CustomExceptions\MembresiasAdmin\RenovacionMembresiaUsuarioException.cs" />
+    <Compile Include="CustomExceptions\MembresiasAdmin\RegistroMembresiaUsuarioException.cs" />
+    <Compile Include="CustomExceptions\MembresiasAdmin\MembresiaAdminException.cs" />
+    <Compile Include="CustomExceptions\MembresiasUsuario\MembresiasUsuarioException.cs" />
+    <Compile Include="CustomExceptions\Login\LoginException.cs" />
+    <Compile Include="CustomExceptions\EventoClasePersona\EventoClasePersonaException.cs" />
+    <Compile Include="CustomExceptions\RecursoEspecialAdmin\RecursoEspecialAdminException.cs" />
+    <Compile Include="CustomExceptions\RecursoAdmin\RecursoAdminException.cs" />
     <Compile Include="CustomExceptions\RegisterPerson\RegisterPersonException.cs" />
+    <Compile Include="CustomExceptions\RegistroAdmin\RegistroAdminException.cs" />
+    <Compile Include="CustomExceptions\HorarioMAdmin\HorarioMAdminException.cs" />
+    <Compile Include="CustomExceptions\NoticiaAdmin\NoticiaAdminException.cs" />
+    <Compile Include="CustomExceptions\SalaAdmin\SalaAdminException.cs" />
+    <Compile Include="CustomExceptions\RolAdmin\RolAdminException.cs" />
+    <Compile Include="CustomExceptions\SolicitudesMembresias\SolicitudesMembresiasException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EntitesHelper.cs" />
+    <Compile Include="Models\ConfiguracionesSistema\ConfiguracionesSistemaModel.cs" />
+    <Compile Include="Models\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorModel.cs" />
+    <Compile Include="Models\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaModel.cs" />
+    <Compile Include="Models\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoModel.cs" />
+    <Compile Include="Models\ConsultaFichaPersona\ConsultaFichaPersonaModel.cs" />
+    <Compile Include="Models\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteModel.cs" />
+    <Compile Include="Models\ConsultaListaAsistencia\ConsultaListaAsistenciaModel.cs" />
+    <Compile Include="Models\ConsultaPerfilModel\ConsultaPerfilModel.cs" />
+    <Compile Include="Models\ConsultaPersonaEstado\ConsultaPersonaEstadoModel.cs" />
+    <Compile Include="Models\ConsultaRepEventoSala\ConsultaRepEventoSalaModel.cs" />
+    <Compile Include="Models\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaModel.cs" />
+    <Compile Include="Models\ConsultaVentasMembresias\ConsultaVentasMembresiasModel.cs" />
+    <Compile Include="Models\EventoAdmin\EventoAdminModel.cs" />
+    <Compile Include="Models\ClaseAdmin\ClaseAdminModel.cs" />
+    <Compile Include="Models\EventoPersona\EventoPersonaModel.cs" />
+    <Compile Include="Models\EventoRecursoEspecial\EventoRecursoEspecialModel.cs" />
+    <Compile Include="Models\EventoClasePersona\EventoClasePersonaModel.cs" />
+    <Compile Include="Models\Fichas\FichaEntrenamientoModel.cs" />
+    <Compile Include="Models\Fichas\FichaPersonaModel.cs" />
+    <Compile Include="Models\FKRelationships\FKListModel.cs" />
+    <Compile Include="Models\HorarioMAdmin\HorarioMAdminModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
+    <Compile Include="Models\DisciplinasMembresiaPersonaPago\DisciplinasMembresiaPersonaPagoModel.cs" />
+    <Compile Include="Models\MembresiasAdmin\MembresiasAdminModel.cs" />
+    <Compile Include="Models\MembresiasAdmin\NuevaMembresiaPersonaModel.cs" />
+    <Compile Include="Models\Membresias\MembresiasModel.cs" />
+    <Compile Include="Models\ConsultaNoticias\ConsultaNoticiasModel.cs" />
+    <Compile Include="Models\NoticiaAdmin\NoticiaAdminModel.cs" />
+    <Compile Include="Models\RecursoEspecialAdmin\RecursoEspecialAdminModel.cs" />
+    <Compile Include="Models\RecursoAdmin\RecursoAdminModel.cs" />
+    <Compile Include="Models\RegistroAdmin\RegistroAdminModel.cs" />
+    <Compile Include="Models\HorarioAdmin\HorarioAdminModel.cs" />
+    <Compile Include="Models\DisciplinaAdmin\DisciplinaAdmin.cs" />
+    <Compile Include="Models\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCAModel.cs" />
+    <Compile Include="Models\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCNAModel.cs" />
+    <Compile Include="Models\ReporteGeneralAsistencia\ReporteGeneralAsistenciaModel.cs" />
+    <Compile Include="Models\SalaAdmin\SalaAdminModel.cs" />
+    <Compile Include="Models\RolAdmin\RolAdminModel.cs" />
+    <Compile Include="Models\SalaRecursoEspecial\SalaRecursoEspecialModel.cs" />
+    <Compile Include="Models\SalaRecurso\SalaRecursoModel.cs" />
+    <Compile Include="Models\SolicitudesMembresias\SolicitudesMembresiasModel.cs" />
+    <Compile Include="Models\TransaccionesAnuales\TransaccionesAnualesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +517,9 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\WebAPIBusiness\WebAPIBusiness.csproj">
       <Project>{53170921-4a74-445b-beee-97391ef11f31}</Project>
       <Name>WebAPIBusiness</Name>
@@ -297,9 +557,16 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

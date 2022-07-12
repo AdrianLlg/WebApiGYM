@@ -7,79 +7,52 @@ namespace WebAPIBusiness.BusinessCore
 {
     public class LoginBO
     {
-        public bool insertUser(string rol, string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento)
+        public UsuarioEntity searchUser(string email, string password)
         {
-            bool entity = false;
-            LoginEntity p = new LoginEntity();
+            var usuario = new UsuarioEntity();
 
-            //p = consultarItem("Bachata");
-            entity = insertDBUser(rol, nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento);
+            usuario = searchDBUser(email, password);
 
-            return entity;
+            return usuario;
         }
 
-        private bool insertDBUser(string rol, string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento)
+        private UsuarioEntity searchDBUser(string email, string password)
         {
-            DateTime fecha = Convert.ToDateTime(fechanacimiento);
-            DateTime hoy = DateTime.Now;
+            UsuarioEntity usuarioDB = new UsuarioEntity();
+            persona recoverPerson = new persona();
+            usuario user;
 
-            persona item = new persona();
             try
             {
                 using (var dbContext = new GYMDBEntities())
                 {
-                    item = new persona()
+                    user = dbContext.usuario.Where(x => x.email == email && x.password == password).FirstOrDefault();
+
+                    if (user != null)
                     {
-                        rolePID = int.Parse(rol),
-                        nombres = nombre,
-                        apellidos = apellido,
-                        identificacion = identificacion,
-                        email = email,
-                        telefono = telefono,
-                        edad = edad,
-                        sexo = sexo,
-                        fechaNacimiento = fecha,
-                        fechaCreacion = hoy
-                    };
-
-                    dbContext.persona.Add(item);
-                    dbContext.SaveChanges();
-
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        private LoginEntity consultarItem(string tipo)
-        {
-            LoginEntity item = new LoginEntity();
-            try
-            {
-                using (var dbContext = new GYMDBEntities())
-                {
-                    var entity = dbContext.disciplina.Where(x => x.nombre == tipo).FirstOrDefault();
-
-                    if (entity != null )
-                    {
-                        item = new LoginEntity()
-                        {
-                            DisciplinaID = entity.disciplinaID,
-                            Nombre = entity.nombre,
-                            Descripcion = entity.descripcion
-                        };
+                        recoverPerson = dbContext.persona.Where(x => x.personaID == user.personaID).FirstOrDefault();
                     }
-
-                    return item;
+                    else
+                    {
+                        return null;
+                    }
                 }
+
+                if (recoverPerson != null)
+                {
+                    usuarioDB = new UsuarioEntity()
+                    {
+                        personaID = user.personaID,
+                        role = recoverPerson.rolePID
+                    };
+                }
+
+                return usuarioDB;
             }
             catch (Exception ex)
             {
-                return item;
+                return usuarioDB;
             }
-        }
+        }        
     }
 }

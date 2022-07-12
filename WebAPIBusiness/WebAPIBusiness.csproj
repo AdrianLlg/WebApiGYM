@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -48,14 +51,145 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCore\App\CancelarEventoAppBO.cs" />
+    <Compile Include="BusinessCore\App\ConsultaClasesPendientesInstructorBO.cs" />
+    <Compile Include="BusinessCore\App\RegistrarAsistenciaManualBO.cs" />
+    <Compile Include="BusinessCore\App\PersonaUsuarioBO.cs" />
+    <Compile Include="BusinessCore\App\RegistrarAsistenciaEventoProfesorBO.cs" />
+    <Compile Include="BusinessCore\ConsultaFichasEntrenamientoAppBO .cs" />
+    <Compile Include="BusinessCore\ConsultaHistorialAsistenciaClienteBO.cs" />
+    <Compile Include="BusinessCore\ConsultaDisciplinasDeportistaBO.cs" />
+    <Compile Include="BusinessCore\ConsultaListaAsistenciaBO.cs" />
+    <Compile Include="BusinessCore\ConsultaNoticiasAppBO.cs" />
+    <Compile Include="BusinessCore\ConsultaPerfilBO.cs" />
+    <Compile Include="BusinessCore\DisciplinasMembresiaPersonaPagoBO.cs" />
+    <Compile Include="BusinessCore\RegistrarAsistenciaEventoPersonaBO.cs" />
+    <Compile Include="BusinessCore\EventoPersonaBO.cs" />
+    <Compile Include="BusinessCore\FichaEntrenamientoBO.cs" />
+    <Compile Include="BusinessCore\FichaPersonaBO.cs" />
+    <Compile Include="BusinessCore\ConsultaFichasPersonaAppBO.cs" />
+    <Compile Include="BusinessCore\ReporteGeneralAsistenciaBO.cs" />
+    <Compile Include="BusinessCore\ReporteVentasMembresiasBO.cs" />
+    <Compile Include="BusinessCore\SalaRecursoEspecialBO.cs" />
+    <Compile Include="BusinessCore\SalaRecursoBO.cs" />
+    <Compile Include="BusinessCore\TransaccionesAnualesBO.cs" />
+    <Compile Include="BusinessCore\ReporteNoEventosSalaBO.cs" />
+    <Compile Include="BusinessCore\ReportePersonasEstadoBO.cs" />
+    <Compile Include="BusinessCore\ReporteNoEventosDisciplinaBO.cs" />
+    <Compile Include="BusinessCore\ConsultaHorariosBO.cs" />
+    <Compile Include="BusinessCore\ConfiguracionesAdminBO.cs" />
+    <Compile Include="BusinessCore\EventoSerializadoBO.cs" />
+    <Compile Include="BusinessCore\EventoAdminBO.cs" />
+    <Compile Include="BusinessCore\ClasesAdminBO .cs" />
+    <Compile Include="BusinessCore\EventoRecursoEspecialBO.cs" />
+    <Compile Include="BusinessCore\EventoClasePersonaBO.cs" />
+    <Compile Include="BusinessCore\HorasDisciplinaBO.cs" />
+    <Compile Include="BusinessCore\HorasDisciplinaFechaBO.cs" />
+    <Compile Include="BusinessCore\MembresiaAdminBO.cs" />
+    <Compile Include="BusinessCore\MembresiaBO.cs" />
     <Compile Include="BusinessCore\LoginBO.cs" />
+    <Compile Include="BusinessCore\RecursoEspecialAdminBO.cs" />
+    <Compile Include="BusinessCore\RecursoAdminBO.cs" />
+    <Compile Include="BusinessCore\RegistroAdminBO.cs" />
+    <Compile Include="BusinessCore\RegistroBO.cs" />
+    <Compile Include="BusinessCore\HorarioAdminBO.cs" />
+    <Compile Include="BusinessCore\HorarioMAdminBO.cs" />
+    <Compile Include="BusinessCore\DisciplinaAdminBO.cs" />
+    <Compile Include="BusinessCore\NoticiaAdminBO.cs" />
+    <Compile Include="BusinessCore\SalaAdminBO.cs" />
+    <Compile Include="BusinessCore\RolAdminBO.cs" />
+    <Compile Include="BusinessCore\SolicitudesMembresiasBO.cs" />
     <Compile Include="CustomExceptions\ValidationAndMessageException.cs" />
-    <Compile Include="Entities\Login\LoginEntity.cs" />
+    <Compile Include="Entities\App\CancelarEventoApp\CancelarEventoEntity.cs" />
+    <Compile Include="Entities\App\ConsultaClasesPendientesInstructor\ConsultaClasesPendientesInstructorEntity.cs" />
+    <Compile Include="Entities\App\ConsultaDisciplinasDeportista\ClaseDisciplinaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaDisciplinasDeportista\ConsultaDisciplinasDeportistaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaEventosDeportista\EventosDeportistaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaFichaEntrenamiento\ConsultaFichaEntrenamientoEntity.cs" />
+    <Compile Include="Entities\App\ConsultaFichaPersona\ConsultaFichaPersonaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaFIchas\ConsultaFichasEntity.cs" />
+    <Compile Include="Entities\App\ConsultaHistorialAsistenciaCliente\ConsultaHistorialAsistenciaClienteEntity.cs" />
+    <Compile Include="Entities\App\ConsultaListaAsistencia\ConsultaListaAsistenciaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaMailCancelacionApp\ConsultaMailCancelacionAppEntity.cs" />
+    <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntity.cs" />
+    <Compile Include="Entities\App\ConsultaNoticias\ConsultaNoticiaEntityHelper.cs" />
+    <Compile Include="Entities\App\ListaAsitenciaManual\ListaAsitenciaManualEntity.cs" />
+    <Compile Include="Entities\App\MembresiasPersona\DisciplinasMembresiasPersonaEntity.cs" />
+    <Compile Include="Entities\ConfiguracionesSistemaAdmin\ConfiguracionesAdminEntity.cs" />
+    <Compile Include="Entities\ClasesAdmin\ClaseAdminEntity.cs" />
+    <Compile Include="Entities\ConsultaMailCancelacion\ConsultaMailCancelacionEntity.cs" />
+    <Compile Include="Entities\ConsultaPerfil\ConsultaPerfilEntity.cs" />
+    <Compile Include="Entities\DisciplinasMembresiaPersonaPago\DisciplinasMembresiaPersonaPagoEntity.cs" />
+    <Compile Include="Entities\EventoClasePersona\EventoClasePersonaRecursosEspecialesEntity.cs" />
+    <Compile Include="Entities\EventoPersona\EventoPersonaEntity.cs" />
+    <Compile Include="Entities\Fichas\FichaPersonaEntity.cs" />
+    <Compile Include="Entities\Fichas\FichaEntrenamientoEntity.cs" />
+    <Compile Include="Entities\FKRelationships\FKListEntity.cs" />
+    <Compile Include="Entities\Noticia\NoticiaEntityHelper.cs" />
+    <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCAEntity.cs" />
+    <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaCNAEntity.cs" />
+    <Compile Include="Entities\ReporteGeneralAsistencia\ReporteGeneralAsistenciaEntity.cs" />
+    <Compile Include="Entities\ConsultaPersonaEstado\ConsultaPersonaEstadoEntity.cs" />
+    <Compile Include="Entities\ConsultaVentasMembresias\ConsultaVentasMembresiasEntity.cs" />
+    <Compile Include="Entities\SalaRecursoEspecial\SalaRecursoEspecialEntity.cs" />
+    <Compile Include="Entities\SalaRecurso\SalaRecursoEntity.cs" />
+    <Compile Include="Entities\TransaccionesAnuales\TransaccionesAnualesEntity.cs" />
+    <Compile Include="Entities\ConsultaRepEventoSala\ConsultaRepEventoSalaEntity.cs" />
+    <Compile Include="Entities\ConsultaRepEventoDisciplina\ConsultaRepEventoDisciplinaEntity.cs" />
+    <Compile Include="Entities\ConsultaHorarios\ConsultaHorariosModel.cs" />
+    <Compile Include="Entities\ConsultaHorarios\SalaEntity.cs" />
+    <Compile Include="Entities\DisciplinaAdmin\DisciplinaAdminEntity.cs" />
+    <Compile Include="Entities\DisciplinaAdmin\Membresia_Disciplina_NumClasesEntity.cs" />
+    <Compile Include="Entities\EventosSerializados\EventosSerializadosEntity.cs" />
+    <Compile Include="Entities\EventoRecursoEspecial\EventoRecursoEspecialEntity.cs" />
+    <Compile Include="Entities\EventoClasePersona\EventoClasePersonaEntity.cs" />
+    <Compile Include="Entities\Evento\EventoAdminEntity.cs" />
+    <Compile Include="Entities\HorarioMAdmin\HorarioMAdminEntity.cs" />
+    <Compile Include="Entities\HorasDisciplina\HorasDisciplinaEntity.cs" />
+    <Compile Include="Entities\HorasDisciplinaFecha\HorasDisciplinaFechaEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\DisciplinasMembresiaRequestEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaPersonaPagoEntity.cs" />
+    <Compile Include="Entities\Noticia\NoticiaEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaAdminEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaDisciplinaEntity.cs" />
+    <Compile Include="Entities\MembresiaAdmin\MembresiaPersonaDisciplinaEntity.cs" />
+    <Compile Include="Entities\Membresia\MembresiaEntity.cs" />
+    <Compile Include="Entities\Login\UsuarioEntity.cs" />
+    <Compile Include="Entities\RecursoEspecialAdmin\RecursoEspecialAdminEntity.cs" />
+    <Compile Include="Entities\RecursoAdmin\RecursoAdminEntity.cs" />
+    <Compile Include="Entities\RegistroAdmin\UsuariosRegistradosEntity.cs" />
+    <Compile Include="Entities\HorarioAdmin\HorarioAdminEntity.cs" />
+    <Compile Include="Entities\SalaAdmin\SalaAdminEntity.cs" />
+    <Compile Include="Entities\RolAdmin\RolAdminEntity.cs" />
+    <Compile Include="Entities\SolicitudesMembresias\SolicitudesMembresiasEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ScripCreacionGYMDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScripCreacionGYMDB.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ScriptsGYMDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptsGYMDB.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ScripCreacionGYMDB.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScripCreacionGYMDB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptsGYMDB.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScriptsGYMDB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Agendamiento\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPIData\WebAPIData.csproj">

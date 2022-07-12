@@ -14,11 +14,20 @@ namespace WebAPIData
     
     public partial class membresia_disciplina
     {
-        public int membresia_discplinaID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public membresia_disciplina()
+        {
+            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
+        }
+    
+        public int membresia_disciplinaID { get; set; }
         public int membresiaID { get; set; }
         public int disciplinaID { get; set; }
+        public int numClasesDisponibles { get; set; }
     
         public virtual disciplina disciplina { get; set; }
         public virtual membresia membresia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
     }
 }

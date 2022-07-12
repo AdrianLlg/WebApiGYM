@@ -6,14 +6,15 @@ using System.Web.Http;
 using WebAPIBusiness.BusinessCore;
 using WebAPIBusiness.CustomExceptions;
 using WebAPIUI.Controllers.Login.Models;
-using WebAPIUI.CustomExceptions.RegisterPerson;
+using WebAPIUI.CustomExceptions.Login;
 using WebAPIUI.Models.Login;
+using WebAPIBusiness.Entities.Login;
 
 namespace WebAPIUI.Controllers
 {
     public class LoginController : BaseAPIController
     {
-        private void ValidatePostRequest(RegisterPersonDataRequest dataRequest)
+        private void ValidatePostRequest(LoginDataRequest dataRequest)
         {
             List<string> messages = new List<string>();
             string message = string.Empty;
@@ -21,41 +22,35 @@ namespace WebAPIUI.Controllers
             if (dataRequest == null)
             {
                 messages.Add("No se han especificado datos de ingreso.");
-                ThrowHandledException(RegisterPersonResponseType.InvalidParameters, messages);
+                ThrowHandledExceptionLogin(LoginResponseType.InvalidParameters, messages);
             }
-
-            //if (string.IsNullOrEmpty(dataRequest.nombres))
-            //{
-            //    messages.Add("No se ha especificado el(los) nombre(s) del catalogo a consultar");
-            //    ThrowHandledException(RegisterPersonResponseType.InvalidParameters, messages);
-            //}
         }
 
         /// <summary>
-        /// Insertar una nueva persona en la tabla
+        /// Buscar persona en la DB
         /// </summary>
-        private bool InsertarNuevaPersona(string rol, string nombre, string apellido, string identificacion, string email, string telefono, string edad, string sexo, string fechanacimiento)
+        private UsuarioEntity searchUser(string email, string password)
         {
             LoginBO bo = new LoginBO();
             List<string> messages = new List<string>();
-            bool response = false;
+            UsuarioEntity user = new UsuarioEntity();
 
             try
             {
-                response = bo.insertUser(rol, nombre, apellido, identificacion, email, telefono, edad, sexo, fechanacimiento);
+                user = bo.searchUser( email, password);
             }
             catch (ValidationAndMessageException ConsultaRepositorioImagenesException)
             {
                 messages.Add(ConsultaRepositorioImagenesException.Message);
-                ThrowHandledException(RegisterPersonResponseType.Error, messages);
+                ThrowHandledExceptionLogin(LoginResponseType.Error, messages);
             }
             catch (Exception ex)
             {
                 messages.Add("Ocurrió un error al ejecutar el proceso.");
-                ThrowUnHandledException(RegisterPersonResponseType.Error, ex);
+                ThrowUnHandledExceptionLogin(LoginResponseType.Error, ex);
             }
 
-            return response;
+            return user;
         }
 
         /// <summary>
@@ -64,9 +59,9 @@ namespace WebAPIUI.Controllers
         /// <param name="dataRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        public RegisterPersonDataResponse Post(RegisterPersonDataRequest dataRequest)
+        public LoginDataResponse Post(LoginDataRequest dataRequest)
         {
-            RegisterPersonDataResponse response = new RegisterPersonDataResponse();
+            LoginDataResponse response = new LoginDataResponse();
 
             try
             {
@@ -75,30 +70,30 @@ namespace WebAPIUI.Controllers
 
                 ValidatePostRequest(dataRequest);
 
-                bool resp = InsertarNuevaPersona(dataRequest.rolePID, dataRequest.nombres, dataRequest.apellidos, dataRequest.identificacion, dataRequest.email, dataRequest.telefono, dataRequest.edad, dataRequest.sexo, dataRequest.fechaNacimiento);
+                UsuarioEntity user = searchUser(dataRequest.email,dataRequest.password);
 
-                if (resp)
+                if (user != null)
                 {
-                    response.ResponseCode = RegisterPersonResponseType.Ok;
+                    response.ResponseCode = LoginResponseType.Ok;
                     response.ResponseMessage = "Método ejecutado con éxito.";
-                    response.Content = true;
+                    response.Content = user;
                 }
                 else
                 {
-                    response.ResponseCode = RegisterPersonResponseType.InvalidParameters;
-                    response.ResponseMessage = "Fallo en la ejecución.";
-                    response.Content = false;
+                    response.ResponseCode = LoginResponseType.Ok;
+                    response.ResponseMessage = "Error en la ejecución";
+                    response.Content = null;
                 }
 
             }
-            catch (RegisterPersonException RegisterPersonException)
+            catch (LoginException LoginException)
             {
-                SetResponseAsException(RegisterPersonException.Type, response, RegisterPersonException.Message);
+                SetResponseAsExceptionLogin(LoginException.Type, response, LoginException.Message);
             }
             catch (Exception ex)
             {
                 string message = "Se ha produccido un error al invocar RegistrarPersona.";
-                SetResponseAsException(RegisterPersonResponseType.Error, response, message);
+                SetResponseAsExceptionLogin(LoginResponseType.Error, response, message);
             }
 
             return response;

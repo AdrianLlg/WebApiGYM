@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="get FKRelationships" xml:space="preserve">
+    <value>EXEC sp_fkeys '{0}'</value>
+  </data>
+  <data name="getClasesDisicplinaFecha" xml:space="preserve">
+    <value>
+SELECT 
+CL.nombre AS Clase,
+P.nombres AS Instructor,
+CL.descripcion AS Descripcion,
+CR.fecha,
+HM.horaInicio,
+HM.horaFin
+FROM cronograma CR
+INNER JOIN horarioM HM ON CR.horarioMID = HM.horarioMID
+INNER JOIN clase CL ON CR.claseID = CL.claseID
+INNER JOIN sala S ON CR.salaID = S.salaID
+INNER JOIN clase_persona CLP ON CR.claseID = CLP.claseID
+INNER JOIN persona P ON  CLP.personaID=P.personaID
+WHERE CL.disciplinaID in (
+SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = '1' AND statusMembresia = 'A'
+)
+AND CR.fecha = '2021-09-11'
+AND CLP.rolePID = 2</value>
+    <comment>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA</comment>
+  </data>
+  <data name="getClasesPendientesInstructor" xml:space="preserve">
+    <value>SELECT
+e.eventoID,
+e.fecha,
+e.horarioMID,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))as horario,
+e.claseID,
+c.nombre as nombreClase,      
+c.disciplinaID,
+d.nombre as nombreDisciplina,
+e.salaID,
+sl.nombre as nombreSala,
+e.aforoMax,
+e.aforoMin,
+e.personaID,
+e.estadoRegistro,
+h.horaInicio as horaInicioFormat,
+h.horaFin as horaFinFormat
+FROM evento e
+INNER JOIN clase c ON e.claseID=c.claseID
+INNER JOIN horarioM h ON e.horarioMID=h.horarioMID
+INNER JOIN sala sl ON E.salaID=sl.salaID
+INNER JOIN disciplina d ON d.disciplinaID=c.disciplinaID
+where e.estadoRegistro='A' 
+AND e.fecha&gt;=Convert(date, getdate())  
+and e.personaID='{0}'</value>
+    <comment>Consulta  las clases que debe impartir el instructor basado en la hora y fecha actual</comment>
+  </data>
+  <data name="getConsultaDisciplinasDeportistaApp" xml:space="preserve">
+    <value>SELECT
+c.disciplinaID,	
+c.claseID	,
+c.nombre AS Clase	,
+c.descripcion AS DescripcionClase,	
+d.nombre as Disciplina	,
+d.descripcion as DescripcionDisciplina	
+FROM clase c
+INNER JOIN disciplina d ON  C.disciplinaID=d.disciplinaID
+order by disciplinaID</value>
+  </data>
+  <data name="getConsultaMailCancelacionAlumnos" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+as horario from evento_persona ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'</value>
+  </data>
+  <data name="getConsultaMailCancelacionProfesor" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+as horario from evento_profesor ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'</value>
+  </data>
+  <data name="getDisciplinaIDEventoPersona" xml:space="preserve">
+    <value>SELECT 
+ds.disciplinaID
+FROM disciplina ds
+INNER JOIN clase cl ON cl.disciplinaID = ds.disciplinaID
+INNER JOIN evento ev ON ev.claseID = cl.claseID
+INNER JOIN evento_persona ep ON ep.eventoID = ev.eventoID
+WHERE evento_personaID = {0}</value>
+  </data>
+  <data name="getEventMail" xml:space="preserve">
+    <value>SELECT p.nombres,p.apellidos,p.email,c.nombre as clase ,evt.fecha,
+((SELECT STUFF( CAST(h.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(h.horaFin AS varchar), 3, 0, ':')))
+
+as horario from evento_persona ep 
+inner join persona p on p.personaID=ep.personaID
+inner join evento evt on ep.eventoID=evt.eventoID
+inner join horarioM h on evt.horarioMID=h.horarioMID
+inner join clase c on evt.claseID=c.claseID
+where ep.eventoID='{0}'
+
+;</value>
+  </data>
+  <data name="getEventoClasePersona" xml:space="preserve">
+    <value>SELECT
+EV.eventoID AS EventoID,
+CL.nombre AS Clase,
+S.nombre AS Sala,
+nombres+SPACE(2)+apellidos AS NombreInstructor,
+CL.descripcion AS Descripcion,
+EV.fecha,
+HM.horaInicio,
+HM.horaFin,
+(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P1 ON evento_persona.personaID=P1.personaID WHERE p1.rolePID=3)AS Asistentes,
+EV.aforoMax AS AforoMaximoClase,
+EV.aforoMin AS AforoMinimoClase,
+(SELECT COUNT(*) FROM evento_persona INNER JOIN persona P2 ON evento_persona.personaID=P2.personaID WHERE p2.personaID={0}/*Parametro*/)AS ClaseAgendada,
+(SELECT COUNT(*) FROM evento_recursoEspecial ERE WHERE ERE.eventoID = EV.eventoID ) as recursosEspeciales
+FROM evento EV
+INNER JOIN horarioM HM ON EV.horarioMID = HM.horarioMID
+INNER JOIN clase CL ON EV.claseID = CL.claseID
+INNER JOIN sala S ON EV.salaID = S.salaID
+INNER JOIN evento_persona EP ON EV.eventoID = EP.eventoID
+INNER JOIN persona P ON EP.personaID = P.personaID
+WHERE CL.disciplinaID in (
+SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID={0}/*Parametro*/ AND statusMembresia = 'A'
+)
+AND EV.fecha = '{1}'/*Parametro*/
+AND p.rolePID= 2</value>
+    <comment>--CONSULTA EVENTOS POR FECHA Y DISPLINAS DISPONIBLES  DE LA PERSONA</comment>
+  </data>
+  <data name="getEventoRecursoEspecial" xml:space="preserve">
+    <value>SELECT
+RE.nombre,
+RE.descripcion,
+CASE WHEN personaID = {0} /*Parametro*/ THEN 'RESERVADO' WHEN personaID = '' THEN 'DISPONIBLE' ELSE 'OCUPADO' END AS reservado
+FROM evento_recursoEspecial ERE
+INNER JOIN recursoEspecial RE ON ERE.recursoEspecialID = RE.recursoEspecialID
+WHERE ERE.eventoID = {1}/*Parametro*/</value>
+  </data>
+  <data name="getEventoSala" xml:space="preserve">
+    <value>SELECT nombre as Sala ,COUNT(*)as cantidadEventos FROM evento
+  INNER JOIN Sala ON evento.salaID=sala.salaID WHERE evento.fecha between '{0}' and '{1}'  and evento.estadoRegistro= 'I'
+  GROUP BY nombre
+HAVING COUNT(*) &gt; 0</value>
+    <comment>--Cantidad de veces que una sala se ha usado en eventos en un rango de fecha</comment>
+  </data>
+  <data name="getEventosPorDisciplina" xml:space="preserve">
+    <value>SELECT d.nombre as Disciplina ,COUNT(*)as CantidadEventos FROM evento
+  INNER JOIN clase ON evento.claseID=clase.claseID 
+  INNER JOIN disciplina d ON clase.disciplinaID= d.disciplinaID
+  WHERE evento.fecha between '{0}' and '{1}' and evento.estadoRegistro= 'I'
+  GROUP BY d.nombre
+  HAVING COUNT(*) &gt; 0</value>
+    <comment>--Query para sacar numero de eventos por disciplina</comment>
+  </data>
+  <data name="getFichaPersonaApp" xml:space="preserve">
+    <value>SELECT
+fp.fichaPersonaID,
+ (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+ fp.PersonaID,
+ fp.MesoTipo,
+ fp.NivelActualActividadFisica,
+ fp.AntecendesMedicos,
+ fp.Alergias,
+ fp.Enfermedades              
+  FROM fichaPersona fp
+  INNER JOIN persona p on fp.PersonaID=p.personaID
+  Where p.personaID='{0}'</value>
+    <comment>Consulta ficha de cliente del app</comment>
+  </data>
+  <data name="getFichasEntrenamientoPersona" xml:space="preserve">
+    <value>SELECT
+fe.fichaEntrenamientoID,fe.FechaCreacion,fe.fichaPersonaID,(p.nombres+SPACE(1)+p.apellidos)as Profesor,ProfesorID,
+fe.DisciplinaID as DisciplinaID,(d.nombre)as Disciplina,fe.Peso,fe.Altura,fe.IndiceMasaMuscular,
+fe.IndiceGrasaCorporal,fe.MedicionBrazos,fe.MedicionPecho,
+fe.MedicionEspalda,fe.MedicionPiernas,fe.MedicionCintura,
+fe.MedicionCuello,fe.Observaciones
+  FROM fichaEntrenamiento fe
+  INNER JOIN fichaPersona fp ON fe.fichaPersonaID=fp.fichaPersonaID
+  INNER JOIN persona p on fe.ProfesorID=p.personaID
+  INNER JOIN disciplina d on fe.DisciplinaID=d.disciplinaID
+  where fp.PersonaID='{0}'and fe.DisciplinaID='{1}'</value>
+    <comment>Sacar Fichas de entrenamiento por disciplina </comment>
+  </data>
+  <data name="getHistorialAsistenciaClienteApp" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Cliente,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  (pro.nombres+SPACE(1)+pro.apellidos)as Profesor,
+  ((SELECT STUFF( CAST(hm.horaInicio AS varchar), 3, 0, ':'))+' - '+(SELECT STUFF( CAST(hm.horaFin AS varchar), 3, 0, ':')))as Horario , 
+  evt.fecha as Fecha,
+  sl.nombre as Sala,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia,
+  ep.estadoRegistro as Estado
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN horarioM hm ON evt.horarioMID=hm.horarioMID
+  INNER JOIN sala sl ON evt.salaID=sl.salaID
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  INNER JOIN persona pro ON pro.personaID=evt.personaID
+  Where ep.personaID='{0}'</value>
+  </data>
+  <data name="getHorariosFecha" xml:space="preserve">
+    <value>SELECT 
+ev.fecha,
+hm.horarioMID,
+ev.salaID,
+ev.personaID
+FROM evento ev
+INNER JOIN horarioM hm ON hm.horarioMID = ev.horarioMID 
+WHERE 
+fecha &gt;= '{0}' and fecha &lt;= '{1}' 
+and ev.estadoRegistro = 'A'</value>
+  </data>
+  <data name="getHorasDisciplina" xml:space="preserve">
+    <value>SELECT DISTINCT HM.horarioMID ,HM.horaInicio,HM.horaFin FROM clase CL
+INNER JOIN cronograma CR ON CR.cronogramaID = CL.cronogramaID
+INNER JOIN horarioM HM ON HM.horarioMID = CR.horarioMID
+WHERE CL.disciplinaID = ''</value>
+  </data>
+  <data name="getHorasFechaDisciplina" xml:space="preserve">
+    <value>--CONSULTA CLASES DE DISCIPLINA EN UNA FECHA 
+SELECT 
+CR.cronogramaID AS CronoID,
+CL.nombre AS Clase,
+P.nombres AS Nombre,
+CL.descripcion AS Descripcion,
+CR.fecha,
+HM.horaInicio,
+HM.horaFin,
+(SELECT COUNT(*) FROM clase_persona INNER JOIN persona P1 ON  clase_persona.personaID=P1.personaID  WHERE p1.rolePID=3)AS Asistentes,
+(SELECT COUNT(*) FROM clase_persona INNER JOIN persona P2 ON  clase_persona.personaID=P2.personaID  WHERE p2.personaID={0})AS REG
+FROM cronograma CR
+INNER JOIN horarioM HM ON CR.horarioMID = HM.horarioMID
+INNER JOIN clase CL ON CR.claseID = CL.claseID
+INNER JOIN sala S ON CR.salaID = S.salaID
+INNER JOIN clase_persona CLP ON CR.claseID = CLP.claseID
+INNER JOIN persona P ON  CLP.personaID=P.personaID
+WHERE CL.disciplinaID in (
+SELECT disciplinaID FROM membresia_persona_disciplina WHERE personaID = {0} AND statusMembresia = 'A'
+)
+AND CR.fecha = '2021-09-11'
+AND p.rolePID=2</value>
+  </data>
+  <data name="getListaAsistenciaApp" xml:space="preserve">
+    <value>SELECT
+    ep.evento_personaID as eventoPersonaID,
+	ep.personaID,
+	ep.asistencia,
+    (p.nombres+SPACE(1)+p.apellidos)as nombre,
+	p.identificacion	
+	FROM evento_persona ep
+	INNER JOIN evento e ON e.eventoID=ep.eventoID 
+	INNER JOIN persona p ON p.personaID=ep.personaID 
+	WHERE e.eventoID='{0}' AND e.estadoRegistro='A' AND ep.estadoRegistro='A'</value>
+  </data>
+  <data name="getMembresiasUsuario" xml:space="preserve">
+    <value>SELECT 
+D.disciplinaID,
+D.nombre as nombreDisciplina,
+M.precio,
+MPD.numClasesDisponibles,
+MPD.fechaPago,
+MPD.fechaLimite,
+M.nombre as nombreMembresia
+FROM membresia_persona_disciplina MPD
+INNER JOIN membresia M ON M.membresiaID = MPD.membresiaID 
+INNER JOIN disciplina D ON D.disciplinaID = MPD.disciplinaID
+WHERE MPD.personaID = {0}</value>
+  </data>
+  <data name="getMembresiasUsuario2" xml:space="preserve">
+    <value>SELECT m.nombre as nombreMembresia, 
+m.precio as precioMembresia,
+d.nombre as nombreDisciplina,
+MPD.fechaPago,
+MPD.fechaLimite,
+MPD.numClasesDisponibles
+FROM membresia_persona_disciplina MPD INNER JOIN membresia_disciplina MD 
+on MPD.membresia_disciplinaID = MD.membresia_disciplinaID
+INNER JOIN membresia M on MD.membresiaID = M.membresiaID 
+INNER JOIN disciplina D on MD.disciplinaID = D.disciplinaID
+WHERE MPD.personaID = {0}</value>
+  </data>
+  <data name="getNoticiasApp" xml:space="preserve">
+    <value>SELECT* FROM noticia nt
+  where nt.fechaInicio&lt;=Convert(date, getdate()) and nt.fechaFin&gt;=Convert(date, getdate()) and nt.estadoRegistro='A'</value>
+  </data>
+  <data name="getPerfil" xml:space="preserve">
+    <value>SELECT u.usuarioID,p.personaID,rolePID,nombres,apellidos,identificacion,u.email,u.password,telefono,edad,sexo,fechaNacimiento,fechaCreacion,estado
+  FROM persona p
+  INNER JOIN usuario u ON p.personaID=u.personaID
+  WHERE p.personaID='{0}'</value>
+    <comment>--Consulta informacion del perfil Persona|Usuario</comment>
+  </data>
+  <data name="getPersonasEstado" xml:space="preserve">
+    <value>SELECT estado as Estado,Count(*)as Cantidad
+FROM persona 
+GROUP BY estado
+HAVING COUNT(*) &gt; 0</value>
+    <comment>-- Estatus personas activo e inactivo</comment>
+  </data>
+  <data name="getReporteAsistenciaLog" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  evt.fecha as Fecha,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'
+  and evt.estadoRegistro = 'I'
+</value>
+  </data>
+  <data name="getReporteAsistenciaLogProf" xml:space="preserve">
+    <value>SELECT 
+  (p.nombres+SPACE(1)+p.apellidos)as Persona,
+  cl.nombre as Clase,
+  dsp.nombre as Disciplina,
+  evt.fecha as Fecha,
+  (SELECT CASE WHEN ep.asistencia = 1 THEN 'Si' ELSE 'No' END ) as Asistencia
+  FROM evento evt
+  INNER JOIN evento_profesor ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}'
+ and evt.estadoRegistro = 'I'</value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCA" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesAsistidas
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1 and evt.estadoRegistro = 'I'
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0 
+  
+  </value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCAProf" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesAsistidas
+  FROM evento evt
+  INNER JOIN evento_profesor  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=1 and evt.estadoRegistro = 'I'
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0</value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCNA" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesNoAsistidas
+  FROM evento evt
+  INNER JOIN evento_persona  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0 and evt.estadoRegistro = 'I'
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0</value>
+  </data>
+  <data name="getReporteGeneralAsistenciaCNAProf" xml:space="preserve">
+    <value>SELECT 
+  dsp.nombre as Disciplina,
+   COUNT(*)as ClasesNoAsistidas
+  FROM evento evt
+  INNER JOIN evento_profesor  ep ON evt.eventoID=ep.eventoID 
+  INNER JOIN persona p ON  ep.personaID=p.personaID
+  INNER JOIN clase cl ON evt.claseID=cl.claseID 
+  INNER JOIN disciplina dsp ON cl.disciplinaID=dsp.disciplinaID
+  Where p.personaID='{0}' and evt.fecha&gt;='{1}' and evt.fecha&lt;='{2}' and ep.asistencia=0 and evt.estadoRegistro = 'I'
+  GROUP BY dsp.nombre,ep.asistencia
+  HAVING COUNT(*) &gt; 0</value>
+  </data>
+  <data name="getTransaccionesAnuales" xml:space="preserve">
+    <value>SELECT Mes , Anio,COUNT(*) as Transacciones  FROM (SELECT (DATENAME(month,fechaTransaccion)) AS Mes,(YEAR(fechaTransaccion)) AS Anio FROM membresia_persona_pago as MPP WHERE YEAR(MPP.fechaTransaccion) = {0} AND MPP.estado='A')AS TABLA
+group by Mes,Anio
+HAVING count(*) &gt;0</value>
+  </data>
+  <data name="getVentasMembresias" xml:space="preserve">
+    <value>SELECT nombre as Membresia,(precio*Cantidad)AS TotalVentas FROM(
+  SELECT membresia.nombre ,membresia.precio ,COUNT(*)as Cantidad from membresia_persona_pago
+  INNER JOIN membresia ON membresia_persona_pago.membresiaID=membresia.membresiaID
+  WHERE fechaTransaccion &gt;= '{0}' AND fechaTransaccion&lt;= '{1}'
+  GROUP BY membresia.nombre,membresia.precio
+  HAVING COUNT(*)&gt;0)as S1</value>
+    <comment>--Calcula el total de ventas por tipo de membresia</comment>
+  </data>
+</root>

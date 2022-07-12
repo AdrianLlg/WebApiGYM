@@ -17,9 +17,14 @@ namespace WebAPIData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public persona()
         {
-            this.clase_persona = new HashSet<clase_persona>();
-            this.clase_recurso = new HashSet<clase_recurso>();
-            this.membresia_persona = new HashSet<membresia_persona>();
+            this.evento = new HashSet<evento>();
+            this.evento_persona = new HashSet<evento_persona>();
+            this.evento_profesor = new HashSet<evento_profesor>();
+            this.fichaEntrenamiento = new HashSet<fichaEntrenamiento>();
+            this.fichaPersona = new HashSet<fichaPersona>();
+            this.membresia_persona_disciplina = new HashSet<membresia_persona_disciplina>();
+            this.membresia_persona_pago = new HashSet<membresia_persona_pago>();
+            this.sol_membresiaPago = new HashSet<sol_membresiaPago>();
             this.usuario = new HashSet<usuario>();
         }
     
@@ -34,13 +39,24 @@ namespace WebAPIData
         public string sexo { get; set; }
         public System.DateTime fechaNacimiento { get; set; }
         public System.DateTime fechaCreacion { get; set; }
+        public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<clase_persona> clase_persona { get; set; }
+        public virtual ICollection<evento> evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<clase_recurso> clase_recurso { get; set; }
+        public virtual ICollection<evento_persona> evento_persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<membresia_persona> membresia_persona { get; set; }
+        public virtual ICollection<evento_profesor> evento_profesor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fichaEntrenamiento> fichaEntrenamiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fichaPersona> fichaPersona { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_disciplina> membresia_persona_disciplina { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<membresia_persona_pago> membresia_persona_pago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sol_membresiaPago> sol_membresiaPago { get; set; }
         public virtual roleP roleP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuario> usuario { get; set; }
